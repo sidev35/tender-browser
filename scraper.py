@@ -50,6 +50,8 @@ import requests
 import urllib3
 from bs4 import BeautifulSoup
 
+from notify import send_digest
+
 # Some Indian government sites (and some corporate/ISP networks with SSL
 # inspection) present certificate chains that Python's default verifier
 # rejects, even though the site is legitimate. We try a verified request
@@ -229,6 +231,17 @@ def matches_categories(title):
 
 
 DATA_PATH = os.environ.get("TENDER_DATA_PATH", "docs/data/tenders.json")
+DUE_SOON_DAYS = int(os.environ.get("DUE_SOON_DAYS", "7"))
+
+
+def days_until(date_str):
+    if not date_str:
+        return None
+    try:
+        due = datetime.strptime(date_str, "%Y-%m-%d")
+    except ValueError:
+        return None
+    return (due.date() - datetime.now().date()).days
 
 
 def load_existing(path):
@@ -245,6 +258,7 @@ def run():
     existing = load_existing(DATA_PATH)
     existing_by_id = {t["id"]: t for t in existing if t.get("id")}
     new_count = 0
+    new_records = []
 
     for source in SOURCES:
         print(f"Checking {source['name']} ...")
@@ -273,6 +287,7 @@ def run():
                 "firstSeen": datetime.now().strftime("%Y-%m-%d"),
             }
             existing_by_id[tid] = record
+            new_records.append(record)
             matched_here += 1
             new_count += 1
 
@@ -297,6 +312,21 @@ def run():
 
     print(f"\nDone. {new_count} new match(es) this run. {len(merged)} total tenders now in {DATA_PATH}.")
     print(f"Run at: {datetime.now().isoformat()}")
+
+    # Email digest: "new" tenders only ever appear in the run they were first
+    # matched; "closing soon" tenders are re-included in every digest until
+    # they pass, by design (see README) — so this will email on every run
+    # for as long as at least one tender sits inside the closing-soon window.
+    merged_ids = {t["id"] for t in merged}
+    new_records = [r for r in new_records if r["id"] in merged_ids]
+    due_soon_records = [
+        t for t in merged
+        if (d := days_until(t.get("dueDate"))) is not None and 0 <= d <= DUE_SOON_DAYS
+    ]
+    try:
+        send_digest(new_records, due_soon_records)
+    except Exception as e:
+        print(f"  [!] Email digest failed (continuing without it): {e}")
 
 
 if __name__ == "__main__":
