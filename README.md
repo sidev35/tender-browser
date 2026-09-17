@@ -14,6 +14,33 @@ it also polls automatically every 10 minutes while open and shows
 in-page + browser notifications for new matches and tenders closing
 within 7 days.
 
+## Manually checking a portal yourself
+
+The automated scraper's free access to each portal (see "Managing
+sources" below) is limited to that portal's 10 most-recently-posted
+tenders site-wide — their real keyword search exists but is
+CAPTCHA-gated, so it isn't automated. You, as a human, can still use
+that real search directly (the CAPTCHA is trivial to solve by hand)
+to check the *full* current tender set, not just the latest 10:
+
+- CPPP / etenders.gov.in: https://etenders.gov.in/eprocure/app?page=FrontEndLatestActiveTenders&service=page
+- IOCL e-Tendering: https://iocletenders.nic.in/nicgep/app?page=FrontEndLatestActiveTenders&service=page
+- Rajasthan e-Tendering: https://eproc.rajasthan.gov.in/nicgep/app?page=FrontEndLatestActiveTenders&service=page
+- Madhya Pradesh e-Tendering: https://mptenders.gov.in/nicgep/app?page=FrontEndLatestActiveTenders&service=page
+
+On each, type a keyword (e.g. `electric vehicle` or `charging
+station`) into **Tender Title**, enter the captcha shown, and submit.
+For GeM/CESL, just use their own search bar directly on the site.
+
+**If you find a real match this way that the dashboard doesn't show**,
+use the "Add tender manually" GitHub Action (repo's **Actions** tab →
+that workflow → **Run workflow**) to add it — fill in the form
+(description, category, due date, location, value, source, URL) and it
+commits straight into `docs/data/tenders.json`, live on the dashboard
+within a minute or two. It dedupes against the same
+source+description the automated scraper would use, so if the
+scraper later independently finds the same tender, it won't double up.
+
 ## Email digest setup (optional)
 
 Each scraper run can also email a digest via SendGrid. This repo is

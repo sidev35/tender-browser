@@ -1,0 +1,84 @@
+name: Add tender manually
+
+# Run from the Actions tab ("Run workflow") whenever you find a real tender
+# by hand-searching a portal (see README) that the twice-daily automated
+# scraper's free "latest 10" view didn't happen to catch. Fill in the form,
+# run it, and it commits the tender straight into docs/data/tenders.json —
+# no JSON editing needed.
+
+on:
+  workflow_dispatch:
+    inputs:
+      description:
+        description: "Tender title/description"
+        required: true
+        type: string
+      category:
+        description: "Category"
+        required: true
+        type: choice
+        options:
+          - "PPP / Concession / CPO Selection"
+          - "Charger Supply & Installation"
+          - "Infrastructure & Electrical Works"
+      due_date:
+        description: "Due date (YYYY-MM-DD), optional"
+        required: false
+        type: string
+      location:
+        description: "Location, optional"
+        required: false
+        type: string
+      value:
+        description: 'Tender value, optional (e.g. "₹30 Cr")'
+        required: false
+        type: string
+      source:
+        description: "Source portal name, optional (default: Manually added)"
+        required: false
+        type: string
+      url:
+        description: "Official tender URL, optional"
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  add:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Add tender
+        env:
+          TENDER_DESC: ${{ inputs.description }}
+          TENDER_CATEGORY: ${{ inputs.category }}
+          TENDER_DUE_DATE: ${{ inputs.due_date }}
+          TENDER_LOCATION: ${{ inputs.location }}
+          TENDER_VALUE: ${{ inputs.value }}
+          TENDER_SOURCE: ${{ inputs.source }}
+          TENDER_URL: ${{ inputs.url }}
+        run: python add_tender.py
+
+      - name: Commit and push
+        run: |
+          git config user.name "tender-radar-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add docs/data/tenders.json
+          if git diff --cached --quiet; then
+            echo "Nothing to commit (likely a duplicate)."
+          else
+            git commit -m "Manually add tender ($(date -u +'%Y-%m-%d %H:%M UTC'))"
+            git push
+          fi
