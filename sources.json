@@ -1,0 +1,72 @@
+[
+  {
+    "name": "IOCL e-Tendering",
+    "url": "https://iocletenders.nic.in/nicgep/app",
+    "type": "gepnic_table",
+    "enabled": true,
+    "notes": "Free/official. NIC GePNIC engine, no login required."
+  },
+  {
+    "name": "CPPP / etenders.gov.in",
+    "url": "https://etenders.gov.in/eprocure/app",
+    "type": "gepnic_table",
+    "enabled": true,
+    "notes": "Free/official. Same GePNIC engine as most state e-procurement portals and PSU e-tendering sites."
+  },
+  {
+    "name": "NHAI",
+    "url": null,
+    "type": "unsupported",
+    "enabled": false,
+    "notes": "No separate stable public listing URL as of last check — its tenders flow through CPPP/etenders.gov.in (above) and GeM (blocked, see below). Set url + type to gepnic_table and enabled to true if you confirm a dedicated NHAI e-tendering URL."
+  },
+  {
+    "name": "GeM (bidplus.gem.gov.in)",
+    "url": "https://bidplus.gem.gov.in",
+    "type": "blocked_by_robots_txt",
+    "enabled": false,
+    "notes": "Disallows automated access via robots.txt — do not scrape. Use GeM's own keyword/email alert feature instead. (type is intentionally unrecognized by scraper.py so this can't be scraped even if enabled is flipped to true by mistake.)"
+  },
+  {
+    "name": "CESL e-procurement (cesl.eproc.in)",
+    "url": "https://cesl.eproc.in",
+    "type": "blocked_by_robots_txt",
+    "enabled": false,
+    "notes": "Disallows automated access via robots.txt — do not scrape."
+  },
+  {
+    "name": "TenderDetail",
+    "url": "https://www.tenderdetail.com",
+    "type": "paid_aggregator",
+    "enabled": false,
+    "notes": "Paid aggregator you already subscribe to. Scraping a paid product likely breaches its terms of service — use its own keyword/email alert feature instead of building a scraper for it."
+  },
+  {
+    "name": "TendersOnTime",
+    "url": "https://www.tendersontime.com",
+    "type": "paid_aggregator",
+    "enabled": false,
+    "notes": "Paid aggregator — use its built-in alerts, don't scrape."
+  },
+  {
+    "name": "Tendersniper",
+    "url": "https://www.tendersniper.com",
+    "type": "paid_aggregator",
+    "enabled": false,
+    "notes": "Paid aggregator — use its built-in alerts, don't scrape."
+  },
+  {
+    "name": "NationalTenders",
+    "url": "https://www.nationaltenders.com",
+    "type": "paid_aggregator",
+    "enabled": false,
+    "notes": "Paid aggregator — use its built-in alerts, don't scrape."
+  },
+  {
+    "name": "Tender18",
+    "url": "https://www.tender18.com",
+    "type": "paid_aggregator",
+    "enabled": false,
+    "notes": "Paid aggregator — use its built-in alerts, don't scrape."
+  }
+]

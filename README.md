@@ -69,5 +69,46 @@ preview the dashboard against local data, serve the repo root
 due to browser security rules.
 
 **To tune what counts as a match**, edit `CATEGORY_KEYWORDS` near the
-top of `scraper.py`. **To add a new source**, add an entry to `SOURCES`,
-following the commented example.
+top of `scraper.py`.
+
+## Managing sources (`sources.json`)
+
+Every portal Tender Radar knows about — scraped or not — lives in
+`sources.json` at the repo root, not in `scraper.py`. Each entry:
+
+```json
+{
+  "name": "IOCL e-Tendering",
+  "url": "https://iocletenders.nic.in/nicgep/app",
+  "type": "gepnic_table",
+  "enabled": true,
+  "notes": "Free/official. NIC GePNIC engine, no login required."
+}
+```
+
+- **`enabled`** — the on/off switch. Set to `false` to stop checking a
+  source without deleting it.
+- **`type`** — which parser reads it. Only types with a registered
+  parser in `scraper.py`'s `TYPE_PARSERS` dict are ever actually
+  scraped, **regardless of `enabled`** — this is a deliberate safety
+  net. Right now that's just `"gepnic_table"` (the NIC GePNIC engine
+  used by IOCL, CPPP/etenders.gov.in, and most state e-procurement
+  portals). Everything else in the file — `"blocked_by_robots_txt"`
+  (GeM, CESL — both disallow automated access), `"paid_aggregator"`
+  (TenderDetail, TendersOnTime, Tendersniper, NationalTenders,
+  Tender18 — scraping a paid product you subscribe to likely breaches
+  its ToS) and `"unsupported"` (NHAI — no confirmed stable listing URL
+  yet) — is listed for visibility but intentionally can't be scraped
+  until you deliberately add support for it.
+- **To add a free/official portal once you've confirmed its listing
+  URL** (e.g. a state e-procurement site): add an entry with
+  `"type": "gepnic_table"` and `"enabled": true` — no code changes
+  needed, since it reuses the existing GePNIC parser.
+- **If you later get paid API access** to one of the aggregators:
+  that needs an actual parser for however that API responds — add a
+  function to `scraper.py`, register it in `TYPE_PARSERS` under a new
+  type name (e.g. `"tenderdetail_api"`), then flip that source's
+  `type`/`enabled` in `sources.json`. Until then, leave paid
+  aggregators as `"paid_aggregator"` / `enabled: false` and keep using
+  their own keyword/email alerts.
+- **To drop a source entirely**, just delete its entry.

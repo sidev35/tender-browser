@@ -16,16 +16,15 @@ This is designed to run automatically via GitHub Actions
 serving docs/index.html + docs/data/tenders.json as a live site. See
 README.md for the one-time setup steps.
 
-WHY ONLY THESE SOURCES FOR NOW
--------------------------------
-- GeM (bidplus.gem.gov.in) and CESL's e-procurement portal
-  (cesl.eproc.in) both disallow automated access via robots.txt.
-  Don't scrape these — use their aggregator/keyword-alert features
-  instead (TenderDetail, TendersOnTime, etc., which you already pay for).
-- NHAI doesn't run a separate stable listing URL; its tenders flow
-  through CPPP/etenders.gov.in (already covered) and GeM.
-- State portals and Smart City SPVs vary site-by-site; add them to
-  SOURCES below once you confirm each one's listing URL.
+SOURCES
+-------
+Portals live in sources.json (repo root), not in this file — see that
+file and README.md for how to add, remove, or disable one, and what
+each field means. In short: a source only gets scraped if it's
+"enabled": true AND its "type" has a registered parser in
+TYPE_PARSERS below; paid aggregators and robots.txt-blocked portals
+are listed there with types that deliberately have no parser, so they
+can't start being scraped by accident.
 
 RUNNING LOCALLY (optional, for testing)
 ----------------------------------------
@@ -92,35 +91,19 @@ GENERIC_GATE_TERMS = ["ev charg", "electric vehicle charg", "charging station", 
 
 # ---------------------------------------------------------------------------
 # 2. SOURCES
-#    Each source is a GePNIC-style "Latest Tenders" listing page that is
-#    fetchable without login. Add more state/PSU portals here once verified.
+#    Loaded from sources.json (repo root) rather than hardcoded here, so you
+#    can add/remove/disable a source without touching this file. See that
+#    file's entries for the shape, and README.md for the full explanation of
+#    each field (name/url/type/enabled/notes).
 # ---------------------------------------------------------------------------
 
-SOURCES = [
-    {
-        "name": "IOCL e-Tendering",
-        "url": "https://iocletenders.nic.in/nicgep/app",
-        "type": "gepnic_table",
-    },
-    {
-        "name": "CPPP / etenders.gov.in",
-        "url": "https://etenders.gov.in/eprocure/app",
-        "type": "gepnic_table",
-    },
-    # NHAI deliberately left out: it doesn't run its own separate GePNIC
-    # listing at a stable public URL — its tenders are published through
-    # CPPP/etenders.gov.in (already covered above) and GeM (blocked, see
-    # note at top of file). If you find a dedicated NHAI e-tendering URL,
-    # add it here following the pattern below.
-    #
-    # Example of how to add a state portal once you've confirmed its
-    # listing URL:
-    # {
-    #     "name": "Maharashtra e-Tendering (mahatenders.gov.in)",
-    #     "url": "https://mahatenders.gov.in/nicgep/app",
-    #     "type": "gepnic_table",
-    # },
-]
+SOURCES_PATH = os.environ.get("TENDER_SOURCES_PATH", "sources.json")
+
+
+def load_sources(path=None):
+    path = path or SOURCES_PATH
+    with open(path, encoding="utf-8") as f:
+        return json.load(f)
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
@@ -191,6 +174,18 @@ def parse_gepnic_table(html, source_name, base_url):
 def parse_generic_table(html, source_name, base_url):
     """Fallback parser: same idea as GePNIC but looser, for other portal layouts."""
     return parse_gepnic_table(html, source_name, base_url)
+
+
+# Maps a source's "type" (from sources.json) to the parser that knows how to
+# read it. A type with no entry here (e.g. "blocked_by_robots_txt",
+# "paid_aggregator", "unsupported") is deliberately unscrapable — this is a
+# safety net so a source can't start being scraped just by someone flipping
+# "enabled": true in sources.json; actually supporting a new source type
+# requires adding a parser function and registering it here.
+TYPE_PARSERS = {
+    "gepnic_table": parse_gepnic_table,
+    "generic_table": parse_generic_table,
+}
 
 
 def make_stable_id(source_name, title):
@@ -271,12 +266,22 @@ def run():
     new_count = 0
     new_records = []
 
-    for source in SOURCES:
+    for source in load_sources():
+        if not source.get("enabled"):
+            continue
+        parser = TYPE_PARSERS.get(source.get("type"))
+        if not parser:
+            print(f"Skipping {source['name']}: type '{source.get('type')}' isn't set up for "
+                  f"automated scraping ({source.get('notes', 'no notes')}).")
+            continue
+        if not source.get("url"):
+            print(f"Skipping {source['name']}: no URL configured in sources.json yet.")
+            continue
+
         print(f"Checking {source['name']} ...")
         html = fetch(source["url"])
         if not html:
             continue
-        parser = parse_gepnic_table if source["type"] == "gepnic_table" else parse_generic_table
         rows = parser(html, source["name"], source["url"])
 
         matched_here = 0
