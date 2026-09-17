@@ -234,7 +234,7 @@ DATA_PATH = os.environ.get("TENDER_DATA_PATH", "docs/data/tenders.json")
 def load_existing(path):
     if os.path.exists(path):
         try:
-            with open(path) as f:
+            with open(path, encoding="utf-8") as f:
                 return json.load(f)
         except (json.JSONDecodeError, OSError):
             print(f"  [!] Could not read existing {path}, starting fresh.")
@@ -292,8 +292,8 @@ def run():
     merged = [t for t in existing_by_id.values() if not t.get("dueDate") or t["dueDate"] >= today]
 
     os.makedirs(os.path.dirname(DATA_PATH) or ".", exist_ok=True)
-    with open(DATA_PATH, "w") as f:
-        json.dump(merged, f, indent=2)
+    with open(DATA_PATH, "w", encoding="utf-8") as f:
+        json.dump(merged, f, indent=2, ensure_ascii=False)
 
     print(f"\nDone. {new_count} new match(es) this run. {len(merged)} total tenders now in {DATA_PATH}.")
     print(f"Run at: {datetime.now().isoformat()}")
