@@ -45,6 +45,7 @@ import os
 import re
 import time
 from datetime import datetime
+from urllib.parse import urljoin
 
 import requests
 import urllib3
@@ -149,13 +150,20 @@ def fetch(url, timeout=20):
         return None
 
 
-def parse_gepnic_table(html, source_name):
+def parse_gepnic_table(html, source_name, base_url):
     """
     Parses the 'Latest Tenders' table found on NIC GePNIC-based portals.
     Structure: a table with columns like
     [S.No, Tender Title, Reference No, Closing Date, Bid Opening Date]
     This is intentionally forgiving — GePNIC installs differ slightly by
     department, so we scan all tables and pick rows that look like tenders.
+
+    Also grabs the row's link (usually wrapping the title), if any. NOTE:
+    GePNIC "DirectLink" URLs are session-scoped
+    (?...&session=T&sp=<token>) — they may stop working once the scraper's
+    session ends, so this is a best-effort deep link, not a guaranteed one.
+    Callers should always have a working fallback (the portal's own listing
+    page) for when it goes stale.
     """
     soup = BeautifulSoup(html, "html.parser")
     results = []
@@ -169,17 +177,20 @@ def parse_gepnic_table(html, source_name):
             # Heuristic: a tender row usually has a date-like string in it
             if re.search(r"\d{1,2}[-/][A-Za-z]{3}[-/]\d{2,4}|\d{1,2}[-/]\d{1,2}[-/]\d{2,4}", row_text):
                 title = max(cells, key=len)  # longest cell is usually the title
+                link = row.find("a", href=True)
+                direct_url = urljoin(base_url, link["href"]) if link else None
                 results.append({
                     "raw_title": title,
                     "raw_row": row_text,
                     "source": source_name,
+                    "direct_url": direct_url,
                 })
     return results
 
 
-def parse_generic_table(html, source_name):
+def parse_generic_table(html, source_name, base_url):
     """Fallback parser: same idea as GePNIC but looser, for other portal layouts."""
-    return parse_gepnic_table(html, source_name)
+    return parse_gepnic_table(html, source_name, base_url)
 
 
 def make_stable_id(source_name, title):
@@ -266,7 +277,7 @@ def run():
         if not html:
             continue
         parser = parse_gepnic_table if source["type"] == "gepnic_table" else parse_generic_table
-        rows = parser(html, source["name"])
+        rows = parser(html, source["name"], source["url"])
 
         matched_here = 0
         for row in rows:
@@ -284,6 +295,10 @@ def run():
                 "dueDate": extract_due_date(row["raw_row"]),
                 "category": cats[0],
                 "source": source["name"],
+                # Best-effort deep link into the specific tender; falls back to
+                # the portal's own listing page (always works) if we couldn't
+                # find one, or once the deep link's session token goes stale.
+                "url": row["direct_url"] or source["url"],
                 "firstSeen": datetime.now().strftime("%Y-%m-%d"),
             }
             existing_by_id[tid] = record

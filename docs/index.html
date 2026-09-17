@@ -149,6 +149,10 @@
   }
   .card.urgent { border-left: 3px solid var(--danger); }
   .card.soon { border-left: 3px solid var(--warn); }
+  .card.clickable { cursor: pointer; transition: border-color .15s, box-shadow .15s; }
+  .card.clickable:hover { border-color: var(--accent); box-shadow: 0 4px 14px rgba(0,0,0,.15); }
+  .card-source-link { color: var(--text-dim); text-decoration: none; }
+  .card-source-link:hover { color: var(--accent); text-decoration: underline; }
   .card.isnew::before {
     content: 'NEW'; position: absolute; top: -1px; left: 14px; transform: translateY(-50%);
     background: var(--accent); color: var(--bg); font-size: 10px; font-weight: 700;
@@ -414,6 +418,10 @@
     return d.toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' });
   }
 
+  function escapeAttr(s) {
+    return String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
   function renderPills() {
     const cats = ['All', ...new Set(state.data.map(t => t.category))];
     const wrap = document.getElementById('categoryPills');
@@ -490,7 +498,10 @@
         const urgency = d !== null && d < 0 ? '' : d !== null && d <= 7 ? 'urgent' : d !== null && d <= 14 ? 'soon' : '';
         const isNew = !seen.includes(t.id);
         const card = document.createElement('div');
-        card.className = `card ${urgency ? urgency : ''} ${isNew ? 'isnew' : ''}`.trim();
+        card.className = `card ${urgency ? urgency : ''} ${isNew ? 'isnew' : ''} ${t.url ? 'clickable' : ''}`.trim();
+        const sourceHtml = t.url
+          ? `<a class="card-source-link" href="${escapeAttr(t.url)}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">${t.source || 'Govt Portal'} ↗</a>`
+          : (t.source || 'Govt Portal');
         card.innerHTML = `
           <div>
             <div class="card-id mono">${t.id}</div>
@@ -498,7 +509,7 @@
             <div class="card-meta">
               <span>📍 ${t.location || 'Location TBD'}</span>
               <span>💰 ${t.value || 'Value not disclosed'}</span>
-              <span>🏛 ${t.source || 'Govt Portal'}</span>
+              <span>🏛 ${sourceHtml}</span>
             </div>
           </div>
           <div class="card-due">
@@ -506,6 +517,10 @@
             ${d !== null ? `<div class="due-days">${d < 0 ? 'Closed' : d === 0 ? 'Due today' : d + ' day' + (d===1?'':'s') + ' left'}</div>` : ''}
           </div>
         `;
+        if (t.url) {
+          card.title = 'Open the official tender listing';
+          card.addEventListener('click', () => window.open(t.url, '_blank', 'noopener'));
+        }
         grid.appendChild(card);
       });
       groupEl.appendChild(grid);
