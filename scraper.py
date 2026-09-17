@@ -150,7 +150,15 @@ def parse_gepnic_table(html, source_name, base_url):
     """
     soup = BeautifulSoup(html, "html.parser")
     results = []
-    for table in soup.find_all("table"):
+    # NIC GePNIC homepages render the real "latest tenders" widget as
+    # <table id="activeTenders">, surrounded by dozens of unrelated layout
+    # tables (nav/menus/banners). Scanning every table on the page — as this
+    # used to do — picks up that surrounding chrome as bogus "tender rows"
+    # (e.g. "Screen Reader Access 17-Sep-2026 Search | Active Tenders...").
+    # Prefer the real table by id; only fall back to scanning everything for
+    # a portal layout we don't recognize (parse_generic_table's use case).
+    tables = [soup.find(id="activeTenders")] if soup.find(id="activeTenders") else soup.find_all("table")
+    for table in tables:
         rows = table.find_all("tr")
         for row in rows:
             cells = [c.get_text(" ", strip=True) for c in row.find_all(["td", "th"])]
