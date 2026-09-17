@@ -571,10 +571,17 @@
   }
   notifyBtn.addEventListener('click', async () => {
     if (typeof Notification === 'undefined') return;
-    if (Notification.permission === 'default') {
-      await Notification.requestPermission();
-    } else if (Notification.permission === 'denied') {
-      showToast({ title: 'Notifications blocked', body: 'Your browser is blocking notifications for this site — allow them in your browser\'s site settings to receive alerts.', kind: 'error' });
+    let perm = Notification.permission;
+    if (perm === 'default') {
+      perm = await Notification.requestPermission();
+    }
+    if (perm === 'granted') {
+      // Fires every click (not just the first grant) so the button doubles as a
+      // "test my notifications" action — click it any time to confirm alerts work.
+      showToast({ title: 'Notifications enabled', body: "You'll see an alert here, and as a system notification, when a new tender matches or one moves inside its closing window.", kind: 'new' });
+      maybeNativeNotify('Tender Radar notifications enabled', "You'll be alerted here when a new tender matches or one is closing soon.");
+    } else if (perm === 'denied') {
+      showToast({ title: 'Notifications blocked', body: 'Your browser blocked or previously denied this request. Allow notifications for this site in your browser\'s site settings, then click the bell again.', kind: 'error' });
     }
     updateNotifyBtnUI();
   });
