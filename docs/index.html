@@ -289,7 +289,10 @@
 </div>
 
 <script>
-  const SEED_DATA = [{"id": "TDR 57059132", "desc": "Development of EV Charging Stations on DBFOT basis across Municipal Corporation parking locations under PPP model", "location": "Jaipur, Rajasthan", "value": "\u20b930 Cr", "dueDate": "2026-09-24", "category": "PPP / Concession / CPO Selection", "source": "State Portal"}, {"id": "TDR 57535622", "desc": "RFP for Engagement of CPOs for Supply, Installation, Testing, Commissioning & Operation of EV Charging Stations", "location": "Mumbai, Maharashtra", "value": "\u20b91.25 Cr", "dueDate": "2026-10-07", "category": "PPP / Concession / CPO Selection", "source": "State Portal"}, {"id": "TDR 57322869", "desc": "Selection of CPO for Operation, Maintenance, Upgradation & Commercialization of 200 Public Charging Stations", "location": "Hyderabad, Telangana", "value": "Strategic Opportunity", "dueDate": "2026-09-22", "category": "PPP / Concession / CPO Selection", "source": "State Portal"}, {"id": "TDR 57509163 / 57499067 / 57438128", "desc": "CPO Selection for Design, Build, Finance, Operate & Maintain EV Public Charging Stations under PM E-Drive Scheme", "location": "Vadodara, Gujarat", "value": "Revenue Share Model", "dueDate": "2026-10-09", "category": "PPP / Concession / CPO Selection", "source": "State Portal"}, {"id": "TDR 57425755", "desc": "Empanelment of Agencies for EV Charging Stations across Mumbai Metropolitan Region", "location": "Maharashtra", "value": "Empanelment", "dueDate": "2026-09-22", "category": "PPP / Concession / CPO Selection", "source": "State Portal"}, {"id": "TDR 57376565 / 57436795", "desc": "Empanelment for Supply, Installation, O&M of EV Charging Stations on BOOM Model", "location": "Bihar", "value": "State-wide Deployment", "dueDate": "2026-09-28", "category": "PPP / Concession / CPO Selection", "source": "State Portal"}, {"id": "TDR 56353854", "desc": "Setting up EV Charging Stations under PPP Model", "location": "Bhopal, Madhya Pradesh", "value": "PPP Model", "dueDate": "2026-09-24", "category": "PPP / Concession / CPO Selection", "source": "State Portal"}, {"id": "TDR 57517292", "desc": "Supply, Installation & Commissioning of 60kW Dual Gun DC Fast Charger", "location": "Amritsar", "value": "\u20b911.50 Lakh", "dueDate": "2026-10-06", "category": "Charger Supply & Installation", "source": "State Portal"}, {"id": "TDR 57464670", "desc": "DC EV Charging Station Supply", "location": "Satara", "value": "\u20b932.79 Lakh", "dueDate": "2026-09-21", "category": "Charger Supply & Installation", "source": "State Portal"}, {"id": "TDR 57344716", "desc": "EV Charging Station Setup", "location": "Ahmednagar", "value": "\u20b934.95 Lakh", "dueDate": "2026-09-24", "category": "Charger Supply & Installation", "source": "State Portal"}, {"id": "TDR 57509521", "desc": "Design, Supply, Installation & Commissioning of EV Charging Infrastructure", "location": "Mumbai", "value": "TBD", "dueDate": "2026-09-25", "category": "Charger Supply & Installation", "source": "State Portal"}, {"id": "TDR 57443822", "desc": "Solar Powered AC EV Charging System", "location": "Daman", "value": "TBD", "dueDate": "2026-09-24", "category": "Charger Supply & Installation", "source": "State Portal"}, {"id": "TDR 57537951", "desc": "Electrical Infrastructure for EV Charging Units across 15 Retail Outlets", "location": "Mumbai", "value": "\u20b91.25 Cr", "dueDate": null, "category": "Infrastructure & Electrical Works", "source": "OMC"}, {"id": "TDR 57345790", "desc": "Power Infrastructure for EV Bus Charging Station", "location": "BARC Mumbai", "value": "\u20b920.63 Lakh", "dueDate": null, "category": "Infrastructure & Electrical Works", "source": "PSU"}, {"id": "TDR 57459970", "desc": "HT/LT Infrastructure for EV Charging Facility", "location": "Himachal Pradesh", "value": "\u20b927.89 Lakh", "dueDate": null, "category": "Infrastructure & Electrical Works", "source": "State Portal"}, {"id": "TDR 57144127", "desc": "Multi-Level Car Parking with EV Charging Infrastructure", "location": "Tripura", "value": "EPC Project", "dueDate": null, "category": "Infrastructure & Electrical Works", "source": "State Portal"}];
+  // No bundled example data \u2014 the dashboard is driven entirely by the live
+  // data/tenders.json fetch. If that fetch fails, we show an honest empty
+  // state rather than stale placeholder tenders pretending to be current.
+  const SEED_DATA = [];
 
   const state = {
     data: SEED_DATA,
@@ -297,6 +300,7 @@
     query: '',
     sort: 'due'
   };
+  let lastFetchFailed = false;
 
   const DUE_SOON_DAYS = 7;
   const AUTO_REFRESH_MS = 10 * 60 * 1000; // re-check for updates every 10 min while the tab is open
@@ -379,13 +383,16 @@
     if (manual) btn.classList.add('spinning');
     try {
       const data = await fetchLiveData();
-      if (data.length) {
-        checkForAlerts(data);
-        state.data = data;
-        render();
-        if (manual) showToast({ title: 'Synced', body: `Loaded ${data.length} tender(s) from the latest data sync.`, kind: 'new' });
-      }
+      // An empty array is a real, valid result (currently zero matches) —
+      // it must still replace stale data, not be treated as "no update".
+      lastFetchFailed = false;
+      checkForAlerts(data);
+      state.data = data;
+      render();
+      if (manual) showToast({ title: 'Synced', body: `Loaded ${data.length} tender(s) from the latest data sync.`, kind: 'new' });
     } catch (e) {
+      lastFetchFailed = true;
+      render();
       console.warn('Could not load live data/tenders.json.', e);
       if (manual) showToast({ title: 'Refresh failed', body: 'Could not reach data/tenders.json — ' + e.message, kind: 'error' });
     } finally {
@@ -478,7 +485,11 @@
     const groupsEl = document.getElementById('groups');
     groupsEl.innerHTML = '';
     if (items.length === 0) {
-      groupsEl.innerHTML = '<div class="empty">No tenders match this filter right now. Try clearing the search or picking a different category.</div>';
+      groupsEl.innerHTML = state.data.length === 0
+        ? (lastFetchFailed
+            ? '<div class="empty">Couldn\'t load live tender data — check your connection and try the refresh icon above.</div>'
+            : '<div class="empty">No EV charging tenders currently match your categories. The scraper runs twice daily — check back after its next run, or click refresh to check now.</div>')
+        : '<div class="empty">No tenders match this filter right now. Try clearing the search or picking a different category.</div>';
       renderPills();
       return;
     }
