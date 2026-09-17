@@ -92,14 +92,30 @@ Every portal Tender Radar knows about — scraped or not — lives in
   parser in `scraper.py`'s `TYPE_PARSERS` dict are ever actually
   scraped, **regardless of `enabled`** — this is a deliberate safety
   net. Right now that's just `"gepnic_table"` (the NIC GePNIC engine
-  used by IOCL, CPPP/etenders.gov.in, and most state e-procurement
-  portals). Everything else in the file — `"blocked_by_robots_txt"`
-  (GeM, CESL — both disallow automated access), `"paid_aggregator"`
-  (TenderDetail, TendersOnTime, Tendersniper, NationalTenders,
-  Tender18 — scraping a paid product you subscribe to likely breaches
-  its ToS) and `"unsupported"` (NHAI — no confirmed stable listing URL
-  yet) — is listed for visibility but intentionally can't be scraped
-  until you deliberately add support for it.
+  used by IOCL, CPPP/etenders.gov.in, and the Rajasthan/Madhya Pradesh
+  state portals — all currently `enabled`). Everything else in the
+  file — `"blocked_by_robots_txt"` (GeM, CESL, and Maharashtra's
+  mahatenders.gov.in — all three disallow automated access via
+  robots.txt), `"paid_aggregator"` (TenderDetail, TendersOnTime,
+  Tendersniper, NationalTenders, Tender18 — scraping a paid product
+  you subscribe to likely breaches its ToS) and `"unsupported"` (NHAI,
+  Telangana, Bihar, Gujarat nProcure — no confirmed free listing URL
+  on the standard GePNIC layout yet) — is listed for visibility but
+  intentionally can't be scraped until you deliberately add support
+  for it.
+- **Known ceiling on every `gepnic_table` source**: its free listing
+  is only the portal's 10 most-recently-posted tenders, site-wide —
+  there's no free "page 2." A real keyword search exists on these
+  portals but is CAPTCHA-gated (confirmed live), so it isn't
+  automated. For a single organisation (IOCL) or a single state
+  (Rajasthan, MP), 10-latest is a reasonably useful window since they
+  don't publish that many tenders a day. For a huge nationwide feed
+  like CPPP/etenders.gov.in, a niche keyword match is genuinely
+  unlikely to still be in the top 10 by the time a scheduled run
+  checks — that's a real coverage gap, not a bug. The paid
+  aggregators already listed above solve this (that's what you pay
+  them for) — lean on their own keyword alerts for the sources this
+  scraper structurally can't cover for free.
 - **To add a free/official portal once you've confirmed its listing
   URL** (e.g. a state e-procurement site): add an entry with
   `"type": "gepnic_table"` and `"enabled": true` — no code changes

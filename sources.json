@@ -14,11 +14,32 @@
     "notes": "Free/official. Same GePNIC engine as most state e-procurement portals and PSU e-tendering sites."
   },
   {
+    "name": "Rajasthan e-Tendering",
+    "url": "https://eproc.rajasthan.gov.in/nicgep/app",
+    "type": "gepnic_table",
+    "enabled": true,
+    "notes": "Free/official. Verified live 2026-09-17: NIC GePNIC engine, no robots.txt restriction, real activeTenders listing confirmed."
+  },
+  {
+    "name": "Madhya Pradesh e-Tendering",
+    "url": "https://mptenders.gov.in/nicgep/app",
+    "type": "gepnic_table",
+    "enabled": true,
+    "notes": "Free/official. Verified live 2026-09-17: NIC GePNIC engine, no robots.txt restriction, real activeTenders listing confirmed."
+  },
+  {
     "name": "NHAI",
     "url": null,
     "type": "unsupported",
     "enabled": false,
     "notes": "No separate stable public listing URL as of last check — its tenders flow through CPPP/etenders.gov.in (above) and GeM (blocked, see below). Set url + type to gepnic_table and enabled to true if you confirm a dedicated NHAI e-tendering URL."
+  },
+  {
+    "name": "Maharashtra e-Tendering (mahatenders.gov.in)",
+    "url": "https://mahatenders.gov.in/nicgep/app",
+    "type": "blocked_by_robots_txt",
+    "enabled": false,
+    "notes": "Same NIC GePNIC engine as the others, but this specific domain's robots.txt disallows all automated access (checked 2026-09-17: 'Disallow: /'). Do not scrape — this is a real per-domain restriction, not the same as Rajasthan/MP above."
   },
   {
     "name": "GeM (bidplus.gem.gov.in)",
@@ -33,6 +54,27 @@
     "type": "blocked_by_robots_txt",
     "enabled": false,
     "notes": "Disallows automated access via robots.txt — do not scrape."
+  },
+  {
+    "name": "Telangana e-Procurement",
+    "url": null,
+    "type": "unsupported",
+    "enabled": false,
+    "notes": "Checked 2026-09-17: neither tender.telangana.gov.in/nicgep/app nor eprocurement.telangana.gov.in/nicgep/app resolved (404) — likely a different engine or a different URL path than the standard GePNIC layout. Needs the correct listing URL confirmed before it can be added."
+  },
+  {
+    "name": "Bihar e-Procurement (eproc2.bihar.gov.in)",
+    "url": null,
+    "type": "unsupported",
+    "enabled": false,
+    "notes": "Checked 2026-09-17: reachable but not the classic NIC GePNIC layout (no activeTenders table found) — this looks like Bihar's newer 'eProc 2.0' platform, a different engine. Would need its own parser."
+  },
+  {
+    "name": "Gujarat nProcure",
+    "url": "https://tender.nprocure.com/",
+    "type": "unsupported",
+    "enabled": false,
+    "notes": "Gujarat's official e-tendering platform, but it's run by a different vendor ((n)Code Solutions), not the NIC GePNIC engine — would need its own parser, not yet built."
   },
   {
     "name": "TenderDetail",
