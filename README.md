@@ -4,42 +4,55 @@ Live dashboard: https://sidev35.github.io/tender-browser/
 
 ## How it works
 
-`.github/workflows/update-tenders.yml` runs `scraper.py` twice daily
-(08:30 and 20:30 IST). It pulls listings from free/official govt & PSU
-tender portals, filters them against the category keywords in
-`scraper.py`, and commits any new matches into `docs/data/tenders.json`
-— which `docs/index.html` (the dashboard, served by GitHub Pages) reads
-live. The refresh icon on the dashboard re-fetches that file on demand;
-it also polls automatically every 10 minutes while open and shows
+`.github/workflows/update-tenders.yml` runs `scraper.py` **every 15
+minutes**. It pulls each portal's free "latest tenders" homepage
+listing, filters it against the category keywords in `scraper.py`,
+and commits any new matches into `docs/data/tenders.json` — which
+`docs/index.html` (the dashboard, served by GitHub Pages) reads live.
+The refresh icon on the dashboard re-fetches that file on demand; it
+also polls automatically every 10 minutes while open and shows
 in-page + browser notifications for new matches and tenders closing
 within 7 days.
 
-## Manually checking a portal yourself
+**Why every 15 minutes:** each portal's free listing is only its 10
+most-recently-posted tenders, site-wide (see "Known ceiling" below) —
+a rolling window that rotates as new tenders get posted. Checking
+that often is how a genuine EV-charging match gets caught before it
+scrolls off, rather than checking so rarely that most tenders never
+show up in the window at the moment we happen to look.
 
-The automated scraper's free access to each portal (see "Managing
-sources" below) is limited to that portal's 10 most-recently-posted
-tenders site-wide — their real keyword search exists but is
-CAPTCHA-gated, so it isn't automated. You, as a human, can still use
-that real search directly (the CAPTCHA is trivial to solve by hand)
-to check the *full* current tender set, not just the latest 10:
+## Known ceiling — and why it isn't automated further
+
+Every source's free listing is capped at those 10 latest tenders.
+Each portal also has a real, much bigger "Tenders by Closing Date"
+report (hundreds of tenders, fully paginated) that looked like a free
+win — no captcha, on first check. It was built and tested here, then
+deliberately removed: a handful of automated requests into that
+pagination was enough to make every one of these portals start
+demanding a captcha on that same endpoint. That's the site's own
+bot-detection reacting to *request pattern* (a rapid paginated crawl),
+not a permanent block — but it means running that at real scale
+(hundreds of requests, every 15 minutes) would almost certainly wall
+itself off the same way. This project doesn't try to work around a
+captcha once one appears (no OCR-solving, no request-spacing tricks
+to look less automated) — so the 10-latest homepage widget, checked
+frequently, is the practical ceiling for hands-off automation here.
+
+**You can still search the full listing yourself, by hand** — the
+captcha is trivial for an actual person to solve once in a while:
 
 - CPPP / etenders.gov.in: https://etenders.gov.in/eprocure/app?page=FrontEndLatestActiveTenders&service=page
 - IOCL e-Tendering: https://iocletenders.nic.in/nicgep/app?page=FrontEndLatestActiveTenders&service=page
 - Rajasthan e-Tendering: https://eproc.rajasthan.gov.in/nicgep/app?page=FrontEndLatestActiveTenders&service=page
 - Madhya Pradesh e-Tendering: https://mptenders.gov.in/nicgep/app?page=FrontEndLatestActiveTenders&service=page
 
-On each, type a keyword (e.g. `electric vehicle` or `charging
-station`) into **Tender Title**, enter the captcha shown, and submit.
-For GeM/CESL, just use their own search bar directly on the site.
-
-**If you find a real match this way that the dashboard doesn't show**,
-use the "Add tender manually" GitHub Action (repo's **Actions** tab →
-that workflow → **Run workflow**) to add it — fill in the form
-(description, category, due date, location, value, source, URL) and it
-commits straight into `docs/data/tenders.json`, live on the dashboard
-within a minute or two. It dedupes against the same
-source+description the automated scraper would use, so if the
-scraper later independently finds the same tender, it won't double up.
+Type a keyword (e.g. `electric vehicle` or `charging station`) into
+**Tender Title**, enter the captcha shown, and submit. For GeM/CESL,
+just use their own search bar directly on the site. For the paid
+aggregators (TenderDetail, TendersOnTime, etc.), use their own
+keyword-alert feature — that's what you're already paying them for,
+and it's the intended way to cover what this free scraper structurally
+can't.
 
 ## Email digest setup (optional)
 
@@ -59,6 +72,7 @@ the workflow.
      - `NOTIFY_FROM_EMAIL` = the verified sender address from step 1
      - `NOTIFY_RECIPIENTS` = comma-separated list of who should get the digest
      - `DUE_SOON_DAYS` (optional) = override the 7-day "closing soon" window
+     - `MIN_HOURS_BETWEEN_DIGESTS` (optional) = override the 6-hour minimum gap between emails (see below)
 
 Once configured, the workflow's "Run scraper" step passes these through
 to `scraper.py`, which calls `notify.py` at the end of each run.
@@ -67,10 +81,16 @@ to `scraper.py`, which calls `notify.py` at the end of each run.
 - **New tenders** — included once, in the run they were first matched.
 - **Closing soon** — every tender within `DUE_SOON_DAYS` is re-included
   in *every* digest until it closes (by design, so it keeps nagging
-  rather than notifying once and going quiet). In practice this means
-  you'll get an email on every run for as long as at least one tender
-  sits inside that window.
+  rather than notifying once and going quiet).
 - If neither list has anything, no email is sent.
+
+**Throttled independently of the scraper's 15-minute schedule**: since
+"closing soon" would otherwise re-send on every single run, `notify.py`
+tracks the last successful send in `digest_state.json` (committed
+alongside `docs/data/tenders.json`) and skips sending — while still
+updating the dashboard data normally — if less than
+`MIN_HOURS_BETWEEN_DIGESTS` (default 6) has passed. So you get at most
+a handful of emails a day, not one every 15 minutes.
 
 If the secrets/variables aren't set, `notify.py` prints why and skips
 sending — the scraper's core job (updating `tenders.json`) never fails
@@ -115,8 +135,8 @@ Every portal Tender Radar knows about — scraped or not — lives in
 
 - **`enabled`** — the on/off switch. Set to `false` to stop checking a
   source without deleting it.
-- **`type`** — which parser reads it. Only types with a registered
-  parser in `scraper.py`'s `TYPE_PARSERS` dict are ever actually
+- **`type`** — which fetcher reads it. Only types with a registered
+  fetcher in `scraper.py`'s `TYPE_FETCHERS` dict are ever actually
   scraped, **regardless of `enabled`** — this is a deliberate safety
   net. Right now that's just `"gepnic_table"` (the NIC GePNIC engine
   used by IOCL, CPPP/etenders.gov.in, and the Rajasthan/Madhya Pradesh
@@ -130,26 +150,13 @@ Every portal Tender Radar knows about — scraped or not — lives in
   on the standard GePNIC layout yet) — is listed for visibility but
   intentionally can't be scraped until you deliberately add support
   for it.
-- **Known ceiling on every `gepnic_table` source**: its free listing
-  is only the portal's 10 most-recently-posted tenders, site-wide —
-  there's no free "page 2." A real keyword search exists on these
-  portals but is CAPTCHA-gated (confirmed live), so it isn't
-  automated. For a single organisation (IOCL) or a single state
-  (Rajasthan, MP), 10-latest is a reasonably useful window since they
-  don't publish that many tenders a day. For a huge nationwide feed
-  like CPPP/etenders.gov.in, a niche keyword match is genuinely
-  unlikely to still be in the top 10 by the time a scheduled run
-  checks — that's a real coverage gap, not a bug. The paid
-  aggregators already listed above solve this (that's what you pay
-  them for) — lean on their own keyword alerts for the sources this
-  scraper structurally can't cover for free.
 - **To add a free/official portal once you've confirmed its listing
   URL** (e.g. a state e-procurement site): add an entry with
   `"type": "gepnic_table"` and `"enabled": true` — no code changes
-  needed, since it reuses the existing GePNIC parser.
+  needed, since it reuses the existing GePNIC fetcher.
 - **If you later get paid API access** to one of the aggregators:
-  that needs an actual parser for however that API responds — add a
-  function to `scraper.py`, register it in `TYPE_PARSERS` under a new
+  that needs an actual fetcher for however that API responds — add a
+  function to `scraper.py`, register it in `TYPE_FETCHERS` under a new
   type name (e.g. `"tenderdetail_api"`), then flip that source's
   `type`/`enabled` in `sources.json`. Until then, leave paid
   aggregators as `"paid_aggregator"` / `enabled: false` and keep using

@@ -14,19 +14,44 @@ set as GitHub Actions secrets/variables in the workflow:
     NOTIFY_RECIPIENTS  - comma-separated recipient addresses (repo VARIABLE)
     DUE_SOON_DAYS      - optional override of the "closing soon" window
                          in days (repo VARIABLE, defaults to 7)
+    MIN_HOURS_BETWEEN_DIGESTS - optional, defaults to 6 (repo VARIABLE)
 
 If any of the required three are missing, send_digest() prints why and
 returns without raising — so local runs, forks, or a repo that hasn't
 configured email yet don't fail because of this.
+
+The scraper runs every 15 minutes (to catch each portal's rotating
+"latest 10" homepage widget before it scrolls off), but emailing that
+often would spam the inbox and blow through SendGrid's free-tier daily
+cap — especially since "closing soon" tenders are re-included in every
+digest until they close. MIN_HOURS_BETWEEN_DIGESTS throttles actual
+sends to at most once per that many hours, tracked in digest_state.json
+(committed alongside docs/data/tenders.json), regardless of how often
+the scraper itself runs and updates the dashboard.
 """
 
+import json
 import os
 from datetime import datetime
 
 import requests
 
 TEMPLATE_PATH = os.path.join(os.path.dirname(__file__), "email_template.txt")
+DIGEST_STATE_PATH = os.path.join(os.path.dirname(__file__), "digest_state.json")
 SENDGRID_URL = "https://api.sendgrid.com/v3/mail/send"
+
+
+def _last_sent():
+    try:
+        with open(DIGEST_STATE_PATH, encoding="utf-8") as f:
+            return datetime.fromisoformat(json.load(f)["last_sent"])
+    except (OSError, json.JSONDecodeError, KeyError, ValueError):
+        return None
+
+
+def _record_sent(when):
+    with open(DIGEST_STATE_PATH, "w", encoding="utf-8") as f:
+        json.dump({"last_sent": when.isoformat()}, f)
 
 
 def _format_list(records):
@@ -75,6 +100,17 @@ def send_digest(new_records, due_soon_records,
         print("Email digest: nothing new and nothing closing soon — skipping send.")
         return
 
+    min_hours = float(os.environ.get("MIN_HOURS_BETWEEN_DIGESTS", "6"))
+    last_sent = _last_sent()
+    now = datetime.now()
+    if last_sent is not None:
+        elapsed_hours = (now - last_sent).total_seconds() / 3600
+        if elapsed_hours < min_hours:
+            print(f"Email digest: last one sent {elapsed_hours:.1f}h ago, under the "
+                  f"{min_hours}h minimum gap — skipping to avoid spamming the inbox. "
+                  f"(The dashboard data itself was still updated this run.)")
+            return
+
     api_key = os.environ.get("SENDGRID_API_KEY")
     from_email = os.environ.get("NOTIFY_FROM_EMAIL")
     recipients = [r.strip() for r in os.environ.get("NOTIFY_RECIPIENTS", "").split(",") if r.strip()]
@@ -102,5 +138,6 @@ def send_digest(new_records, due_soon_records,
     if resp.status_code >= 300:
         print(f"  [!] SendGrid rejected the email: {resp.status_code} {resp.text}")
     else:
+        _record_sent(now)
         print(f"Email digest sent to {len(recipients)} recipient(s): "
               f"{len(new_records)} new, {len(due_soon_records)} closing soon.")

@@ -21,10 +21,16 @@ SOURCES
 Portals live in sources.json (repo root), not in this file — see that
 file and README.md for how to add, remove, or disable one, and what
 each field means. In short: a source only gets scraped if it's
-"enabled": true AND its "type" has a registered parser in
-TYPE_PARSERS below; paid aggregators and robots.txt-blocked portals
-are listed there with types that deliberately have no parser, so they
+"enabled": true AND its "type" has a registered fetcher in
+TYPE_FETCHERS below; paid aggregators and robots.txt-blocked portals
+are listed there with types that deliberately have no fetcher, so they
 can't start being scraped by accident.
+
+The only registered GePNIC fetcher is "gepnic_table": the free
+homepage widget, 10 most-recently-posted tenders site-wide. A deeper,
+paginated approach was tried and abandoned — see fetch_gepnic_homepage's
+docstring for why (it self-triggers anti-bot captcha under real,
+repeated automated use).
 
 RUNNING LOCALLY (optional, for testing)
 ----------------------------------------
@@ -184,15 +190,52 @@ def parse_generic_table(html, source_name, base_url):
     return parse_gepnic_table(html, source_name, base_url)
 
 
-# Maps a source's "type" (from sources.json) to the parser that knows how to
-# read it. A type with no entry here (e.g. "blocked_by_robots_txt",
-# "paid_aggregator", "unsupported") is deliberately unscrapable — this is a
-# safety net so a source can't start being scraped just by someone flipping
-# "enabled": true in sources.json; actually supporting a new source type
-# requires adding a parser function and registering it here.
-TYPE_PARSERS = {
-    "gepnic_table": parse_gepnic_table,
-    "generic_table": parse_generic_table,
+def fetch_gepnic_homepage(source):
+    """
+    The free homepage "activeTenders" widget — the 10 most-recently-posted
+    tenders site-wide. This is a single lightweight GET, confirmed stable
+    under repeated real use.
+
+    A much bigger paginated view exists (NIC GePNIC's "Tenders by Closing
+    Date" report, filtered to a 7/14-day window) and looked promising —
+    hundreds of tenders, no captcha, on first check. It was built and
+    tested, then dropped: after the handful of automated requests that
+    testing involved, every portal started demanding a captcha on that same
+    endpoint that had been captcha-free minutes earlier. That's adaptive
+    bot-detection kicking in from request *pattern* (a rapid paginated
+    crawl), not a permanent block — but it means the deep-pagination
+    approach is self-defeating for real, scheduled automation: run it
+    for real (hundreds of requests, twice a day) and it would very likely
+    wall itself off the same way. This project won't try to work around
+    that (rotating IPs, spacing requests across hours to look less
+    automated, etc.) — seeing this widget is the ceiling for automated,
+    always-on coverage of these portals; see README for how to search the
+    full listing yourself by hand instead.
+    """
+    html = fetch(source["url"])
+    if not html:
+        return []
+    return parse_gepnic_table(html, source["name"], source["url"])
+
+
+# Maps a source's "type" (from sources.json) to the function that fetches
+# and returns its rows. A type with no entry here (e.g.
+# "blocked_by_robots_txt", "paid_aggregator", "unsupported") is deliberately
+# unscrapable — this is a safety net so a source can't start being scraped
+# just by someone flipping "enabled": true in sources.json; actually
+# supporting a new source type requires adding a function and registering
+# it here.
+def fetch_generic_homepage(source):
+    """Fallback for a non-GePNIC portal homepage: same idea, looser heuristic."""
+    html = fetch(source["url"])
+    if not html:
+        return []
+    return parse_generic_table(html, source["name"], source["url"])
+
+
+TYPE_FETCHERS = {
+    "gepnic_table": fetch_gepnic_homepage,
+    "generic_table": fetch_generic_homepage,
 }
 
 
@@ -277,8 +320,8 @@ def run():
     for source in load_sources():
         if not source.get("enabled"):
             continue
-        parser = TYPE_PARSERS.get(source.get("type"))
-        if not parser:
+        fetch_rows = TYPE_FETCHERS.get(source.get("type"))
+        if not fetch_rows:
             print(f"Skipping {source['name']}: type '{source.get('type')}' isn't set up for "
                   f"automated scraping ({source.get('notes', 'no notes')}).")
             continue
@@ -287,10 +330,7 @@ def run():
             continue
 
         print(f"Checking {source['name']} ...")
-        html = fetch(source["url"])
-        if not html:
-            continue
-        rows = parser(html, source["name"], source["url"])
+        rows = fetch_rows(source)
 
         matched_here = 0
         for row in rows:
@@ -300,14 +340,19 @@ def run():
             tid = make_stable_id(source["name"], row["raw_title"])
             if tid in existing_by_id:
                 continue  # already tracked from a previous run
+            # A richer fetcher (e.g. the closing-date report) already knows
+            # the due date and the specific department from fixed columns;
+            # a simpler one only gives us the raw row text to guess from.
+            due_date = row.get("dueDate") if "dueDate" in row else extract_due_date(row["raw_row"])
+            source_label = f"{source['name']} — {row['organisation']}" if row.get("organisation") else source["name"]
             record = {
                 "id": tid,
                 "desc": row["raw_title"],
                 "location": None,
                 "value": None,
-                "dueDate": extract_due_date(row["raw_row"]),
+                "dueDate": due_date,
                 "category": cats[0],
-                "source": source["name"],
+                "source": source_label,
                 # Best-effort deep link into the specific tender; falls back to
                 # the portal's own listing page (always works) if we couldn't
                 # find one, or once the deep link's session token goes stale.
@@ -326,7 +371,7 @@ def run():
             print("      Sample of what was actually scanned:)")
             for r in rows[:3]:
                 print(f"       - {r['raw_title'][:90]}")
-        time.sleep(1)  # be polite between requests
+        time.sleep(1)  # be polite between sources
 
     # Drop tenders whose due date has clearly passed, to keep the file from
     # growing forever. Keep anything with no parsed due date (safer to show

@@ -4,28 +4,28 @@
     "url": "https://iocletenders.nic.in/nicgep/app",
     "type": "gepnic_table",
     "enabled": true,
-    "notes": "Free/official. NIC GePNIC engine, no login required."
+    "notes": "Free/official. NIC GePNIC engine, no login required. Homepage widget (10 latest, site-wide) — checked frequently by the workflow schedule to catch it before it rotates off."
   },
   {
     "name": "CPPP / etenders.gov.in",
     "url": "https://etenders.gov.in/eprocure/app",
     "type": "gepnic_table",
     "enabled": true,
-    "notes": "Free/official. Same GePNIC engine as most state e-procurement portals and PSU e-tendering sites."
+    "notes": "Free/official. Same GePNIC engine as most state e-procurement portals and PSU e-tendering sites. Homepage widget (10 latest, site-wide)."
   },
   {
     "name": "Rajasthan e-Tendering",
     "url": "https://eproc.rajasthan.gov.in/nicgep/app",
     "type": "gepnic_table",
     "enabled": true,
-    "notes": "Free/official. Verified live 2026-09-17: NIC GePNIC engine, no robots.txt restriction, real activeTenders listing confirmed."
+    "notes": "Free/official. Verified live 2026-09-17: no robots.txt restriction. Homepage widget (10 latest, site-wide)."
   },
   {
     "name": "Madhya Pradesh e-Tendering",
     "url": "https://mptenders.gov.in/nicgep/app",
     "type": "gepnic_table",
     "enabled": true,
-    "notes": "Free/official. Verified live 2026-09-17: NIC GePNIC engine, no robots.txt restriction, real activeTenders listing confirmed."
+    "notes": "Free/official. Verified live 2026-09-17: no robots.txt restriction. Homepage widget (10 latest, site-wide)."
   },
   {
     "name": "NHAI",
