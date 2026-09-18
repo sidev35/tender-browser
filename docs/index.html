@@ -149,20 +149,29 @@
   }
   .card.urgent { border-left: 3px solid var(--danger); }
   .card.soon { border-left: 3px solid var(--warn); }
-  .card.clickable { cursor: pointer; transition: border-color .15s, box-shadow .15s; }
-  .card.clickable:hover { border-color: var(--accent); box-shadow: 0 4px 14px rgba(0,0,0,.15); }
-  .card-source-link { color: var(--text-dim); text-decoration: none; }
-  .card-source-link:hover { color: var(--accent); text-decoration: underline; }
   .card.isnew::before {
     content: 'NEW'; position: absolute; top: -1px; left: 14px; transform: translateY(-50%);
     background: var(--accent); color: var(--bg); font-size: 10px; font-weight: 700;
     letter-spacing: .04em; padding: 2px 7px; border-radius: 5px;
   }
-  .card-id { font-size: 11.5px; color: var(--text-dim); margin-bottom: 4px; }
-  .card-desc { font-size: 14px; line-height: 1.45; margin-bottom: 8px; }
-  .card-meta { display: flex; gap: 14px; flex-wrap: wrap; font-size: 12.5px; color: var(--text-dim); }
+  .card-top-row { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; flex-wrap: wrap; }
+  .cat-badge {
+    font-size: 10.5px; font-weight: 600; letter-spacing: .02em; color: var(--accent);
+    background: var(--accent-dim); border-radius: 5px; padding: 2px 8px; white-space: nowrap;
+  }
+  .card-id { font-size: 11.5px; color: var(--text-dim); }
+  .card-desc { font-size: 14px; line-height: 1.45; margin-bottom: 6px; }
+  .card-refno { font-size: 11.5px; color: var(--text-dim); margin-bottom: 8px; }
+  .card-meta { display: flex; gap: 14px; flex-wrap: wrap; font-size: 12.5px; color: var(--text-dim); margin-bottom: 12px; }
   .card-meta span { display: flex; align-items: center; gap: 5px; }
   .card-due { text-align: right; white-space: nowrap; }
+  .card-actions { grid-column: 1 / -1; }
+  .find-btn {
+    background: var(--surface-2); border: 1px solid var(--border); color: var(--text);
+    padding: 8px 14px; border-radius: 8px; font-size: 12.5px; font-weight: 600; cursor: pointer;
+    display: inline-flex; align-items: center; gap: 6px; transition: border-color .15s, color .15s;
+  }
+  .find-btn:hover { border-color: var(--accent); color: var(--accent); }
   .due-badge {
     font-size: 12px; font-weight: 600; padding: 5px 10px; border-radius: 7px;
     background: var(--surface-2); border: 1px solid var(--border);
@@ -210,6 +219,22 @@
   .icon-btn.active { border-color: var(--accent); color: var(--accent); }
   .icon-btn.spinning svg { animation: icon-spin .8s linear infinite; }
   @keyframes icon-spin { to { transform: rotate(360deg); } }
+
+  /* Tender info modal */
+  .field-row { margin-bottom: 12px; }
+  .field-row-label { font-size: 11.5px; color: var(--text-dim); margin-bottom: 4px; font-weight: 600; }
+  .field-row-value-wrap {
+    display: flex; align-items: center; gap: 8px; background: var(--surface-2);
+    border: 1px solid var(--border); border-radius: 8px; padding: 8px 10px;
+  }
+  .field-row-value { flex: 1; font-size: 12.5px; word-break: break-word; }
+  .field-copy-btn {
+    background: var(--surface); border: 1px solid var(--border); color: var(--text-dim);
+    padding: 5px 10px; border-radius: 6px; font-size: 11.5px; cursor: pointer; white-space: nowrap;
+    flex-shrink: 0; transition: border-color .15s, color .15s;
+  }
+  .field-copy-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .field-copy-btn.copied { border-color: var(--accent); color: var(--accent); }
 </style>
 </head>
 <body>
@@ -255,6 +280,28 @@
     </div>
   </div>
 
+  <div id="tenderInfoModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:60; align-items:center; justify-content:center; padding:20px;">
+    <div style="background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:22px; max-width:520px; width:100%; max-height:90vh; overflow-y:auto;">
+      <h3 id="tenderInfoTitle" style="margin:0 0 4px; font-size:16px;">Find this tender</h3>
+      <p style="font-size:12.5px; color:var(--text-dim); margin:0 0 16px; line-height:1.5;">
+        This portal's search requires solving a captcha — copy the value(s) below into the matching field(s) on their search page, then submit.
+      </p>
+      <div id="tenderInfoFields"></div>
+      <ol style="font-size:12.5px; color:var(--text-dim); padding-left:18px; margin:14px 0 4px; line-height:1.7;">
+        <li>Click <strong style="color:var(--text);">Open search page</strong> below (opens in a new tab)</li>
+        <li>Paste the copied value(s) into the matching field(s)</li>
+        <li>Enter the captcha shown, and click Search</li>
+      </ol>
+      <p style="font-size:11.5px; color:var(--text-dim); margin:8px 0 0;">
+        Tip: install the autofill bookmarklet (footer, one-time setup) to skip step 2 for the title field.
+      </p>
+      <div style="display:flex; gap:8px; justify-content:flex-end; margin-top:16px;">
+        <button id="closeTenderInfo" style="background:none; border:1px solid var(--border); color:var(--text-dim); padding:8px 14px; border-radius:8px; cursor:pointer; font-size:13px;">Close</button>
+        <button id="openTenderSearch" style="background:var(--accent); border:none; color:var(--bg); padding:8px 14px; border-radius:8px; cursor:pointer; font-size:13px; font-weight:600;">Open search page ↗</button>
+      </div>
+    </div>
+  </div>
+
   <div class="new-banner" id="newBanner">
     <span id="newBannerText"></span>
     <button id="dismissNew">Mark as seen</button>
@@ -284,6 +331,13 @@
     Sourced from official govt / PSU tender portals (CPPP-network sites, OMC e-tendering) via a GitHub Actions workflow that runs on a schedule and updates <code class="mono">data/tenders.json</code> automatically.
     <br>Last data sync: <strong id="syncTime"></strong>
     <br><a href="#" id="manualPasteLink" style="color:var(--text-dim); font-size:11px;">Paste tender data manually (advanced/testing)</a>
+    <br><br>
+    <strong>One-time setup for one-click search field filling:</strong> drag this to your bookmarks bar —
+    <a href="javascript:(function(){var h=decodeURIComponent(location.hash.slice(1));if(!h){alert('Open this from a Tender Radar card link first.');return;}var f=document.querySelector('input[name=workItemTitle]');if(!f){alert('Could not find the search field on this page.');return;}f.value=h;f.focus();var c=document.querySelector('input[name=captchaText]');if(c){c.scrollIntoView({behavior:'smooth',block:'center'});}})();"
+       id="autofillBookmarklet"
+       onclick="alert('Drag this link to your bookmarks bar — clicking it here does nothing useful.'); return false;"
+       style="color:var(--accent); font-weight:600;">📌 Tender Radar Autofill</a>
+    — then, after clicking a tender and landing on its portal's search page, click that bookmark to fill in the title for you. You still enter the captcha shown yourself; nothing here reads or bypasses it.
   </footer>
 
 </div>
@@ -429,6 +483,15 @@
     return String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   }
 
+  const CATEGORY_SHORT = {
+    'PPP / Concession / CPO Selection': 'PPP / CPO',
+    'Charger Supply & Installation': 'Charger Supply',
+    'Infrastructure & Electrical Works': 'Infra & Electrical',
+  };
+  function shortCategory(cat) {
+    return CATEGORY_SHORT[cat] || cat || 'Uncategorized';
+  }
+
   function renderPills() {
     const cats = ['All', ...new Set(state.data.map(t => t.category))];
     const wrap = document.getElementById('categoryPills');
@@ -509,39 +572,31 @@
         const urgency = d !== null && d < 0 ? '' : d !== null && d <= 7 ? 'urgent' : d !== null && d <= 14 ? 'soon' : '';
         const isNew = !seen.includes(t.id);
         const card = document.createElement('div');
-        card.className = `card ${urgency ? urgency : ''} ${isNew ? 'isnew' : ''} ${t.url ? 'clickable' : ''}`.trim();
-        const sourceHtml = t.url
-          ? `<a class="card-source-link" href="${escapeAttr(t.url)}" target="_blank" rel="noopener noreferrer">${t.source || 'Govt Portal'} ↗</a>`
-          : (t.source || 'Govt Portal');
+        card.className = `card ${urgency ? urgency : ''} ${isNew ? 'isnew' : ''}`.trim();
         card.innerHTML = `
           <div>
-            <div class="card-id mono">${t.id}</div>
+            <div class="card-top-row">
+              <span class="cat-badge">${shortCategory(t.category)}</span>
+              <span class="card-id mono">${t.id}</span>
+            </div>
             <div class="card-desc">${t.desc}</div>
+            ${t.refNo ? `<div class="card-refno mono">Ref: ${t.refNo}</div>` : ''}
             <div class="card-meta">
               <span>📍 ${t.location || 'Location TBD'}</span>
               <span>💰 ${t.value || 'Value not disclosed'}</span>
-              <span>🏛 ${sourceHtml}</span>
+              <span>🏛 ${t.source || 'Govt Portal'}</span>
+              ${t.firstSeen ? `<span>🕒 Tracked since ${fmtDue(t.firstSeen)}</span>` : ''}
             </div>
           </div>
           <div class="card-due">
             <div class="due-badge ${urgency}">${fmtDue(t.dueDate)}</div>
             ${d !== null ? `<div class="due-days">${d < 0 ? 'Closed' : d === 0 ? 'Due today' : d + ' day' + (d===1?'':'s') + ' left'}</div>` : ''}
           </div>
+          ${t.url ? '<div class="card-actions"><button class="find-btn">🔍 Find on official site</button></div>' : ''}
         `;
         if (t.url) {
-          card.title = `Search this tender on ${t.source || 'the source portal'} — opens their search page, where you paste the title and solve their captcha`;
-          const goToSource = (e) => {
-            e.stopPropagation();
-            try { navigator.clipboard.writeText(t.desc); } catch (err) {}
-            showToast({
-              title: `Opening ${t.source || 'source portal'}'s search page`,
-              body: 'Tender title copied to your clipboard — paste it into "Work/Item Title", enter the captcha shown, and search.',
-              kind: 'new'
-            });
-          };
-          card.addEventListener('click', (e) => { goToSource(e); window.open(t.url, '_blank', 'noopener'); });
-          const srcLink = card.querySelector('.card-source-link');
-          if (srcLink) srcLink.addEventListener('click', goToSource);
+          const btn = card.querySelector('.find-btn');
+          if (btn) btn.addEventListener('click', () => openTenderInfoModal(t));
         }
         grid.appendChild(card);
       });
@@ -559,6 +614,40 @@
     setSeen(state.data.map(t => t.id));
     render();
   });
+  const tenderInfoModal = document.getElementById('tenderInfoModal');
+  function fieldRow(label, value) {
+    return `
+      <div class="field-row">
+        <div class="field-row-label">${label}</div>
+        <div class="field-row-value-wrap">
+          <span class="field-row-value mono">${escapeAttr(value)}</span>
+          <button class="field-copy-btn" data-value="${escapeAttr(value)}">Copy</button>
+        </div>
+      </div>
+    `;
+  }
+  function openTenderInfoModal(t) {
+    document.getElementById('tenderInfoTitle').textContent = `Find this tender on ${t.source || 'the source portal'}`;
+    const fieldsEl = document.getElementById('tenderInfoFields');
+    fieldsEl.innerHTML = fieldRow('Work/Item Title', t.desc) + (t.refNo ? fieldRow('Tender Ref No', t.refNo) : '');
+    fieldsEl.querySelectorAll('.field-copy-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        try { navigator.clipboard.writeText(btn.dataset.value); } catch (err) {}
+        btn.textContent = 'Copied!';
+        btn.classList.add('copied');
+        setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 1500);
+      });
+    });
+    // Title travels in the URL fragment (#...) too — never sent to the
+    // server, but readable by the autofill bookmarklet (see footer) once
+    // the destination page has loaded, for anyone who's set it up.
+    const destUrl = t.url + '#' + encodeURIComponent(t.desc);
+    document.getElementById('openTenderSearch').onclick = () => window.open(destUrl, '_blank', 'noopener');
+    tenderInfoModal.style.display = 'flex';
+  }
+  document.getElementById('closeTenderInfo').addEventListener('click', () => { tenderInfoModal.style.display = 'none'; });
+  tenderInfoModal.addEventListener('click', (e) => { if (e.target === tenderInfoModal) tenderInfoModal.style.display = 'none'; });
+
   const updateModal = document.getElementById('updateModal');
   document.getElementById('updateBtn').addEventListener('click', () => { refreshData({ manual: true }); });
   document.getElementById('manualPasteLink').addEventListener('click', (e) => { e.preventDefault(); updateModal.style.display = 'flex'; });

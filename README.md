@@ -21,6 +21,15 @@ that often is how a genuine EV-charging match gets caught before it
 scrolls off, rather than checking so rarely that most tenders never
 show up in the window at the moment we happen to look.
 
+**Matched tenders stay on the dashboard after they scroll off the
+source's own 10-latest window** — this isn't a separate "pinning"
+feature, it falls out of how `scraper.py` merges results: each run
+loads the *existing* `docs/data/tenders.json`, only ever adds tenders
+it hasn't seen before (by a stable id), and only drops one once its
+due date has actually passed. So a tender matched on one run is still
+there on the next, and the one after that, whether or not it's still
+sitting in the source portal's own top-10 — until it closes.
+
 ## Known ceiling — and why it isn't automated further
 
 Every source's free listing is capped at those 10 latest tenders.
@@ -38,16 +47,20 @@ captcha once one appears (no OCR-solving, no request-spacing tricks
 to look less automated) — so the 10-latest homepage widget, checked
 frequently, is the practical ceiling for hands-off automation here.
 
-**Clicking a tender card takes you there to verify/search it yourself**
-— the dashboard doesn't try to open the specific tender directly.
+**"🔍 Find on official site" opens a modal, not the tender directly** —
 GePNIC's own per-tender "DirectLink" is tied to the *scraper's* session
 and shows "Stale Session" to literally anyone else who opens it, even
-seconds later (confirmed live) — so instead, each card links to its
-source portal's own search page (`sources.json`'s `searchUrl`, a
-stable URL, not session-scoped) and copies the tender's title to your
-clipboard on click. Paste it into **Work/Item Title**, enter the captcha
-shown, and search — that's a real person completing the one step
-(the captcha) this project won't automate around.
+seconds later (confirmed live), so there's no way to deep-link a
+specific tender. Instead, the modal shows exactly what to paste —
+**Work/Item Title** (and **Tender Ref No**, when the scraper managed to
+capture one — best-effort, not always available) — each with its own
+Copy button, plus a button that opens the portal's real search page
+(`sources.json`'s `searchUrl`, a stable URL, not session-scoped) in a
+new tab. From there: paste, enter the captcha shown, search — that's a
+real person completing the one step (the captcha) this project won't
+automate around. An optional one-time bookmarklet (dashboard footer)
+can fill the title field for you once you're on that page, if you'd
+rather not paste it by hand every time.
 
 For GeM/CESL — not scraped at all, see "Managing sources" below — just
 use their own search bar directly on the site. For the paid

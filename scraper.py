@@ -163,6 +163,7 @@ def parse_gepnic_table(html, source_name):
     # (e.g. "Screen Reader Access 17-Sep-2026 Search | Active Tenders...").
     # Prefer the real table by id; only fall back to scanning everything for
     # a portal layout we don't recognize (parse_generic_table's use case).
+    date_pattern = re.compile(r"\d{1,2}[-/][A-Za-z]{3}[-/]\d{2,4}|\d{1,2}[-/]\d{1,2}[-/]\d{2,4}")
     tables = [soup.find(id="activeTenders")] if soup.find(id="activeTenders") else soup.find_all("table")
     for table in tables:
         rows = table.find_all("tr")
@@ -172,12 +173,18 @@ def parse_gepnic_table(html, source_name):
                 continue
             row_text = " | ".join(cells)
             # Heuristic: a tender row usually has a date-like string in it
-            if re.search(r"\d{1,2}[-/][A-Za-z]{3}[-/]\d{2,4}|\d{1,2}[-/]\d{1,2}[-/]\d{2,4}", row_text):
+            if date_pattern.search(row_text):
                 title = max(cells, key=len)  # longest cell is usually the title
+                # Best-effort: the reference number is usually the remaining
+                # short, non-date cell (e.g. "1/WKS/04/26-Gl") — gives users a
+                # second, more precise value to paste into the portal's
+                # "Tender Ref No" search field alongside the title.
+                ref_no = next((c for c in cells if c != title and c.strip() and not date_pattern.search(c)), None)
                 results.append({
                     "raw_title": title,
                     "raw_row": row_text,
                     "source": source_name,
+                    "refNo": ref_no,
                 })
     return results
 
@@ -340,6 +347,7 @@ def run():
             record = {
                 "id": tid,
                 "desc": row["raw_title"],
+                "refNo": row.get("refNo"),
                 "location": None,
                 "value": None,
                 "dueDate": extract_due_date(row["raw_row"]),
