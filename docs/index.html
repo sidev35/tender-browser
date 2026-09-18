@@ -511,7 +511,7 @@
         const card = document.createElement('div');
         card.className = `card ${urgency ? urgency : ''} ${isNew ? 'isnew' : ''} ${t.url ? 'clickable' : ''}`.trim();
         const sourceHtml = t.url
-          ? `<a class="card-source-link" href="${escapeAttr(t.url)}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">${t.source || 'Govt Portal'} ↗</a>`
+          ? `<a class="card-source-link" href="${escapeAttr(t.url)}" target="_blank" rel="noopener noreferrer">${t.source || 'Govt Portal'} ↗</a>`
           : (t.source || 'Govt Portal');
         card.innerHTML = `
           <div>
@@ -529,8 +529,19 @@
           </div>
         `;
         if (t.url) {
-          card.title = 'Open the official tender listing';
-          card.addEventListener('click', () => window.open(t.url, '_blank', 'noopener'));
+          card.title = `Search this tender on ${t.source || 'the source portal'} — opens their search page, where you paste the title and solve their captcha`;
+          const goToSource = (e) => {
+            e.stopPropagation();
+            try { navigator.clipboard.writeText(t.desc); } catch (err) {}
+            showToast({
+              title: `Opening ${t.source || 'source portal'}'s search page`,
+              body: 'Tender title copied to your clipboard — paste it into "Tender Title", enter the captcha shown, and search.',
+              kind: 'new'
+            });
+          };
+          card.addEventListener('click', (e) => { goToSource(e); window.open(t.url, '_blank', 'noopener'); });
+          const srcLink = card.querySelector('.card-source-link');
+          if (srcLink) srcLink.addEventListener('click', goToSource);
         }
         grid.appendChild(card);
       });

@@ -38,17 +38,19 @@ captcha once one appears (no OCR-solving, no request-spacing tricks
 to look less automated) — so the 10-latest homepage widget, checked
 frequently, is the practical ceiling for hands-off automation here.
 
-**You can still search the full listing yourself, by hand** — the
-captcha is trivial for an actual person to solve once in a while:
+**Clicking a tender card takes you there to verify/search it yourself**
+— the dashboard doesn't try to open the specific tender directly.
+GePNIC's own per-tender "DirectLink" is tied to the *scraper's* session
+and shows "Stale Session" to literally anyone else who opens it, even
+seconds later (confirmed live) — so instead, each card links to its
+source portal's own search page (`sources.json`'s `searchUrl`, a
+stable URL, not session-scoped) and copies the tender's title to your
+clipboard on click. Paste it into **Tender Title**, enter the captcha
+shown, and search — that's a real person completing the one step
+(the captcha) this project won't automate around.
 
-- CPPP / etenders.gov.in: https://etenders.gov.in/eprocure/app?page=FrontEndLatestActiveTenders&service=page
-- IOCL e-Tendering: https://iocletenders.nic.in/nicgep/app?page=FrontEndLatestActiveTenders&service=page
-- Rajasthan e-Tendering: https://eproc.rajasthan.gov.in/nicgep/app?page=FrontEndLatestActiveTenders&service=page
-- Madhya Pradesh e-Tendering: https://mptenders.gov.in/nicgep/app?page=FrontEndLatestActiveTenders&service=page
-
-Type a keyword (e.g. `electric vehicle` or `charging station`) into
-**Tender Title**, enter the captcha shown, and submit. For GeM/CESL,
-just use their own search bar directly on the site. For the paid
+For GeM/CESL — not scraped at all, see "Managing sources" below — just
+use their own search bar directly on the site. For the paid
 aggregators (TenderDetail, TendersOnTime, etc.), use their own
 keyword-alert feature — that's what you're already paying them for,
 and it's the intended way to cover what this free scraper structurally
@@ -127,12 +129,18 @@ Every portal Tender Radar knows about — scraped or not — lives in
 {
   "name": "IOCL e-Tendering",
   "url": "https://iocletenders.nic.in/nicgep/app",
+  "searchUrl": "https://iocletenders.nic.in/nicgep/app?page=FrontEndAdvancedSearch&service=page",
   "type": "gepnic_table",
   "enabled": true,
   "notes": "Free/official. NIC GePNIC engine, no login required."
 }
 ```
 
+- **`searchUrl`** — where matched tenders link to on the dashboard: a
+  stable, session-independent search page a real visitor can use (see
+  "Known ceiling" above for why this is used instead of a per-tender
+  deep link). Falls back to `url` if omitted for a source that doesn't
+  have one.
 - **`enabled`** — the on/off switch. Set to `false` to stop checking a
   source without deleting it.
 - **`type`** — which fetcher reads it. Only types with a registered

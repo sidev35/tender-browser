@@ -2,30 +2,34 @@
   {
     "name": "IOCL e-Tendering",
     "url": "https://iocletenders.nic.in/nicgep/app",
+    "searchUrl": "https://iocletenders.nic.in/nicgep/app?page=FrontEndAdvancedSearch&service=page",
     "type": "gepnic_table",
     "enabled": true,
-    "notes": "Free/official. NIC GePNIC engine, no login required. Homepage widget (10 latest, site-wide) — checked frequently by the workflow schedule to catch it before it rotates off."
+    "notes": "Free/official. NIC GePNIC engine, no login required. Homepage widget (10 latest, site-wide) — checked frequently by the workflow schedule to catch it before it rotates off. searchUrl is the stable, session-independent search page dashboard cards link to (verified live 2026-09-18)."
   },
   {
     "name": "CPPP / etenders.gov.in",
     "url": "https://etenders.gov.in/eprocure/app",
+    "searchUrl": "https://etenders.gov.in/eprocure/app?page=FrontEndAdvancedSearch&service=page",
     "type": "gepnic_table",
     "enabled": true,
-    "notes": "Free/official. Same GePNIC engine as most state e-procurement portals and PSU e-tendering sites. Homepage widget (10 latest, site-wide)."
+    "notes": "Free/official. Same GePNIC engine as most state e-procurement portals and PSU e-tendering sites. Homepage widget (10 latest, site-wide). searchUrl verified live 2026-09-18."
   },
   {
     "name": "Rajasthan e-Tendering",
     "url": "https://eproc.rajasthan.gov.in/nicgep/app",
+    "searchUrl": "https://eproc.rajasthan.gov.in/nicgep/app?page=FrontEndAdvancedSearch&service=page",
     "type": "gepnic_table",
     "enabled": true,
-    "notes": "Free/official. Verified live 2026-09-17: no robots.txt restriction. Homepage widget (10 latest, site-wide)."
+    "notes": "Free/official. Verified live 2026-09-17: no robots.txt restriction. Homepage widget (10 latest, site-wide). searchUrl verified live 2026-09-18."
   },
   {
     "name": "Madhya Pradesh e-Tendering",
     "url": "https://mptenders.gov.in/nicgep/app",
+    "searchUrl": "https://mptenders.gov.in/nicgep/app?page=FrontEndAdvancedSearch&service=page",
     "type": "gepnic_table",
     "enabled": true,
-    "notes": "Free/official. Verified live 2026-09-17: no robots.txt restriction. Homepage widget (10 latest, site-wide)."
+    "notes": "Free/official. Verified live 2026-09-17: no robots.txt restriction. Homepage widget (10 latest, site-wide). searchUrl verified live 2026-09-18."
   },
   {
     "name": "NHAI",

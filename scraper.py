@@ -50,7 +50,6 @@ import os
 import re
 import time
 from datetime import datetime
-from urllib.parse import urljoin
 
 import requests
 import urllib3
@@ -139,7 +138,7 @@ def fetch(url, timeout=20):
         return None
 
 
-def parse_gepnic_table(html, source_name, base_url):
+def parse_gepnic_table(html, source_name):
     """
     Parses the 'Latest Tenders' table found on NIC GePNIC-based portals.
     Structure: a table with columns like
@@ -147,12 +146,13 @@ def parse_gepnic_table(html, source_name, base_url):
     This is intentionally forgiving — GePNIC installs differ slightly by
     department, so we scan all tables and pick rows that look like tenders.
 
-    Also grabs the row's link (usually wrapping the title), if any. NOTE:
-    GePNIC "DirectLink" URLs are session-scoped
-    (?...&session=T&sp=<token>) — they may stop working once the scraper's
-    session ends, so this is a best-effort deep link, not a guaranteed one.
-    Callers should always have a working fallback (the portal's own listing
-    page) for when it goes stale.
+    Does NOT try to capture the row's own "DirectLink" — confirmed live
+    (2026-09-18) that these are tied to the scraper's own session and show
+    "Stale Session" for literally anyone else who opens one, even seconds
+    later. The dashboard instead links every matched tender to the
+    portal's own search page (source["searchUrl"], set in scraper.py's
+    caller) — stable, session-independent, and where a real visitor can
+    search the tender's title themselves and solve the page's captcha.
     """
     soup = BeautifulSoup(html, "html.parser")
     results = []
@@ -174,20 +174,17 @@ def parse_gepnic_table(html, source_name, base_url):
             # Heuristic: a tender row usually has a date-like string in it
             if re.search(r"\d{1,2}[-/][A-Za-z]{3}[-/]\d{2,4}|\d{1,2}[-/]\d{1,2}[-/]\d{2,4}", row_text):
                 title = max(cells, key=len)  # longest cell is usually the title
-                link = row.find("a", href=True)
-                direct_url = urljoin(base_url, link["href"]) if link else None
                 results.append({
                     "raw_title": title,
                     "raw_row": row_text,
                     "source": source_name,
-                    "direct_url": direct_url,
                 })
     return results
 
 
-def parse_generic_table(html, source_name, base_url):
+def parse_generic_table(html, source_name):
     """Fallback parser: same idea as GePNIC but looser, for other portal layouts."""
-    return parse_gepnic_table(html, source_name, base_url)
+    return parse_gepnic_table(html, source_name)
 
 
 def fetch_gepnic_homepage(source):
@@ -215,7 +212,7 @@ def fetch_gepnic_homepage(source):
     html = fetch(source["url"])
     if not html:
         return []
-    return parse_gepnic_table(html, source["name"], source["url"])
+    return parse_gepnic_table(html, source["name"])
 
 
 # Maps a source's "type" (from sources.json) to the function that fetches
@@ -230,7 +227,7 @@ def fetch_generic_homepage(source):
     html = fetch(source["url"])
     if not html:
         return []
-    return parse_generic_table(html, source["name"], source["url"])
+    return parse_generic_table(html, source["name"])
 
 
 TYPE_FETCHERS = {
@@ -340,23 +337,21 @@ def run():
             tid = make_stable_id(source["name"], row["raw_title"])
             if tid in existing_by_id:
                 continue  # already tracked from a previous run
-            # A richer fetcher (e.g. the closing-date report) already knows
-            # the due date and the specific department from fixed columns;
-            # a simpler one only gives us the raw row text to guess from.
-            due_date = row.get("dueDate") if "dueDate" in row else extract_due_date(row["raw_row"])
-            source_label = f"{source['name']} — {row['organisation']}" if row.get("organisation") else source["name"]
             record = {
                 "id": tid,
                 "desc": row["raw_title"],
                 "location": None,
                 "value": None,
-                "dueDate": due_date,
+                "dueDate": extract_due_date(row["raw_row"]),
                 "category": cats[0],
-                "source": source_label,
-                # Best-effort deep link into the specific tender; falls back to
-                # the portal's own listing page (always works) if we couldn't
-                # find one, or once the deep link's session token goes stale.
-                "url": row["direct_url"] or source["url"],
+                "source": source["name"],
+                # A per-tender deep link isn't usable here — GePNIC's
+                # "DirectLink" is tied to the scraper's own session and
+                # shows "Stale Session" to anyone else (confirmed live).
+                # Instead, link to the portal's own search page — stable,
+                # session-independent — so a real visitor can search this
+                # tender's title themselves and solve the page's captcha.
+                "url": source.get("searchUrl") or source["url"],
                 "firstSeen": datetime.now().strftime("%Y-%m-%d"),
             }
             existing_by_id[tid] = record
