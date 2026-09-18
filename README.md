@@ -45,7 +45,7 @@ and shows "Stale Session" to literally anyone else who opens it, even
 seconds later (confirmed live) — so instead, each card links to its
 source portal's own search page (`sources.json`'s `searchUrl`, a
 stable URL, not session-scoped) and copies the tender's title to your
-clipboard on click. Paste it into **Tender Title**, enter the captcha
+clipboard on click. Paste it into **Work/Item Title**, enter the captcha
 shown, and search — that's a real person completing the one step
 (the captcha) this project won't automate around.
 
