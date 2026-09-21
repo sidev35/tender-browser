@@ -147,6 +147,8 @@
     padding: 14px 16px; position: relative;
     display: grid; grid-template-columns: 1fr auto; gap: 14px; align-items: start;
   }
+  .card.clickable { cursor: pointer; transition: border-color .15s, background .15s; }
+  .card.clickable:hover { border-color: var(--accent); background: var(--surface-2); }
   .card.urgent { border-left: 3px solid var(--danger); }
   .card.soon { border-left: 3px solid var(--warn); }
   .card.isnew::before {
@@ -165,13 +167,7 @@
   .card-meta { display: flex; gap: 14px; flex-wrap: wrap; font-size: 12.5px; color: var(--text-dim); margin-bottom: 12px; }
   .card-meta span { display: flex; align-items: center; gap: 5px; }
   .card-due { text-align: right; white-space: nowrap; }
-  .card-actions { grid-column: 1 / -1; }
-  .find-btn {
-    background: var(--surface-2); border: 1px solid var(--border); color: var(--text);
-    padding: 8px 14px; border-radius: 8px; font-size: 12.5px; font-weight: 600; cursor: pointer;
-    display: inline-flex; align-items: center; gap: 6px; transition: border-color .15s, color .15s;
-  }
-  .find-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .card-hint { grid-column: 1 / -1; font-size: 11.5px; color: var(--text-dim); }
   .due-badge {
     font-size: 12px; font-weight: 600; padding: 5px 10px; border-radius: 7px;
     background: var(--surface-2); border: 1px solid var(--border);
@@ -284,7 +280,7 @@
     <div style="background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:22px; max-width:520px; width:100%; max-height:90vh; overflow-y:auto;">
       <h3 id="tenderInfoTitle" style="margin:0 0 4px; font-size:16px;">Find this tender</h3>
       <p style="font-size:12.5px; color:var(--text-dim); margin:0 0 16px; line-height:1.5;">
-        This portal's search requires solving a captcha — copy the value(s) below into the matching field(s) on their search page, then submit.
+        The official search page has many fields (Organisation, Department, Tender Type, dates, etc.) — this scraper only reliably captures the two below. Copy each into the matching field on the search page (leave the rest blank), solve the captcha, and submit.
       </p>
       <div id="tenderInfoFields"></div>
       <ol style="font-size:12.5px; color:var(--text-dim); padding-left:18px; margin:14px 0 4px; line-height:1.7;">
@@ -577,10 +573,9 @@
           <div>
             <div class="card-top-row">
               <span class="cat-badge">${shortCategory(t.category)}</span>
-              <span class="card-id mono">${t.id}</span>
+              <span class="card-id mono">${t.refNo ? 'Ref: ' + t.refNo : 'No ref no. — search by title'}</span>
             </div>
             <div class="card-desc">${t.desc}</div>
-            ${t.refNo ? `<div class="card-refno mono">Ref: ${t.refNo}</div>` : ''}
             <div class="card-meta">
               <span>📍 ${t.location || 'Location TBD'}</span>
               <span>💰 ${t.value || 'Value not disclosed'}</span>
@@ -592,11 +587,11 @@
             <div class="due-badge ${urgency}">${fmtDue(t.dueDate)}</div>
             ${d !== null ? `<div class="due-days">${d < 0 ? 'Closed' : d === 0 ? 'Due today' : d + ' day' + (d===1?'':'s') + ' left'}</div>` : ''}
           </div>
-          ${t.url ? '<div class="card-actions"><button class="find-btn">🔍 Find on official site</button></div>' : ''}
+          ${t.url ? '<div class="card-hint">🔍 Click this tender to find it on the official site</div>' : ''}
         `;
         if (t.url) {
-          const btn = card.querySelector('.find-btn');
-          if (btn) btn.addEventListener('click', () => openTenderInfoModal(t));
+          card.classList.add('clickable');
+          card.addEventListener('click', () => openTenderInfoModal(t));
         }
         grid.appendChild(card);
       });
@@ -629,7 +624,9 @@
   function openTenderInfoModal(t) {
     document.getElementById('tenderInfoTitle').textContent = `Find this tender on ${t.source || 'the source portal'}`;
     const fieldsEl = document.getElementById('tenderInfoFields');
-    fieldsEl.innerHTML = fieldRow('Work/Item Title', t.desc) + (t.refNo ? fieldRow('Tender Ref No', t.refNo) : '');
+    fieldsEl.innerHTML = fieldRow('Work/Item Title', t.desc) + (t.refNo
+      ? fieldRow('Tender Reference Number', t.refNo)
+      : '<p style="font-size:12px; color:var(--text-dim); margin:8px 0 0;">No Tender Reference Number was captured for this listing — search using the title above instead.</p>');
     fieldsEl.querySelectorAll('.field-copy-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         try { navigator.clipboard.writeText(btn.dataset.value); } catch (err) {}

@@ -114,5 +114,85 @@
     "type": "paid_aggregator",
     "enabled": false,
     "notes": "Paid aggregator — use its built-in alerts, don't scrape."
-  }
+  },
+  {
+  "name": "BHEL e-Tendering",
+  "url": "https://eprocurebhel.co.in/nicgep/app",
+  "searchUrl": "https://eprocurebhel.co.in/nicgep/app?page=FrontEndAdvancedSearch&service=page",
+  "type": "gepnic_table",
+  "enabled": true,
+  "notes": "Free/official. BHEL eProcurement portal based on NIC GePNIC. Public tender search available without login."
+},
+{
+  "name": "Bharat Electronics Limited (BEL)",
+  "url": "https://eprocurebel.co.in/nicgep/app",
+  "searchUrl": "https://eprocurebel.co.in/nicgep/app?page=FrontEndAdvancedSearch&service=page",
+  "type": "gepnic_table",
+  "enabled": true,
+  "notes": "Free/official. BEL eProcurement portal based on NIC GePNIC. Public tender search available without login."
+},
+{
+  "name": "Coal India Limited",
+  "url": "https://coalindiatenders.nic.in/nicgep/app",
+  "searchUrl": "https://coalindiatenders.nic.in/nicgep/app?page=FrontEndAdvancedSearch&service=page",
+  "type": "gepnic_table",
+  "enabled": true,
+  "notes": "Free/official. Coal India Limited e-Tendering portal using NIC GePNIC. Public tender search available without login."
+},
+{
+  "name": "CPCL",
+  "url": "https://cpcletenders.nic.in/nicgep/app",
+  "searchUrl": "https://cpcletenders.nic.in/nicgep/app?page=FrontEndAdvancedSearch&service=page",
+  "type": "gepnic_table",
+  "enabled": true,
+  "notes": "Free/official. Chennai Petroleum Corporation Limited eProcurement portal using NIC GePNIC. Correct URL is cpcletenders.nic.in (found via cpcl.co.in/tenders/ page link, verified live 2026-09-18) — cpctenders.nic.in does not exist."
+},
+{
+  "name": "Goa Shipyard Limited",
+  "url": "https://eprocure.goa.gov.in/nicgep/app",
+  "searchUrl": "https://eprocure.goa.gov.in/nicgep/app?page=FrontEndAdvancedSearch&service=page",
+  "type": "gepnic_table",
+  "enabled": true,
+  "notes": "Free/official. Goa Shipyard procurement is listed among GePNIC public-sector implementations. Verify portal URL before production use."
+},
+{
+  "name": "Hindustan Shipyard Limited",
+  "url": "https://eprocurehsl.nic.in/nicgep/app",
+  "searchUrl": "https://eprocurehsl.nic.in/nicgep/app?page=FrontEndAdvancedSearch&service=page",
+  "type": "gepnic_table",
+  "enabled": true,
+  "notes": "Free/official. Correct URL is eprocurehsl.nic.in (verified live 2026-09-18) — hsl.nic.in does not exist."
+},
+{
+  "name": "Mazagon Dock Shipbuilders Limited",
+  "url": "https://eprocuremdl.nic.in/nicgep/app",
+  "searchUrl": "https://eprocuremdl.nic.in/nicgep/app?page=FrontEndAdvancedSearch&service=page",
+  "type": "gepnic_table",
+  "enabled": true,
+  "notes": "Free/official. Mazagon Dock Shipbuilders procurement portal. GePNIC-based public tender system."
+},
+{
+  "name": "MIDHANI",
+  "url": "https://eprocuremidhani.nic.in/nicgep/app",
+  "searchUrl": "https://eprocuremidhani.nic.in/nicgep/app?page=FrontEndAdvancedSearch&service=page",
+  "type": "gepnic_table",
+  "enabled": true,
+  "notes": "Free/official. Mishra Dhatu Nigam Limited procurement portal. Correct URL is eprocuremidhani.nic.in (verified live 2026-09-18) — midhani.eprocure.gov.in does not exist."
+},
+{
+  "name": "NTPC Limited",
+  "url": "https://eprocurentpc.nic.in/nicgep/app",
+  "searchUrl": "https://eprocurentpc.nic.in/nicgep/app?page=FrontEndAdvancedSearch&service=page",
+  "type": "gepnic_table",
+  "enabled": true,
+  "notes": "Free/official. NTPC Limited eProcurement portal using NIC GePNIC."
+},
+{
+  "name": "Garden Reach Shipbuilders & Engineers",
+  "url": "https://eprocuregrse.co.in/nicgep/app",
+  "searchUrl": "https://eprocuregrse.co.in/nicgep/app?page=FrontEndAdvancedSearch&service=page",
+  "type": "gepnic_table",
+  "enabled": true,
+  "notes": "Free/official. GRSE is listed among GePNIC public-sector/defence implementations. Verify portal URL before production use."
+}
 ]

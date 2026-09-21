@@ -133,6 +133,24 @@ due to browser security rules.
 **To tune what counts as a match**, edit `CATEGORY_KEYWORDS` near the
 top of `scraper.py`.
 
+**To see every scraped tender instead of only EV-charging matches**
+(useful for confirming the scrape → dashboard pipeline works, or
+checking what a source's raw listing actually contains), set
+`TENDER_SHOW_ALL`:
+
+```bash
+TENDER_SHOW_ALL=true python scraper.py
+```
+
+Non-matching tenders get tagged `"General / All Tenders"` instead of
+being dropped. This is off by default and never set in the scheduled
+GitHub Actions workflow, so it has no effect on the live production
+data unless you deliberately run it locally. Run `python scraper.py`
+without the env var afterward to go back to EV-only filtering — matches
+already saved from a `TENDER_SHOW_ALL` run stay in `tenders.json` until
+manually removed or their due date passes, same merge behavior as any
+other tender.
+
 ## Managing sources (`sources.json`)
 
 Every portal Tender Radar knows about — scraped or not — lives in

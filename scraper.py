@@ -72,26 +72,36 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 CATEGORY_KEYWORDS = {
     "PPP / Concession / CPO Selection": [
-        "dbfot", "boom model", "boot model", "ppp model", "public private partnership",
-        "cpo selection", "selection of cpo", "charge point operator", "empanelment of agencies",
-        "empanelment of cpo", "concession", "revenue share", "e-drive scheme",
-        "public charging station", "public charging stations",
+        "dbfot", "boom model", "boot model", "boot basis", "boom basis", "ppp model",
+        "ppp basis", "hybrid annuity", "public private partnership",
+        "cpo selection", "selection of cpo", "selection of charge point operator",
+        "charge point operator", "charge point operators", "empanelment of agencies",
+        "empanelment of cpo", "empanelment of charge point operator", "concession",
+        "revenue share", "e-drive scheme", "public charging station", "public charging stations",
     ],
     "Charger Supply & Installation": [
-        "dc fast charger", "dual gun", "ev charging station supply", "supply, installation",
-        "supply and installation", "ev charging infrastructure", "ac ev charging",
-        "solar powered ev charging", "kw charger", "commissioning of ev",
+        "dc fast charger", "ac charger", "dual gun", "ev charger", "ev chargers",
+        "ev charging station", "ev charging stations", "ev charging point",
+        "ev charging points", "electric vehicle charger", "electric vehicle chargers",
+        "electric vehicle charging station", "ev charging station supply",
+        "supply, installation", "supply and installation", "ev charging infrastructure",
+        "ac ev charging", "solar powered ev charging", "kw charger", "fast charging station",
+        "charging point", "charging points", "evse", "commissioning of ev",
     ],
     "Infrastructure & Electrical Works": [
         "electrical infrastructure for ev", "power infrastructure for ev",
         "ht/lt infrastructure", "ht lt infrastructure", "ev bus charging",
         "car parking with ev charging", "retail outlet.*ev charging",
+        "ev charging bay", "ev charging yard", "ev parking",
     ],
 }
 
 # A tender only needs to match ONE keyword from ANY category to be kept;
 # it gets tagged with every category whose keywords it matches.
-GENERIC_GATE_TERMS = ["ev charg", "electric vehicle charg", "charging station", "charging infrastructure"]
+GENERIC_GATE_TERMS = [
+    "ev charg", "electric vehicle charg", "e-vehicle charg", "charging station",
+    "charging infrastructure", "charging point", "ev station", "ev infrastructure", "evse",
+]
 
 
 # ---------------------------------------------------------------------------
@@ -175,6 +185,12 @@ def parse_gepnic_table(html, source_name):
             # Heuristic: a tender row usually has a date-like string in it
             if date_pattern.search(row_text):
                 title = max(cells, key=len)  # longest cell is usually the title
+                # The site's own table renders this cell as "N. <actual title>"
+                # (N = that row's position in ITS table, not a stable tender
+                # property) — strip it, or it leaks into what gets copy-pasted
+                # into the portal's own title search field, which doesn't
+                # expect that prefix.
+                title = re.sub(r"^\s*\d+\.\s*", "", title).strip()
                 # Best-effort: the reference number is usually the remaining
                 # short, non-date cell (e.g. "1/WKS/04/26-Gl") — gives users a
                 # second, more precise value to paste into the portal's
@@ -294,6 +310,16 @@ def matches_categories(title):
 DATA_PATH = os.environ.get("TENDER_DATA_PATH", "docs/data/tenders.json")
 DUE_SOON_DAYS = int(os.environ.get("DUE_SOON_DAYS", "7"))
 
+# Toggle: when set, every scraped row is kept (tagged "General / All
+# Tenders" if it doesn't match a real category) instead of being filtered
+# out by matches_categories(). Useful for eyeballing the full scrape ->
+# dashboard pipeline, or checking a source's raw listing, without waiting
+# for a genuine EV-charging match to show up in a portal's rolling
+# 10-latest window. Off by default — never set in the scheduled GitHub
+# Actions workflow, so production EV-only filtering is unaffected unless
+# you deliberately run: TENDER_SHOW_ALL=true python scraper.py
+SHOW_ALL_TENDERS = os.environ.get("TENDER_SHOW_ALL", "false").lower() in ("1", "true", "yes")
+
 
 def days_until(date_str):
     if not date_str:
@@ -316,6 +342,8 @@ def load_existing(path):
 
 
 def run():
+    if SHOW_ALL_TENDERS:
+        print("TENDER_SHOW_ALL is on — keeping every scraped tender, not just EV-charging matches.\n")
     existing = load_existing(DATA_PATH)
     existing_by_id = {t["id"]: t for t in existing if t.get("id")}
     new_count = 0
@@ -340,7 +368,9 @@ def run():
         for row in rows:
             cats = matches_categories(row["raw_title"])
             if not cats:
-                continue
+                if not SHOW_ALL_TENDERS:
+                    continue
+                cats = ["General / All Tenders"]
             tid = make_stable_id(source["name"], row["raw_title"])
             if tid in existing_by_id:
                 continue  # already tracked from a previous run
