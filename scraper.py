@@ -202,6 +202,14 @@ def parse_gepnic_table(html, source_name):
                 if ref_no:
                     # Same row-position prefix issue as the title above.
                     ref_no = re.sub(r"^\s*\d+\.\s*", "", ref_no).strip() or None
+                if ref_no and ref_no.lower() == title.lower():
+                    # Some portal layouts (e.g. Mazagon Dock) repeat the title
+                    # in a second cell instead of a real reference number.
+                    # Presenting that duplicate as a "ref no" is actively
+                    # harmful: pasting a full sentence into the portal's
+                    # Tender Reference Number field guarantees "no tender
+                    # found" even though the title alone would have worked.
+                    ref_no = None
                 results.append({
                     "raw_title": title,
                     "raw_row": row_text,
