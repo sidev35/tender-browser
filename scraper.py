@@ -318,7 +318,8 @@ DUE_SOON_DAYS = int(os.environ.get("DUE_SOON_DAYS", "7"))
 # 10-latest window. Off by default — never set in the scheduled GitHub
 # Actions workflow, so production EV-only filtering is unaffected unless
 # you deliberately run: TENDER_SHOW_ALL=true python scraper.py
-SHOW_ALL_TENDERS = os.environ.get("TENDER_SHOW_ALL", "false").lower() in ("1", "true", "yes")
+# SHOW_ALL_TENDERS = os.environ.get("TENDER_SHOW_ALL", "false").lower() in ("1", "true", "yes")
+SHOW_ALL_TENDERS = os.environ.get("TENDER_SHOW_ALL", "true").lower() in ("1", "true", "yes")
 
 
 def days_until(date_str):
