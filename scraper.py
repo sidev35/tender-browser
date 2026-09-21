@@ -177,6 +177,16 @@ def parse_gepnic_table(html, source_name):
     # Prefer the real table by id; only fall back to scanning everything for
     # a portal layout we don't recognize (parse_generic_table's use case).
     date_pattern = re.compile(r"\d{1,2}[-/][A-Za-z]{3}[-/]\d{2,4}|\d{1,2}[-/]\d{1,2}[-/]\d{2,4}")
+    # Stricter than date_pattern above: matches only when the WHOLE cell is a
+    # date/timestamp (e.g. "21-Sep-2026 03:00 PM"), not just contains a
+    # date-like substring anywhere. Needed because plenty of real reference
+    # numbers embed a fiscal-year-style substring like "26-27" (e.g.
+    # "PWD/Div8/ASW/2001/21/26-27/L1") that date_pattern.search() would
+    # otherwise misfire on, wrongly excluding a genuine ref number from
+    # candidacy below.
+    full_date_cell_pattern = re.compile(
+        r"^\d{1,2}[-/][A-Za-z]{3}[-/]\d{2,4}(\s+\d{1,2}:\d{2}\s*[AP]M)?$", re.IGNORECASE
+    )
     tables = [soup.find(id="activeTenders")] if soup.find(id="activeTenders") else soup.find_all("table")
     for table in tables:
         rows = table.find_all("tr")
@@ -187,29 +197,33 @@ def parse_gepnic_table(html, source_name):
             row_text = " | ".join(cells)
             # Heuristic: a tender row usually has a date-like string in it
             if date_pattern.search(row_text):
-                title = max(cells, key=len)  # longest cell is usually the title
-                # The site's own table renders this cell as "N. <actual title>"
-                # (N = that row's position in ITS table, not a stable tender
-                # property) — strip it, or it leaks into what gets copy-pasted
-                # into the portal's own title search field, which doesn't
-                # expect that prefix.
-                title = re.sub(r"^\s*\d+\.\s*", "", title).strip()
-                # Best-effort: the reference number is usually the remaining
-                # short, non-date cell (e.g. "1/WKS/04/26-Gl") — gives users a
-                # second, more precise value to paste into the portal's
-                # "Tender Ref No" search field alongside the title.
-                ref_no = next((c for c in cells if c != title and c.strip() and not date_pattern.search(c)), None)
+                # The site's own table renders the title cell as "N. <actual
+                # title>" (N = that row's position in ITS table, not a stable
+                # tender property). Strip it for comparison purposes — but
+                # compare every candidate cell *normalized* the same way, not
+                # the raw cell against the already-stripped title, or the
+                # still-prefixed title cell itself always looks "different"
+                # from the stripped title and gets wrongly picked as the
+                # reference number, before the loop ever reaches the real one.
+                def strip_prefix(c):
+                    return re.sub(r"^\s*\d+\.\s*", "", c).strip()
+
+                title = strip_prefix(max(cells, key=len))  # longest cell is usually the title
+                # Best-effort: the reference number is the remaining
+                # short, non-date, non-title cell (e.g. "1/WKS/04/26-Gl" or a
+                # numeric tender id) — gives users a second, more precise
+                # value to paste into the portal's "Tender Ref No" search
+                # field alongside the title. None if no such cell exists
+                # (some portal layouts just don't have a distinct one).
+                ref_no = next(
+                    (c for c in cells
+                     if strip_prefix(c).lower() != title.lower()
+                     and c.strip()
+                     and not full_date_cell_pattern.match(c.strip())),
+                    None,
+                )
                 if ref_no:
-                    # Same row-position prefix issue as the title above.
-                    ref_no = re.sub(r"^\s*\d+\.\s*", "", ref_no).strip() or None
-                if ref_no and ref_no.lower() == title.lower():
-                    # Some portal layouts (e.g. Mazagon Dock) repeat the title
-                    # in a second cell instead of a real reference number.
-                    # Presenting that duplicate as a "ref no" is actively
-                    # harmful: pasting a full sentence into the portal's
-                    # Tender Reference Number field guarantees "no tender
-                    # found" even though the title alone would have worked.
-                    ref_no = None
+                    ref_no = strip_prefix(ref_no) or None
                 results.append({
                     "raw_title": title,
                     "raw_row": row_text,
