@@ -133,23 +133,26 @@ due to browser security rules.
 **To tune what counts as a match**, edit `CATEGORY_KEYWORDS` near the
 top of `scraper.py`.
 
-**To see every scraped tender instead of only EV-charging matches**
-(useful for confirming the scrape → dashboard pipeline works, or
-checking what a source's raw listing actually contains), set
-`TENDER_SHOW_ALL`:
+**`TENDER_SHOW_ALL` controls whether every scraped tender is kept**, or
+only ones matching `CATEGORY_KEYWORDS`. Non-matching tenders get tagged
+`"General / All Tenders"` instead of being dropped when this is on.
+
+This currently **defaults to `true`, including in the scheduled GitHub
+Actions workflow** — the live dashboard is intentionally showing every
+scraped tender right now, not just EV-charging matches. To go back to
+EV-only filtering everywhere, set `SHOW_ALL_TENDERS`'s default back to
+`"false"` in `scraper.py` (and push) — or override it for a single
+local run either way:
 
 ```bash
-TENDER_SHOW_ALL=true python scraper.py
+TENDER_SHOW_ALL=false python scraper.py   # EV-only, this run only
+TENDER_SHOW_ALL=true python scraper.py    # show everything, this run only
 ```
 
-Non-matching tenders get tagged `"General / All Tenders"` instead of
-being dropped. This is off by default and never set in the scheduled
-GitHub Actions workflow, so it has no effect on the live production
-data unless you deliberately run it locally. Run `python scraper.py`
-without the env var afterward to go back to EV-only filtering — matches
-already saved from a `TENDER_SHOW_ALL` run stay in `tenders.json` until
-manually removed or their due date passes, same merge behavior as any
-other tender.
+Matches already saved from a run stay in `tenders.json` until manually
+removed or their due date passes, same merge behavior as any other
+tender — so switching the default doesn't retroactively filter what's
+already on the dashboard.
 
 ## Managing sources (`sources.json`)
 

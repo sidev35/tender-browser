@@ -318,13 +318,11 @@ DUE_SOON_DAYS = int(os.environ.get("DUE_SOON_DAYS") or "7")
 
 # Toggle: when set, every scraped row is kept (tagged "General / All
 # Tenders" if it doesn't match a real category) instead of being filtered
-# out by matches_categories(). Useful for eyeballing the full scrape ->
-# dashboard pipeline, or checking a source's raw listing, without waiting
-# for a genuine EV-charging match to show up in a portal's rolling
-# 10-latest window. Off by default — never set in the scheduled GitHub
-# Actions workflow, so production EV-only filtering is unaffected unless
-# you deliberately run: TENDER_SHOW_ALL=true python scraper.py
-SHOW_ALL_TENDERS = os.environ.get("TENDER_SHOW_ALL", "false").lower() in ("1", "true", "yes")
+# out by matches_categories(). Currently defaulted ON, including in the
+# scheduled GitHub Actions workflow — the live dashboard is intentionally
+# showing every scraped tender, not just EV-charging matches, for now.
+# Set TENDER_SHOW_ALL=false to go back to EV-only filtering.
+SHOW_ALL_TENDERS = os.environ.get("TENDER_SHOW_ALL", "true").lower() in ("1", "true", "yes")
 
 
 def days_until(date_str):
