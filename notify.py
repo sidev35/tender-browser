@@ -100,7 +100,7 @@ def send_digest(new_records, due_soon_records,
         print("Email digest: nothing new and nothing closing soon — skipping send.")
         return
 
-    min_hours = float(os.environ.get("MIN_HOURS_BETWEEN_DIGESTS", "6"))
+    min_hours = float(os.environ.get("MIN_HOURS_BETWEEN_DIGESTS") or "6")
     last_sent = _last_sent()
     now = datetime.now()
     if last_sent is not None:
@@ -114,7 +114,7 @@ def send_digest(new_records, due_soon_records,
     api_key = os.environ.get("SENDGRID_API_KEY")
     from_email = os.environ.get("NOTIFY_FROM_EMAIL")
     recipients = [r.strip() for r in os.environ.get("NOTIFY_RECIPIENTS", "").split(",") if r.strip()]
-    due_soon_days = os.environ.get("DUE_SOON_DAYS", "7")
+    due_soon_days = os.environ.get("DUE_SOON_DAYS") or "7"
 
     if not api_key or not from_email or not recipients:
         print("Email digest: SENDGRID_API_KEY / NOTIFY_FROM_EMAIL / NOTIFY_RECIPIENTS "

@@ -38,6 +38,8 @@ jobs:
           SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
           NOTIFY_FROM_EMAIL: ${{ vars.NOTIFY_FROM_EMAIL }}
           NOTIFY_RECIPIENTS: ${{ vars.NOTIFY_RECIPIENTS }}
+          DUE_SOON_DAYS: ${{ vars.DUE_SOON_DAYS }}
+          MIN_HOURS_BETWEEN_DIGESTS: ${{ vars.MIN_HOURS_BETWEEN_DIGESTS }}
         run: python scraper.py
 
       - name: Commit updated tender data if anything changed

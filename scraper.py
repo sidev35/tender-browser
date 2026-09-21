@@ -87,6 +87,8 @@ CATEGORY_KEYWORDS = {
         "supply, installation", "supply and installation", "ev charging infrastructure",
         "ac ev charging", "solar powered ev charging", "kw charger", "fast charging station",
         "charging point", "charging points", "evse", "commissioning of ev",
+        "battery swapping", "battery swapping station", "battery swapping stations",
+        "e-mobility", "pm e-drive", "pm e drive", "fame scheme",
     ],
     "Infrastructure & Electrical Works": [
         "electrical infrastructure for ev", "power infrastructure for ev",
@@ -101,6 +103,7 @@ CATEGORY_KEYWORDS = {
 GENERIC_GATE_TERMS = [
     "ev charg", "electric vehicle charg", "e-vehicle charg", "charging station",
     "charging infrastructure", "charging point", "ev station", "ev infrastructure", "evse",
+    "battery swapping", "e-mobility", "pm e-drive", "pm e drive", "fame scheme",
 ]
 
 
@@ -196,6 +199,9 @@ def parse_gepnic_table(html, source_name):
                 # second, more precise value to paste into the portal's
                 # "Tender Ref No" search field alongside the title.
                 ref_no = next((c for c in cells if c != title and c.strip() and not date_pattern.search(c)), None)
+                if ref_no:
+                    # Same row-position prefix issue as the title above.
+                    ref_no = re.sub(r"^\s*\d+\.\s*", "", ref_no).strip() or None
                 results.append({
                     "raw_title": title,
                     "raw_row": row_text,
@@ -308,7 +314,7 @@ def matches_categories(title):
 
 
 DATA_PATH = os.environ.get("TENDER_DATA_PATH", "docs/data/tenders.json")
-DUE_SOON_DAYS = int(os.environ.get("DUE_SOON_DAYS", "7"))
+DUE_SOON_DAYS = int(os.environ.get("DUE_SOON_DAYS") or "7")
 
 # Toggle: when set, every scraped row is kept (tagged "General / All
 # Tenders" if it doesn't match a real category) instead of being filtered
