@@ -32,17 +32,25 @@
     "notes": "Free/official. Verified live 2026-09-17: no robots.txt restriction. Homepage widget (10 latest, site-wide). searchUrl verified live 2026-09-18."
   },
   {
+    "name": "EESL (Energy Efficiency Services Ltd)",
+    "url": "https://eeslindia.org/en/tenders/",
+    "searchUrl": "https://eeslindia.org/en/tenders/",
+    "type": "eesl_wp_list",
+    "enabled": true,
+    "notes": "Free/official govt PSU. NOT a GePNIC portal (was wrongly set to gepnic_table before 2026-09-22) — this is a WordPress page listing every tender/notice as a 'current_latest_boxs' accordion div, not a <table>. Verified live 2026-09-22: robots.txt only disallows /wp-admin/, this page is allowed; no login, no captcha. All ~240 entries (going back to 2021) sit on one static page — no rolling top-10 window, so no risk of a match rotating off between checks. Each entry links to a real, stable PDF document URL (not session-bound), used directly as the tender's url instead of searchUrl. No structured closing date on the page itself (only inside the linked PDF)."
+  },
+  {
     "name": "NHAI",
     "url": null,
     "type": "unsupported",
-    "enabled": false,
+    "enabled": true,
     "notes": "No separate stable public listing URL as of last check — its tenders flow through CPPP/etenders.gov.in (above) and GeM (blocked, see below). Set url + type to gepnic_table and enabled to true if you confirm a dedicated NHAI e-tendering URL."
   },
   {
     "name": "Maharashtra e-Tendering (mahatenders.gov.in)",
     "url": "https://mahatenders.gov.in/nicgep/app",
     "type": "blocked_by_robots_txt",
-    "enabled": false,
+    "enabled": true,
     "notes": "Same NIC GePNIC engine as the others, but this specific domain's robots.txt disallows all automated access (checked 2026-09-17: 'Disallow: /'). Do not scrape — this is a real per-domain restriction, not the same as Rajasthan/MP above."
   },
   {
@@ -60,139 +68,83 @@
     "notes": "Disallows automated access via robots.txt — do not scrape."
   },
   {
-    "name": "Telangana e-Procurement",
-    "url": null,
-    "type": "unsupported",
-    "enabled": false,
-    "notes": "Checked 2026-09-17: neither tender.telangana.gov.in/nicgep/app nor eprocurement.telangana.gov.in/nicgep/app resolved (404) — likely a different engine or a different URL path than the standard GePNIC layout. Needs the correct listing URL confirmed before it can be added."
+    "name": "Telangana e-Procurement (keyword search)",
+    "url": "https://tender.telangana.gov.in/",
+    "type": "js_interactive_search",
+    "enabled": true,
+    "preClickSelector": "#viewCurrentall",
+    "searchInputSelector": "#nTenderID",
+    "searchButtonSelector": "#searchTender",
+    "searchKeyword": "charging station",
+    "notes": "Free/official. Not the classic NIC GePNIC layout (custom platform) — previously listed as 'unsupported' since neither /nicgep/app path resolved. Confirmed 2026-09-22: this is a single-page app similar to Bihar's, but with an extra wrinkle — loading https://tender.telangana.gov.in/TenderDetailsHome.html directly gets redirected to a session-timeout page; the search form is only reachable by loading the root URL above and clicking its homepage 'More...' link (#viewCurrentall) first, which is what preClickSelector does. Keyword box is #nTenderID, submit button is #searchTender. Verified live: searching 'charging station' this way returns all 3 real matching tenders (previously only Bihar-style direct navigation was supported, which silently produced 0/incomplete results here). Selectors found via debug_js_source.py's --click flag plus a manual Playwright REPL session against the live page. Left disabled until a first live run has been checked end-to-end — flip to true once confirmed working."
   },
   {
-    "name": "Bihar e-Procurement (eproc2.bihar.gov.in)",
-    "url": null,
-    "type": "unsupported",
-    "enabled": false,
-    "notes": "Checked 2026-09-17: reachable but not the classic NIC GePNIC layout (no activeTenders table found) — this looks like Bihar's newer 'eProc 2.0' platform, a different engine. Would need its own parser."
-  },
-  {
-    "name": "Gujarat nProcure",
+    "name": "Gujarat nProcure (keyword search)",
     "url": "https://tender.nprocure.com/",
-    "type": "unsupported",
-    "enabled": false,
-    "notes": "Gujarat's official e-tendering platform, but it's run by a different vendor ((n)Code Solutions), not the NIC GePNIC engine — would need its own parser, not yet built."
+    "type": "js_interactive_search",
+    "enabled": true,
+    "searchInputSelector": "#TENDERTITLE:visible",
+    "searchButtonSelector": "#searchButtonId:visible",
+    "searchKeyword": "charging station",
+    "notes": "Free/official (run by (n)Code Solutions, not NIC GePNIC). No-login public tender search, confirmed live 2026-09-22 — previously listed as 'unsupported'. Single-page app like Bihar/Telangana: URL doesn't change on search, so js_interactive_search is required. Unlike Bihar, these selectors are unique IDs with no hidden-duplicate issue (#TENDERTITLE is labeled 'Tender Title', #searchButtonId is the confirmed submit button). Searching 'charging station' returned 2 real matches during manual testing via debug_js_source.py. Left disabled until a first live run through the full scraper.py pipeline has been checked end-to-end (title/date parsing quality, not just raw fetch) — flip to true once confirmed."
   },
   {
-    "name": "TenderDetail",
-    "url": "https://www.tenderdetail.com",
-    "type": "paid_aggregator",
-    "enabled": false,
-    "notes": "Paid aggregator you already subscribe to. Scraping a paid product likely breaches its terms of service — use its own keyword/email alert feature instead of building a scraper for it."
+    "name": "Bihar e-Procurement 2.0 (keyword search)",
+    "url": "https://eproc2.bihar.gov.in/EPSV2Web/openarea/tenderListingPage.action",
+    "type": "js_interactive_search",
+    "enabled": true,
+    "searchInputSelector": "input[placeholder='Type any keyword']:visible",
+    "searchButtonSelector": "button.submit_nil:visible",
+    "searchKeyword": "charging stations",
+    "notes": "Free/official. No-login public tender search (confirmed live 2026-09-22) — previously listed as 'unsupported' since this eProc 2.0 platform isn't the classic NIC GePNIC layout. Confirmed to be a single-page app: the URL never changes on search, so js_rendered_table (which just loads the URL) won't work here — needs js_interactive_search to actually type the keyword and click submit. Selectors found via debug_js_source.py --search against the live page on 2026-09-22; re-verify if the site's markup changes. Left disabled until a first live run has been checked end-to-end — flip to true once confirmed working."
   },
+
+
+
+
+
+  {
+    "name": "TenderDetail (charging station listing)",
+    "url": "https://www.tenderdetail.com/Indian-tender/charging-station-tenders",
+    "type": "tenderdetail_list",
+    "enabled": true,
+    "maxNewPerRun": 10,
+    "notes": "Paid aggregator you subscribe to, but this keyword listing page is public with no login. Checked 2026-09-23: robots.txt is 'Allow: /' for all agents, and the Terms of Usage have no clause against scraping or automated access, but they do limit use to 'personal or internal purposes'. It's enabled on the understanding that the dashboard is internal only; if the dashboard becomes public, re-check that. One plain GET per run (server-rendered HTML, ~50 cards, no pagination). maxNewPerRun caps how many unseen tenders are added per run, so the rest trickle in as new over later runs. Each tender links to its stable TenderDetail notice page. refNo is left empty because the '#' number on each card is TenderDetail's own id, not the issuing authority's ref no."
+  },
+
+
+
+
+
+
+
   {
     "name": "TendersOnTime",
     "url": "https://www.tendersontime.com",
-    "type": "paid_aggregator",
+    "type": "tenderdetail_list",
     "enabled": false,
-    "notes": "Paid aggregator — use its built-in alerts, don't scrape."
+    "notes": ""
   },
   {
     "name": "Tendersniper",
     "url": "https://www.tendersniper.com",
-    "type": "paid_aggregator",
-    "enabled": false,
-    "notes": "Paid aggregator — use its built-in alerts, don't scrape."
+    "searchUrl": "https://tendersniper.com/search/search.xhtml?searchString=electric+vehicle+charging+stations&type=semantic&fn=0&selectedSearchType=1",
+    "type": "tenderdetail_list",
+    "enabled": true,
+    "notes": ""
   },
   {
     "name": "NationalTenders",
-    "url": "https://www.nationaltenders.com",
-    "type": "paid_aggregator",
-    "enabled": false,
-    "notes": "Paid aggregator — use its built-in alerts, don't scrape."
+    "url": "https://www.nationaltenders.com/site/keyword/electric-vehicle-charging-station",
+    "type": "tenderdetail_list",
+    "enabled": true,
+    "notes": ""
   },
   {
     "name": "Tender18",
-    "url": "https://www.tender18.com",
-    "type": "paid_aggregator",
-    "enabled": false,
-    "notes": "Paid aggregator — use its built-in alerts, don't scrape."
-  },
-  {
-  "name": "BHEL e-Tendering",
-  "url": "https://eprocurebhel.co.in/nicgep/app",
-  "searchUrl": "https://eprocurebhel.co.in/nicgep/app?page=FrontEndAdvancedSearch&service=page",
-  "type": "gepnic_table",
-  "enabled": true,
-  "notes": "Free/official. BHEL eProcurement portal based on NIC GePNIC. Public tender search available without login."
-},
-{
-  "name": "Bharat Electronics Limited (BEL)",
-  "url": "https://eprocurebel.co.in/nicgep/app",
-  "searchUrl": "https://eprocurebel.co.in/nicgep/app?page=FrontEndAdvancedSearch&service=page",
-  "type": "gepnic_table",
-  "enabled": true,
-  "notes": "Free/official. BEL eProcurement portal based on NIC GePNIC. Public tender search available without login."
-},
-{
-  "name": "Coal India Limited",
-  "url": "https://coalindiatenders.nic.in/nicgep/app",
-  "searchUrl": "https://coalindiatenders.nic.in/nicgep/app?page=FrontEndAdvancedSearch&service=page",
-  "type": "gepnic_table",
-  "enabled": true,
-  "notes": "Free/official. Coal India Limited e-Tendering portal using NIC GePNIC. Public tender search available without login."
-},
-{
-  "name": "CPCL",
-  "url": "https://cpcletenders.nic.in/nicgep/app",
-  "searchUrl": "https://cpcletenders.nic.in/nicgep/app?page=FrontEndAdvancedSearch&service=page",
-  "type": "gepnic_table",
-  "enabled": true,
-  "notes": "Free/official. Chennai Petroleum Corporation Limited eProcurement portal using NIC GePNIC. Correct URL is cpcletenders.nic.in (found via cpcl.co.in/tenders/ page link, verified live 2026-09-18) — cpctenders.nic.in does not exist."
-},
-{
-  "name": "Goa Shipyard Limited",
-  "url": "https://eprocure.goa.gov.in/nicgep/app",
-  "searchUrl": "https://eprocure.goa.gov.in/nicgep/app?page=FrontEndAdvancedSearch&service=page",
-  "type": "gepnic_table",
-  "enabled": true,
-  "notes": "Free/official. Goa Shipyard procurement is listed among GePNIC public-sector implementations. Verify portal URL before production use."
-},
-{
-  "name": "Hindustan Shipyard Limited",
-  "url": "https://eprocurehsl.nic.in/nicgep/app",
-  "searchUrl": "https://eprocurehsl.nic.in/nicgep/app?page=FrontEndAdvancedSearch&service=page",
-  "type": "gepnic_table",
-  "enabled": true,
-  "notes": "Free/official. Correct URL is eprocurehsl.nic.in (verified live 2026-09-18) — hsl.nic.in does not exist."
-},
-{
-  "name": "Mazagon Dock Shipbuilders Limited",
-  "url": "https://eprocuremdl.nic.in/nicgep/app",
-  "searchUrl": "https://eprocuremdl.nic.in/nicgep/app?page=FrontEndAdvancedSearch&service=page",
-  "type": "gepnic_table",
-  "enabled": true,
-  "notes": "Free/official. Mazagon Dock Shipbuilders procurement portal. GePNIC-based public tender system."
-},
-{
-  "name": "MIDHANI",
-  "url": "https://eprocuremidhani.nic.in/nicgep/app",
-  "searchUrl": "https://eprocuremidhani.nic.in/nicgep/app?page=FrontEndAdvancedSearch&service=page",
-  "type": "gepnic_table",
-  "enabled": true,
-  "notes": "Free/official. Mishra Dhatu Nigam Limited procurement portal. Correct URL is eprocuremidhani.nic.in (verified live 2026-09-18) — midhani.eprocure.gov.in does not exist."
-},
-{
-  "name": "NTPC Limited",
-  "url": "https://eprocurentpc.nic.in/nicgep/app",
-  "searchUrl": "https://eprocurentpc.nic.in/nicgep/app?page=FrontEndAdvancedSearch&service=page",
-  "type": "gepnic_table",
-  "enabled": true,
-  "notes": "Free/official. NTPC Limited eProcurement portal using NIC GePNIC."
-},
-{
-  "name": "Garden Reach Shipbuilders & Engineers",
-  "url": "https://eprocuregrse.co.in/nicgep/app",
-  "searchUrl": "https://eprocuregrse.co.in/nicgep/app?page=FrontEndAdvancedSearch&service=page",
-  "type": "gepnic_table",
-  "enabled": true,
-  "notes": "Free/official. GRSE is listed among GePNIC public-sector/defence implementations. Verify portal URL before production use."
-}
+    "url": "https://tender18.com/all-india-tenders/keyword-tenders/electrical-vehicle-charging-stations-tenders",
+    "type": "tenderdetail_list",
+    "enabled": true,
+    "notes": ""
+  }
 ]

@@ -288,9 +288,6 @@
         <li>Paste the copied value(s) into the matching field(s)</li>
         <li>Enter the captcha shown, and click Search</li>
       </ol>
-      <p style="font-size:11.5px; color:var(--text-dim); margin:8px 0 0;">
-        Tip: install the autofill bookmarklet (footer, one-time setup) to skip step 2 for the title field.
-      </p>
       <div style="display:flex; gap:8px; justify-content:flex-end; margin-top:16px;">
         <button id="closeTenderInfo" style="background:none; border:1px solid var(--border); color:var(--text-dim); padding:8px 14px; border-radius:8px; cursor:pointer; font-size:13px;">Close</button>
         <button id="openTenderSearch" style="background:var(--accent); border:none; color:var(--bg); padding:8px 14px; border-radius:8px; cursor:pointer; font-size:13px; font-weight:600;">Open search page ↗</button>
@@ -324,16 +321,7 @@
   <div id="groups"></div>
 
   <footer class="note">
-    Sourced from official govt / PSU tender portals (CPPP-network sites, OMC e-tendering) via a GitHub Actions workflow that runs on a schedule and updates <code class="mono">data/tenders.json</code> automatically.
-    <br>Last data sync: <strong id="syncTime"></strong>
-    <br><a href="#" id="manualPasteLink" style="color:var(--text-dim); font-size:11px;">Paste tender data manually (advanced/testing)</a>
-    <br><br>
-    <strong>One-time setup for one-click search field filling:</strong> drag this to your bookmarks bar —
-    <a href="javascript:(function(){var h=decodeURIComponent(location.hash.slice(1));if(!h){alert('Open this from a Tender Radar card link first.');return;}var f=document.querySelector('input[name=workItemTitle]');if(!f){alert('Could not find the search field on this page.');return;}f.value=h;f.focus();var c=document.querySelector('input[name=captchaText]');if(c){c.scrollIntoView({behavior:'smooth',block:'center'});}})();"
-       id="autofillBookmarklet"
-       onclick="alert('Drag this link to your bookmarks bar — clicking it here does nothing useful.'); return false;"
-       style="color:var(--accent); font-weight:600;">📌 Tender Radar Autofill</a>
-    — then, after clicking a tender and landing on its portal's search page, click that bookmark to fill in the title for you. You still enter the captcha shown yourself; nothing here reads or bypasses it.
+    Last data sync: <strong id="syncTime"></strong>
   </footer>
 
 </div>
@@ -635,11 +623,7 @@
         setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 1500);
       });
     });
-    // Title travels in the URL fragment (#...) too — never sent to the
-    // server, but readable by the autofill bookmarklet (see footer) once
-    // the destination page has loaded, for anyone who's set it up.
-    const destUrl = t.url + '#' + encodeURIComponent(t.desc);
-    document.getElementById('openTenderSearch').onclick = () => window.open(destUrl, '_blank', 'noopener');
+    document.getElementById('openTenderSearch').onclick = () => window.open(t.url, '_blank', 'noopener');
     tenderInfoModal.style.display = 'flex';
   }
   document.getElementById('closeTenderInfo').addEventListener('click', () => { tenderInfoModal.style.display = 'none'; });
@@ -647,7 +631,6 @@
 
   const updateModal = document.getElementById('updateModal');
   document.getElementById('updateBtn').addEventListener('click', () => { refreshData({ manual: true }); });
-  document.getElementById('manualPasteLink').addEventListener('click', (e) => { e.preventDefault(); updateModal.style.display = 'flex'; });
   document.getElementById('cancelUpdate').addEventListener('click', () => { updateModal.style.display = 'none'; });
   document.getElementById('applyUpdate').addEventListener('click', () => {
     const errEl = document.getElementById('updateError');

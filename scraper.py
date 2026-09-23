@@ -50,12 +50,45 @@ import os
 import re
 import time
 from datetime import datetime
+from urllib.parse import urljoin
 
 import requests
 import urllib3
 from bs4 import BeautifulSoup
 
 from notify import send_digest
+
+# Playwright is only needed for sources whose tender listing is rendered
+# client-side via JavaScript (confirmed by manual check: a plain
+# requests.get() on those pages returns just the page shell — a "Loading..."
+# placeholder where the real table would be, no actual rows). It's an
+# optional dependency: a checkout that only runs the plain-HTML GePNIC/EESL
+# sources doesn't need it installed at all.
+try:
+    from playwright.sync_api import sync_playwright
+    PLAYWRIGHT_AVAILABLE = True
+except ImportError:
+    PLAYWRIGHT_AVAILABLE = False
+
+
+def playwright_launch_kwargs():
+    """
+    Headless launch options for p.chromium.launch(). Defaults to driving the
+    system's installed Microsoft Edge (channel "msedge"), because this
+    machine's network blocks Playwright's own Chromium download
+    (cdn.playwright.dev). Without that default, a plain `python scraper.py`
+    tried the never-downloaded bundled Chromium and failed with Playwright's
+    "please run `playwright install`" banner.
+    Set PLAYWRIGHT_CHROMIUM_CHANNEL=chromium to use the bundled Chromium
+    instead; the GitHub Actions workflow does this, since its runner
+    installs that browser. Any other value is passed through as the channel
+    (e.g. "chrome").
+    """
+    channel = (os.environ.get("PLAYWRIGHT_CHROMIUM_CHANNEL") or "msedge").strip()
+    kwargs = {"headless": True}
+    if channel.lower() != "chromium":
+        kwargs["channel"] = channel
+    return kwargs
 
 # Some Indian government sites (and some corporate/ISP networks with SSL
 # inspection) present certificate chains that Python's default verifier
@@ -105,6 +138,10 @@ GENERIC_GATE_TERMS = [
     "charging infrastructure", "charging point", "ev station", "ev infrastructure", "evse",
     "battery swapping", "e-mobility", "pm e-drive", "pm e drive", "fame scheme",
 ]
+
+# Category for a tender that passes GENERIC_GATE_TERMS but none of
+# CATEGORY_KEYWORDS — see matches_categories().
+FALLBACK_EV_CATEGORY = "Other EV Charging"
 
 
 # ---------------------------------------------------------------------------
@@ -187,9 +224,33 @@ def parse_gepnic_table(html, source_name):
     full_date_cell_pattern = re.compile(
         r"^\d{1,2}[-/][A-Za-z]{3}[-/]\d{2,4}(\s+\d{1,2}:\d{2}\s*[AP]M)?$", re.IGNORECASE
     )
-    tables = [soup.find(id="activeTenders")] if soup.find(id="activeTenders") else soup.find_all("table")
+    # Match the id only on a <table>: Gujarat nProcure (js_interactive_search)
+    # also has an element with id="activeTenders", but it's a <div> with no
+    # rows, and matching it by bare id hid the real results table there —
+    # confirmed 2026-09-23: 2 real matches rendered, 0 parsed.
+    active_table = soup.find("table", id="activeTenders")
+    tables = [active_table] if active_table else soup.find_all("table")
     for table in tables:
         rows = table.find_all("tr")
+        # Best-effort: if this table has a real header row, find which
+        # column is the actual closing/end date — so extract_due_date() can
+        # be pointed at that ONE cell instead of guessing from the whole
+        # row's text. Needed because a row can contain several date-shaped
+        # strings (e.g. Telangana's rows have Published / Bid Start / Bid
+        # Closing date-times, plus a reference number that itself embeds an
+        # unrelated notice date) — scanning the flattened row text left-to-
+        # right silently grabs the wrong one. Falls back to None (today's
+        # existing whole-row-text behavior, unchanged) when no such header
+        # is found, so portals without a recognizable header row — or
+        # without this ambiguity in the first place — aren't affected.
+        closing_col_idx = None
+        if rows:
+            header_cells = [c.get_text(" ", strip=True) for c in rows[0].find_all(["th", "td"])]
+            for idx, h in enumerate(header_cells):
+                h_l = h.lower()
+                if "closing" in h_l or "end date" in h_l:
+                    closing_col_idx = idx
+                    break
         for row in rows:
             cells = [c.get_text(" ", strip=True) for c in row.find_all(["td", "th"])]
             if len(cells) < 3:
@@ -215,20 +276,35 @@ def parse_gepnic_table(html, source_name):
                 # value to paste into the portal's "Tender Ref No" search
                 # field alongside the title. None if no such cell exists
                 # (some portal layouts just don't have a distinct one).
+                # Also skips cells that are PURELY digits: confirmed on
+                # Bihar's js_interactive_search table that a plain S.No
+                # column ("1", "2", ...) sits ahead of the real reference
+                # number in cell order and would otherwise get picked
+                # first — a genuine reference number almost always mixes
+                # letters and digits (or at least isn't just a small row
+                # index), so this is a safe general filter, not a
+                # Bihar-specific hack.
                 ref_no = next(
                     (c for c in cells
                      if strip_prefix(c).lower() != title.lower()
                      and c.strip()
-                     and not full_date_cell_pattern.match(c.strip())),
+                     and not full_date_cell_pattern.match(c.strip())
+                     and not c.strip().isdigit()),
                     None,
                 )
                 if ref_no:
                     ref_no = strip_prefix(ref_no) or None
+                due_date_hint = (
+                    cells[closing_col_idx]
+                    if closing_col_idx is not None and closing_col_idx < len(cells)
+                    else None
+                )
                 results.append({
                     "raw_title": title,
                     "raw_row": row_text,
                     "source": source_name,
                     "refNo": ref_no,
+                    "dueDateHint": due_date_hint,
                 })
     return results
 
@@ -266,6 +342,281 @@ def fetch_gepnic_homepage(source):
     return parse_gepnic_table(html, source["name"])
 
 
+def parse_eesl_tenders(html, source_name, base_url):
+    """
+    Parses eeslindia.org's "Tenders" page — a plain WordPress page, not a
+    GePNIC portal. Every tender/notice the site has ever posted sits as its
+    own <div class="current_latest_boxs ..."> on this single static page
+    (confirmed live 2026-09-22: ~240 entries, oldest seen from 2021) — so
+    unlike the GePNIC homepage widget, there's no rolling top-10 window for
+    a match to rotate off of between scheduled checks.
+
+    Two box shapes actually occur on the page:
+      - title text directly in the box div, with its "Documents/Links" PDF
+        link in a following SIBLING <div class="panel"> (not nested inside
+        the box) — most entries.
+      - no separate title: the box div directly wraps a single <a>, whose
+        link text doubles as the title — seen on older/simpler notices.
+    get_text() on the box div alone covers both shapes. The PDF link found
+    is a genuine stable document URL (unlike GePNIC's session-bound
+    DirectLink), so callers use it directly as the tender's url instead of
+    falling back to source["searchUrl"].
+
+    No structured closing/due date exists on this page for either shape —
+    any date is inside the linked PDF itself, which this doesn't open.
+    """
+    soup = BeautifulSoup(html, "html.parser")
+    results = []
+    for box in soup.find_all("div", class_="current_latest_boxs"):
+        title = box.get_text(" ", strip=True)
+        if not title:
+            continue
+        link = box.find("a", href=True)
+        if not link:
+            panel = box.find_next_sibling("div", class_="panel")
+            if panel:
+                link = panel.find("a", href=True)
+        doc_url = urljoin(base_url, link["href"]) if link else None
+        results.append({
+            "raw_title": title,
+            "raw_row": title,
+            "source": source_name,
+            "refNo": None,
+            "docUrl": doc_url,
+        })
+    return results
+
+
+def fetch_eesl_tenders(source):
+    html = fetch(source["url"])
+    if not html:
+        return []
+    return parse_eesl_tenders(html, source["name"], source["url"])
+
+
+def parse_tenderdetail_list(html, source_name, base_url):
+    """
+    Parses a tenderdetail.com keyword listing page (e.g.
+    /Indian-tender/charging-station-tenders) — a paid aggregator, but this
+    listing is public with no login (confirmed live 2026-09-23; robots.txt
+    allows all). Plain server-rendered HTML, no JS needed: each result is a
+    <div class="tc tender-card"> (~50 on the page) with
+      - a "#<number>" tag badge: TenderDetail's own tender id. Used as the
+        stable id key (titles repeat across tenders here, e.g. several
+        "Bids Are Invited For Procurement Of Charging Station ..."), but NOT
+        as refNo — it's the aggregator's number, not the issuing authority's,
+        so pasting it into an official portal's search would find nothing.
+      - "Closes Mon DD, YYYY" closing date
+      - a value like "₹ 26.09 Lakh", or "Ref. Document" when undisclosed
+      - the state in .tc-state
+      - a.tc-title linking to the tender's stable notice page, used as url.
+    """
+    soup = BeautifulSoup(html, "html.parser")
+    results = []
+    for card in soup.select("div.tender-card"):
+        title_link = card.select_one("a.tc-title")
+        if not title_link:
+            continue
+        title = title_link.get_text(" ", strip=True)
+        td_id = next(
+            (t.get_text(strip=True)[1:] for t in card.select(".tc-tags")
+             if re.fullmatch(r"#\d+", t.get_text(strip=True))),
+            None,
+        )
+        due_iso = None
+        closes = card.select_one(".td-urgent")
+        m = re.search(r"Closes\s+([A-Za-z]{3})\s+(\d{1,2}),\s+(\d{4})",
+                      closes.get_text(" ", strip=True) if closes else "")
+        if m:
+            try:
+                due_iso = datetime.strptime(" ".join(m.groups()), "%b %d %Y").strftime("%Y-%m-%d")
+            except ValueError:
+                pass
+        value_el = card.select_one(".tv-urgent")
+        value = " ".join(value_el.get_text(" ", strip=True).split()) if value_el else ""
+        if not re.search(r"\d", value):
+            value = None  # "Ref. Document" = value not disclosed
+        state_el = card.select_one(".tc-state")
+        results.append({
+            "raw_title": title,
+            "raw_row": card.get_text(" | ", strip=True),
+            "source": source_name,
+            "refNo": None,
+            "stableKey": f"td-{td_id}" if td_id else None,
+            "dueDateHint": due_iso,
+            "value": value.replace("₹ ", "₹") if value else None,
+            "location": state_el.get_text(" ", strip=True) if state_el else None,
+            "docUrl": urljoin(base_url, title_link["href"]),
+        })
+    return results
+
+
+def fetch_tenderdetail_list(source):
+    """
+    One plain GET of the whole listing page per run — there's no pagination
+    on it. Load balancing is done in run() instead, via this
+    source's "maxNewPerRun" in sources.json: only that many not-yet-seen
+    tenders are added per run, so the rest trickle in as "new" over the
+    next scheduled runs instead of all at once.
+    """
+    html = fetch(source["url"])
+    if not html:
+        return []
+    return parse_tenderdetail_list(html, source["name"], source["url"])
+
+
+def fetch_js_rendered_table(source):
+    """
+    For portals that render their tender listing client-side via JavaScript
+    instead of in the server-sent HTML (confirmed via manual check before
+    ever setting a source to this type — do NOT default a new source to
+    this "just in case"). Launches a real headless browser, loads the page,
+    lets its JS run, waits a moment for anything that renders after the
+    network goes quiet, then hands the fully rendered HTML to the same
+    forgiving row-scanning parser the plain-HTML sources use.
+
+    Meaningfully heavier than fetch()/fetch_gepnic_homepage: a full browser
+    launch + page load + JS execution per source, typically several seconds
+    each (vs. a sub-second plain GET), and it needs
+    `pip install playwright && playwright install --with-deps chromium`
+    locally, plus the matching install step in
+    .github/workflows/update-tenders.yml for the scheduled run. Given the
+    workflow runs every 15 minutes, weigh whether a source actually needs
+    this before adding it — each js_rendered_table source adds real time
+    and CI minutes to every single run, not just a one-off cost.
+
+    Uses the system's Microsoft Edge by default, not a downloaded browser;
+    see playwright_launch_kwargs().
+    """
+    if not PLAYWRIGHT_AVAILABLE:
+        print(f"  [!] Skipping {source['name']}: playwright not installed. "
+              f"Run `pip install playwright`.")
+        return []
+    try:
+        with sync_playwright() as p:
+            browser = p.chromium.launch(**playwright_launch_kwargs())
+            page = browser.new_page(user_agent=HEADERS["User-Agent"])
+            page.goto(source["url"], timeout=30000, wait_until="networkidle")
+            # "networkidle" alone isn't always enough on portals that poll
+            # or lazy-render just after the network goes quiet — give any
+            # late-arriving rows a moment to actually paint.
+            page.wait_for_timeout(2000)
+            html = page.content()
+            browser.close()
+    except Exception as e:
+        print(f"  [!] Could not render {source['name']} with headless browser: {e}")
+        return []
+    return parse_generic_table(html, source["name"])
+
+
+def fetch_js_interactive_search(source):
+    """
+    For portals whose keyword search is a single-page app: the URL never
+    changes, so there's no request we can just build (unlike
+    fetch_js_rendered_table, which is for pages that already show a table
+    on load). Instead this actually drives a headless browser like a user
+    would — types the configured keyword into the search box, clicks the
+    search button, waits for the results to render, then reads the table.
+
+    Requires two extra fields per source in sources.json (found by manual
+    inspection with debug_js_source.py's --search mode — don't guess these):
+      - "searchInputSelector": a Playwright/CSS selector for the keyword
+        input box
+      - "searchButtonSelector": a Playwright/CSS selector for the button
+        that actually submits the search (not just any visible button —
+        confirmed on Bihar's portal that most of the visible buttons on
+        the page are unrelated UI chrome)
+    Optional:
+      - "searchKeyword": defaults to "ev charging station" if not set
+      - "preClickSelector": a selector to click once, right after the
+        initial page load, BEFORE filling the search box. Needed when the
+        real search form only exists on a page reached via an in-page
+        navigation, and loading that page's URL directly fails — confirmed
+        on Telangana's portal: a direct GET to TenderDetailsHome.html gets
+        redirected to a session-timeout page, but loading the site's root
+        ("url" in sources.json) and clicking its "More..." link
+        (#viewCurrentall) reaches the same page successfully because the
+        session/referrer state that link sets up isn't present on a cold
+        direct load. Use debug_js_source.py's --click flag against the
+        root page to find/verify this selector before adding it here.
+
+    Same operational cost/setup notes as fetch_js_rendered_table (headless
+    browser per run, optional playwright dependency, Edge by default via
+    playwright_launch_kwargs()) — see that function's docstring.
+    """
+    if not PLAYWRIGHT_AVAILABLE:
+        print(f"  [!] Skipping {source['name']}: playwright not installed. "
+              f"Run `pip install playwright`.")
+        return []
+    input_sel = source.get("searchInputSelector")
+    button_sel = source.get("searchButtonSelector")
+    if not input_sel or not button_sel:
+        print(f"  [!] Skipping {source['name']}: js_rendered_interactive_search "
+              f"needs 'searchInputSelector' and 'searchButtonSelector' set in "
+              f"sources.json (use debug_js_source.py --search to find them).")
+        return []
+    keyword = source.get("searchKeyword", "ev charging station")
+    try:
+        with sync_playwright() as p:
+            browser = p.chromium.launch(**playwright_launch_kwargs())
+            page = browser.new_page(user_agent=HEADERS["User-Agent"])
+            page.goto(source["url"], timeout=30000, wait_until="domcontentloaded")
+            page.wait_for_timeout(2000)
+            pre_click_sel = source.get("preClickSelector")
+            if pre_click_sel:
+                page.click(pre_click_sel, timeout=10000)
+                page.wait_for_timeout(2000)
+            page.fill(input_sel, keyword)
+            page.click(button_sel)
+            # Poll instead of a fixed sleep, but guard against the false-
+            # stability trap: the results table can briefly sit at the same
+            # row count (e.g. just its header row, mid-AJAX) across two 1s
+            # checks before the real rows paint in, which would otherwise
+            # make this exit after ~1-2s with an incomplete table. So we
+            # require the SAME non-trivial count (>1, i.e. more than just a
+            # header row) to hold for two checks in a row before trusting it.
+            stable_count = 0
+            prev_count = -1
+            for _ in range(12):  # checks every 1s, up to ~12s
+                page.wait_for_timeout(1000)
+                count = page.evaluate("document.querySelectorAll('table tr').length")
+                if count == prev_count and count > 1:
+                    stable_count += 1
+                    if stable_count >= 2:
+                        break
+                else:
+                    stable_count = 0
+                prev_count = count
+            html = page.content()
+            browser.close()
+    except Exception as e:
+        print(f"  [!] Could not run search for {source['name']}: {e}")
+        return []
+    # TEMP DEBUG (2026-09-23): Gujarat nProcure is returning 0 rows despite
+    # the stability-poll running to completion with no error. This prints
+    # what the poll actually saw vs. what BeautifulSoup finds afterward, to
+    # tell apart "poll exited on the wrong/unrelated table" from "rows are
+    # there but parse_gepnic_table's date-pattern row filter rejects them"
+    # (the same failure mode that under-counted Bihar). Remove once Gujarat
+    # and Bihar are both confirmed returning their full real result counts.
+    debug_soup = BeautifulSoup(html, "html.parser")
+    debug_tables = debug_soup.find_all("table")
+    print(f"  [debug] {len(debug_tables)} <table> element(s) in captured HTML; "
+          f"row counts: {[len(t.find_all('tr')) for t in debug_tables]}")
+    for ti, t in enumerate(debug_tables):
+        trs = t.find_all("tr")
+        if len(trs) < 2:
+            continue  # header-only or empty table, not worth dumping
+        print(f"  [debug] table #{ti} sample rows:")
+        for tr in trs[:4]:
+            cells = [c.get_text(' ', strip=True)[:220] for c in tr.find_all(['td', 'th'])]
+            print(f"    {cells}")
+    result = parse_generic_table(html, source["name"])
+    print(f"  [debug] parse_generic_table extracted {len(result)} candidate row(s) "
+          f"(before category filtering)")
+    return result
+
+
 # Maps a source's "type" (from sources.json) to the function that fetches
 # and returns its rows. A type with no entry here (e.g.
 # "blocked_by_robots_txt", "paid_aggregator", "unsupported") is deliberately
@@ -284,6 +635,10 @@ def fetch_generic_homepage(source):
 TYPE_FETCHERS = {
     "gepnic_table": fetch_gepnic_homepage,
     "generic_table": fetch_generic_homepage,
+    "eesl_wp_list": fetch_eesl_tenders,
+    "js_rendered_table": fetch_js_rendered_table,
+    "js_interactive_search": fetch_js_interactive_search,
+    "tenderdetail_list": fetch_tenderdetail_list,
 }
 
 
@@ -303,6 +658,18 @@ def make_stable_id(source_name, title):
 
 def extract_due_date(row_text):
     """Best-effort extraction of a closing/due date from a raw table row."""
+    # ISO format (yyyy-mm-dd, optionally with a time) — seen on Bihar's
+    # eProc 2.0 portal (js_interactive_search source), unlike GePNIC's
+    # dd-Mon-yyyy / dd/mm/yyyy. Checked first since it's the most specific
+    # pattern (4-digit year first is unambiguous, unlike 2-digit-year
+    # dd/mm/yyyy which could theoretically collide with other formats).
+    m = re.search(r"\b(\d{4})-(\d{2})-(\d{2})\b", row_text)
+    if m:
+        year, mon, day = m.groups()
+        try:
+            return datetime.strptime(f"{year}-{mon}-{day}", "%Y-%m-%d").strftime("%Y-%m-%d")
+        except ValueError:
+            pass  # fall through to the other patterns below
     m = re.search(r"(\d{1,2})[-/]([A-Za-z]{3})[-/](\d{2,4})", row_text)
     if m:
         day, mon, year = m.groups()
@@ -323,7 +690,16 @@ def extract_due_date(row_text):
 
 
 def matches_categories(title):
-    title_l = title.lower()
+    # Collapse any run of whitespace (double spaces, tabs, newlines) to a
+    # single space before matching. Without this, a keyword like "ev charg"
+    # silently fails to match text like "installation of EV  Charging
+    # stations" (two spaces) — confirmed live on Telangana's portal, where
+    # BeautifulSoup's get_text(" ", strip=True) joining adjacent text nodes
+    # produces exactly that double space, so a genuine EV-charging tender
+    # matched zero categories and would have been silently dropped entirely
+    # (SHOW_ALL_TENDERS is off by default). Not portal-specific — any
+    # source's markup could produce the same irregular spacing.
+    title_l = " ".join(title.lower().split())
     if not any(term in title_l for term in GENERIC_GATE_TERMS):
         return []
     matched = []
@@ -332,7 +708,12 @@ def matches_categories(title):
             if re.search(kw, title_l):
                 matched.append(category)
                 break
-    return matched
+    # Passed the EV gate but no specific category's keywords: still a real
+    # EV-charging tender, so keep it under a catch-all instead of dropping
+    # it. Confirmed 2026-09-23 on TenderDetail: 31 of 50 "charging station"
+    # results (e.g. "Electrical Infrastructure For Intermediate Charging
+    # Station At Tuni Bus Station") matched the gate but no category.
+    return matched or [FALLBACK_EV_CATEGORY]
 
 
 DATA_PATH = os.environ.get("TENDER_DATA_PATH", "docs/data/tenders.json")
@@ -344,7 +725,8 @@ DUE_SOON_DAYS = int(os.environ.get("DUE_SOON_DAYS") or "7")
 # scheduled GitHub Actions workflow — the live dashboard is intentionally
 # showing every scraped tender, not just EV-charging matches, for now.
 # Set TENDER_SHOW_ALL=false to go back to EV-only filtering.
-SHOW_ALL_TENDERS = os.environ.get("TENDER_SHOW_ALL", "true").lower() in ("1", "true", "yes")
+# SHOW_ALL_TENDERS = os.environ.get("TENDER_SHOW_ALL", "true").lower() in ("1", "true", "yes")
+SHOW_ALL_TENDERS = os.environ.get("TENDER_SHOW_ALL", "false").lower() in ("1", "true", "yes")
 
 
 def days_until(date_str):
@@ -390,32 +772,43 @@ def run():
         print(f"Checking {source['name']} ...")
         rows = fetch_rows(source)
 
+        # Optional per-source cap on how many not-yet-seen tenders to add in
+        # one run. The rest aren't lost: they're still unseen next run, so
+        # they get added (and show as new) then, in batches of this size.
+        max_new = source.get("maxNewPerRun")
         matched_here = 0
+        deferred = 0
         for row in rows:
             cats = matches_categories(row["raw_title"])
             if not cats:
                 if not SHOW_ALL_TENDERS:
                     continue
                 cats = ["General / All Tenders"]
-            tid = make_stable_id(source["name"], row["raw_title"])
+            # stableKey: a fetcher-provided unique id (e.g. TenderDetail's own
+            # tender number) for sources where titles aren't unique.
+            tid = make_stable_id(source["name"], row.get("stableKey") or row["raw_title"])
             if tid in existing_by_id:
                 continue  # already tracked from a previous run
+            if max_new and matched_here >= max_new:
+                deferred += 1
+                continue
             record = {
                 "id": tid,
                 "desc": row["raw_title"],
                 "refNo": row.get("refNo"),
-                "location": None,
-                "value": None,
-                "dueDate": extract_due_date(row["raw_row"]),
+                "location": row.get("location"),
+                "value": row.get("value"),
+                "dueDate": extract_due_date(row.get("dueDateHint") or row["raw_row"]),
                 "category": cats[0],
                 "source": source["name"],
-                # A per-tender deep link isn't usable here — GePNIC's
-                # "DirectLink" is tied to the scraper's own session and
-                # shows "Stale Session" to anyone else (confirmed live).
-                # Instead, link to the portal's own search page — stable,
-                # session-independent — so a real visitor can search this
-                # tender's title themselves and solve the page's captcha.
-                "url": source.get("searchUrl") or source["url"],
+                # Prefer a real per-tender document URL when the fetcher
+                # found one (e.g. eesl_wp_list's stable PDF links) — falls
+                # back to the portal's own search page for sources like
+                # GePNIC, where the per-tender "DirectLink" is tied to the
+                # scraper's own session and shows "Stale Session" to anyone
+                # else (confirmed live), so a real visitor has to search the
+                # title themselves and solve the page's captcha instead.
+                "url": row.get("docUrl") or source.get("searchUrl") or source["url"],
                 "firstSeen": datetime.now().strftime("%Y-%m-%d"),
             }
             existing_by_id[tid] = record
@@ -424,6 +817,9 @@ def run():
             new_count += 1
 
         print(f"  -> {len(rows)} rows scanned, {matched_here} new match(es)")
+        if deferred:
+            print(f"     ({deferred} more new match(es) held back by maxNewPerRun={max_new} "
+                  f"— they'll be added on later runs)")
         if rows and matched_here == 0:
             print("     (0 new matches can be normal — either nothing new mentions EV")
             print("      charging, or today's matches were already captured before.")

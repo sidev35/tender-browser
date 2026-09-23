@@ -1,0 +1,74 @@
+{
+  ".claude/settings.local.json": {
+    "mtime": 1790141587.1212318,
+    "seen": 1790151823.9009063,
+    "ast_hash": "119c204af395aa3d45fe41ac03f2f10e",
+    "semantic_hash": "119c204af395aa3d45fe41ac03f2f10e"
+  },
+  "debug_js_source.py": {
+    "mtime": 1790141586.945403,
+    "seen": 1790151823.900911,
+    "ast_hash": "1b8914d66e7e5923caef4928d9962609",
+    "semantic_hash": "1b8914d66e7e5923caef4928d9962609"
+  },
+  "digest_state.json": {
+    "mtime": 1790141586.9618247,
+    "seen": 1790151823.9009132,
+    "ast_hash": "ee3bd5b000814b10b043fd088105a2b9",
+    "semantic_hash": "ee3bd5b000814b10b043fd088105a2b9"
+  },
+  "docs/data/tenders.json": {
+    "mtime": 1790151666.937968,
+    "seen": 1790151823.9009142,
+    "ast_hash": "02652b354793a7fe86d4a97f9bac9a12",
+    "semantic_hash": "02652b354793a7fe86d4a97f9bac9a12"
+  },
+  "notify.py": {
+    "mtime": 1790141587.0118837,
+    "seen": 1790151823.9009154,
+    "ast_hash": "6c5328d135a785f69c1c17847f99b68b",
+    "semantic_hash": "6c5328d135a785f69c1c17847f99b68b"
+  },
+  "scraper.py": {
+    "mtime": 1790150282.3970668,
+    "seen": 1790151823.9009166,
+    "ast_hash": "b645d6fe11aea7fdbc39f1117fe70113",
+    "semantic_hash": "b645d6fe11aea7fdbc39f1117fe70113"
+  },
+  "sources.json": {
+    "mtime": 1790150901.2806776,
+    "seen": 1790151823.9009175,
+    "ast_hash": "772b2388898d25d974be0c2cf3d45d55",
+    "semantic_hash": "772b2388898d25d974be0c2cf3d45d55"
+  },
+  ".github/workflows/update-tenders.yml": {
+    "mtime": 1790141590.7967255,
+    "seen": 1790151823.9009182,
+    "ast_hash": "168eafa763260f155895a12c1014503e",
+    "semantic_hash": "168eafa763260f155895a12c1014503e"
+  },
+  "README.md": {
+    "mtime": 1790141587.0228503,
+    "seen": 1790151823.9009192,
+    "ast_hash": "e500e18b672871bf0e238d4b15ee1fca",
+    "semantic_hash": "e500e18b672871bf0e238d4b15ee1fca"
+  },
+  "docs/index.html": {
+    "mtime": 1790141590.8277466,
+    "seen": 1790151823.9009204,
+    "ast_hash": "9d69eaf8203913bf80320374df5e4a6f",
+    "semantic_hash": "9d69eaf8203913bf80320374df5e4a6f"
+  },
+  "email_template.txt": {
+    "mtime": 1790141586.9798288,
+    "seen": 1790151823.9009213,
+    "ast_hash": "38445d0c30f71d3fdcefe7052351dce2",
+    "semantic_hash": "38445d0c30f71d3fdcefe7052351dce2"
+  },
+  "requirements.txt": {
+    "mtime": 1790141587.0557816,
+    "seen": 1790151823.9009223,
+    "ast_hash": "de050565a4ddac42523f3fd6b0df2e2d",
+    "semantic_hash": "de050565a4ddac42523f3fd6b0df2e2d"
+  }
+}

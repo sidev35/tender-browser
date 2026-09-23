@@ -33,6 +33,15 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      # Only needed while sources.json has at least one "js_rendered_table"
+      # source enabled. This adds real time to every single run (this
+      # workflow fires every 15 minutes) — a browser download/install plus
+      # several seconds of page-render time per JS source, not a one-off
+      # cost. If you end up with no js_rendered_table sources enabled,
+      # remove this step to go back to the lighter/faster run.
+      - name: Install Playwright browser (for JS-rendered sources)
+        run: playwright install --with-deps chromium
+
       - name: Run scraper
         env:
           SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
@@ -40,6 +49,10 @@ jobs:
           NOTIFY_RECIPIENTS: ${{ vars.NOTIFY_RECIPIENTS }}
           DUE_SOON_DAYS: ${{ vars.DUE_SOON_DAYS }}
           MIN_HOURS_BETWEEN_DIGESTS: ${{ vars.MIN_HOURS_BETWEEN_DIGESTS }}
+          # scraper.py defaults to the system's Microsoft Edge (for local runs
+          # on networks that block Playwright's browser download); here, use
+          # the Chromium installed by the step above instead.
+          PLAYWRIGHT_CHROMIUM_CHANNEL: chromium
         run: python scraper.py
 
       - name: Commit updated tender data if anything changed
