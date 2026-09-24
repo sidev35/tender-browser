@@ -10,49 +10,58 @@ is how to make a change (setup, tests, adding a website).
 
 ## How it works
 
-`.github/workflows/update-tenders.yml` runs `scraper.py` **every 15
-minutes**. It pulls each portal's free "latest tenders" homepage
-listing, filters it against the category keywords in `config/categories.json`,
-and commits any new matches into `docs/data/tenders.json` — which
-`docs/index.html` (the dashboard, served by GitHub Pages) reads live.
-The refresh icon on the dashboard re-fetches that file on demand; it
-also polls automatically every 10 minutes while open and shows
-in-page + browser notifications for new matches and tenders closing
-within 7 days. The **New** pill (next to **All**) lists the tenders you
-haven't seen yet.
+`.github/workflows/update-tenders.yml` runs `scraper.py` **every 3
+hours**. It reads each portal's tender listing, filters it against the
+category keywords in `config/categories.json`, and commits any new matches
+into `docs/data/tenders.json` — which `docs/index.html` (the dashboard,
+served by GitHub Pages) reads live. The refresh icon on the dashboard
+re-fetches that file on demand; it also polls automatically every 10 minutes
+while open and shows in-page + browser notifications for new matches and
+tenders closing within 7 days. The **New** pill (next to **All**) lists the
+tenders you haven't seen yet.
 
-**Why every 15 minutes:** each portal's free listing is only its 10
-most-recently-posted tenders, site-wide (see "Known ceiling" below) —
-a rolling window that rotates as new tenders get posted. Checking
-that often is how a genuine EV-charging match gets caught before it
-scrolls off, rather than checking so rarely that most tenders never
-show up in the window at the moment we happen to look.
+**Why every 3 hours is enough:** every source is read in a way that shows
+its full current list — keyword searches (Gujarat, Telangana, Bihar),
+TenderDetail's listing, EESL's page, and GePNIC's "Tenders by Organisation"
+pages (IOCL, CPPP; see below) — and tenders stay open for weeks, so nothing
+scrolls off between checks. The schedule used to be every 15 minutes, to catch
+GePNIC's homepage widget (only the 10 newest tenders site-wide) before it
+rotated; that widget never produced a single EV match, and GitHub only ran
+the job every 3-5 hours in practice anyway.
 
-**Matched tenders stay on the dashboard after they scroll off the
-source's own 10-latest window** — this isn't a separate "pinning"
-feature, it falls out of how `scraper.py` merges results: each run
-loads the *existing* `docs/data/tenders.json`, only ever adds tenders
-it hasn't seen before (by a stable id), and only drops one once its
-due date has actually passed. So a tender matched on one run is still
-there on the next, and the one after that, whether or not it's still
-sitting in the source portal's own top-10 — until it closes.
+**Load is capped per source:** a source with `maxNewPerRun` adds at most that
+many new tenders per run (10 for TenderDetail, IOCL and CPPP), so one run
+adds up to 10 from each and the rest follow on later runs, showing as new
+then.
 
-## Known ceiling — and why it isn't automated further
+**Matched tenders stay on the dashboard until they close** — each run loads
+the *existing* `docs/data/tenders.json`, only ever adds tenders it hasn't
+seen before (by a stable id), and only drops one once its due date has
+actually passed, whether or not the source still lists it.
 
-Every source's free listing is capped at those 10 latest tenders.
-Each portal also has a real, much bigger "Tenders by Closing Date"
-report (hundreds of tenders, fully paginated) that looked like a free
-win — no captcha, on first check. It was built and tested here, then
-deliberately removed: a handful of automated requests into that
-pagination was enough to make every one of these portals start
-demanding a captcha on that same endpoint. That's the site's own
-bot-detection reacting to *request pattern* (a rapid paginated crawl),
-not a permanent block — but it means running that at real scale
-(hundreds of requests, every 15 minutes) would almost certainly wall
-itself off the same way. This project doesn't try to work around a
-captcha once one appears (no OCR-solving, no request-spacing tricks
-to look less automated) — so the 10-latest homepage widget, checked
-frequently, is the practical ceiling for hands-off automation here.
+## Government portals: what's read, and the captcha line
+
+NIC GePNIC portals (CPPP, IOCL, Rajasthan, MP, most state portals) have
+three kinds of listing:
+
+- **Homepage widget:** only the 10 newest tenders, site-wide. Rajasthan and
+  MP are still read this way for now.
+- **Active Tenders, Tenders by Closing Date, Advanced Search:** every tender,
+  but behind a captcha.
+- **Tenders by Organisation:** every organisation with its tender count, and
+  each organisation's full tender list, **with no captcha** (checked
+  2026-09-24). IOCL and CPPP are read this way (type
+  `gepnic_by_organisation`): IOCL is one organisation ("IndianOil", ~220
+  tenders, 2 page loads a run); CPPP has ~78, so each run reads the next 10
+  (`orgsPerRun`), covering all of them in about a day at ~11 page loads a run.
+
+The "Tenders by Closing Date" report was once crawled page by page here, and
+a handful of rapid automated requests made every portal start demanding a
+captcha on it. That's the site's bot-detection reacting to request pattern,
+which is why the organisation pages are read a few at a time, with a pause
+between loads. If a captcha appears anyway, the scraper stops for that source
+and says so. This project doesn't try to work around a captcha (no
+OCR-solving, no request-spacing tricks to look less automated).
 
 **Each card's button depends on whether the tender can be linked
 directly.** TenderDetail and EESL give a stable link to each tender, so
@@ -105,13 +114,13 @@ to `scraper.py`, which calls `tender_radar/notify.py` at the end of each run.
   rather than notifying once and going quiet).
 - If neither list has anything, no email is sent.
 
-**Throttled independently of the scraper's 15-minute schedule**: since
+**Throttled independently of the scraper's schedule**: since
 "closing soon" would otherwise re-send on every single run, `tender_radar/notify.py`
 tracks the last successful send in `digest_state.json` (committed
 alongside `docs/data/tenders.json`) and skips sending — while still
 updating the dashboard data normally — if less than
 `MIN_HOURS_BETWEEN_DIGESTS` (default 6) has passed. So you get at most
-a handful of emails a day, not one every 15 minutes.
+a handful of emails a day, not one every run.
 
 If the secrets/variables aren't set, `tender_radar/notify.py` prints why and skips
 sending — the scraper's core job (updating `tenders.json`) never fails

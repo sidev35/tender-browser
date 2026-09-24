@@ -79,7 +79,7 @@ function renderEmpty(state, groupsEl) {
   groupsEl.innerHTML = state.data.length === 0
     ? (state.lastFetchFailed
         ? '<div class="empty">Couldn\'t load live tender data — check your connection and try the refresh icon above.</div>'
-        : '<div class="empty">No EV charging tenders currently match your categories. The scraper checks every 15 minutes — check back later, or click refresh to check now.</div>')
+        : '<div class="empty">No EV charging tenders currently match your categories. The scraper checks every 3 hours — check back later, or click refresh to check now.</div>')
     : '<div class="empty">No tenders match this filter right now. Try clearing the search or picking a different category.</div>';
 }
 

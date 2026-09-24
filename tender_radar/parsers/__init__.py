@@ -12,10 +12,20 @@ Row fields (only raw_title and raw_row are always present):
     docUrl       a stable link to this exact tender, if the page has one
     stableKey    a unique id from the source, when titles aren't unique
     value, location   already-formatted fields, when the page has them
+    organisation      the issuing organisation, when the page names it
 """
 
 from .eesl import parse_eesl_tenders
+from .gepnic_org import is_captcha_page, parse_gepnic_org_list, parse_gepnic_org_tenders
 from .tables import parse_generic_table, parse_gepnic_table
 from .tenderdetail import parse_tenderdetail_list
 
-__all__ = ["parse_eesl_tenders", "parse_generic_table", "parse_gepnic_table", "parse_tenderdetail_list"]
+__all__ = [
+    "is_captcha_page",
+    "parse_eesl_tenders",
+    "parse_generic_table",
+    "parse_gepnic_org_list",
+    "parse_gepnic_org_tenders",
+    "parse_gepnic_table",
+    "parse_tenderdetail_list",
+]

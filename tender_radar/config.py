@@ -17,6 +17,11 @@ CATEGORIES_PATH = os.environ.get(
     "TENDER_CATEGORIES_PATH", os.path.join(REPO_ROOT, "config", "categories.json")
 )
 
+# How often the scheduled workflow runs, in hours. Sources that check a few
+# organisations per run (orgsPerRun) move on to the next ones every this many
+# hours, so keep it in step with the cron in update-tenders.yml.
+ROTATION_HOURS = float(os.environ.get("TENDER_ROTATION_HOURS") or "3")
+
 # "Closing soon" window for the email digest, in days.
 DUE_SOON_DAYS = int(os.environ.get("DUE_SOON_DAYS") or "7")
 

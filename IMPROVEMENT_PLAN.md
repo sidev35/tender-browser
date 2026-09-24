@@ -148,8 +148,8 @@ docs/js/util.js      escaping, dates, short names, safe localStorage
   modules share.
 - Removed the "paste tender data manually" popup: nothing could open it any
   more since its footer link was removed.
-- Fixed an out-of-date empty-state message ("the scraper runs twice daily"
-  is now "checks every 15 minutes").
+- Fixed an out-of-date empty-state message ("the scraper runs twice daily";
+  it now states the real schedule).
 
 ## 5. Tooling and conventions ✅
 
@@ -187,6 +187,34 @@ docs/js/util.js      escaping, dates, short names, safe localStorage
 - **Diagrams:** the flowcharts in ARCHITECTURE.md are now drawn with plain
   text characters instead of Mermaid, because Mermaid only displays as a
   diagram on GitHub; VS Code's preview and other viewers showed it as code.
+
+## Coverage and schedule changes made along the way (2026-09-24)
+
+- **IOCL and CPPP now read every active tender, not just the 10 newest.**
+  GePNIC's "Tenders by Organisation" pages list each organisation's full
+  tender list with no captcha (Active Tenders and Tenders by Closing Date
+  need one). New source type `gepnic_by_organisation`
+  (`parsers/gepnic_org.py`, `fetchers.fetch_gepnic_by_organisation`):
+  - IOCL is one organisation (~220 tenders): 2 page loads a run.
+  - CPPP has ~78 organisations (~1,950 tenders): each run reads the next
+    `orgsPerRun` = 10 (rotation), covering all of them in about a day at
+    ~11 page loads a run, with a 2-second pause between loads.
+  - `maxNewPerRun` = 10 for each, so one run adds up to 10 from IOCL and 10
+    from CPPP; the rest follow on later runs, as for TenderDetail.
+  - Tenders are identified by the portal's own tender ID (e.g.
+    `2026_AWEIL_291513_1`), and the reference number is kept.
+  - A captcha makes that source stop for the run with a warning.
+  - First live run: 222 IOCL and 295 CPPP tenders read in 39 seconds; none
+    were EV-related yet (checked by hand: the nearest were "Mendha
+    Chargaon Village" and "Turbo chargers").
+- **Schedule: every 3 hours instead of every 15 minutes.** The 15 minutes was
+  only for GePNIC's homepage widget, which never produced an EV match
+  (history shows its only entries were non-EV, from when show-all mode was
+  on), and GitHub ran the job every 3-5 hours in practice. Every source
+  now shows its full current list, so nothing scrolls off between runs.
+- Rajasthan and MP still use the homepage widget; they can move to
+  `gepnic_by_organisation` the same way once IOCL and CPPP have run for a
+  few days.
 
 ## Dashboard additions made along the way
 

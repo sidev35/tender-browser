@@ -2,13 +2,16 @@ name: Update EV charging tenders
 
 on:
   schedule:
-    # Every 15 minutes — matches how often each portal's free "latest 10"
-    # homepage widget actually rotates, so we catch a tender before it
-    # scrolls off (GitHub Actions cron is always UTC, but this interval
-    # doesn't depend on timezone). Email digests are throttled separately
-    # (see tender_radar/notify.py / MIN_HOURS_BETWEEN_DIGESTS) so this frequency doesn't
-    # translate into 96 emails a day.
-    - cron: '*/15 * * * *'
+    # Every 3 hours. Every source now shows its full current list (keyword
+    # searches, TenderDetail, EESL, and GePNIC's "Tenders by Organisation"
+    # pages), and tenders stay open for weeks, so nothing scrolls off between
+    # checks. (It used to be every 15 minutes, to catch GePNIC's "10 newest"
+    # homepage widget before it rotated; that widget never produced an EV
+    # match, and GitHub ran the job only every 3-5 hours anyway.) Sources with
+    # "orgsPerRun" move to their next organisations each run: keep
+    # TENDER_ROTATION_HOURS (default 3) in step with this. Email digests are
+    # throttled separately (tender_radar/notify.py, MIN_HOURS_BETWEEN_DIGESTS).
+    - cron: '0 */3 * * *'
   workflow_dispatch: {}   # adds a "Run workflow" button on the Actions tab for on-demand runs
 
 concurrency:

@@ -11,13 +11,18 @@ source type requires adding a function and registering it here.
 """
 
 import logging
+import time
 from collections.abc import Callable
 
+from . import config
 from .browser import BrowserSession
 from .models import Row, Source
 from .parsers import (
+    is_captcha_page,
     parse_eesl_tenders,
     parse_generic_table,
+    parse_gepnic_org_list,
+    parse_gepnic_org_tenders,
     parse_gepnic_table,
     parse_tenderdetail_list,
 )
@@ -43,14 +48,90 @@ def fetch_gepnic_homepage(source: Source, session: BrowserSession) -> list[Row]:
     for real (hundreds of requests, twice a day) and it would very likely
     wall itself off the same way. This project won't try to work around
     that (rotating IPs, spacing requests across hours to look less
-    automated, etc.) — seeing this widget is the ceiling for automated,
-    always-on coverage of these portals; see README for how to search the
-    full listing yourself by hand instead.
+    automated, etc.).
+
+    Full coverage without that crawl came later: see
+    fetch_gepnic_by_organisation (IOCL and CPPP use it since 2026-09-24).
+    This widget fetcher remains for portals not moved over yet (Rajasthan, MP).
     """
     html = session.get_html(source["url"])
     if not html:
         return []
     return parse_gepnic_table(html, source["name"])
+
+
+def rotation_slice(items: list, per_run: int, slot: int) -> list:
+    """
+    The `per_run` items to check in rotation slot `slot`: consecutive slots
+    walk through the whole list (wrapping around), so every item is covered
+    every ceil(len(items) / per_run) slots. All items if they fit in one run.
+    """
+    if per_run <= 0 or len(items) <= per_run:
+        return list(items)
+    start = (slot * per_run) % len(items)
+    return (items + items)[start : start + per_run]
+
+
+def current_rotation_slot() -> int:
+    """Changes every config.ROTATION_HOURS, i.e. once per scheduled run."""
+    return int(time.time() // (config.ROTATION_HOURS * 3600))
+
+
+# Pause between page loads within one source, to keep the load on a portal gentle.
+ORG_PAGE_PAUSE_SECONDS = 2
+
+
+def fetch_gepnic_by_organisation(source: Source, session: BrowserSession) -> list[Row]:
+    """
+    Every active tender of a NIC GePNIC portal, through its public, captcha-free
+    "Tenders by Organisation" pages (see parsers/gepnic_org.py): the homepage
+    widget only ever shows the 10 newest tenders site-wide, and the full
+    listings (Active Tenders, Tenders by Closing Date) are behind a captcha.
+
+    One run loads the organisation list (source["url"]), then the tender
+    lists of at most "orgsPerRun" organisations (default: all of them),
+    taking the next ones on each scheduled run (rotation_slice) so a portal
+    with many organisations (CPPP: 78) is covered over about a day at ~11
+    page loads per run, instead of 80 loads every run. That pattern (a rapid
+    crawl) is what made these portals start demanding a captcha before, see
+    fetch_gepnic_homepage. How many new tenders are then added per run is
+    capped separately by "maxNewPerRun", as for every source.
+
+    If a captcha appears anyway, this stops for the run and says so; it never
+    tries to get past one.
+    """
+    page = session.open(source["url"], settle_ms=1500)
+    if page is None:
+        return []
+    rows: list[Row] = []
+    try:
+        html = page.content()
+        if is_captcha_page(html):
+            log.warning(
+                f"  [!] {source['name']}: the organisation list asks for a captcha; skipping this run."
+            )
+            return []
+        orgs = parse_gepnic_org_list(html, source["url"])
+        chosen = rotation_slice(orgs, source.get("orgsPerRun", 0), current_rotation_slot())
+        log.info(
+            f"  {len(orgs)} organisation(s) with {sum(o['count'] for o in orgs)} active tender(s); "
+            f"reading {len(chosen)} this run: {', '.join(o['name'][:40] for o in chosen)}"
+        )
+        for org in chosen:
+            time.sleep(ORG_PAGE_PAUSE_SECONDS)
+            # The count link only works in the session that loaded the list,
+            # which is this page's browser context.
+            page.goto(org["href"], timeout=30000, wait_until="domcontentloaded")
+            org_html = page.content()
+            if is_captcha_page(org_html):
+                log.warning(f"  [!] {source['name']}: a captcha appeared; stopping this source for this run.")
+                break
+            rows.extend(parse_gepnic_org_tenders(org_html, source["name"]))
+    except Exception as e:
+        log.warning(f"  [!] Could not read {source['name']}'s organisation pages: {e}")
+    finally:
+        page.context.close()
+    return rows
 
 
 def fetch_generic_homepage(source: Source, session: BrowserSession) -> list[Row]:
@@ -191,6 +272,7 @@ def load_interactive_search_html(source: Source, session: BrowserSession) -> str
 
 TYPE_FETCHERS: dict[str, Callable[[Source, BrowserSession], list[Row]]] = {
     "gepnic_table": fetch_gepnic_homepage,
+    "gepnic_by_organisation": fetch_gepnic_by_organisation,
     "generic_table": fetch_generic_homepage,
     "eesl_wp_list": fetch_eesl_tenders,
     "js_rendered_table": fetch_js_rendered_table,

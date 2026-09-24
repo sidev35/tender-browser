@@ -15,13 +15,13 @@ arrow (Yes / No) says when that path is taken.
 
 ## The big picture
 
-Every 15 minutes, a small robot wakes up, visits the tender websites, keeps
+Every 3 hours, a small robot wakes up, visits the tender websites, keeps
 only the EV-charging tenders, and saves them. The dashboard then shows what
 the robot saved.
 
 ```	ext
 ┌──────────────────────────────────┐
-│ Every 15 minutes, GitHub starts  │
+│ Every 3 hours, GitHub starts     │
 │ the robot (the scraper)          │
 └─────────────────┬────────────────┘
                   ▼
@@ -80,10 +80,10 @@ tenders.
      list on the page           must search for it        tender-listing company
              ▼                           ▼                           ▼
 ┌─────────────────────────┐ ┌─────────────────────────┐ ┌─────────────────────────┐
-│ Read the list that's    │ │ Type 'charging station' │ │ Read its public         │
-│ already on the page     │ │ into its search box,    │ │ 'charging station' page │
-│                         │ │ click Search, then read │ │                         │
-│                         │ │ the results             │ │                         │
+│ Read the tender list    │ │ Type 'charging station' │ │ Read its public         │
+│ on the page (IOCL and   │ │ into its search box,    │ │ 'charging station' page │
+│ CPPP: one list per      │ │ click Search, then read │ │                         │
+│ organisation)           │ │ the results             │ │                         │
 │ Used for: IOCL, CPPP,   │ │ Used for: Gujarat,      │ │ Used for:               │
 │ Rajasthan, MP, EESL     │ │ Telangana, Bihar        │ │ TenderDetail            │
 └────────────┬────────────┘ └────────────┬────────────┘ └────────────┬────────────┘
@@ -108,11 +108,14 @@ Things worth knowing:
 - **We're gentle with every site.** Each site is visited once per run, with
   a pause between sites, and pictures and videos are not downloaded, only
   the text of the page.
-- **Government homepages only show their 10 newest tenders.** That's why the
-  robot checks every 15 minutes: to catch each tender before newer ones push
-  it off the list.
-- **From TenderDetail, at most 10 new tenders are added per run.** The rest
-  are picked up on the following runs, so the dashboard fills up gradually.
+- **For IOCL and CPPP, the robot reads every organisation's full list** of
+  open tenders, not just the 10 newest the homepage shows. IOCL is one
+  organisation; CPPP has about 78, so each run reads the next 10 and all of
+  them are covered in about a day. If a site ever asks for a captcha, the
+  robot stops for that site instead of trying to get past it.
+- **At most 10 new tenders per site per run** (TenderDetail, IOCL, CPPP).
+  The rest are picked up on the following runs, so the dashboard fills up
+  gradually and each run brings a fresh batch of NEW tenders.
 
 ---
 
@@ -218,7 +221,7 @@ just those tenders. Clicking the "New since last visit" tile opens it too.
 
 If email is set up, the robot also sends a summary after a run: new tenders,
 plus tenders closing within 7 days. To avoid flooding the inbox it sends at
-most one email every 6 hours, even though it runs every 15 minutes.
+most one email every 6 hours, even though it runs every 3 hours.
 
 ```	ext
 ┌────────────────────────────┐

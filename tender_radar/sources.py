@@ -29,6 +29,7 @@ FIELDS = {
     "notes": "free text: why it's set up this way",
     "searchUrl": "page the dashboard opens for 'search' links (defaults to url)",
     "maxNewPerRun": "most new tenders to add per run from this source",
+    "orgsPerRun": "gepnic_by_organisation: organisations to read per run (rotates)",
     "searchInputSelector": "js_interactive_search: the keyword box",
     "searchButtonSelector": "js_interactive_search: the Search button",
     "searchKeyword": "js_interactive_search: what to search for",
@@ -93,10 +94,11 @@ def validate_sources(sources: object) -> list[str]:
                 except (re.error, TypeError) as e:
                     problems.append(f'{label}: "{key}" is not a valid pattern ({e})')
 
-        if "maxNewPerRun" in src:
-            m = src["maxNewPerRun"]
-            if not isinstance(m, int) or isinstance(m, bool) or m < 1:
-                problems.append(f'{label}: "maxNewPerRun" must be a whole number, 1 or more')
+        for key in ("maxNewPerRun", "orgsPerRun"):
+            if key in src:
+                m = src[key]
+                if not isinstance(m, int) or isinstance(m, bool) or m < 1:
+                    problems.append(f'{label}: "{key}" must be a whole number, 1 or more')
     return problems
 
 
