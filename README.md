@@ -2,17 +2,24 @@
 
 Live dashboard: https://sidev35.github.io/tender-browser/
 
+New here? Start with **[ARCHITECTURE.md](ARCHITECTURE.md)**, a plain-language
+picture of how everything fits together. **[IMPROVEMENT_PLAN.md](IMPROVEMENT_PLAN.md)**
+tracks the ongoing clean-up of the code. **[DATA_FORMAT.md](DATA_FORMAT.md)**
+describes each field of a saved tender, and **[CONTRIBUTING.md](CONTRIBUTING.md)**
+is how to make a change (setup, tests, adding a website).
+
 ## How it works
 
 `.github/workflows/update-tenders.yml` runs `scraper.py` **every 15
 minutes**. It pulls each portal's free "latest tenders" homepage
-listing, filters it against the category keywords in `scraper.py`,
+listing, filters it against the category keywords in `config/categories.json`,
 and commits any new matches into `docs/data/tenders.json` — which
 `docs/index.html` (the dashboard, served by GitHub Pages) reads live.
 The refresh icon on the dashboard re-fetches that file on demand; it
 also polls automatically every 10 minutes while open and shows
 in-page + browser notifications for new matches and tenders closing
-within 7 days.
+within 7 days. The **New** pill (next to **All**) lists the tenders you
+haven't seen yet.
 
 **Why every 15 minutes:** each portal's free listing is only its 10
 most-recently-posted tenders, site-wide (see "Known ceiling" below) —
@@ -47,27 +54,26 @@ captcha once one appears (no OCR-solving, no request-spacing tricks
 to look less automated) — so the 10-latest homepage widget, checked
 frequently, is the practical ceiling for hands-off automation here.
 
-**"🔍 Find on official site" opens a modal, not the tender directly** —
-GePNIC's own per-tender "DirectLink" is tied to the *scraper's* session
-and shows "Stale Session" to literally anyone else who opens it, even
-seconds later (confirmed live), so there's no way to deep-link a
-specific tender. Instead, the modal shows exactly what to paste —
-**Work/Item Title** (and **Tender Ref No**, when the scraper managed to
-capture one — best-effort, not always available) — each with its own
-Copy button, plus a button that opens the portal's real search page
+**Each card's button depends on whether the tender can be linked
+directly.** TenderDetail and EESL give a stable link to each tender, so
+the button is **View tender ↗** and opens it. GePNIC's own per-tender
+"DirectLink" is tied to the *scraper's* session and shows "Stale
+Session" to literally anyone else who opens it, even seconds later
+(confirmed live), and the keyword-search portals have no per-tender
+link at all. For those, the button is **Copy title & open portal ↗**:
+one click copies the tender's title and opens the portal's search page
 (`sources.json`'s `searchUrl`, a stable URL, not session-scoped) in a
 new tab. From there: paste, enter the captcha shown, search — that's a
 real person completing the one step (the captcha) this project won't
-automate around. An optional one-time bookmarklet (dashboard footer)
-can fill the title field for you once you're on that page, if you'd
-rather not paste it by hand every time.
+automate around. Each record's `linkType` (`direct` or `search`) tells
+the dashboard which button to show.
 
 For GeM/CESL — not scraped at all, see "Managing sources" below — just
-use their own search bar directly on the site. For the paid
-aggregators (TenderDetail, TendersOnTime, etc.), use their own
-keyword-alert feature — that's what you're already paying them for,
-and it's the intended way to cover what this free scraper structurally
-can't.
+use their own search bar directly on the site. Of the paid aggregators,
+only TenderDetail is scraped: its public "charging station" listing page,
+whose terms allow internal use (see its `sources.json` notes), at most 10
+new tenders per run. For the others, whose terms forbid scraping, use their
+own keyword-alert features.
 
 ## Email digest setup (optional)
 
@@ -90,7 +96,7 @@ the workflow.
      - `MIN_HOURS_BETWEEN_DIGESTS` (optional) = override the 6-hour minimum gap between emails (see below)
 
 Once configured, the workflow's "Run scraper" step passes these through
-to `scraper.py`, which calls `notify.py` at the end of each run.
+to `scraper.py`, which calls `tender_radar/notify.py` at the end of each run.
 
 **What triggers an email:**
 - **New tenders** — included once, in the run they were first matched.
@@ -100,21 +106,21 @@ to `scraper.py`, which calls `notify.py` at the end of each run.
 - If neither list has anything, no email is sent.
 
 **Throttled independently of the scraper's 15-minute schedule**: since
-"closing soon" would otherwise re-send on every single run, `notify.py`
+"closing soon" would otherwise re-send on every single run, `tender_radar/notify.py`
 tracks the last successful send in `digest_state.json` (committed
 alongside `docs/data/tenders.json`) and skips sending — while still
 updating the dashboard data normally — if less than
 `MIN_HOURS_BETWEEN_DIGESTS` (default 6) has passed. So you get at most
 a handful of emails a day, not one every 15 minutes.
 
-If the secrets/variables aren't set, `notify.py` prints why and skips
+If the secrets/variables aren't set, `tender_radar/notify.py` prints why and skips
 sending — the scraper's core job (updating `tenders.json`) never fails
 because of a missing or broken email config.
 
 The email content is built from `email_template.txt` — edit that file
 to change wording/formatting; placeholders (`{{NEW_COUNT}}`,
 `{{NEW_SECTION}}`, `{{DUE_SOON_SECTION}}`, etc.) are filled in by
-`notify.py`.
+`tender_radar/notify.py`.
 
 ## Running the scraper locally
 
@@ -124,25 +130,26 @@ python scraper.py
 ```
 
 Without the SendGrid env vars set, this updates `docs/data/tenders.json`
-locally and skips the email step (with a printed explanation). To
+locally and skips the email step (with a printed explanation). Set
+`LOG_LEVEL=WARNING` to see only problems in the output. To
 preview the dashboard against local data, serve the repo root
 (`python -m http.server`, then visit `localhost:8000/docs/`) — opening
 `docs/index.html` directly via `file://` can't fetch `data/tenders.json`
 due to browser security rules.
 
-**To tune what counts as a match**, edit `CATEGORY_KEYWORDS` near the
-top of `scraper.py`.
+**To tune what counts as a match**, edit the word lists in
+`config/categories.json` (no code change needed; the file explains its own
+format at the top). The scraper checks the file when it starts and says
+exactly what's wrong if an entry is invalid.
 
 **`TENDER_SHOW_ALL` controls whether every scraped tender is kept**, or
-only ones matching `CATEGORY_KEYWORDS`. Non-matching tenders get tagged
+only ones matching those categories. Non-matching tenders get tagged
 `"General / All Tenders"` instead of being dropped when this is on.
 
-This currently **defaults to `true`, including in the scheduled GitHub
-Actions workflow** — the live dashboard is intentionally showing every
-scraped tender right now, not just EV-charging matches. To go back to
-EV-only filtering everywhere, set `SHOW_ALL_TENDERS`'s default back to
-`"false"` in `scraper.py` (and push) — or override it for a single
-local run either way:
+This **defaults to `false`** (EV-charging matches only), including in the
+scheduled GitHub Actions workflow. To change the default, edit
+`SHOW_ALL_TENDERS` in `tender_radar/config.py` (and push) — or override it for a
+single local run either way:
 
 ```bash
 TENDER_SHOW_ALL=false python scraper.py   # EV-only, this run only
@@ -154,10 +161,39 @@ removed or their due date passes, same merge behavior as any other
 tender — so switching the default doesn't retroactively filter what's
 already on the dashboard.
 
+## Running the tests
+
+```bash
+pip install -r requirements-dev.txt
+python -m pytest            # tests
+ruff check . && ruff format --check .   # lint + formatting
+pre-commit install          # optional: run all of this on every commit
+```
+
+The tests never touch the network: each source's parser runs on a real
+page saved in `tests/fixtures/`, and the expected titles, dates, values
+and links are what that page contained. They also run on GitHub Actions
+(`.github/workflows/tests.yml`) whenever code, tests or `sources.json`
+change.
+
+When a portal changes its layout, re-capture its fixture and update the
+expected values in `tests/test_parsers.py`:
+
+```bash
+python tests/capture_fixture.py "Gujarat nProcure (keyword search)" gujarat_nprocure
+```
+
+A test marked `xfail` is a known bug, documented rather than hidden. Once
+it's fixed the test starts passing, and pytest flags it so the marker
+gets removed.
+
 ## Managing sources (`sources.json`)
 
 Every portal Tender Radar knows about — scraped or not — lives in
-`sources.json` at the repo root, not in `scraper.py`. Each entry:
+`sources.json` at the repo root, not in the code. The scraper checks the
+file every time it starts: a misspelled field (`"enable"`), an unknown
+`type`, a missing required field or an invalid pattern stops the run with a
+list of exactly what's wrong, before anything is fetched or saved. Each entry:
 
 ```json
 {
@@ -178,7 +214,7 @@ Every portal Tender Radar knows about — scraped or not — lives in
 - **`enabled`** — the on/off switch. Set to `false` to stop checking a
   source without deleting it.
 - **`type`** — which fetcher reads it. Only types with a registered
-  fetcher in `scraper.py`'s `TYPE_FETCHERS` dict are ever actually
+  fetcher in `TYPE_FETCHERS` (`tender_radar/fetchers.py`) are ever actually
   scraped, **regardless of `enabled`** — this is a deliberate safety
   net. Right now that's just `"gepnic_table"` (the NIC GePNIC engine
   used by IOCL, CPPP/etenders.gov.in, and the Rajasthan/Madhya Pradesh
@@ -198,7 +234,7 @@ Every portal Tender Radar knows about — scraped or not — lives in
   needed, since it reuses the existing GePNIC fetcher.
 - **If you later get paid API access** to one of the aggregators:
   that needs an actual fetcher for however that API responds — add a
-  function to `scraper.py`, register it in `TYPE_FETCHERS` under a new
+  function to `tender_radar/fetchers.py`, register it in `TYPE_FETCHERS` under a new
   type name (e.g. `"tenderdetail_api"`), then flip that source's
   `type`/`enabled` in `sources.json`. Until then, leave paid
   aggregators as `"paid_aggregator"` / `enabled: false` and keep using

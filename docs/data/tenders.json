@@ -9,7 +9,8 @@
     "category": "Charger Supply & Installation",
     "source": "EESL (Energy Efficiency Services Ltd)",
     "url": "https://eeslindia.org/wp-content/uploads/2026/06/TenderDocument_EVCI.pdf",
-    "firstSeen": "2026-09-22"
+    "firstSeen": "2026-09-22",
+    "linkType": "direct"
   },
   {
     "id": "AUTO-73b07a63eb",
@@ -21,7 +22,8 @@
     "category": "Charger Supply & Installation",
     "source": "EESL (Energy Efficiency Services Ltd)",
     "url": "https://eeslindia.org/wp-content/uploads/2025/10/RFP_EVCI_MH_252605_Signed.pdf",
-    "firstSeen": "2026-09-22"
+    "firstSeen": "2026-09-22",
+    "linkType": "direct"
   },
   {
     "id": "AUTO-6170be8022",
@@ -33,11 +35,12 @@
     "category": "PPP / Concession / CPO Selection",
     "source": "Bihar e-Procurement 2.0 (keyword search)",
     "url": "https://eproc2.bihar.gov.in/EPSV2Web/openarea/tenderListingPage.action",
-    "firstSeen": "2026-09-22"
+    "firstSeen": "2026-09-22",
+    "linkType": "search"
   },
   {
     "id": "AUTO-5832cdb826",
-    "desc": "Providing CC Pavement, washing plant with RCC tank for installation of EV  Charging stations to Retrofitting buses of  Ranigunj Bus Depot-I",
+    "desc": "Providing CC Pavement, washing plant with RCC tank for installation of EV Charging stations to Retrofitting buses of Ranigunj Bus Depot-I",
     "refNo": "TELANGANA STATE ROAD TRANSPORT CORPORATION - TSRTC-Chief  Civil  Engineer",
     "location": null,
     "value": null,
@@ -45,7 +48,8 @@
     "category": "Charger Supply & Installation",
     "source": "Telangana e-Procurement (keyword search)",
     "url": "https://tender.telangana.gov.in/TenderDetailsHome.html#",
-    "firstSeen": "2026-09-22"
+    "firstSeen": "2026-09-22",
+    "linkType": "search"
   },
   {
     "id": "AUTO-73d9dfb184",
@@ -57,11 +61,12 @@
     "category": "PPP / Concession / CPO Selection",
     "source": "Telangana e-Procurement (keyword search)",
     "url": "https://tender.telangana.gov.in/",
-    "firstSeen": "2026-09-22"
+    "firstSeen": "2026-09-22",
+    "linkType": "search"
   },
   {
     "id": "AUTO-21b3d86b99",
-    "desc": "Request for Selection  for Charge Point Operators for Survey, design, supply, including civil works related to site preparation for installation, testing, commissioning, operations and maintenance for 169 no s of Public Charging Stations at 116 nos locations to be set up under PM E-drive scheme for the Contract Period of 10 years",
+    "desc": "Request for Selection for Charge Point Operators for Survey, design, supply, including civil works related to site preparation for installation, testing, commissioning, operations and maintenance for 169 no s of Public Charging Stations at 116 nos locations to be set up under PM E-drive scheme for the Contract Period of 10 years",
     "refNo": "Telangana State Renewable Energy Development corporation Limited-Vice Chairman and Managing director, TNRED",
     "location": null,
     "value": null,
@@ -69,23 +74,25 @@
     "category": "PPP / Concession / CPO Selection",
     "source": "Telangana e-Procurement (keyword search)",
     "url": "https://tender.telangana.gov.in/",
-    "firstSeen": "2026-09-22"
+    "firstSeen": "2026-09-22",
+    "linkType": "search"
   },
   {
     "id": "AUTO-fd4ab1dcb6",
-    "desc": "VMC-Water works (Ele/Mech) Tender Id :345346 Name Of Work : Supply, Installation, Testing and Commissioning of Electrical Infrastructure from 11kV (HT) to 415 V (LT) under Phase-02 at the Charging Station at Gotri under PM eBus Sewa Scheme with Two (02) Years of O&M Corrigendum : Estimated Contract Value : 25481341.00 Last Date & Time For Submission : 03-10-2026 13:00:00",
+    "desc": "Supply, Installation, Testing and Commissioning of Electrical Infrastructure from 11kV (HT) to 415 V (LT) under Phase-02 at the Charging Station at Gotri under PM eBus Sewa Scheme with Two (02) Years of O&M",
     "refNo": "PRO No. 394/2026-27",
     "location": null,
-    "value": null,
+    "value": "₹2.55 Cr",
     "dueDate": "2026-10-03",
     "category": "Charger Supply & Installation",
     "source": "Gujarat nProcure (keyword search)",
     "url": "https://tender.nprocure.com/",
-    "firstSeen": "2026-09-23"
+    "firstSeen": "2026-09-23",
+    "linkType": "search"
   },
   {
     "id": "AUTO-b3d64d8aa2",
-    "desc": "VMC-STREET LIGHT Tender Id :343741 Name Of Work : Selection of Charge Point Operator (CPO) for Design, Build, Finance, Operate\nand Maintain Electric Vehicle Public Charging Stations (EVPCS) at Approved Locations across Vadodara City under category A & B , in accordance with PM E- Drive Scheme Corrigendum : Corrigendum-1 Reply to Queries Estimated Contract Value : 0.00 Last Date & Time For Submission : 09-10-2026 13:00:00",
+    "desc": "Selection of Charge Point Operator (CPO) for Design, Build, Finance, Operate and Maintain Electric Vehicle Public Charging Stations (EVPCS) at Approved Locations across Vadodara City under category A & B , in accordance with PM E- Drive Scheme",
     "refNo": "VMC/SL/EVPCS/2026",
     "location": null,
     "value": null,
@@ -93,7 +100,8 @@
     "category": "PPP / Concession / CPO Selection",
     "source": "Gujarat nProcure (keyword search)",
     "url": "https://tender.nprocure.com/",
-    "firstSeen": "2026-09-23"
+    "firstSeen": "2026-09-23",
+    "linkType": "search"
   },
   {
     "id": "AUTO-2fd5b2ea73",
@@ -105,7 +113,8 @@
     "category": "Other EV Charging",
     "source": "TenderDetail (charging station listing)",
     "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57473059/8fb357a01536d718df2ecbfc2c6b947c",
-    "firstSeen": "2026-09-23"
+    "firstSeen": "2026-09-23",
+    "linkType": "direct"
   },
   {
     "id": "AUTO-e13f621cb6",
@@ -117,7 +126,8 @@
     "category": "Other EV Charging",
     "source": "TenderDetail (charging station listing)",
     "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57576840/f45f55209c7fad3723b33ea6780ca1bb",
-    "firstSeen": "2026-09-23"
+    "firstSeen": "2026-09-23",
+    "linkType": "direct"
   },
   {
     "id": "AUTO-a05551c3f3",
@@ -129,7 +139,8 @@
     "category": "Charger Supply & Installation",
     "source": "TenderDetail (charging station listing)",
     "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57344716/acec8ec09d31cfa13c4272fd0e9b235c",
-    "firstSeen": "2026-09-23"
+    "firstSeen": "2026-09-23",
+    "linkType": "direct"
   },
   {
     "id": "AUTO-3050c24357",
@@ -141,7 +152,8 @@
     "category": "Other EV Charging",
     "source": "TenderDetail (charging station listing)",
     "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57591400/a10b4f9451bac50579fce6e04b60973b",
-    "firstSeen": "2026-09-23"
+    "firstSeen": "2026-09-23",
+    "linkType": "direct"
   },
   {
     "id": "AUTO-40397256fd",
@@ -153,7 +165,8 @@
     "category": "Other EV Charging",
     "source": "TenderDetail (charging station listing)",
     "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57617949/b38631a590e854e0d4c5ed56bbb293e0",
-    "firstSeen": "2026-09-23"
+    "firstSeen": "2026-09-23",
+    "linkType": "direct"
   },
   {
     "id": "AUTO-64791a4766",
@@ -165,7 +178,8 @@
     "category": "Other EV Charging",
     "source": "TenderDetail (charging station listing)",
     "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57617951/18a8b1ca3d499e0c628edd175d5ec974",
-    "firstSeen": "2026-09-23"
+    "firstSeen": "2026-09-23",
+    "linkType": "direct"
   },
   {
     "id": "AUTO-1593028e5d",
@@ -177,7 +191,8 @@
     "category": "Other EV Charging",
     "source": "TenderDetail (charging station listing)",
     "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57617948/7774812a8970795a42d010e7862a61d2",
-    "firstSeen": "2026-09-23"
+    "firstSeen": "2026-09-23",
+    "linkType": "direct"
   },
   {
     "id": "AUTO-c242c0dafa",
@@ -189,7 +204,8 @@
     "category": "Other EV Charging",
     "source": "TenderDetail (charging station listing)",
     "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57617946/808c793aff8c1820b0770eb058256fed",
-    "firstSeen": "2026-09-23"
+    "firstSeen": "2026-09-23",
+    "linkType": "direct"
   },
   {
     "id": "AUTO-0c7029041f",
@@ -201,7 +217,8 @@
     "category": "Other EV Charging",
     "source": "TenderDetail (charging station listing)",
     "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57617942/d1c6d31df04dc16a652fcc73ac6f6862",
-    "firstSeen": "2026-09-23"
+    "firstSeen": "2026-09-23",
+    "linkType": "direct"
   },
   {
     "id": "AUTO-5a7ecf01e2",
@@ -213,7 +230,8 @@
     "category": "Other EV Charging",
     "source": "TenderDetail (charging station listing)",
     "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57617947/bb301af47777e283e0f0e0cac9923ea5",
-    "firstSeen": "2026-09-23"
+    "firstSeen": "2026-09-23",
+    "linkType": "direct"
   },
   {
     "id": "AUTO-9ffafd4c36",
@@ -225,7 +243,8 @@
     "category": "Other EV Charging",
     "source": "TenderDetail (charging station listing)",
     "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57617939/3219b89438e339f1f38ebaf5081ce6d7",
-    "firstSeen": "2026-09-23"
+    "firstSeen": "2026-09-23",
+    "linkType": "direct"
   },
   {
     "id": "AUTO-44c9735352",
@@ -237,7 +256,8 @@
     "category": "Other EV Charging",
     "source": "TenderDetail (charging station listing)",
     "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57617943/c80e8a5108e0b2f47bec121f5690647d",
-    "firstSeen": "2026-09-23"
+    "firstSeen": "2026-09-23",
+    "linkType": "direct"
   },
   {
     "id": "AUTO-ad98933761",
@@ -249,7 +269,8 @@
     "category": "Other EV Charging",
     "source": "TenderDetail (charging station listing)",
     "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57617944/0f4690412457166044dd9b8b4558b83d",
-    "firstSeen": "2026-09-23"
+    "firstSeen": "2026-09-23",
+    "linkType": "direct"
   },
   {
     "id": "AUTO-199019d5ae",
@@ -261,7 +282,8 @@
     "category": "Other EV Charging",
     "source": "TenderDetail (charging station listing)",
     "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57617952/27c7b9284c2a5c2afc3a85da03c0e194",
-    "firstSeen": "2026-09-23"
+    "firstSeen": "2026-09-23",
+    "linkType": "direct"
   },
   {
     "id": "AUTO-4f1b44943e",
@@ -273,7 +295,8 @@
     "category": "PPP / Concession / CPO Selection",
     "source": "TenderDetail (charging station listing)",
     "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57322869/06730336bd4afbb1918f7a6b5502833f",
-    "firstSeen": "2026-09-23"
+    "firstSeen": "2026-09-23",
+    "linkType": "direct"
   },
   {
     "id": "AUTO-5e32937539",
@@ -285,7 +308,8 @@
     "category": "Other EV Charging",
     "source": "TenderDetail (charging station listing)",
     "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57617940/bb1025c023f80113fe02da30ad11b043",
-    "firstSeen": "2026-09-23"
+    "firstSeen": "2026-09-23",
+    "linkType": "direct"
   },
   {
     "id": "AUTO-e0cec6bfcc",
@@ -297,7 +321,8 @@
     "category": "Other EV Charging",
     "source": "TenderDetail (charging station listing)",
     "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57617938/aa42760e043d2ac7618a662c870db3f0",
-    "firstSeen": "2026-09-23"
+    "firstSeen": "2026-09-23",
+    "linkType": "direct"
   },
   {
     "id": "AUTO-c2b88eaf35",
@@ -309,7 +334,8 @@
     "category": "Other EV Charging",
     "source": "TenderDetail (charging station listing)",
     "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57617941/b2150fcba7726bf7847763d24c98a96c",
-    "firstSeen": "2026-09-23"
+    "firstSeen": "2026-09-23",
+    "linkType": "direct"
   },
   {
     "id": "AUTO-1b16996aa4",
@@ -321,7 +347,8 @@
     "category": "Other EV Charging",
     "source": "TenderDetail (charging station listing)",
     "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57617950/95276290507b99ebec8859a455bf6116",
-    "firstSeen": "2026-09-23"
+    "firstSeen": "2026-09-23",
+    "linkType": "direct"
   },
   {
     "id": "AUTO-a745c7dbf8",
@@ -333,6 +360,397 @@
     "category": "Other EV Charging",
     "source": "TenderDetail (charging station listing)",
     "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57648652/25da2194a5c3d09bf80c110ad0aac288",
+    "firstSeen": "2026-09-23",
+    "linkType": "direct"
+  },
+  {
+    "id": "AUTO-75642bd23a",
+    "desc": "Providing Electrical Infrastructure For Intermediate Charging Station At Udayagiri Bus Station , SPSR Nellore District (2Nd Call)",
+    "refNo": null,
+    "location": "Andhra Pradesh",
+    "value": "₹46.91 Lakh",
+    "dueDate": "2026-09-29",
+    "category": "Other EV Charging",
+    "source": "TenderDetail (charging station listing)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57617937/40ebeae0f3f97441ca54e92b9eb771d8",
+    "linkType": "direct",
     "firstSeen": "2026-09-23"
+  },
+  {
+    "id": "AUTO-4f28a907dd",
+    "desc": "Providing Electrical Infrastructure For Intermediate Charging Station At Maddilapalem Bus Depot, Visakhapatnam District (2Nd Call)",
+    "refNo": null,
+    "location": "Andhra Pradesh",
+    "value": "₹74.90 Lakh",
+    "dueDate": "2026-09-29",
+    "category": "Other EV Charging",
+    "source": "TenderDetail (charging station listing)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57617945/9397e0797c72aed7631a49ae7ba30ee7",
+    "linkType": "direct",
+    "firstSeen": "2026-09-23"
+  },
+  {
+    "id": "AUTO-c219191d38",
+    "desc": "Corrigendum : Tender for Setting Up Of Electric Vehicle (Ev) Charging Stations In Bhopal Under Public-Private Partnership Model",
+    "refNo": null,
+    "location": "Madhya Pradesh",
+    "value": null,
+    "dueDate": "2026-09-24",
+    "category": "Other EV Charging",
+    "source": "TenderDetail (charging station listing)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/56353854/739468d4cbeaea4a134f26fc184993fd",
+    "linkType": "direct",
+    "firstSeen": "2026-09-23"
+  },
+  {
+    "id": "AUTO-79f5a44412",
+    "desc": "Bids Are invited for Procurement Of 02 X Mobile Charging Station With Electric Socket And C Type Charger Pin",
+    "refNo": null,
+    "location": "Maharashtra",
+    "value": null,
+    "dueDate": "2026-10-03",
+    "category": "Other EV Charging",
+    "source": "TenderDetail (charging station listing)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57631818/4a317fb70f6c48fe69b6c9096d7cbadf",
+    "linkType": "direct",
+    "firstSeen": "2026-09-23"
+  },
+  {
+    "id": "AUTO-f745d656bd",
+    "desc": "Tender for Development Of Public Charging Stations Through Design, Build, Finance, Operate & Maintain (Dbfom) In Meerut City",
+    "refNo": null,
+    "location": "Uttar Pradesh",
+    "value": null,
+    "dueDate": "2026-09-30",
+    "category": "PPP / Concession / CPO Selection",
+    "source": "TenderDetail (charging station listing)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57457777/8a26159818b9bb7c456efa2725f4ff02",
+    "linkType": "direct",
+    "firstSeen": "2026-09-23"
+  },
+  {
+    "id": "AUTO-71c0e1fe86",
+    "desc": "Tender For Purchase Of Items For Project Titled “Smart Photovoltaic Thermal (Pvt) Bench With Charging Station For Ev’S For The University",
+    "refNo": null,
+    "location": "Haryana",
+    "value": "₹3.65 Lakh",
+    "dueDate": "2026-09-30",
+    "category": "Other EV Charging",
+    "source": "TenderDetail (charging station listing)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57647198/bb52e6b4e788c243e70a37987e758fa4",
+    "linkType": "direct",
+    "firstSeen": "2026-09-23"
+  },
+  {
+    "id": "AUTO-bf53a19898",
+    "desc": "Construction Of Battery Operated Vehicles Charging Station (2 Unit) At Shri Atal Bihari Vajpayee Zoological Park Kamlapur",
+    "refNo": null,
+    "location": "Karnataka",
+    "value": null,
+    "dueDate": "2026-10-08",
+    "category": "Other EV Charging",
+    "source": "TenderDetail (charging station listing)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57635764/adf48cd02acadd4a50efc94bbc1178b4",
+    "linkType": "direct",
+    "firstSeen": "2026-09-23"
+  },
+  {
+    "id": "AUTO-014286eb5f",
+    "desc": "E-Tender For Development Of Public Charging Stations Through Design, Bulld, Finance, Operate & Maintain (Dbfom) In Meerut City ह",
+    "refNo": null,
+    "location": "Uttar Pradesh",
+    "value": null,
+    "dueDate": "2026-09-30",
+    "category": "PPP / Concession / CPO Selection",
+    "source": "TenderDetail (charging station listing)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57491544/2b170bff75f26865cc62a1bc61230182",
+    "linkType": "direct",
+    "firstSeen": "2026-09-23"
+  },
+  {
+    "id": "AUTO-efe9aff134",
+    "desc": "Tender for Development Of Electric Vehicle Charging Station On Dbfot Basis In Various Parking Places Of Different Municipal Corporations On Ppp Format",
+    "refNo": null,
+    "location": "Rajasthan",
+    "value": "₹30.00 Crore",
+    "dueDate": "2026-09-24",
+    "category": "PPP / Concession / CPO Selection",
+    "source": "TenderDetail (charging station listing)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57059132/2c05b06b61db26932b3198b76a601e4a",
+    "linkType": "direct",
+    "firstSeen": "2026-09-23"
+  },
+  {
+    "id": "AUTO-e12f8b5441",
+    "desc": "Corrigendum : Bids Are invited for Ac Ev Charging Station (Q2)",
+    "refNo": null,
+    "location": "Gujarat",
+    "value": null,
+    "dueDate": "2026-09-24",
+    "category": "Charger Supply & Installation",
+    "source": "TenderDetail (charging station listing)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57366481/37c5c7d7b64a43559e0cd4e9f533a9be",
+    "linkType": "direct",
+    "firstSeen": "2026-09-24"
+  },
+  {
+    "id": "AUTO-0239975c79",
+    "desc": "Tender for Providing Ht Power Supply Arrangement For Ev Bus Charging Station At Digras In Yavatmal Division.",
+    "refNo": null,
+    "location": "Maharashtra",
+    "value": "₹3.35 Crore",
+    "dueDate": "2026-10-03",
+    "category": "Infrastructure & Electrical Works",
+    "source": "TenderDetail (charging station listing)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57655651/b58f2ba6a12e783f24247a50f32cb005",
+    "linkType": "direct",
+    "firstSeen": "2026-09-24"
+  },
+  {
+    "id": "AUTO-3729c7d543",
+    "desc": "Tender for Providing Ht Power Supply Arrangement For Ev Bus Charging Station At Umarkhed In Yavatmal Division.",
+    "refNo": null,
+    "location": "Maharashtra",
+    "value": "₹2.80 Crore",
+    "dueDate": "2026-10-03",
+    "category": "Infrastructure & Electrical Works",
+    "source": "TenderDetail (charging station listing)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57655683/08af2a2cb593217ba1f06caef08bbf1d",
+    "linkType": "direct",
+    "firstSeen": "2026-09-24"
+  },
+  {
+    "id": "AUTO-545daf0eb0",
+    "desc": "Tender for Development Of Electric Vehicle Charging Station On Dbfot Basis In Various Parking Places Of Different Municipal Corporations On Ppp Format",
+    "refNo": null,
+    "location": "Rajasthan",
+    "value": "₹30.00 Crore",
+    "dueDate": "2026-09-24",
+    "category": "PPP / Concession / CPO Selection",
+    "source": "TenderDetail (charging station listing)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57056698/238763393c3652df152c66ff10c1bf1f",
+    "linkType": "direct",
+    "firstSeen": "2026-09-24"
+  },
+  {
+    "id": "AUTO-1b310e2e9d",
+    "desc": "Corrigendum : Tender for Provision Of 400 Kw Roof Top On Grid Connected Carport Solar Pv Plant Including 2X60 Kw Four Wheeler Charging Station And 2X10 Kw Two Wheeler Charging Station Including Manning, Operation And Comprehensive Maintenance At Multi Story...",
+    "refNo": null,
+    "location": "Delhi",
+    "value": "₹3.32 Crore",
+    "dueDate": "2026-09-30",
+    "category": "Other EV Charging",
+    "source": "TenderDetail (charging station listing)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/56658368/4f4dff4ac051f5ffe434b047d4293f82",
+    "linkType": "direct",
+    "firstSeen": "2026-09-24"
+  },
+  {
+    "id": "AUTO-8b42b66267",
+    "desc": "Providing CC Pavement, Washing Plant With RCC Tank For Installation Of EV Charging Stations To Retrofitting Buses Of Ranigunj Bus Depot-I",
+    "refNo": null,
+    "location": "Telangana",
+    "value": "₹34.25 Lakh",
+    "dueDate": "2026-09-28",
+    "category": "Charger Supply & Installation",
+    "source": "TenderDetail (charging station listing)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57610351/9cb5798056bbae686dacc3e12e7b08f5",
+    "linkType": "direct",
+    "firstSeen": "2026-09-24"
+  },
+  {
+    "id": "AUTO-c9ba0e2f70",
+    "desc": "Tender for Request For Proposal (Rfp) For Engagement Of Charge Point Operators (Cpos) For Supply, Installation, Testing, Commissioning, Operation Of Electric Vehicle Charging Stations At Identified Locations In Mumbai",
+    "refNo": null,
+    "location": "Maharashtra",
+    "value": "₹1.25 Crore",
+    "dueDate": "2026-10-07",
+    "category": "PPP / Concession / CPO Selection",
+    "source": "TenderDetail (charging station listing)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57535622/8d66de6a55d5d1fb54cc66c2dae00925",
+    "linkType": "direct",
+    "firstSeen": "2026-09-24"
+  },
+  {
+    "id": "AUTO-dd44c19909",
+    "desc": "Corrigendum : Tender for Provn Of Charging Station Of 240 Kw Alongwith Associated Work At Hq Wac, Subroto Park Under Ge (Af) Subroto Park",
+    "refNo": null,
+    "location": "Delhi",
+    "value": "₹26.88 Lakh",
+    "dueDate": "2026-09-30",
+    "category": "Other EV Charging",
+    "source": "TenderDetail (charging station listing)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57244603/5fb8fb86a2d965dfa89f22b6fe9d32a1",
+    "linkType": "direct",
+    "firstSeen": "2026-09-24"
+  },
+  {
+    "id": "AUTO-83514c3303",
+    "desc": "Tender for Supply, Installation, Testing And Commissioning Of 1No. 60 Kw Dual Gun Dc Fast Charging Station For Electric Vehicles At Pwd Rest House, Amritsar.",
+    "refNo": null,
+    "location": "Chandigarh",
+    "value": "₹11.50 Lakh",
+    "dueDate": "2026-10-06",
+    "category": "Charger Supply & Installation",
+    "source": "TenderDetail (charging station listing)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57517292/97e2c8aff5cb5aa39537faa69376dbba",
+    "linkType": "direct",
+    "firstSeen": "2026-09-24"
+  },
+  {
+    "id": "AUTO-016990375b",
+    "desc": "Tender For Empanelment Of Agencies For Supply, Installation, Testing, Commissioning, Operation And Maintenance Of Electric Vehicle Charging Stations In Bihar On Build, Own, Operate And Maintain (Boom) Model.",
+    "refNo": null,
+    "location": "Bihar",
+    "value": null,
+    "dueDate": null,
+    "category": "PPP / Concession / CPO Selection",
+    "source": "TenderDetail (charging station listing)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57436795/10f5214469e5549acf6f63902db8f164",
+    "linkType": "direct",
+    "firstSeen": "2026-09-24"
+  },
+  {
+    "id": "AUTO-50ad775383",
+    "desc": "Tender for Supply, Installation, Testing And Commissioning Of Lt Panel And Associated Works To Provide Power Supply For Ev Bus Charging Station At Barc, Trombay, Mumbai 400085.",
+    "refNo": null,
+    "location": "Maharashtra",
+    "value": "₹20.63 Lakh",
+    "dueDate": "2026-09-24",
+    "category": "Charger Supply & Installation",
+    "source": "TenderDetail (charging station listing)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57345790/3d2de9b89c543f97b12104b33919e2b3",
+    "linkType": "direct",
+    "firstSeen": "2026-09-24"
+  },
+  {
+    "id": "AUTO-7b7a1fc97c",
+    "desc": "Corrigendum : Tender for Allotment Of 5,000 Sq. Mtr Land Inside Jnpa Port Area For Setting Up Of Heavy Electric Vehicles (Hevs) Battery Swapping Cum Charging Station",
+    "refNo": null,
+    "location": "Maharashtra",
+    "value": null,
+    "dueDate": "2026-09-28",
+    "category": "Charger Supply & Installation",
+    "source": "TenderDetail (charging station listing)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/56824048/eaea7652269225c2a7b2d0a2f43ac28a",
+    "linkType": "direct",
+    "firstSeen": "2026-09-24"
+  },
+  {
+    "id": "AUTO-b295a176f6",
+    "desc": "Corrigendum : Tender for Provn Of Infra Of Installation Of 240 Kw Electric Fast Charging Station Alongwith Connected Fittings For Electric Vehs At Selection Centre East Under Ge (West) Prayagraj.",
+    "refNo": null,
+    "location": "Uttar Pradesh",
+    "value": "₹41.04 Lakh",
+    "dueDate": "2026-10-10",
+    "category": "Charger Supply & Installation",
+    "source": "TenderDetail (charging station listing)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57540138/a30e64f2f65100c00f15424d0b4c17f0",
+    "linkType": "direct",
+    "firstSeen": "2026-09-24"
+  },
+  {
+    "id": "AUTO-44ef32c2af",
+    "desc": "Tender For Supply, Installation, Testing And Commissioning Of Electrical Infrastructure From 11 Kv To 415 V Lt Under Pm Ebus Sewa Phase–02 At The Charging Station At Gotri",
+    "refNo": null,
+    "location": "Gujarat",
+    "value": "₹2.54 Crore",
+    "dueDate": "2026-10-03",
+    "category": "Charger Supply & Installation",
+    "source": "TenderDetail (charging station listing)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57510088/03efea76b76b8023ba1be5ecba5dfae1",
+    "linkType": "direct",
+    "firstSeen": "2026-09-24"
+  },
+  {
+    "id": "AUTO-9dcd8d355d",
+    "desc": "Request For Empanelment (RFE) For Empanelment Of Agencies For Supply, Installation, Testing, Commissioning, Operation And Maintenance Of Electric Vehicle Charging Stations In Bihar On Build, Own, Operate And Maintain (BOOM) Model",
+    "refNo": null,
+    "location": "Bihar",
+    "value": null,
+    "dueDate": "2026-09-28",
+    "category": "PPP / Concession / CPO Selection",
+    "source": "TenderDetail (charging station listing)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57376565/001d4ad3dbbf7dc9a9d7ca710c59542f",
+    "linkType": "direct",
+    "firstSeen": "2026-09-24"
+  },
+  {
+    "id": "AUTO-a4ad7cc55f",
+    "desc": "Corrigendum : Selection of Charge Point Operator (CPO) for Design, Build, Finance, Operateand Maintain Electric Vehicle Public Charging Stations (EVPCS) at Approved Locations across Vadodara City under category A B , in accordance with PM E- Drive Scheme",
+    "refNo": null,
+    "location": "Gujarat",
+    "value": null,
+    "dueDate": "2026-10-09",
+    "category": "PPP / Concession / CPO Selection",
+    "source": "TenderDetail (charging station listing)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57438128/ce7999914a779f5af79202c67b274766",
+    "linkType": "direct",
+    "firstSeen": "2026-09-24"
+  },
+  {
+    "id": "AUTO-1d5d0c1614",
+    "desc": "Tender For Kaushal Bhawan In Electric Vehicle (Ev) Charging Station At Skill Development Extension Centre (Sdec), Govt. Polytechnic Campus, Plot No: 1, Xavier Road, Chandrasekharpur, Bhubaneswar, Odisha, Pin-751013, Odisha.",
+    "refNo": null,
+    "location": "Odisha",
+    "value": null,
+    "dueDate": "2026-10-15",
+    "category": "Other EV Charging",
+    "source": "TenderDetail (charging station listing)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57562992/4ef428e8b3b11c03a906531d0fe3a063",
+    "linkType": "direct",
+    "firstSeen": "2026-09-24"
+  },
+  {
+    "id": "AUTO-be0011fc58",
+    "desc": "Tender for Repair/ Replacement Of Lt Electric Supply, Distribution Network Of Various Otm Bldgs And Replacement Of Various Under Water Lights Including Comprehensive Maintenance Of Ev Charging Station At Navy Nagar, Colaba, Mumbai.",
+    "refNo": null,
+    "location": "Maharashtra",
+    "value": "₹44.92 Lakh",
+    "dueDate": "2026-10-02",
+    "category": "Charger Supply & Installation",
+    "source": "TenderDetail (charging station listing)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57484139/7e1995dc94d285e9b0358ec504c77062",
+    "linkType": "direct",
+    "firstSeen": "2026-09-24"
+  },
+  {
+    "id": "AUTO-d2d2fd1272",
+    "desc": "...Vehicle Technology Laboratory In 3 Government Engineering Colleges At Tirunelveli, Dharmapuri And Erode - Supply Of Charging Station Workbench, Iot & Embedded Kit For Prototyping & Projects, Ev Lab Accessories , Charging Station Workbench, Iot &...",
+    "refNo": null,
+    "location": "Tamil Nadu",
+    "value": "₹40.00 Lakh",
+    "dueDate": "2026-09-28",
+    "category": "Other EV Charging",
+    "source": "TenderDetail (charging station listing)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57481569/6b18120cc869591f63e87cfa37919d2a",
+    "linkType": "direct",
+    "firstSeen": "2026-09-24"
+  },
+  {
+    "id": "AUTO-7c7aa0772b",
+    "desc": "...Selection Of Charge Point Operator (Cpo) For Design, Build, Finance, Operate And Maintain Electric Vehicle Public Charging Stations (Evpcs) At Approved Locations Across Vadodara City Under Category A & B, In Accordance With Pm E-Drive Scheme On...",
+    "refNo": null,
+    "location": "Gujarat",
+    "value": null,
+    "dueDate": "2026-10-09",
+    "category": "PPP / Concession / CPO Selection",
+    "source": "TenderDetail (charging station listing)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57463822/d20ca3611c61811b3e2085a27f34408c",
+    "linkType": "direct",
+    "firstSeen": "2026-09-24"
+  },
+  {
+    "id": "AUTO-8a796745c8",
+    "desc": "...Selection Of Charge Point Operator (Cpo) For Design, Build, Finance, Operate And Maintain Electric Vehicle Public Charging Stations (Evpcs) At Approved Locations Across Vadodara City Under Category A & B In Accordance With Pm E-Drive Scheme On...",
+    "refNo": null,
+    "location": "Gujarat",
+    "value": null,
+    "dueDate": "2026-10-09",
+    "category": "PPP / Concession / CPO Selection",
+    "source": "TenderDetail (charging station listing)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57499067/fb97e793450f3df8af4e740da04c3bb5",
+    "linkType": "direct",
+    "firstSeen": "2026-09-24"
   }
 ]

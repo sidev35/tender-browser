@@ -1,0 +1,2820 @@
+<!-- Test fixture: Gujarat nProcure (keyword search) (https://tender.nprocure.com/), captured 2026-09-24 with tests/capture_fixture.py -->
+<!DOCTYPE html><html class=" js no-touch csstransforms3d csstransitions" style=""><head><style type="text/css">[uib-typeahead-popup].dropdown-menu{display:block;}</style><style type="text/css">.uib-time input{width:50px;}</style><style type="text/css">[uib-tooltip-popup].tooltip.top-left > .tooltip-arrow,[uib-tooltip-popup].tooltip.top-right > .tooltip-arrow,[uib-tooltip-popup].tooltip.bottom-left > .tooltip-arrow,[uib-tooltip-popup].tooltip.bottom-right > .tooltip-arrow,[uib-tooltip-popup].tooltip.left-top > .tooltip-arrow,[uib-tooltip-popup].tooltip.left-bottom > .tooltip-arrow,[uib-tooltip-popup].tooltip.right-top > .tooltip-arrow,[uib-tooltip-popup].tooltip.right-bottom > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.top-left > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.top-right > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.bottom-left > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.bottom-right > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.left-top > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.left-bottom > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.right-top > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.right-bottom > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.top-left > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.top-right > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.bottom-left > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.bottom-right > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.left-top > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.left-bottom > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.right-top > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.right-bottom > .tooltip-arrow,[uib-popover-popup].popover.top-left > .arrow,[uib-popover-popup].popover.top-right > .arrow,[uib-popover-popup].popover.bottom-left > .arrow,[uib-popover-popup].popover.bottom-right > .arrow,[uib-popover-popup].popover.left-top > .arrow,[uib-popover-popup].popover.left-bottom > .arrow,[uib-popover-popup].popover.right-top > .arrow,[uib-popover-popup].popover.right-bottom > .arrow,[uib-popover-html-popup].popover.top-left > .arrow,[uib-popover-html-popup].popover.top-right > .arrow,[uib-popover-html-popup].popover.bottom-left > .arrow,[uib-popover-html-popup].popover.bottom-right > .arrow,[uib-popover-html-popup].popover.left-top > .arrow,[uib-popover-html-popup].popover.left-bottom > .arrow,[uib-popover-html-popup].popover.right-top > .arrow,[uib-popover-html-popup].popover.right-bottom > .arrow,[uib-popover-template-popup].popover.top-left > .arrow,[uib-popover-template-popup].popover.top-right > .arrow,[uib-popover-template-popup].popover.bottom-left > .arrow,[uib-popover-template-popup].popover.bottom-right > .arrow,[uib-popover-template-popup].popover.left-top > .arrow,[uib-popover-template-popup].popover.left-bottom > .arrow,[uib-popover-template-popup].popover.right-top > .arrow,[uib-popover-template-popup].popover.right-bottom > .arrow{top:auto;bottom:auto;left:auto;right:auto;margin:0;}[uib-popover-popup].popover,[uib-popover-html-popup].popover,[uib-popover-template-popup].popover{display:block !important;}</style><style type="text/css">.uib-datepicker-popup.dropdown-menu{display:block;float:none;margin:0;}.uib-button-bar{padding:10px 9px 2px;}</style><style type="text/css">.uib-position-measure{display:block !important;visibility:hidden !important;position:absolute !important;top:-9999px !important;left:-9999px !important;}.uib-position-scrollbar-measure{position:absolute !important;top:-9999px !important;width:50px !important;height:50px !important;overflow:scroll !important;}.uib-position-body-scrollbar-measure{overflow:scroll !important;}</style><style type="text/css">.uib-datepicker .uib-title{width:100%;}.uib-day button,.uib-month button,.uib-year button{min-width:100%;}.uib-left,.uib-right{width:100%}</style><style type="text/css">.ng-animate.item:not(.left):not(.right){-webkit-transition:0s ease-in-out left;transition:0s ease-in-out left}</style><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>
+<meta charset="utf-8">
+<meta name="_csrf" content="">
+	<!-- default header name is X-CSRF-TOKEN -->
+<meta name="_csrf_header" content="">
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">  
+<title>eProc-Suite</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="icon" type="image/png" sizes="32x32" href="resources/images/favicon-32x32.png">
+<script src="/resources/js/bundle.js"></script>
+<link rel="shortcut icon" href="/resources/images/favicon-32x32.png">
+<!-- <link rel="stylesheet" -->
+<!-- 	href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/base/jquery-ui.css" /> -->
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/base/jquery-ui.css" integrity="sha256-K4eGaGt0K4nsxEcO3pw/KdDYL3WormdcDoT3pbv4RQs=" crossorigin="anonymous">	
+<script src="/resources/tender/js/jquery-2.1.3.min.js"></script>
+
+<link href="resources/css/buyer_style.css" rel="stylesheet" type="text/css">
+<script src="/resources/js/angularmodule/lib/jquery.min.js"></script>
+<script src="resources/js/encryption/AesUtil.js" type="text/javascript"></script>
+<script src="resources/js/encryption/aes.js" type="text/javascript"></script>
+<script src="resources/js/encryption/pbkdf2.js" type="text/javascript"></script>
+<script src="/resources/js/angularmodule/lib/jquery-ui-1-11-3.js"></script>
+<script src="/resources/tender/js/jquery.simple-dtpicker.js"></script>
+<script type="text/javascript" src="resources/js/modernizr.custom.79639.js"></script>
+<script src="resources/js/jquery.popupoverlay.js"></script>
+<script type="text/javascript" src="resources/js/jquery.ba-cond.min.js"></script>
+<script type="text/javascript" src="resources/js/jquery.slitslider.js"></script>
+<script src="/resources/js/angularmodule/lib/angular.min.js"></script>
+<script src="/resources/js/angularmodule/lib/angular-translate.js"></script>
+<script src="/resources/js/angularmodule/lib/angular-translate-loader-url.js"></script>
+<script src="/resources/js/angularmodule/lib/angular-translate-loader-static-files.js"></script>
+<script src="/resources/js/angularmodule/lib/angular-route.min.js"></script>
+<script src="/resources/js/angularmodule/lib/angular-animate.min.js"></script>
+<script src="/resources/js/angularmodule/lib/angular-sanitize.js"></script>
+<script src="/resources/js/angularmodule/lib/ngDialog.js"></script>
+<script src="/resources/js/angularmodule/lib/datepickr.min.js"></script>
+<script src="/resources/js/angularmodule/lib/jquery.dataTables.min.js"></script>
+<script src="/resources/js/angularmodule/lib/angular-datatables.js"></script>
+<script src="/resources/js/angularmodule/lib/captcha.js"></script>
+<script src="/resources/js/angularmodule/lib/angular-aria.min.js"></script>
+<script src="/resources/js/angularmodule/lib/angular-material.min.js"></script>
+<script src="/resources/js/app.js"></script>
+<script src="/resources/js/angularmodule/lib/ui-bootstrap-tpls-0.14.3.min.js"></script>
+<script src="/resources/js/dataTables.bootstrap4.min.js" type="text/javascript"></script>
+
+
+
+ 
+<link href="/resources/js/calender1/jquery-ui-timepicker-addon.css" rel="stylesheet" type="text/css">
+ 
+<script src="/resources/js/angularmodule/lib/datepickr.min.js"></script>
+
+<script src="/resources/js/jquery.datePicker.js"></script>
+
+<script src="/resources/js/calender1/calender.js"></script> 
+
+<link href="/resources/js/calender1/calender.css" rel="stylesheet" type="text/css">
+
+<link href="/resources/css/buyer_style.css" rel="stylesheet">
+<script src="/resources/js/sha256.js"></script>
+<script src="/resources/js/jquery.base64.js"></script>
+<script src="/resources/js/filterparam.js"></script>
+<script src="/resources/js/core-min.js"></script>
+<script src="/resources/js/sha256-min.js"></script>
+<script src="/resources/js/enc-base64-min.js"></script>
+<script src="/resources/js/service/dashboard_service.js"></script>
+<script src="/resources/js/controller/dashboard_controller.js"></script> 
+<script src="/resources/js/controller/vendor_controller.js"></script>
+<script src="/resources/js/service/vendor_service.js"></script>
+
+
+<script src="/resources/js/odometer.js"></script>
+<link rel="stylesheet" href="/resources/css/odometer-theme-car.css">
+
+<script type="text/javascript">
+window.history.forward();
+
+var visitorCount = 400000 + parseInt(27920145);
+setTimeout(function(){
+	$('.odometer').html(visitorCount);
+}, 1000);
+
+</script>
+
+<script>
+function getnCodeUrl(){
+	var myurl = "";
+	if (location.protocol === "http:") {
+        myurl = "http://localhost:12591/signservice/signdata";
+    } else {
+        myurl = "https://localhost:13591/signservice/signdata";
+    }
+	return myurl;
+}
+
+</script>
+  <script type="text/javascript">
+  
+window.onload = function() {
+	animateCounter("activeTenders", activeTenders);
+    animateCounter("openingToday", openingToday);
+    animateCounter("closingToday", closingToday);
+};
+
+  var tmonth = ["1","2","3","4","5","6","7","8","9","10","11","12"];
+  var timenow = Date.now(); 
+
+  function settimenow() {
+      timenow += 1000;
+  }
+
+  function GetClock() {
+
+      var d = new Date(timenow);
+
+      var nmonth = d.getMonth();
+      var ndate = d.getDate();
+      var nyear = d.getFullYear();
+
+      var nhour = d.getHours();
+      var nmin = d.getMinutes();
+      var nsec = d.getSeconds();
+
+      if (nmin < 10) nmin = "0" + nmin;
+      if (nsec < 10) nsec = "0" + nsec;
+
+      var clockTime =
+          ndate + " / " + tmonth[nmonth] + " / " +
+          nyear + " " + nhour + ":" + nmin + ":" + nsec;
+
+      var el = document.getElementById("timetable");
+      if (el) {
+          el.innerHTML = clockTime;
+      }
+  }
+
+  $(document).ready(function () {
+
+      var csrftoken = $("meta[name='_csrf']").attr("content");
+
+      $.ajax({
+          url: "/getdate?_csrf=" + csrftoken,
+          type: "POST",
+          success: function (result) {
+              try {
+                  result = JSON.parse(result);
+                  if (result.currentmillis) {
+                      timenow = result.currentmillis;
+                  }
+              } catch (e) {
+                  console.log("Date parse error", e);
+              }
+          },
+          complete: function () {
+
+              GetClock();
+              setInterval(GetClock, 1000);
+
+              settimenow();
+              setInterval(settimenow, 1000);
+          },
+          error: function () {
+              GetClock();
+              setInterval(GetClock, 1000);
+          }
+      });
+
+  });
+
+  </script>
+	<script>
+		
+		function getVisitorsCount(){
+			console.log("Inside Method")
+			
+				$.ajax({
+					url: "/getVisitorsCount",
+					type: "GET",
+					dataType: "json",
+					success: function(data)
+					{				
+						var visitorCount = 400000 + parseInt(data);
+						$('.odometer').html(visitorCount);
+					}
+				});
+
+		}
+		</script>
+<style>
+.underline-on-hover:hover {
+    text-decoration: underline;
+}
+.holder ul li span{
+color : green;
+}
+</style>
+<style type="text/css">
+#maintenanceBanner{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:35px;
+    background:#e95b51;
+    overflow:hidden;
+    z-index:9999;
+    display:flex;
+    align-items:center;
+}
+
+.marquee{
+    display:inline-block;
+    white-space:nowrap;
+    padding-left:100%;
+    animation:marquee 40s linear infinite;
+    font-weight:bold;
+    color:#fff;
+}
+
+@keyframes marquee{
+    0%{
+        transform:translateX(0);
+    }
+    100%{
+        transform:translateX(-100%);
+    }
+}
+
+ #navMenu{ 
+    top:35px; 
+ }
+</style>
+
+<style>
+.displayImageOnHome{
+	max-width: 200px;
+    float: left;
+    height: 60px;
+}
+.col-sm-9{
+    padding-left: 7ex;
+}
+</style>
+<script> 
+
+function focusOnUserId() {
+	document.getElementById("usernameloginid").focus();
+	}
+
+function handleEnter(e) {
+	  if(e.keyCode === 13){
+		  document.getElementById("btnLoginId").click();
+	  }
+	}
+/* function handleEnter(e) {
+	  if(e.keyCode === 13){
+		  document.getElementById("btnAdminLoginId").click();
+	  }
+	}
+ */function EnterForNextField(e) {
+	  if(e.keyCode === 13){
+		  document.getElementById("passwordloginid").focus();
+	  }
+	}
+
+	$(window).load(function() {
+		$(".se-pre-con").fadeOut("slow");
+		
+		 
+	});
+	
+</script>
+
+
+ <script type="text/javascript">
+ function toggle_password(target){
+	    var d = document;
+	    var tag = d.getElementById(target);
+	    var tag2 = d.getElementById("showhide");
+
+	    if (tag2.innerHTML == 'Show'){
+	        tag.setAttribute('type', 'text');   
+	        tag2.innerHTML = 'Hide';
+
+	    } else {
+	        tag.setAttribute('type', 'password');   
+	        tag2.innerHTML = 'Show';
+	    }
+	}
+ 
+ </script>
+ <script type="text/javascript">
+		 $(document).ready(function(){
+			 
+			 var delayMillis = 1000; //1 second
+
+			 setTimeout(function() {
+				  //your code to be executed after 1 second
+				var flag="";
+				
+				if(flag!=null && flag!=""){
+					if(flag=='1'){
+						alert("Invalid Request !!!");
+					}else if(flag=='2'){
+						alert("invalid username or password !!!");
+					}else if(flag=='5'){
+						  alert("Invalid Digital Signature. If DSC has renewed, Kindly contact(n)Procure team to reset the DSC.");
+					}else if(flag=='6'){
+						$('#loader-icon').show();
+						window.location.href='/vendor_registration-flow';
+					}
+					else if(flag=='3'){
+						$('#loader-icon').show();
+						 angular.element($('#submitVendorForm')).scope().mapDsc(
+								 '','','','',
+								 '','','','',`''`);
+						 
+					}else if(flag=='4'){
+						$('#loader-icon').show();
+						 angular.element($('#submitVendorForm')).scope().mapEnc(
+								 '','',''); 
+					}else if(flag=='12'){
+						alert("Certificate Map Successfully. Kindly login again to proceed !!! ");
+					}else if(flag=='13'){
+						alert("Signing certificate is Expired. Kindly map another one !!!");
+					}else if(flag=='21'){
+						alert("Your portal charges has been expired. Please Renew portal charges.");
+						/* extendPortalDate(''); */
+						
+						var primaryBidder = '';
+
+						$.ajax({
+							url: '/extendPortalDate',
+							type: 'POST',
+							data: { primarybidder: primaryBidder },
+							success: function(response) {
+								console.log("User's Details Updated");
+							},
+							error: function(xhr, status, error) {
+								alert("Error while extending portal date.");
+								console.error(error);
+							}
+						});
+					}else if(flag=='CNMISMATCH'){
+						alert("CN mismatch detected. Signing and Encryption certificates must have the same Common Name (CN).");
+					}
+				}
+			 }, delayMillis);
+			 $(function(){	
+					$('#Password').keyup(function(){
+						$('#Strengthmesg').html(checkStrength($('#Password').val()))
+					});
+				    
+				    function checkStrength(password){
+				        //initial strength
+						 var strength = 0
+						
+						//if the password length is less than 6, return message.
+						if (password.length < 5) { 
+							$('#Strengthmesg').removeClass()
+							$('#Strengthmesg').addClass('text-danger')
+							//$('#messages').addClass('short')
+							return 'Too short' 
+						}
+						
+						//length is ok, lets continue.
+						
+						//if length is 8 characters or more, increase strength value
+						if (password.length > 5) strength += 1
+						
+						//if password contains both lower and uppercase characters, increase strength value
+						if (password.match(/([a-z].*[A-Z])|([A-Z].*[a-z])/))  strength += 1
+						
+						//if it has numbers and characters, increase strength value
+						if (password.match(/([a-zA-Z])/) && password.match(/([0-9])/))  strength += 1 
+						
+						//if it has one special character, increase strength value
+						if (password.match(/([!,%,&,@,#,$,^,*,?,_,~])/))  strength += 1
+						
+						//if it has two special characters, increase strength value
+						if (password.match(/(.*[!,%,&,@,#,$,^,*,?,_,~].*[!,%,&,@,#,$,^,*,?,_,~])/)) strength += 1
+						
+						//now we have calculated strength value, we can return messages
+						
+						//if value is less than 2
+						if (strength < 2 )
+						{
+							$('#Strengthmesg').removeClass()
+							$('#Strengthmesg').addClass('text-warning')
+							return 'Weak'			
+						}
+						else if (strength == 2 )
+						{
+							$('#Strengthmesg').removeClass()
+							$('#Strengthmesg').addClass('text-primary')
+							
+							return 'Good'		
+						}
+						else
+						{
+							$('#Strengthmesg').removeClass()
+							$('#Strengthmesg').addClass('text-success')
+							return 'Strong'
+						}
+					} 
+			 
+			});
+			});
+
+		 
+							function extendPortalDate() {
+							    $.ajax({
+							        url: 'your-api-endpoint-url', // replace with your endpoint
+							        type: 'POST',
+							        contentType: 'application/json',
+							        data: JSON.stringify(dataObject),
+							        success: function(response) {
+							            console.log('Success:', response);
+							            // Optionally update your page here
+							        },
+							        error: function(xhr, status, error) {
+							            console.error('Error:', error);
+							        }
+							    });
+							}
+
+		 
+</script>
+<script type="text/javascript">
+			$('.datepicker').datepicker({
+				controlType: 'select',
+				oneLine: true,
+				dateFormat: 'dd-mm-yy'
+			});
+		
+function setValueInFlag(status){
+	$("#TENDERSTATUS").val(status.value);
+	$("#tabFlagId").val(status.value);
+}
+
+</script>
+<style>@-webkit-keyframes marqueeAnimation-2047493  { 100%  {transform:translateY(-0px)}}</style></head>
+
+<body class="npPublic ng-scope" ng-app="c1proc" ng-controller="submitVendorForm as ctrl" id="submitVendorForm" data-ng-init="onloadFun()">
+
+
+<input type="hidden" id="salt" name="salt" value="b0ed7442b4261ebae96dbfbe12e566f3">
+<input type="hidden" id="iv" name="iv" value="60bbe5eef05d12ebb8c8a36ee2cd3874">
+<input type="hidden" id="key" name="key" value="R1FGZUM=">
+<div id="maintenanceBanner" style="display: block;">
+    <div class="marquee">
+        Scheduled Maintenance:
+    The (n)Procure application will be unavailable due to scheduled maintenance from 12:00 a.m. to 6:00 a.m. on Sunday, 27 September 2026. All users are requested to take note of the scheduled downtime.
+        
+    </div>
+</div>
+	<div class="fixed-top" id="navMenu">
+			<div class="top__header bgn-primary">
+				<div class="container-fluid">
+					<div class="row d-flex justify-content-between">
+					<div class="col-md-9" style="float: left !mportant;">
+				      
+						<div class="dateTimeBox">
+							<p class="text-left timeBlock">
+								<img src="/resources/images/clock_parm.png">
+								<!-- <i class="material-icons">
+									access_time
+								</i> --> <span class="dtime" id="timetable">24 / 9 / 2026 10:19:49</span>
+							</p>
+						</div>
+					</div>
+					
+						<div class="navTopHomeLinks col-md-3" style="float: right !mportant;">
+						
+						
+							<form action="" style="float: right" class="ng-pristine ng-valid">
+								<a href="javascript:void(0);" data-toggle="modal" data-target="#loginFormModal" onblur="focusOnUserId()" style="float: right !mportant;">
+									<span class="navTopHomeLinks__svgIcon">
+										<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+											<path d="M416 448h-84c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h84c17.7 0 32-14.3 32-32V160c0-17.7-14.3-32-32-32h-84c-6.6 0-12-5.4-12-12V76c0-6.6 5.4-12 12-12h84c53 0 96 43 96 96v192c0 53-43 96-96 96zm-47-201L201 79c-15-15-41-4.5-41 17v96H24c-13.3 0-24 10.7-24 24v96c0 13.3 10.7 24 24 24h136v96c0 21.5 26 32 41 17l168-168c9.3-9.4 9.3-24.6 0-34z"></path></svg>
+									</span>
+									<span class="navTopHomeLinks__link">
+										Login
+									</span>
+								</a>
+								
+							   <a href="javascript:void(0);" data-toggle="modal" data-target="#newUserModal">
+									<span class="navTopHomeLinks__svgIcon">
+										<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
+											<path d="M624 208h-64v-64c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v64h-64c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h64v64c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16v-64h64c8.8 0 16-7.2 16-16v-32c0-8.8-7.2-16-16-16zm-400 48c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm89.6 32h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-74.2-60.2-134.4-134.4-134.4z"></path></svg>
+									</span>
+									<span class="navTopHomeLinks__link">
+										New User
+									</span>
+								</a>
+								 <a href="javascript:void(0);">
+									<span class="navTopHomeLinks__svgIcon">
+										<b><span style="font-size: 15px">₹</span></b>
+									</span>
+									<span class="navTopHomeLinks__link">
+									</span></a><a href="/payportalHome">
+										Pay Portal Charges</a>
+									
+
+								   
+
+							</form>
+						</div>
+						<!-- <div class="">
+							<p class="text-left">
+								<i class="material-icons"> call </i>
+								<span class="mr-2">+91-712-2253204 </span>
+							</p>
+						</div> -->
+						<input type="hidden" id="dscDateId" value="24/09/2026 10:19 +0530">
+						<input type="hidden" value="4" id="pkiComponentVersion">
+						<form action="/reset-password" method="post" id="resetpwdid" class="ng-pristine ng-valid">
+						 <input type="hidden" name="" value="">
+						 <input type="password" name="password" id="userpwdid1" style="display: none;" autocomplete="off">
+						</form>
+						<form action="/map-encryptions" method="post" id="mapencryptionid" class="ng-pristine ng-valid">
+						 <input type="hidden" name="" value="">
+						 <input type="hidden" name="certtype" value="DS" id="certtypeId">
+						</form>
+						
+						<form action="/bidsubmission/signinguserorbidder" method="post" id="saveSignUserFormId" class="ng-pristine ng-valid">
+						 <input type="hidden" name="" value=""> 
+						 <input type="hidden" name="serialNo" id="serialNoId">
+						  <input type="hidden" name="userType" id="userTypeId">
+						    <input type="hidden" name="issueDate" id="issueDateId">
+						     <input type="hidden" name="expDate" id="expDateId">
+						     
+						      <input type="hidden" name="certIssuer" id="certIssuerId">
+						  <input type="hidden" name="publicKey" id="publicKeyId">
+						    <input type="hidden" name="thumbprint" id="thumbprintId">
+						     <input type="hidden" name="subjectDN" id="subjectDNId">
+						</form>
+						
+						
+						
+						<form action="/login" method="post" id="loginformid" autocomplete="off" class="ng-pristine ng-valid">
+						 <input type="hidden" name="" value=""> 
+<!-- 						 <input type="hidden" name="signature" id="loginSignId"> -->
+<!-- 						 <input type="hidden" name="username" id="usernameId"> -->
+<!-- 						 <input type="hidden" name="portalCharges" id="portalChargesId" value="1"> -->
+<!-- 						 <input type="password" name="password" id="userpwdid" style="display: none;" autocomplete="off"> -->
+<!-- 						 <input type="hidden" name="certSerialNumber" id="certSerialNumberId"> -->
+<!-- 						 <input type="hidden" name="certIssuer" id="certIssuerIdLogin"> -->
+<!-- 						 <input type="hidden" name="issueDate" id="issueDateIdLogin"> -->
+<!-- 						 <input type="hidden" name="expDate" id="expDateIdLogin"> -->
+<!-- 						 <input type="hidden" name="publicKey" id="publicKeyIdLogin"> -->
+<!-- 						 <input type="hidden" name="thumbprint" id="thumbprintIdLogin"> -->
+<!-- 						 <input type="hidden" name="subjectDN" id="subjectDNIdLogin"> -->
+						 <input type="hidden" name="encReq" id="encReq">
+						</form>
+						
+						<form action="/portalChargesSubmit" method="post" id="portalChargesSubmit" autocomplete="off" class="ng-pristine ng-valid">
+						 <input type="hidden" name="" value=""> 
+						 <input type="hidden" name="signaturePortal" id="loginSignIdPortal">
+						 <input type="hidden" name="usernamePortal" id="usernameIdPortal">
+						 <input type="password" name="passwordPortal" id="userpwdidPortal" style="display: none;" autocomplete="off">
+						 <input type="hidden" name="certSerialNumberPortal" id="certSerialNumberIdPortal">
+						</form>
+						
+						<input type="hidden" name="chash" id="chash">
+						
+					</div>
+				</div>
+			</div>
+			<nav class="navbar navbar-expand-lg bgn-white">
+				<a class="navbar-brand mt-1" href="/" style="color: #0d81a9;	font-size: xx-large; font-family: -webkit-body; !important;">
+<!-- 						E-Proc Suite -->
+					<img src="/resources/images/logo.png" alt="">
+				</a>
+				<div class="navbar-collapse mainNavigation">
+					<ul class="navbar-nav">
+						<li class="nav-item active">
+							<a class="nav-link" href="/">
+								<span class="nav-link__title">
+									Home
+								</span>
+							</a>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link" href="javascript:void(0);" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<span class="nav-link__title">
+									Legal
+								</span>
+							</a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink2">
+								<a target="_blank" rel="noopener noreferrer" href="https://cvc.gov.in/?q=guidelines/tender-guidelines" class="dropdown-item">CVC Guidelines</a>
+								<a target="_blank" href="/resources/files/Procurement-May-2004.pdf" class="dropdown-item">World Bank Guidelines</a>
+								<a target="_blank" href="/resources/files/GoG_e_Procurement_GRs.pdf" class="dropdown-item">Gujarat Government Resolution</a>
+								<a target="_blank" href="/resources/files/e-Procurement_Guidelines_DIT and STQC_October 2011.pdf" class="dropdown-item">STQC Standards for e-Procurement</a>
+
+							</div>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link" href="javascript:void(0);" id="navbarDropdownMenuLink4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<span class="nav-link__title">
+									Resources
+								</span>
+							</a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink4">
+								<a target="_blank" href="/resources" class="dropdown-item">White Papers</a>
+								<a target="_blank" href="/resources/files/nprocure-system-malfunction-procedure.pdf" class="dropdown-item">System Malfunction Procedure</a>
+
+								<a target="_blank" href="/resources" class="dropdown-item">Links to Important Sites</a>
+								<a target="_blank" href="/resources/files/general_holidays_2026.pdf" class="dropdown-item">Govt. Of Gujarat Public Holidays</a>
+							</div>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" target="_blank" href="/support">
+								<span class="nav-link__title">
+									Support
+								</span>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" target="_blank" rel="noopener noreferrer" href="/faqs">
+								<span class="nav-link__title">
+									FAQS
+								</span>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" target="_blank" rel="noopener noreferrer" href="https://www.ncodesolutions.com/about-us.php">
+								<span class="nav-link__title">
+									About Us
+								</span>
+							</a>
+						</li>
+						<li class="nav-item dropdown">
+<!-- 							<a class="nav-link" target="_blank" rel="noopener noreferrer" href="https://www.ncode.in/contactus.html" > -->
+							<a class="nav-link" target="_blank" href="/contactus">
+								<span class="nav-link__title">
+									Contact Us
+								</span>
+							</a>
+							
+						</li>
+						
+						
+					</ul>
+				</div>
+				<div class="clientLogo" style="color: #0d81a9; font-size: xx-large; font-family: -webkit-body;!important;">
+<!-- 					C1 India Pvt. Ltd. -->
+ 					<img src="/resources/images/gnfcLogo.png" alt="" class="img-fluid">
+					<img src="/resources/images/banner_nprocure.png" alt="" class="img-fluid"> 
+				</div>
+			</nav>
+		</div>
+<!--All Modal starts-->
+			<div class="modal fade" id="loginFormModal" tabindex="-1" role="dialog" aria-labelledby="loginFormModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered modal-md" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="loginFormModalLabel">Login</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">×</span>
+							</button>
+						</div>
+						<div class="modal-body py-0">
+							<form action="" name="userForm" autocomplete="off" class="ng-pristine ng-valid">
+							<input type="hidden" name="" value="">
+								<div class="form-row">
+									<div class="form-group col-sm-12">
+										<div class="floating-label">
+											<label for="userName">User ID</label>
+											<input type="text" name="username" id="usernameloginid" value="" class="form-control" required="required" autocomplete="off" onkeydown="EnterForNextField(event)">
+										</div>
+									</div>
+									<div class="form-group col-sm-12">
+										<div class="floating-label">
+											<label for="userPassword">Password</label>
+											<input type="password" name="password" value="" required="required" autocomplete="new-password" id="passwordloginid" class="form-control" onkeydown="handleEnter(event)">
+										</div>
+									</div>
+								</div>
+								<div class="d-flex justify-content-between mt-3">
+									<a href="/forgot-password">Forgot Password?</a>
+									<a target="_blank" href="/supportFromLogin?supportLink=allow" id="btnSupportId">Links for PKI Components</a>
+									<input type="hidden" name="loginFrom" value="LoginPage" id="loginFrom">
+									<input type="button" value="Login" class="btn btn-primary btn_login" ng-hide="loginCtrl.hidelogin()" ng-click="submitForm()" id="btnLoginId">
+								</div>
+							</form>
+						</div>
+						<div class="modal-footer">
+
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal fade" id="newUserModal" tabindex="-1" role="dialog" aria-labelledby="newUserModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered modal-md" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="newUserModalLabel">Register</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">×</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<form id="vendorForm" ng-submit="submitReply()" method="post" autocomplete="off" class="ng-pristine ng-invalid ng-invalid-required ng-valid-minlength ng-valid-maxlength ng-valid-email">
+							 	<input type="hidden" name="" value="">
+								<div class="form-row">
+									<div class="form-group col-sm-12">
+										<div class="floating-label textfield-box">
+											<label for="userIdLogin">
+												User ID <span class="color-red">*</span>
+											</label>
+											<input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" name="UserID" ng-model="vendor.UserID" required="required" id="username" ng-input="vendor.UserID = vendor.UserID.toLowerCase()" ng-keyup="vendor.UserID = vendor.UserID.toLowerCase()">
+										</div>
+									</div>
+									<div class="form-group input-group col-sm-12">
+										<div class="floating-label textfield-box">
+											<label for="passwordLogin">
+												Password <span class="color-red">*</span>
+											</label>
+											<input type="password" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required ng-valid-minlength ng-valid-maxlength" name="Password" ng-model="vendor.Password" id="Password" onchange="checkpass(event)" required="required" minlength="8" maxlength="25">																						
+										</div>
+										<a href="javascript:void(0);" class="btn btn-flat-primary ml-1" onclick="toggle_password('Password');" id="showhide">Show</a>
+									</div>
+									<div class="form-group col-sm-12">
+			                           <div class="form-row">
+			                           <div class="form-group col-sm-6 text">
+			                          <label id="Strengthmesg"></label>
+			                           </div> 
+			                            <div class="form-group col-sm-5 text-center">
+			                             <a href="javascript:void(0);" data-toggle="popover" data-aligment="right" title="" data-trigger="hover" data-content="&lt;ul class=&quot;p-0&quot;&gt;
+			                                  &lt;li&gt;Length must be between 8 to 25 characters&lt;/li&gt;
+			                                  &lt;li&gt;Any Lower Case or Upper Case(a - z or A - Z) characters&lt;/li&gt;
+			                                  &lt;li&gt;Any number between 0 - 9&lt;/li&gt;
+			                                  &lt;li&gt;Any special characters from the bracket [( ) _ - + = { } [ ] ; , . / \]&lt;/li&gt;
+			                              &lt;/ul&gt;" data-html="true" data-original-title="Password Policy">
+			                                Password Policy
+			                            </a>
+			                           	</div> 
+			                           </div> 
+                        			</div>
+									<div class="form-group col-sm-12">
+										<div class="floating-label textfield-box">
+											<label for="confirmPasswordLogin">
+												Confirm Password <span class="color-red">*</span>
+											</label>
+											<input type="password" class="form-control" name="ConfirmPassword" id="ConfirmPassword" onchange="checkpass(event)" required="required" minlength="8">
+										</div>
+									</div>
+									<div class="form-group col-sm-12">
+										<div class="floating-label textfield-box">
+											<label for="emailIDLogin">
+												Email ID <span class="color-red">*</span>
+											</label>
+											<input type="email" ng-model="vendor.email" name="email" id="email1" required="required" class="form-control ng-pristine ng-untouched ng-empty ng-valid-email ng-invalid ng-invalid-required">
+										</div>
+									</div>
+									<div class="form-group col-sm-12">
+										<div class="floating-label textfield-box">
+											<label for="scrtQueLogin">
+												Secret Question <span class="color-red">*</span>
+											</label>
+											<select class="custom-select ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" ng-model="vendor.SecretQuestion" ng-change="showSelectValue(SecretQuestion)" id="secretQuestion" name="SecretQuestion" required="required">
+												<option label="" value=""></option>
+												<option value="What is your Mother's maiden Name?">What is your Mother's maiden Name?</option>
+												<option value="What is your first Pet's Name?">What is your first Pet's Name?</option>
+												<option value="What is first Teacher's Name?">What is your first Teacher's Name?</option>
+											</select>
+										</div>
+									</div>
+									<div class="form-group col-sm-12">
+										<div class="floating-label textfield-box">
+											<label for="scrtAnswerLogin">
+												Answer <span class="color-red">*</span>
+											</label>
+											<input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" name="Answer" ng-model="vendor.Answer" id="Answer" required="required">
+										</div>
+									</div>
+									<div class="form-group input-group col-sm-12">
+<!-- 										 <div id="captcha1" class="mt-1"> -->
+												<div id="captcha"><div><canvas style="width: 150px; height: 100px;"></canvas></div><div></div></div>
+										&nbsp;&nbsp;&nbsp;&nbsp;
+										<div class="floating-label textfield-box">
+											<label for="captchaLogin">
+												Captcha <span class="color-red">*</span>
+											</label>
+											
+												<input type="text" id="captchaInput" name="Captcha" ng-model="vendor.captcha" required="required" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required">
+												<input type="hidden" id="captchaId" value="ffd80251-e444-4222-aaeb-60ba1e771a8f">
+											
+<!-- 											<input type="text" name="Captcha" ng-model="vendor.captcha" required="required"  class="form-control" id="Captcha"> -->
+			
+											
+											
+											
+										</div>
+									</div>	
+								</div>
+								<div class="text-right mt-3">
+									<input type="submit" value="Register" class="btn btn-primary reg_btn" id="btnSubmit" style="margin-left: auto;">
+									<input type="button" value="Register" class="btn btn-primary reg_btn" id="btn" style="display: none;">
+								</div>
+							</form>
+							
+							<hr>
+							<div class="alert alert-info dsc-alert" role="alert">
+                    			<strong>Note:</strong> Class 3 DSC <b>(Signing &amp; Encryption)</b> Combo is required in the name of the organization or individual, with separate Signing and Encryption certificates under the Indian Root CA chain.
+			                </div>
+							</div>
+						<div class="modal-footer">
+
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--All Modal Ends-->
+			
+			
+			
+			
+<script type="text/javascript">
+let captchaObj = new CAPTCHA({
+    selector: "#captcha",
+    randomText: false
+});
+
+function loadCaptchaFromServer() {
+    fetch('/captcha')
+        .then(res => res.json())
+        .then(data => {
+            captchaObj._settings.text = data.captchaText;
+            document.getElementById("captchaId").value = data.captchaId;
+
+            captchaObj.generate();
+        });
+}
+
+loadCaptchaFromServer();
+
+function submitForm() {
+    fetch('/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body:
+            'captchaId=' + document.getElementById("captchaId").value +
+            '&captchaInput=' + document.getElementById("captchaInput").value
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.success === false) {
+            alert(data.message);
+            captchaObj._settings.text = data.captchaText;
+            document.getElementById("captchaId").value = data.captchaId;
+            captchaObj._context.clearRect(0, 0,captchaObj._settings.width,captchaObj._settings.height);
+            captchaObj.generate();
+            return;
+        }
+
+        alert("Signup successful");
+    });
+}
+
+
+
+</script>
+
+ 
+
+<style>
+.underline-on-hover:hover {
+    text-decoration: underline;
+}
+.holder ul li span{
+color : green;
+}
+.displayImageOnHome{
+	max-width: 200px;
+    float: left;
+    height: 60px;
+}
+
+.liveClass{
+color : red;
+font-weight: bold;
+font-size: 15px;
+}
+</style>
+
+<script>
+		$(document).ready(function(){
+			
+			
+			$('#LOCATION').change(function()
+		    {
+				var locationId=document.getElementById("LOCATION").value;
+				var clientId= $("#clientid").val();
+				if(clientId==""){
+					clientId = 0;
+				}
+    			$('#DEPARTMENT').empty();
+    			$('#SUBDEPARTMENT').empty();
+				var newOption = $('<option value="">--Select Department--</option>');
+				$('#DEPARTMENT').append(newOption);
+				var newOption1 = $('<option value="">--Select SubDepartment--</option>');
+				$('#SUBDEPARTMENT').append(newOption1);
+				GenerateRandomKey();
+		       	 
+		       	 
+		       	var jsonData = GenerateEncryptedString(JSON.stringify({
+		            "clientId":clientId,"locationId":locationId
+			     }));
+				 var finalJsonReqString = JSON.stringify({
+			          "jsonData": jsonData,
+			          "iv": $('#iv').val(),
+			          "salt": $('#salt').val(),
+			          "key": $('#key').val(),
+			          
+				 });
+				
+				
+				$.ajax({
+					url: "/getDepartmentFromLocationHomePage",
+					type: "POST",
+					contentType: "application/json",
+					dataType: "json",
+					data: finalJsonReqString,
+					success: function(data)
+					{				
+						for(var datafield in data)
+						{
+							newOption = $('<option value="'+data[datafield]["deptId"]+'">'+data[datafield]["deptName"]+'</option>');
+							$('#DEPARTMENT').append(newOption); 
+						}  
+					}
+				});
+		    });
+		  
+			$('#location123').change(function()
+	  	    		{
+	  	    			var clientid=document.getElementById("location123").value;	
+	  	    			$('#LOCATION').empty();	
+	  	    			$('#DEPARTMENT').empty();
+	  	    			$('#SUBDEPARTMENT').empty();
+	  	    			var newOptionLocation = $('<option value="">----Select----</option>');
+						$('#LOCATION').append(newOptionLocation);
+						var newOption = $('<option value="">----Select----</option>');
+						$('#DEPARTMENT').append(newOption);
+						var newOption1 = $('<option value="">----Select----</option>');
+						$('#SUBDEPARTMENT').append(newOption1);
+
+						GenerateRandomKey();
+						
+						var jsonData = GenerateEncryptedString(JSON.stringify({"clientid": clientid}));
+						 var finalJsonReqString = JSON.stringify({
+					          "jsonData": jsonData,
+					          "iv": $('#iv').val(),
+					          "salt": $('#salt').val(),
+					          "key": $('#key').val()				          
+						 });
+						
+						$.ajax({
+	  	    			url: "/getLocationFromclientHomePage",
+	  	    			type: "POST",
+	  	    			contentType: "application/json",
+						dataType: "json",
+	  	    			data: finalJsonReqString,
+	  	    			success: function(data)
+	  	    			{
+	  	    				
+	  	    				$('#LOCATION').empty();
+	  	    				$('#DEPARTMENT').empty();
+	  	    				$('#SUBDEPARTMENT').empty();//remove all child nodes
+	  	    				var newOption = $('<option value="">----Select----</option>');
+	  	    				$('#LOCATION').append(newOption);
+	  	    				var newOption = $('<option value="">----Select----</option>');
+	  	    				$('#DEPARTMENT').append(newOption);
+	  	    				var newOption = $('<option value="">----Select----</option>');
+	  	    				$('#SUBDEPARTMENT').append(newOption);
+	  	    				for(var datafield in data)
+	  	    				{
+	  	    					var a=data[datafield]["id"];
+	  	    							newOption = $('<option value="'+data[datafield]["id"]+'">'+data[datafield]["location"]+'</option>');
+	  	    							$('#LOCATION').append(newOption);
+	  	    				}
+	  	    			}
+	  	    		});
+	  	    	});
+			
+			
+			
+			$('#DEPARTMENT').change(function()
+			{
+				var deptid=document.getElementById("DEPARTMENT").value;	
+				var locationId=document.getElementById("LOCATION").value;
+				var clientId= $("#clientid").val();
+				if(clientId==""){
+					clientId = 0;
+				}
+				
+				$('#SUBDEPARTMENT').empty();
+				
+				
+				GenerateRandomKey();
+		       	 
+		       	 
+		       	var jsonData = GenerateEncryptedString(JSON.stringify({
+		            "clientId":clientId,"locationId":locationId,"departmentId":deptid
+			     }));
+				 var finalJsonReqString = JSON.stringify({
+			          "jsonData": jsonData,
+			          "iv": $('#iv').val(),
+			          "salt": $('#salt').val(),
+			          "key": $('#key').val(),
+			          
+				 });
+				
+				$.ajax({
+				url: "getSubDepartmentHomePage",
+				type: "POST",
+				contentType: "application/json",
+				data: finalJsonReqString,
+				success: function(data)
+				{
+					
+					$('#SUBDEPARTMENT').empty(); //remove all child nodes
+					var newOption = $('<option value="">----Select----</option>');
+					$('#SUBDEPARTMENT').append(newOption);
+					for(var datafield in data)
+					{
+						var a=data[datafield]["deptid"];
+						//if(.indexOf(a)>-1)
+							//{
+								newOption = $('<option value="'+data[datafield]["subDeptId"]+'">'+data[datafield]["subDeptName"]+'</option>');
+								$('#SUBDEPARTMENT').append(newOption);
+							//}
+					}
+				}
+			});
+		});
+			
+	});
+		
+//Start :: Dangi Ashish :: //
+function viewAwardedTenderScreen(){
+    $("#awardedTenderFormId").submit();
+}
+
+function bidClosingReport(){
+    $("#bidClosingFormId").submit();
+}
+//End :: Dangi Ashish :: //
+
+</script>
+ <script type="text/javascript">
+function clearAdvanceSearch(){
+	
+	window.location.reload();
+	
+	//Bug 242 Cancel Button Clears Search - Start	
+	/*
+    $("#location123").val(''); 
+	$("#advanceSearch").val('0');
+	$("#TENDERTYPE").val('');
+	$("#EVALUATIONTYPE").val('');
+	$("#PRODUCTCATEGORY").val('');
+	$("#SECTORCATEGORY").val('');
+	$("#LOCATION").val('');
+	$("#DEPARTMENT").val('');
+	$("#SUBDEPARTMENT").val('');
+	$("#bidsubmissionstart").val('');
+	$("#TENDERTITLE").val('');
+	$("#tenderNo").val('');
+	$("#ADVTENDERTITLE").val('');
+	$("#bidsubmissionenddate").val('');
+	$("#valuecriteria").val('');
+	$("#parameter1").val('');
+	$("#parameter2").val('');
+	$("#parameter3").val('');
+	$("#advanceSearchDisplay").hide();
+	$("#viewMoreTender").show();
+	showOrNotParam('Select');
+	
+	//	$("#searchButtonId").click();
+*/
+	//Bug 242 Cancel Button Clears Search - End	
+}
+ 
+function showOrHideAdvanceSearch(){
+	 if($("#advanceSearch").val()=='0'){
+		 $("#advanceSearchHome").show();
+		 $("#advanceSearch").val('1');
+		 $("#normalSearchHome").hide();
+	 }else{
+		 $("#advanceSearchHome").hide();
+		 $("#advanceSearch").val('0');
+		 $("#normalSearchHome").show();
+	 }
+ }
+/* function checkCriteriaValidation(){
+	if($("#valuecriteria").val()!=""){
+		if($("#parameter1").val()==""){
+			alert("Please select the parameter for field value.");
+			$("#isValidation").val("1");
+			return false;
+		} else if($("#parameter1").val()=='between') {
+			if($("#parameter2").val()==""){
+				alert("Please enter field value.");
+				$("#isValidation").val("1");
+				return false;
+			}else if($("#parameter3").val()==""){
+				alert("Please enter field value.");
+				$("#isValidation").val("1");
+				return false;
+			} else {
+				$("#isValidation").val("0");
+				return true;
+			}
+		} else {
+			if($("#parameter2").val()==""){
+				alert("Please enter field value.");
+				$("#isValidation").val("1");
+				return false;
+			} else {
+				$("#isValidation").val("0");
+				return true;
+			}	
+		}
+	} else {
+		$("#isValidation").val("0");
+		return true;
+	}
+} */
+
+function checkCriteriaValidation() {
+	
+	
+	
+	//Bug 241 Bidsubmission End Date less than Start date - Start
+	var startDate = $("#bidsubmissionstart").val();
+	var endDate = $("#bidsubmissionenddate").val();
+
+	if (startDate && endDate) {
+		
+		// Convert "DD/MM/YYYY" to "YYYY-MM-DD"
+	    const formattedStart = startDate.split('/').reverse().join('-');
+	    const formattedEnd = endDate.split('/').reverse().join('-');
+		if (new Date(formattedEnd) <= new Date(formattedStart)) {
+	        alert("Bidsubmission End date must be greater than Bidsubmission start date.");
+	        return false;
+	    }
+  
+	}
+	//Bug 241 Bidsubmission End Date less than Start date - End
+	
+    var ecv = $.trim($("#parameter2").val());
+    var ecv2 = $.trim($("#parameter3").val());
+    var selectParameter = $.trim($("#parameter1").val());
+    var valueCriteria = $.trim($("#valuecriteria").val());
+    if (valueCriteria == "") {
+        if (selectParameter != "" || ecv != "" || ecv2 != "") {
+            alert("Please select the value category.");
+            $("#isValidation").val("1");
+            $("#valuecriteria").focus();
+            return false;
+        }
+
+        $("#isValidation").val("0");
+        return true;
+    }
+
+    if (selectParameter == "") {
+        alert("Please select the parameter.");
+        $("#isValidation").val("1");
+        $("#parameter1").focus();
+        return false;
+    }
+
+    if (ecv == "") {
+    	alert("Please enter the amount.");
+        $("#isValidation").val("1");
+        $("#parameter2").focus();
+        return false;
+    }
+    if (selectParameter == "between") {
+
+        if (ecv2 == "") {
+        	alert("Please enter Amount 2.");
+            $("#isValidation").val("1");
+            $("#parameter3").focus();
+            return false;
+        }
+        var amount1 = Number(ecv);
+        var amount2 = Number(ecv2);
+        if (amount2 <= amount1) {
+        	alert("Amount 2 should be greater than Amount 1.");
+            $("#parameter3").val("");
+            $("#isValidation").val("1");
+            $("#parameter3").focus();
+
+            return false;
+        }
+    }
+
+    $("#isValidation").val("0");
+    return true;
+}
+function changeParamValue(){
+	$("#parameter1").val("");
+	$("#parameter2").val("");
+	$("#parameter3").val("");
+	$("#parameter3").hide();
+	$("#parameter3_Div").hide();
+}
+
+function showOrNotParam(val){
+	if(val.value!='between'){
+		$("#parameter3").hide();
+		$("#parameter3_Div").hide();
+		$("#amt_label1").text("Amount");
+	}else{
+		$("#parameter3").show();
+		$("#amt_label1").text("Amount 1");
+		$("#amt_label2").text("Amount 2");
+		$("#parameter3_Div").show();
+	}
+}
+
+function getSubDomain(){
+
+	//var tt=$('#clientname1 > option').eq($('#clientname1').val()).attr('class').slice(14);
+	var subdomainName=$('select[name="clientname1"] :selected').attr('class').slice(14);
+	window.open(subdomainName);
+	
+}
+function newList(value){
+	if(value == 1){
+		$("#advanceSearchDisplay").show();
+// 		$("#lessMoreTender").show();
+		$("#viewMoreTender").hide();
+	} else {
+		$("#advanceSearchDisplay").hide();
+		$("#lessMoreTender").hide();
+		$("#viewMoreTender").show();
+	}
+}
+</script>
+
+
+
+
+<div id="loader-icon" style="display: none;">
+		<div style="width:100%; height:100%; position:fixed; background:url(/resources/tender/images/overlay.png) repeat; z-index:99998; opacity:.75;"></div>
+		<div style=" position:absolute; top:49%; left:48%; z-index:99999;">
+			<img src="/resources/images/loading12.gif" style="width:100px;">
+	</div>
+	</div>
+	<main class="container-fluid">
+		<form action="/awardedTenders" id="awardedTenderFormId" method="POST" target="_blank" class="ng-pristine ng-valid"></form><!-- target="_blank" -->
+		<form action="/beforeLoginBidSubmissionClosingReport" id="bidClosingFormId" method="POST" target="_blank" class="ng-pristine ng-valid"></form>
+			<div class="row">
+			    <div class="col-sm-9 pr-1">
+				
+					<section>
+						
+						<div class="form-row normalSearch" id="normalSearchHome">
+						<input type="hidden" id="tablstatusFlag" value="Tenders In Progress">
+							<div class="form-group col-sm-6">
+								<div class="floating-label textfield-box has-value">
+									<label for="clientname">
+										Client Name :
+									</label>
+									 <select class="form-control ui-autocomplete-input" name="clientname1" id="location123">
+										<option value="">--Select--</option>
+		                                 
+                             			 
+                             			 		
+		                                      		 <option value="60" class="subDomainName_https://acdtender.nprocure.com:443"> Agriculture and Co-operative Department (1)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="109" class="subDomainName_https://autender.nprocure.com:443"> Agriculture University (11)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="7" class="subDomainName_https://amctender.nprocure.com:443"> Ahmedabad Municipal Corporation (760)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="9" class="subDomainName_https://amtstender.nprocure.com:443"> Ahmedabad Municipal Transport Service (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="68" class="subDomainName_https://audatender.nprocure.com:443"> Ahmedabad Urban Development Authority (AUDA) (7)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="155" class="subDomainName_https://andtender.nprocure.com:443"> Anand Municipal Corporation (4)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="141" class="subDomainName_https://badatender.nprocure.com:443"> Bhavnagar Area Development Authority (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="132" class="subDomainName_https://bmctender.nprocure.com:443"> Bhavnagar Municipal Corporation (13)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="100" class="subDomainName_https://cadtender.nprocure.com:443"> Civil Aviation Department (Govt. of Gujarat) (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="94" class="subDomainName_https://inftender.nprocure.com:443"> Commissionarate of Information (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="61" class="subDomainName_https://fisheriestender.nprocure.com:443"> Commissionerate of Fisheries (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="165" class="subDomainName_https://crdtender.nprocure.com:443"> Commissionerate of Rural Development (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="154" class="subDomainName_https://cottender.nprocure.com:443"> Commissionerate Of Transport (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="135" class="subDomainName_https://tribaltender.nprocure.com:443"> Commissionerate of Tribal Development (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="66" class="subDomainName_https://cobtender.nprocure.com:443"> Cooperative Banks (Gujarat) (1)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="95" class="subDomainName_https://dsltender.nprocure.com:443"> Dahej SEZ Limited (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="8" class="subDomainName_https://dairytender.nprocure.com:443"> Dairies (25)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="67" class="subDomainName_https://dgvcltender.nprocure.com:443"> Dakshin Gujarat Vij Company Ltd. (DGVCL) (230)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="113" class="subDomainName_https://dpatender.nprocure.com:443"> Deendayal Port Authority (19)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="93" class="subDomainName_https://dsttender.nprocure.com:443"> Department of Science &amp; Technology (1)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="161" class="subDomainName_https://sjedtender.nprocure.com:443"> Department of Social Justice and Empowerment (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="30" class="subDomainName_https://dicdltender.nprocure.com:443"> Dholera Industrial City Development Ltd (4)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="63" class="subDomainName_https://dahtender.nprocure.com:443"> Directorate of Animal Husbandry (2)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="97" class="subDomainName_https://dettender.nprocure.com:443"> Directorate of Employment And Training (11)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="64" class="subDomainName_https://primaryeducationtender.nprocure.com:443"> Directorate of Primary Education (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="91" class="subDomainName_https://dagtender.nprocure.com:443"> Director of Agriculture (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="25" class="subDomainName_https://ddotender.nprocure.com:443"> District Development Office (43)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="96" class="subDomainName_https://baoutender.nprocure.com:443"> Dr. Babasaheb Ambedkar Open University (1)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="53" class="subDomainName_https://educationtender.nprocure.com:443"> Education Department (12)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="72" class="subDomainName_https://erdatender.nprocure.com:443"> Electrical Research and Development Association (7)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="115" class="subDomainName_https://emritender.nprocure.com:443"> Emergency Management and Research Institute (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="28" class="subDomainName_https://foresttender.nprocure.com:443"> Forests and Environment Department (74)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="163" class="subDomainName_https://gdmctender.nprocure.com:443"> Gandhidham Municipal Corporation (2)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="22" class="subDomainName_https://gmctender.nprocure.com:443"> Gandhinagar Municipal Corporation (19)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="50" class="subDomainName_https://gudatender.nprocure.com:443"> Gandhinagar Urban Development Authority (1)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="147" class="subDomainName_https://gadtender.nprocure.com:443"> General Administration Department (1)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="40" class="subDomainName_https://cgmtender.nprocure.com:443"> Geology and Mining, Industries and Mines Department (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="107" class="subDomainName_https://gfptender.nprocure.com:443"> Government Funded Projects (2)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="88" class="subDomainName_https://glltender.nprocure.com:443"> GSPC LNG Limited (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="127" class="subDomainName_https://gppctender.nprocure.com:443"> GSPC Pipavav Power Company Ltd. (1)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="148" class="subDomainName_https://gigltender.nprocure.com:443"> GSPL India Gasnet Ltd (1)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="119" class="subDomainName_https://gitltender.nprocure.com:443"> GSPL India Transco Limited (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="167" class="subDomainName_https://gtltender.nprocure.com:443"> GSPL Transmission Limited (6)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="31" class="subDomainName_https://gujagrotender.nprocure.com:443"> Gujarat Agro Industries Corporation Ltd (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="120" class="subDomainName_https://gbrctender.nprocure.com:443"> Gujarat Biotechnology Research Centre (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="81" class="subDomainName_https://gbutender.nprocure.com:443"> Gujarat Biotechnology University (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="102" class="subDomainName_https://gcritender.nprocure.com:443"> Gujarat Cancer &amp; Research Institute (2)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="19" class="subDomainName_https://gcsetender.nprocure.com:443"> Gujarat Council of School Education (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="59" class="subDomainName_https://gcsttender.nprocure.com:443"> Gujarat Council of Science City (2)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="43" class="subDomainName_https://gedatender.nprocure.com:443"> Gujarat Energy Development Agency (1)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="169" class="subDomainName_https://geltender.nprocure.com:443"> Gujarat Energy Limited (80)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="20" class="subDomainName_https://germitender.nprocure.com:443"> Gujarat Energy Research and Management Institute (2)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="73" class="subDomainName_https://getcotender.nprocure.com:443"> Gujarat Energy Transmission Corporation Limited (224)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="48" class="subDomainName_https://geritender.nprocure.com:443"> Gujarat Engineering Research Institute (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="145" class="subDomainName_https://gfgnltender.nprocure.com:443"> Gujarat Fibre Grid Network Limited (3)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="99" class="subDomainName_https://gfccaltender.nprocure.com:443"> Gujarat Fisheries Central Co-operative Association (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="38" class="subDomainName_https://gfeetender.nprocure.com:443"> Gujarat Foundation For Entrepreneurial Excellence (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="111" class="subDomainName_https://ggltender.nprocure.com:443"> Gujarat Gas Limited (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="55" class="subDomainName_https://ghbtender.nprocure.com:443"> Gujarat Housing Board (2)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="51" class="subDomainName_https://gidctender.nprocure.com:443"> Gujarat Industrial Development Corporation (25)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="123" class="subDomainName_https://gipcltender.nprocure.com:443"> Gujarat Industries Power Company Limited (4)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="58" class="subDomainName_https://giltender.nprocure.com:443"> Gujarat Informatics Limited (A Government of Gujarat Company) (3)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="65" class="subDomainName_https://gidbtender.nprocure.com:443"> Gujarat Infrastructure Development Board (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="15" class="subDomainName_https://gifttender.nprocure.com:443"> Gujarat International Finance Tec-City Company Limited (10)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="153" class="subDomainName_https://gisltender.nprocure.com:443"> Gujarat ISP Services Limited (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="150" class="subDomainName_https://gldbtender.nprocure.com:443"> Gujarat Livestock Development Board (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="35" class="subDomainName_https://gmbtender.nprocure.com:443"> Gujarat Maritime Board (14)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="152" class="subDomainName_https://gmutender.nprocure.com:443"> Gujarat Maritime University (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="62" class="subDomainName_https://gmscltender.nprocure.com:443"> Gujarat Medical Services Corporation Ltd (2)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="41" class="subDomainName_https://gmrctender.nprocure.com:443"> Gujarat Metro Rail Corporation (GMRC) Ltd. (7)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="10" class="subDomainName_https://gmdctender.nprocure.com:443"> Gujarat Mineral Development Corporation Limited (14)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="116" class="subDomainName_https://gnfctender.nprocure.com:443"> Gujarat Narmada Valley Fertilizers &amp; Chemicals Limited (6)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="84" class="subDomainName_https://gnlutender.nprocure.com:443"> Gujarat National Law University (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="12" class="subDomainName_https://gpyvbtender.nprocure.com:443"> Gujarat Pavitra Yatradham Vikas Board (10)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="110" class="subDomainName_https://gpidcltender.nprocure.com:443"> Gujarat Ports Infrastructure &amp; Development Company Limited (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="103" class="subDomainName_https://gpcltender.nprocure.com:443"> Gujarat Power Corporation Limited (2)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="79" class="subDomainName_https://gridetender.nprocure.com:443"> Gujarat Rail Infrastructure Development Corporation Limited (2)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="138" class="subDomainName_https://gricltender.nprocure.com:443"> Gujarat Road and Infrastructure Company Ltd. (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="136" class="subDomainName_https://grhbtender.nprocure.com:443"> Gujarat Rural Housing Board (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="21" class="subDomainName_https://grimcotender.nprocure.com:443"> Gujarat Rural Industries Marketing Corporation Ltd (2)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="106" class="subDomainName_https://gujsailtender.nprocure.com:443"> Gujarat State Aviation Infrastructure Company Limited (6)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="105" class="subDomainName_https://gscsctender.nprocure.com:443"> Gujarat State Civil Supplies Corp (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="47" class="subDomainName_https://gujcomasoltender.nprocure.com:443"> Gujarat State Co operative Marketing Federation Ltd. (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="42" class="subDomainName_https://gsecltender.nprocure.com:443"> Gujarat State Electricity Corporation Limited (284)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="126" class="subDomainName_https://gsegtender.nprocure.com:443"> Gujarat State Energy Generation Ltd (1)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="134" class="subDomainName_https://gsfctender.nprocure.com:443"> Gujarat State Fertilizers and Chemicals Limited (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="137" class="subDomainName_https://gsfdctender.nprocure.com:443"> Gujarat State Forest Development Corporation Ltd. (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="54" class="subDomainName_https://gurjaritender.nprocure.com:443"> Gujarat State Handloom &amp; Handicrafts Development Corporation (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="101" class="subDomainName_https://gspctender.nprocure.com:443"> Gujarat State Petroleum Corporation Ltd (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="98" class="subDomainName_https://gspltender.nprocure.com:443"> Gujarat State Petronet Ltd (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="46" class="subDomainName_https://gsphctender.nprocure.com:443"> Gujarat State Police Housing Corporation Ltd (32)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="44" class="subDomainName_https://gsrdctender.nprocure.com:443"> Gujarat State Road Development Corporation (1)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="11" class="subDomainName_https://gsrtctender.nprocure.com:443"> Gujarat State Road Transport Corporation (4)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="108" class="subDomainName_https://gsrrdatender.nprocure.com:443"> Gujarat State Rural Road Development Agency (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="122" class="subDomainName_https://gsscltender.nprocure.com:443"> Gujarat State Seeds Corporation Limited (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="146" class="subDomainName_https://gstdreistender.nprocure.com:443"> Gujarat State Tribal Dev. Residential Educational (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="90" class="subDomainName_https://gswctender.nprocure.com:443"> Gujarat State Warehousing Corporation  (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="83" class="subDomainName_https://gswmatender.nprocure.com:443"> Gujarat State Watershed Management Agency (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="104" class="subDomainName_https://gtutender.nprocure.com:443"> Gujarat Technological University (1)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="24" class="subDomainName_https://gudctender.nprocure.com:443"> Gujarat Urban Development Company Ltd (1)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="69" class="subDomainName_https://gudmtender.nprocure.com:443"> Gujarat Urban Development Mission (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="33" class="subDomainName_https://guvnltender.nprocure.com:443"> Gujarat Urja Vikas Nigam Limited (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="18" class="subDomainName_https://gwiltender.nprocure.com:443"> Gujarat Water Infrastructure Ltd (3)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="52" class="subDomainName_https://gwrdctender.nprocure.com:443"> Gujarat Water Resources Development Corporation Ltd (10)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="23" class="subDomainName_https://gwssbtender.nprocure.com:443"> Gujarat Water Supply and Sewerage Board (72)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="86" class="subDomainName_https://gipltender.nprocure.com:443"> Guj Info Petro Limited (3)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="89" class="subDomainName_https://hfwtender.nprocure.com:443"> Health and Family Welfare Department (64)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="77" class="subDomainName_https://gujhctender.nprocure.com:443"> High Court of Gujarat (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="82" class="subDomainName_https://hometender.nprocure.com:443"> Home Department (1)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="36" class="subDomainName_https://phfitender.nprocure.com:443"> Indian Institute of Public Health, Gandhinagar (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="151" class="subDomainName_https://iitetender.nprocure.com:443"> Indian Institute of Teacher Education (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="71" class="subDomainName_https://indextbtender.nprocure.com:443"> Industrial Extension Bureau (3)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="32" class="subDomainName_https://irdavtender.nprocure.com:443"> Industrial Research and Development Agency,Vadodara (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="75" class="subDomainName_https://inmtender.nprocure.com:443"> Industries and Mines (10)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="164" class="subDomainName_https://inbtender.nprocure.com:443"> Information and Broadcasting Department (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="112" class="subDomainName_https://isrtender.nprocure.com:443"> Institute of Seismological Research (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="118" class="subDomainName_https://icemtender.nprocure.com:443"> International Centre of Excellence in Mining Safety &amp; Automation (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="117" class="subDomainName_https://jailtender.nprocure.com:443"> Jail Department - Gujarat State (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="143" class="subDomainName_https://jadatender.nprocure.com:443"> Jamnagar Area Development Authority (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="128" class="subDomainName_https://jmctender.nprocure.com:443"> Jamnagar Municipal Corporation (8)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="87" class="subDomainName_https://junagadhtender.nprocure.com:443"> Junagadh Municipal Corporation (6)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="80" class="subDomainName_https://ledtender.nprocure.com:443"> Labour and Employment Department (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="76" class="subDomainName_https://mgvcltender.nprocure.com:443"> Madhya Gujarat Vij Company Limited (125)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="158" class="subDomainName_https://mahesanatender.nprocure.com:443"> Mahesana Municipal Corporation (2)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="157" class="subDomainName_https://morbitender.nprocure.com:443"> Morbi Municipal Corporation (4)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="159" class="subDomainName_https://ndmctender.nprocure.com:443"> Nadiad Municipal Corporation (6)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="13" class="subDomainName_https://nagarpalikatender.nprocure.com:443"> Nagarpalika (All Nagarpalika Gujarat) (261)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="45" class="subDomainName_https://nwrtender.nprocure.com:443"> Narmada Water Resources (194)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="149" class="subDomainName_https://nfsutender.nprocure.com:443"> National Forensic Sciences University (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="142" class="subDomainName_https://nidtender.nprocure.com:443"> National Institute of Design (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="166" class="subDomainName_https://nmctender.nprocure.com:443"> Navsari Municipal Corporation (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="3" class="subDomainName_https://ncodetender.nprocure.com:443"> (n)Code Solutions - A Div.Of GNFC Ltd (1)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="17" class="subDomainName_https://pdeutender.nprocure.com:443"> Pandit Deendayal Energy University (1)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="78" class="subDomainName_https://pgvcltender.nprocure.com:443"> Paschim Gujarat Vij Company Limited (230)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="160" class="subDomainName_https://pmctender.nprocure.com:443"> Porbandar Municipal Corporation (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="56" class="subDomainName_https://piutender.nprocure.com:443"> Project Implementation Unit (36)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="57" class="subDomainName_https://rmctender.nprocure.com:443"> Rajkot Municipal Corporation (13)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="131" class="subDomainName_https://rudatender.nprocure.com:443"> Rajkot Urban Development Authority (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="39" class="subDomainName_https://revenuetender.nprocure.com:443"> Revenue Department (1)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="14" class="subDomainName_https://rnbtender.nprocure.com:443"> Roads and Buildings (593)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="34" class="subDomainName_https://ssnnltender.nprocure.com:443"> Sardar Sarovar Narmada Nigam Limited (61)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="144" class="subDomainName_https://setutender.nprocure.com:443"> Socio Economical Transformation And Upliftment Society (1)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="16" class="subDomainName_https://sycadtender.nprocure.com:443"> Sports, Youth and Cultural Activities Department (14)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="140" class="subDomainName_https://sectender.nprocure.com:443"> State Election Commission,Gujarat (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="129" class="subDomainName_https://soutender.nprocure.com:443"> Statue of Unity Area Development and Tourism Governance Authority (2)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="74" class="subDomainName_https://sftender.nprocure.com:443"> Sugar Factories (Gujarat) (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="6" class="subDomainName_https://smctender.nprocure.com:443"> Surat Municipal Corporation (132)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="125" class="subDomainName_https://sudatender.nprocure.com:443"> Surat Urban Development Authority (1)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="156" class="subDomainName_https://snrtender.nprocure.com:443"> Surendranagar Municipal Corporation (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="49" class="subDomainName_https://sgsutender.nprocure.com:443"> Swarnim Gujarat Sports University (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="26" class="subDomainName_https://apmctender.nprocure.com:443"> The Agricultural Produce Market Committee (5)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="114" class="subDomainName_https://msutender.nprocure.com:443"> The Maharaja Sayajirao University Of Baroda (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="29" class="subDomainName_https://tcgltender.nprocure.com:443"> Tourism Corporation of Gujarat Limited (7)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="168" class="subDomainName_https://tddtender.nprocure.com:443"> Tribal Development Department (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="124" class="subDomainName_https://unmicrctender.nprocure.com:443"> U N Mehta Institute of Cardiology and Research Centre (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="92" class="subDomainName_https://uhdtender.nprocure.com:443"> Urban Development And Urban Housing Department (4)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="27" class="subDomainName_https://ugvcltender.nprocure.com:443"> Uttar Gujarat Vij Company Limited (90)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="133" class="subDomainName_https://vgltender.nprocure.com:443"> Vadodara Gas Limited (6)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="70" class="subDomainName_https://vmctender.nprocure.com:443"> Vadodara Mahanagar Seva Sadan (39)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="139" class="subDomainName_https://vudatender.nprocure.com:443"> Vadodara Urban Development Authority (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="130" class="subDomainName_https://vvtender.nprocure.com:443"> Vanita Vishram (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="162" class="subDomainName_https://vapitender.nprocure.com:443"> Vapi Municipal Corporation (1)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="121" class="subDomainName_https://vnsgutender.nprocure.com:443"> Veer Narmad South Gujarat University (9)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="37" class="subDomainName_https://wasmotender.nprocure.com:443"> Water and Sanitation Management Organization (10)
+		                                      		 </option>
+                             			 		
+                                  		
+                             			 		
+		                                      		 <option value="85" class="subDomainName_https://wcdtender.nprocure.com:443"> Women &amp; Child Development (0)
+		                                      		 </option>
+                             			 		
+                                  		
+                                  	
+									</select> 
+								</div>
+								
+								<div class="invalid-feedback">
+									Please select valid data.
+								</div>
+							</div>
+							
+							
+								<div class="form-group col-sm-3 align-self-center text-left mb-0">
+								
+									<button class="btn btn-primary" onclick="getSubDomain();"> Go to SubDomain</button>
+								
+								
+							</div>
+<!-- 							<div class="form-group col-sm-3 align-self-center text-right liveClass mb-0"> -->
+
+<!-- 							</div> -->
+						</div>
+						<div class="form-row normalSearch" id="normalSearchHome">
+						<div class="form-group col-sm-12">
+							<h4 class="medium-font">
+								<span>Search By</span>
+							</h4>
+						</div>
+							<div class="form-group col-sm-6" style="margin-top: -1% !important;">
+								<div class="floating-label textfield-box has-value">
+									<label for="TENDERTITLE">
+										Name of Work
+									</label>
+									<input type="text" id="TENDERTITLE" name="TENDERTITLE" class="form-control search_input ui-autocomplete-input" value="" placeholder="Tender Title" oninput="checkGujaratiLanguageInput('TENDERTITLE')">
+								</div>
+							</div>
+							<div class="form-group col-sm-6" style="margin-top: -1% !important;">
+								<div class="floating-label textfield-box">
+									<label for="tenderNo">
+										Tender ID
+									</label>
+									<input type="text" name="TENDERNO" id="tenderNo" class="form-control search_input ui-autocomplete-input" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')">
+								</div>
+							</div>
+							
+<!-- 							Added for the single page -->
+							<div class="form-row advancedSearch" id="advanceSearchDisplay" style="display: none;">
+							
+							<div class="form-group col-sm-3">
+								<div class="floating-label textfield-box has-value">
+									<label for="selectCategory">
+										Tender Type
+									</label>
+									<select id="TENDERTYPE" name="TENDERTYPE" class="form-control search_input ui-autocomplete-input">
+									<option value="">--Select--</option>
+										
+										<option value="Limited">Limited</option>
+									
+										<option value="Open">Open</option>
+									
+									</select>
+									
+								</div>
+							</div>
+							<div class="form-group col-sm-3">
+								<div class="floating-label textfield-box has-value">
+									<label for="selectCategory">
+										Tender Category
+									</label>
+									<select class="form-control ui-autocomplete-input" name="EVALUATIONTYPE" id="EVALUATIONTYPE">
+										<option value="">--Select--</option>
+										<option value="GOODS">GOODS</option>
+										<option value="WORKS">WORKS</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group col-sm-3">
+								<div class="floating-label textfield-box has-value">
+									<label for="selectLocation">
+										Location
+									</label>
+									<input type="hidden" id="clientid" name="clienid" value="0">
+									<select id="LOCATION" name="LOCATION" class="form-control search_input ui-autocomplete-input">
+										<option lable="" value="">--Select--</option>
+										
+									</select>
+								</div>
+							</div>
+							<div class="form-group col-sm-3">
+								<div class="floating-label textfield-box has-value">
+									<label for="selectDepartment">
+										Department
+									</label>
+									<select id="DEPARTMENT" name="DEPARTMENT" class="form-control search_input ui-autocomplete-input">
+										<option lable="" value="">--Select--</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group col-sm-3">
+								<div class="floating-label textfield-box has-value">
+									<label for="selectSubDepartment">
+										SubDepartment
+									</label>
+									<select id="SUBDEPARTMENT" name="SUBDEPARTMENT" class="form-control search_input ui-autocomplete-input">
+										<option lable="" value="">--Select--</option>
+									</select>
+								</div>
+							</div>
+							<div class="form-group col-sm-3">
+								<div class="floating-label textfield-box">
+									<label for="bidsubmissionstart">
+										Bidsubmission Start Date
+									</label>
+									<input type="text" name="bidsubmissionstart" id="bidsubmissionstart" pattern="(0[1-9]|1[0-9]|2[0-9]|3[01])-(0[1-9]|1[012])-[0-9]{4} (0[0-9]|1[0-9]|2[0-4]):(0[0-9]|1[0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9])" title="DD-MM-YYYY HH:mm" class="form-control onlyDatePicker search_input ui-autocomplete-input" placeholder="" autocomplete="off">
+								</div>
+							</div>
+							<div class="form-group col-sm-3">
+								<div class="floating-label textfield-box">
+									<label for="bidsubmissionenddate">
+										Bidsubmission End Date
+									</label>
+									<input type="text" name="bidsubmissionenddate" id="bidsubmissionenddate" pattern="(0[1-9]|1[0-9]|2[0-9]|3[01])-(0[1-9]|1[012])-[0-9]{4} (0[0-9]|1[0-9]|2[0-4]):(0[0-9]|1[0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9])" title="DD-MM-YYYY HH:mm" class="form-control onlyDatePicker search_input ui-autocomplete-input" placeholder="" autocomplete="off">
+								</div>
+							</div>
+							<div class="form-group col-sm-3">
+								<div class="floating-label textfield-box">
+									<label for="ADVNOTICENO">
+										Tender Notice No.
+									</label>
+									<input type="text" class="form-control search_input ui-autocomplete-input" id="ADVNOTICENO" name="NOTICENO" oninput="checkGujaratiLanguageInput('ADVNOTICENO')">
+								</div>
+							</div>
+							<div class="form-group col-sm-3">
+								<div class="floating-label textfield-box has-value">
+									<label for="processingFee">
+										 Value Category
+									</label>
+									<select name="valuecriteria" id="valuecriteria" onchange="changeParamValue()" class="form-control ui-autocomplete-input">
+										<option lable="" value="">--Select--</option>
+									<option value="fee">Processing Fee</option>
+									<option value="ecv">ECV</option>
+									<option value="emd">EMD Fee</option>
+									</select>
+								</div>
+							</div> 
+							 <div class="form-group col-sm-3">
+								<div class="floating-label textfield-box has-value">
+									<label for="parameter1">
+										Parameters
+									</label>
+									<select class="form-control ui-autocomplete-input ng-pristine ng-untouched ng-valid ng-empty" ng-model="parameter" name="parameter1" id="parameter1" dir="decimal" onchange="showOrNotParam(this)"> 
+										<option value="">--Select Parameter--</option>
+		                              	<option value="=">Equal</option>
+		                              	<option value="&lt;">Less Than</option>
+		                              	<option value="&gt;">Greater Than</option>
+		                              	<option value="between">Between</option>
+									</select>
+								</div>
+								<div class="invalid-feedback">
+									Please select valid data.
+								</div>
+							</div>
+							<div class="form-group col-sm-3">
+								<div class="floating-label textfield-box">
+									<label for="parameter2" id="amt_label1">
+										Amount
+									</label>
+									<input type="text" class="form-control search_input ui-autocomplete-input" onkeyup="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1')" name="parameter2" id="parameter2">
+								</div>
+							</div> 
+							
+							<div class="form-group col-sm-3" style="display:none;" id="parameter3_Div">
+								<div class="floating-label textfield-box">
+									<label for="parameter2" id="amt_label2">
+										Amount 2
+									</label>
+									<input type="text" placeholder="Amount" onkeyup="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1')" class="form-control search_input ui-autocomplete-input" name="parameter3" id="parameter3">
+								</div>
+							</div> 
+						</div>
+							
+							<div class="form-group col-sm-12 align-self-center text-right mb-0">
+								<hr class="mb-2">
+								<input type="hidden" id="advanceSearch" value="0">
+								<input type="hidden" value="0" id="idList" name="idList">
+								
+								<input type="hidden" value="0" id="isValidation" name="isValidation">
+								<input type="button" name="Cancel" class="btn btn-primary ml-1 date_BTN" value="Cancel" onclick="clearAdvanceSearch();">
+								<input type="button" name="submit" class="btn btn-primary date_BTN" value="Search" id="searchButtonId" ng-click="advsearchClick()">
+								<button class="btn btn-primary ml-1" onclick="newList(1);" id="viewMoreTender"> Advance Search </button>
+								<button class="btn btn-primary ml-1" onclick="viewAwardedTenderScreen();" id="awardedTenderButtonId"> Awarded Tender </button>
+								
+								
+								
+								<a class="ml-1" rel="noopener noreferrer" href="/dashboard/getTenderClosingData">
+								<button class="btn btn-primary "> Tender Closing Calendar</button>
+								</a>
+							</div>
+						</div>
+						
+						
+						<input type="hidden" name="tabFlag" id="tabFlagId" class="search_input ui-autocomplete-input" value="">
+						<input type="hidden" name="tabFlagList" id="tabFlagIdList" class="search_input ui-autocomplete-input" value="0">
+						</section>
+					<section>
+					 <div class="counter-container">
+							<div style="width:100%; background:#fff; padding:0 0;">
+							    <div style="display:flex; justify-content:space-around; text-align:center;">
+							        <div class="counter-card">
+							            <img src="/resources/images/homepagelogo/ActiveTender.png" class="counter-icon">
+							            <div id="activeTenders" class="counter-number">3,957</div>
+							            <div class="counter-label" style="font-size:13px; letter-spacing:0.7px; font-weight:600; color:#4a4a4a;">Active Tenders</div>
+							        </div>
+									<div class="divider"></div>
+							
+							        <div class="counter-card">
+							            <img src="/resources/images/homepagelogo/TenderOpening.png" class="counter-icon">
+							            <div id="openingToday" class="counter-number">232</div>
+							            <div class="counter-label" style="font-size:13px; letter-spacing:0.7px; font-weight:600; color:#4a4a4a;">Tenders Opening Today</div>
+							        </div>
+									<div class="divider"></div>
+							        <div class="counter-card" onclick="bidClosingReport();">
+							            <img src="/resources/images/homepagelogo/TenderClosing.png" class="counter-icon">
+							            <div id="closingToday" class="counter-number">259</div>
+							            <div class="counter-label" style="font-size:13px; letter-spacing:0.7px; font-weight:600; color:#4a4a4a;">Tenders Closing Today</div>
+							        </div>
+							        
+							    </div>
+							</div>
+							</div>
+					</section>	
+					
+					<section>
+						<div class="resp-tabs-container" style="word-break: break-all;">
+							<div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline dt-bootstrap4 no-footer"><div class="row"><div class="col-md-6"><div class="dataTables_length" id="DataTables_Table_0_length"><label>Show <select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" class="form-control input-sm"><option value="10">10</option><option value="50">50</option><option value="100">100</option><option value="150">150</option></select> entries</label></div></div><div class="col-md-6"></div></div><div class="row"><div class="col-md-12"><table class="table table-bordered table-striped table-hover dataTable text-left ng-isolate-scope no-footer" datatable="" dt-options="ctrl.dtOptions" dt-columns="ctrl.dtColumns" dt-instance="nested.dtInstance" style="display: table;" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info"><thead><tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="IFB/Tender Notice No.: activate to sort column descending" aria-sort="ascending" style="width: 15%;">IFB/Tender Notice No.</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Tender Brief: activate to sort column ascending" style="width: 62%;">Tender Brief</th><th class="sorting_disabled" rowspan="1" colspan="1" aria-label="Tender/Corrigendum Document" style="width: 17%;">Tender/Corrigendum Document</th></tr></thead><tbody><tr role="row" class="odd"><td class="sorting_1">PRO No. 394/2026-27</td><td><span style="color:#f44336;">VMC-Water works (Ele/Mech)<form action="/view-nit-home" method="POST" target="_blank" class="d-inline ml-5 mb-2" style="text-decoration: underline;"><input type="hidden" name="_csrf" value="token"><input type="hidden" name="tenderid" id="tenderid_345346" value="345346">
+<a href="#" onclick="$(this).closest(&quot;form&quot;).submit();" id="tenderInProgress" class="edit1">Tender Id :345346</a></form></span><span style="color:#FF9933;"><form action="/view-nit-home" method="POST" target="_blank" class="mt-2 mb-1" style="text-decoration: underline;"><input type="hidden" name="_csrf" value="token"><input type="hidden" name="tenderid" id="tenderid_345346" value="345346">
+<a href="#" onclick="$(this).closest(&quot;form&quot;).submit();" id="tenderInProgress" class="edit1"><strong style="color: maroon;">Name Of Work :</strong>Supply, Installation, Testing and Commissioning of Electrical Infrastructure from 11kV (HT) to 415 V (LT) under Phase-02 at the Charging Station at Gotri under PM eBus Sewa Scheme with Two (02) Years of O&amp;M</a></form></span><span style="color:#FF9933;" class="mt-1 mb-3"><form action="/view-nit-amendment" method="POST" target="_blank" style="text-decoration:underline;" class="mb-1"><input type="hidden" name="_csrf" value="token"><input type="hidden" name="tenderid" id="tenderid_345346" value="345346">
+<a href="#" onclick="$(this).closest(&quot;form&quot;).submit();" id="tenderInProgress" class="edit1" style="display:none">Corrigendum : </a></form></span>
+<p style="color:#FF9933;display:block;" class="mb-2"> Estimated Contract Value : 25481341.00
+</p><p style="color:#000000;" class="mt-2 mb-0"> Last Date &amp; Time For Submission : 03-10-2026 13:00:00</p></td><td><form action="/view-nit-document" method="POST" target="_blank"><input type="hidden" name="_csrf" value="token"> <input type="hidden" name="tenderid" id="tenderid_345346" value="345346"><a href="#" onclick="$(this).closest('form').submit();" id="tenderInProgress" class="edit1">Total No:5 </a></form></td></tr><tr role="row" class="even"><td class="sorting_1">VMC/SL/EVPCS/2026</td><td><span style="color:#f44336;">VMC-STREET LIGHT<form action="/view-nit-home" method="POST" target="_blank" class="d-inline ml-5 mb-2" style="text-decoration: underline;"><input type="hidden" name="_csrf" value="token"><input type="hidden" name="tenderid" id="tenderid_343741" value="343741">
+<a href="#" onclick="$(this).closest(&quot;form&quot;).submit();" id="tenderInProgress" class="edit1">Tender Id :343741</a></form></span><span style="color:#FF9933;"><form action="/view-nit-home" method="POST" target="_blank" class="mt-2 mb-1" style="text-decoration: underline;"><input type="hidden" name="_csrf" value="token"><input type="hidden" name="tenderid" id="tenderid_343741" value="343741">
+<a href="#" onclick="$(this).closest(&quot;form&quot;).submit();" id="tenderInProgress" class="edit1"><strong style="color: maroon;">Name Of Work :</strong>Selection of Charge Point Operator (CPO) for Design, Build, Finance, Operate
+and Maintain Electric Vehicle Public Charging Stations (EVPCS) at Approved Locations across Vadodara City under category A &amp; B , in accordance with PM E- Drive Scheme</a></form></span><span style="color:#FF9933;" class="mt-1 mb-3"><form action="/view-nit-amendment" method="POST" target="_blank" style="text-decoration:underline;" class="mb-1"><input type="hidden" name="_csrf" value="token"><input type="hidden" name="tenderid" id="tenderid_343741" value="343741">
+<a href="#" onclick="$(this).closest(&quot;form&quot;).submit();" id="tenderInProgress" class="edit1" style="display:block">Corrigendum : Corrigendum-1 Reply to Queries</a></form></span>
+<p style="color:#FF9933;display:block;" class="mb-2"> Estimated Contract Value : 0.00
+</p><p style="color:#000000;" class="mt-2 mb-0"> Last Date &amp; Time For Submission : 09-10-2026 13:00:00</p></td><td><form action="/view-nit-document" method="POST" target="_blank"><input type="hidden" name="_csrf" value="token"> <input type="hidden" name="tenderid" id="tenderid_343741" value="343741"><a href="#" onclick="$(this).closest('form').submit();" id="tenderInProgress" class="edit1">Total No:2 </a></form></td></tr></tbody></table><div id="DataTables_Table_0_processing" class="dataTables_processing panel panel-default" style="display: none;">Processing...</div></div></div><div class="row"><div class="col-md-5"><div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">Showing 1 to 2 of 2 entries</div></div><div class="col-md-7"><div class="dataTables_paginate paging_full_numbers" id="DataTables_Table_0_paginate"><ul class="pagination"><li class="paginate_button page-item first disabled" id="DataTables_Table_0_first"><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0" class="page-link">First</a></li><li class="paginate_button page-item previous disabled" id="DataTables_Table_0_previous"><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0" class="page-link">Previous</a></li><li class="paginate_button page-item active"><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="2" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item next disabled" id="DataTables_Table_0_next"><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="3" tabindex="0" class="page-link">Next</a></li><li class="paginate_button page-item last disabled" id="DataTables_Table_0_last"><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="4" tabindex="0" class="page-link">Last</a></li></ul></div></div></div></div>
+							<input type="hidden" value="Login" class="btn btn-primary btn_login" ng-hide="loginCtrl.hidelogin()" ng-click="submitFormOld()" id="btnLoginIdIndex">
+						</div>
+					</section>
+				</div>
+				
+<div class="col-sm-3 pl-1">
+					<section class="sidebarSection px-1">
+						<div id="npPublicSlider" class="carousel slide carousel-fade npPublicSlider" data-ride="carousel">
+							<div class="carousel-inner">
+								<div class="carousel-inner">
+								<!-- <div class="carousel-item ">
+									<img class="d-block w-100" src="/resources/images/D1.png" alt="">
+								</div>
+								<div class="carousel-item">
+									<img class="d-block w-100" src="/resources/images/D2New.png" alt="">
+								</div>
+								<div class="carousel-item">
+									<img class="d-block w-100" src="/resources/images/HNYNew.png" alt="">
+								</div> -->
+								<div class="carousel-item active carousel-item-left">
+									<img class="d-block w-100" src="/resources/images/Frm1.png" alt="">
+								</div>
+								<div class="carousel-item carousel-item-next carousel-item-left">
+									<img class="d-block w-100" src="/resources/images/Frm2.png" alt="">
+								</div>
+								<!-- <div class="carousel-item">
+									<img class="d-block w-100" src="/resources/images/Slide1.jpg?auto=yes&bg=666&fg=444&text=Second slide" alt="">
+								</div> -->
+								<div class="carousel-item">
+									<img class="d-block w-100" src="/resources/images/Frm3.png?auto=yes&amp;bg=555&amp;fg=333&amp;text=Third slide" alt="">
+								</div>
+								<div class="carousel-item">
+									<img class="d-block w-100" src="/resources/images/Frm4.png?auto=yes&amp;bg=555&amp;fg=333&amp;text=Fourth slide" alt="">
+								</div>
+								<!-- <div class="carousel-item">
+									<img class="d-block w-100" src="/resources/images/transition-plan.JPG?auto=yes&bg=555&fg=333&text=Fourth slide" alt="">
+								</div> -->
+							</div>
+							</div>
+							<a class="carousel-control-prev" href="#npPublicSlider" role="button" data-slide="prev">
+								<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+								<span class="sr-only">Previous</span>
+							</a>
+							<a class="carousel-control-next" href="#npPublicSlider" role="button" data-slide="next">
+								<span class="carousel-control-next-icon" aria-hidden="true"></span>
+								<span class="sr-only">Next</span>
+							</a>
+						</div>
+					</section>
+					
+					<div class="maintenance-alert" style="display: none;">
+    <div>
+        <span class="icon">⚠️</span>
+        <strong>Scheduled Maintenance Notice</strong>
+    </div>
+
+    <br>
+
+    The <strong>(n)Procure Portal</strong> will remain unavailable due to scheduled maintenance on 
+    <span class="time">14th May 2026 (Thursday)</span> from 
+    <span class="time">18:45 Hrs to 20:45 Hrs IST</span>.
+
+    <br><br>
+
+    Users are requested to complete pending activities before the maintenance window.
+
+    <br><br>
+
+    We apologize for the inconvenience and appreciate your cooperation.
+</div>
+
+
+				<section class="sidebarSection px-1">
+						<div id="npPublicSlider" class="carousel slide carousel-fade npPublicSlider" data-ride="carousel">
+							<div class="carousel-inner">
+									
+								<video width="100%" height="270" controls="" preload="none" poster="/resources/images/video_thumbnail.jpg">
+									<source src="/videos/nCodeVideo.mp4" type="video/mp4">
+									Your browser does not support HTML5 video.
+								</video>
+							</div>
+						</div>
+					</section>
+
+					
+					<section class="accordion sidebarSection" id="noticeBoard">
+						<div class="card sidebarSection__card">
+							<div class="card-header sidebarSection__header" id="noticeBoard">
+								<h4>
+									<a class="btn btn-link btn-block collapsed" data-toggle="collapse" data-target="#noticeBoardCollapse" aria-expanded="true" aria-controls="noticeBoardCollapse">
+										<span class="sidebarSection__Title">Notice Board </span>
+										<span class="sidebarSection__CollapseButtons">
+											<i class="material-icons sidebarSection__CollapseButtons--plus">add </i>
+											<i class="material-icons sidebarSection__CollapseButtons--minus">remove </i>
+										</span>
+									</a>
+								</h4>
+							</div>
+							<div id="noticeBoardCollapse" class="collapse show sidebarSection__details noticeBoardCollapse" aria-labelledby="noticeBoard" data-parent="#noticeBoard">
+								<div class="card-body sidebarSection__detailsBody">
+								
+									<div class="sidebarSection_ul" style="margin-left: -45px;">
+										<ul id="ticker01"> <li style="border-bottom: solid 2px #ccc;!important;"> <span style="color: maroon;!important;"><b><span><u>GNFC</u> </span></b> <br></span> <br> <span class="view newsHover black displayNoticeBoard" id="&lt;b&gt;&lt;span&gt;&lt;u&gt;GNFC&lt;/u&gt; &lt;/span&gt;&lt;/b&gt; &lt;br&gt;">Installation of Coal Fired Circulating Fluidized Bed Combustion (CFBC) Boiler-5</span><br><ul><li><a href="/common/download?uid=e54b617c-adfa-4030-b127-c81ad87f10c8&amp;name=BOILER NIT.pdf">BOILER NIT.pdf</a></li></ul></li></ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+					
+					
+						<section class="accordion sidebarSection" id="meetingLink">
+						<div class="card sidebarSection__card">
+							<div class="card-header sidebarSection__header" id="meetingLink">
+								<h4>
+									<a class="btn btn-link btn-block collapsed" data-toggle="collapse" data-target="#meetingCollapse" aria-expanded="true" aria-controls="meetingCollapse">
+										<span class="sidebarSection__Title">Online Training </span>
+										<span class="sidebarSection__CollapseButtons">
+											<i class="material-icons sidebarSection__CollapseButtons--plus">add </i>
+											<i class="material-icons sidebarSection__CollapseButtons--minus">remove </i>
+										</span>
+									</a>
+								</h4>
+							</div>
+							<div id="meetingCollapse" class="collapse show sidebarSection__details meetingCollapse" aria-labelledby="meetingLink" data-parent="#meetingLink">
+								
+								<div class="card-body sidebarSection__detailsBody">
+										<a target="_blank" rel="noopener noreferrer" href="https://gnfclimited.my.webex.com/gnfclimited.my/j.php?MTID=ma3e8bf9383da60b196350180441b0094">Click to Join the Weekly Bidder Online Training</a><br>
+										<span style="font-size: 11px; color: red;">*Online Training sessions are held every Thursday from 15:30 to 16:30 Hrs IST</span>
+								</div>
+								
+								<!--  <div class="card-body sidebarSection__detailsBody">
+										<span style="font-size: 14px; color: red;">The Online Bidder training scheduled for today is cancelled.</span>
+								</div> -->
+							</div>
+								
+						</div>
+					</section>
+					
+					
+					
+					
+					<!-- <section class="accordion sidebarSection" id="newsEvent">
+						<div class="card sidebarSection__card">
+							<div class="card-header sidebarSection__header" id="news">
+								<h4>
+									<a class="btn btn-link btn-block" data-toggle="collapse" data-target="#newsCollapse" aria-expanded="true" aria-controls="newsCollapse">
+										<span class="sidebarSection__Title">News</span>
+										<span class="sidebarSection__CollapseButtons">
+											<i class="material-icons sidebarSection__CollapseButtons--plus">add </i>
+											<i class="material-icons sidebarSection__CollapseButtons--minus">remove </i>
+										</span>
+									</a>
+								</h4>
+							</div>
+							<div id="newsCollapse" class="collapse show sidebarSection__details" aria-labelledby="news" data-parent="#news">
+								<div class="card-body sidebarSection__detailsBody newsEventsMarqee" style="height: 200px;"><div class="js-marquee-wrapper" style="animation: 34.5536s linear 0s infinite normal none running marqueeAnimation-66855280; transform: translateY(168px);"><div class="js-marquee" style="margin-right: 0px; float: none; margin-bottom: 0px;">
+									<ul class="sidebarSection_ul">
+										<li><ul id="ticker01"></ul> </li>
+									</ul>
+								</div></div></div>
+							</div>
+						</div>
+					</section> -->
+					<section class="accordion sidebarSection" id="quickLinks">
+						<div class="card sidebarSection__card">
+							<div class="card-header sidebarSection__header" id="quickLinks">
+								<h4>
+									<a class="btn btn-link btn-block collapsed" data-toggle="collapse" data-target="#quickLinksCollapse" aria-expanded="false" aria-controls="quickLinksCollapse">
+										<span class="sidebarSection__Title">Quick Links</span>
+										<span class="sidebarSection__CollapseButtons">
+											<i class="material-icons sidebarSection__CollapseButtons--plus">add </i>
+											<i class="material-icons sidebarSection__CollapseButtons--minus">remove </i>
+										</span>
+									</a>
+								</h4>
+							</div>
+							<div id="quickLinksCollapse" class="collapse sidebarSection__details quickLinksCollapse" aria-labelledby="quickLinks" data-parent="#quickLinks">
+								<div class="card-body sidebarSection__detailsBody">
+									<ul class="sidebarSection_ul color-primary">
+										<li> <a target="_blank" href="/support">User Manuals for Buyer</a> </li>
+										<li> <a target="_blank" href="/support">User Manuals for bidder</a> </li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</section>
+					<section class="accordion sidebarSection" id="importantLinks">
+						<div class="card sidebarSection__card">
+							<div class="card-header sidebarSection__header" id="importantLinks">
+								<h4>
+									<a class="btn btn-link btn-block collapsed" data-toggle="collapse" data-target="#importantLinksCollapse" aria-expanded="false" aria-controls="importantLinksCollapse">
+										<span class="sidebarSection__Title">Important Links</span>
+										<span class="sidebarSection__CollapseButtons">
+											<i class="material-icons sidebarSection__CollapseButtons--plus">add </i>
+											<i class="material-icons sidebarSection__CollapseButtons--minus">remove </i>
+										</span>
+									</a>
+								</h4>
+							</div>
+							<div id="importantLinksCollapse" class="collapse sidebarSection__details importantLinksCollapse" aria-labelledby="importantLinks" data-parent="#importantLinks">
+								<div class="card-body sidebarSection__detailsBody">
+									<ul class="sidebarSection_ul color-primary">
+										<span class="sidebarSection__Title"><u>Prerequisite</u></span>
+										<li><a rel="noopener noreferrer" href="/resources/files/PKI_Installation_Guide.pdf" target="_blank">Java Runtime Environment Installation Guide</a> </li>
+										<li><a href="/downloadPlugin?id=32">PKI Component-32 Bits</a> </li>
+										<li><a href="/downloadPlugin?id=64">PKI Component-64 Bits</a> </li>
+										<br>
+										<span class="sidebarSection__Title"><u>Other Link</u></span>
+										<li><a target="_blank" href="/resources/files/Minimum Requirements for Online Tendering.pdf">e-Tendering Minimum Requirement</a></li>
+										<li><a target="_blank" href="/resources/files/GoG_e_Procurement_GRs.pdf">Mandatory e-Procurement for Transaction value of Rs. 5 lacs &amp; above</a></li>
+										<li><a target="_blank" rel="noopener noreferrer" href="https://e-auction.nprocure.com">eAuction Portal</a></li>
+										<li><a target="_blank" rel="noopener noreferrer" href="https://www.ncodesolutions.com/token-drivers.php">Download e-Token Drivers</a></li>
+<!-- 										<li><a href="">(n)Code Awards </a></li> -->
+									</ul>
+								</div>
+							</div>
+						</div>
+					</section>
+					
+					<!-- <section class="accordion sidebarSection" id="helpDesk">
+						<div class="card sidebarSection__card">
+							<div class="card-header sidebarSection__header" id="helpDesk">
+								<h4>
+									<a class="btn btn-link btn-block collapsed" data-toggle="collapse" data-target="#helpDeskCollapse" aria-expanded="false" aria-controls="helpDeskCollapse">
+										<span class="sidebarSection__Title">(n)Procure Help Desk</span>
+										<span class="sidebarSection__CollapseButtons">
+											<i class="material-icons sidebarSection__CollapseButtons--plus">add </i>
+											<i class="material-icons sidebarSection__CollapseButtons--minus">remove </i>
+										</span>
+									</a>
+								</h4>
+							</div>
+							<div id="helpDeskCollapse" class="collapse sidebarSection__details helpDeskCollapse" aria-labelledby="helpDesk" data-parent="#helpDesk">
+								<div class="card-body sidebarSection__detailsBody color-primary">
+									In case bidders need any clarifications or if training required to participate in online tenders, they can contact (n)Procure Support team:- <br>
+									<b>(n)Code Solutions-A division of GNFC Ltd.,</b> <br>
+									(n)Procure Cell <br>
+									403, GNFC Infotower, S.G. Road, <br>
+									Bodakdev, Ahmedabad Ã¢ÂÂ 380054 (Gujarat) <br><br>
+									<b>Contact Details</b> <br>
+									Fax : +91-79-40007533
+									E-mail : nprocure@ncode.in
+									<br>
+									TOLL FREE NUMBER: 1-800-419-4632
+
+								</div>
+							</div>
+						</div>
+					</section> -->
+					
+					<section class="accordion sidebarSection" id="newsAndEvent">
+						<div class="card sidebarSection__card">
+							<div class="card-header sidebarSection__header" id="newsAndEvent">
+								<h4>
+									<a class="btn btn-link btn-block show collapsed" data-toggle="collapse" data-target="#newsAndEventCollapse" aria-expanded="false" aria-controls="newsAndEventCollapse">
+										<span class="sidebarSection__Title">News and Events </span>
+										<span class="sidebarSection__CollapseButtons">
+											<i class="material-icons sidebarSection__CollapseButtons--plus">add </i>
+											<i class="material-icons sidebarSection__CollapseButtons--minus">remove </i>
+										</span>
+									</a>
+								</h4>
+							</div>
+							<div id="newsAndEventCollapse" class="collapse sidebarSection__details" aria-labelledby="newsAndEvent" data-parent="#newsAndEvent">
+								<div class="card-body sidebarSection__detailsBody newsEventsMarqee" style="height: 200px;"><div class="js-marquee-wrapper" style="animation: 0s linear 2s 1 normal none running marqueeAnimation-2047493;"><div class="js-marquee" style="margin-right: 0px; float: none; margin-bottom: 0px;">
+									
+									<div class="sidebarSection_ul" style="margin-left: -45px;">
+										<ul id="ticker01"> 
+									</ul></div> 
+								</div></div></div>
+							</div>
+						</div>
+					</section>
+				</div>
+				
+				
+				
+				<style>
+    .maintenance-alert {
+        background: #fff3cd;
+        border: 2px solid #ff9800;
+        border-left: 8px solid #f44336;
+        padding: 15px 20px;
+        margin: 15px 0;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        animation: pulse 2s infinite;
+        font-family: Arial, sans-serif;
+    }
+
+    .maintenance-alert strong {
+        color: #d32f2f;
+        font-size: 18px;
+    }
+
+    .maintenance-alert .time {
+        color: #000;
+        font-weight: bold;
+        background: #ffe082;
+        padding: 2px 6px;
+        border-radius: 4px;
+    }
+
+    .maintenance-alert .icon {
+        font-size: 22px;
+        margin-right: 8px;
+    }
+
+    @keyframes pulse {
+        0% {
+            box-shadow: 0 0 0 0 rgba(244,67,54,0.4);
+        }
+        70% {
+            box-shadow: 0 0 0 10px rgba(244,67,54,0);
+        }
+        100% {
+            box-shadow: 0 0 0 0 rgba(244,67,54,0);
+        }
+    }
+</style>
+				
+			</div>
+ 		</main>
+		<!--Loader-->
+		<div class="progressBar d-none" data-html2canvas-ignore="true">
+			<div class="progress">
+				<div class="progress-bar progress-bar-indeterminate" role="progressbar"></div>
+			</div>
+		</div>
+		<footer class="py-1 bgn-primary container-fluid">
+    <div class="row justify-content-between align-items-center">
+        <div class="col-sm-3 text-left footerPageLinks">
+            <a target="_blank" rel="noopener noreferrer" href="https://www.ncodesolutions.com/about-us.php">About Us </a>
+<!--             <a target="_blank" rel="noopener noreferrer" href="https://www.ncodesolutions.com/about-us.php">Terms of use </a> -->
+            <a target="_blank" href="/privacy">Privacy Policy</a><br>
+            <div>Website Visitors :<div class="odometer odometer-auto-theme"><div class="odometer-inside"><span class="odometer-digit"><span class="odometer-digit-spacer">8</span><span class="odometer-digit-inner"><span class="odometer-ribbon"><span class="odometer-ribbon-inner"><span class="odometer-value">2</span></span></span></span></span><span class="odometer-digit"><span class="odometer-digit-spacer">8</span><span class="odometer-digit-inner"><span class="odometer-ribbon"><span class="odometer-ribbon-inner"><span class="odometer-value">8</span></span></span></span></span><span class="odometer-digit"><span class="odometer-digit-spacer">8</span><span class="odometer-digit-inner"><span class="odometer-ribbon"><span class="odometer-ribbon-inner"><span class="odometer-value">3</span></span></span></span></span><span class="odometer-digit"><span class="odometer-digit-spacer">8</span><span class="odometer-digit-inner"><span class="odometer-ribbon"><span class="odometer-ribbon-inner"><span class="odometer-value">2</span></span></span></span></span><span class="odometer-digit"><span class="odometer-digit-spacer">8</span><span class="odometer-digit-inner"><span class="odometer-ribbon"><span class="odometer-ribbon-inner"><span class="odometer-value">0</span></span></span></span></span><span class="odometer-digit"><span class="odometer-digit-spacer">8</span><span class="odometer-digit-inner"><span class="odometer-ribbon"><span class="odometer-ribbon-inner"><span class="odometer-value">1</span></span></span></span></span><span class="odometer-digit"><span class="odometer-digit-spacer">8</span><span class="odometer-digit-inner"><span class="odometer-ribbon"><span class="odometer-ribbon-inner"><span class="odometer-value">4</span></span></span></span></span><span class="odometer-digit"><span class="odometer-digit-spacer">8</span><span class="odometer-digit-inner"><span class="odometer-ribbon"><span class="odometer-ribbon-inner"><span class="odometer-value">5</span></span></span></span></span></div></div></div>
+        </div>
+
+        <div class="col-sm-2">
+            <p class="text-center m-0">
+                <i class="material-icons medium-font align-text-bottom"> info </i>
+                All Dates are in DD/MM/YYYY hh:mm as per Indian Standard Time (IST)<br>
+                Last Updated : 25-08-2026 11:00 PM
+            </p>
+        </div>
+
+        <div class="col-sm-2 text-right">
+            <a href="/resources/files/STQC_Cert.pdf" target="_blank" title="View STQC Certificate">
+                <img src="/resources/images/STQCLogo.png" alt="STQC Certified" style="height:60px;border:2px solid white; border-radius:2px; padding:2px;">
+            </a>
+        </div>
+
+			<div class="col-sm-1 text-right">
+                <a href="https://play.google.com/store/apps/details?id=tender.nprocure" target="_blank" style="display:inline-block; margin-right: 5px;">
+                    <img src="/resources/images/googlestore.svg" alt="Get it on Google Play" style="height:40px;">
+                </a>
+            </div>
+            <div class="col-sm-1 text-right">
+                <a href="https://apps.apple.com/in/app/n-procure/id6747172658" target="_blank" style="display:inline-block;">
+                    <img src="/resources/images/ios.svg" alt="Download on the App Store" style="height:40px;">
+                </a>
+            </div>
+        <div class="col-sm-2 text-right">
+            
+            2025 (n)Code Solutions. All Rights Reserved <br>
+            <span class="font-size-11"> Powered By: (n)Code Solutions</span>
+        </div>
+    </div>
+</footer>
+   
+
+<script>
+function animateCounter(id, end, duration = 2000) {
+    let el = document.getElementById(id);
+    let start = 0; 
+
+    let step = Math.ceil(end / (duration / 30)); 
+
+    let interval = setInterval(() => {
+        start += step;
+
+        if (start >= end) {
+            start = end;
+            clearInterval(interval);
+        }
+
+        el.textContent = start.toLocaleString();
+    }, 20);
+}
+var activeTenders = 3957;
+var closingToday = 259;
+var openingToday = 232;
+
+
+// window.onload = function() {
+//     animateCounter("activeTenders", 4500);
+//     animateCounter("openingToday", 5000);
+//     animateCounter("closingToday", 3000);
+// };
+
+
+//Bug 241 Stop Including special characters - Start
+function checkGujaratiLanguageInput(fieldName) {
+	
+		const inputElement = document.getElementById(fieldName);
+	    const input = inputElement.value;
+	    const gujaratiRegex = /[\u0A80-\u0AFF]/;
+		if (input != null && input != undefined && input != '') {
+			if (input.includes('\\') || input.includes('=') || input.includes('#') || input.includes('%') || input.includes('<') || input.includes('>') 
+				|| input.includes('--') || input.includes('"') || input.includes("'")) {
+				alert('Special characters like \\ -- = # % < > " \' are not allowed.');
+				event.target.value = '';
+		    	return false;
+			} else if (gujaratiRegex.test(input)) {
+				alert('You can add only English language in this field');
+	            event.target.value = '';
+	            return false;
+			}
+	    }
+		return true;
+	}
+//Bug 241 Stop Including special characters - End	
+
+
+ </script> 
+<style>
+
+.counter-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 0;
+    background: #fff;
+}
+
+.counter-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 0 25px;
+}
+
+.counter-icon {
+    width: 80px;
+    height: 80px;
+}
+
+.counter-number {
+    font-size: 32px;
+    font-weight: 700;
+    color: #0d81a9 !important;   
+}
+
+.counter-label {
+    margin-top: 4px;
+    color: #333;
+    font-size: 15px;
+}
+
+.divider {
+    border-left: 1px dashed #cfcfcf;
+    height: 80px;
+}
+
+
+</style>
+<div id="lightboxOverlay" class="lightboxOverlay" style="display: none;"></div><div id="lightbox" class="lightbox" style="display: none;"><div class="lb-outerContainer"><div class="lb-container"><img class="lb-image" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="><div class="lb-nav"><a class="lb-prev" href="javascript:void(0);"></a><a class="lb-next" href="javascript:void(0);"></a></div><div class="lb-loader"><a class="lb-cancel"></a></div></div></div><div class="lb-dataContainer"><div class="lb-data"><div class="lb-details"><span class="lb-caption"></span><span class="lb-number"></span></div><div class="lb-closeContainer"><a class="lb-close"></a></div></div></div></div></body></html>

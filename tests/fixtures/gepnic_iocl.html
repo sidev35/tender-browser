@@ -1,0 +1,1354 @@
+<!-- Test fixture: IOCL e-Tendering (https://iocletenders.nic.in/nicgep/app), captured 2026-09-24 with tests/capture_fixture.py -->
+<html><head>
+	<base target="_self">
+	<title>Indian Oil Corporation eProcurement portal</title>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"><title>eProcurement System</title><script type="text/javascript">djConfig = {"baseRelativePath":"/nicgep/app?service=asset&path=%2Fgep%2F","preventBackButtonFix":false,"parseWidgets":false,"locale":"en-us"} </script><script type="text/javascript" src="/nicgep/app?service=asset&amp;path=%2Fgep%2Fgep.js"></script></head>
+<!-- BEGIN: HEADER -->
+
+
+
+
+
+
+
+<body onload="MM_preloadImages('images/homeb.png','images/contactb.png','images/sitemapb.png')" onunload="" onpageshow="if (event.persisted) noBack();" id="Body"><iframe style="border: 0px; width: 1px; height: 1px; position: absolute; bottom: 0px; right: 0px; visibility: visible;" name="djhistory" id="djhistory" src="/nicgep/app?service=asset&amp;path=%2Fgep%2Fiframe_history.html"></iframe><script type="text/javascript" src="/nicgep/app?service=asset&amp;path=%2Fgep%2Fgep2.js"></script>
+<script type="text/javascript">
+dojo.registerModulePath("tapestry", "/nicgep/app?service=asset&path=%2Ftapestry%2F");
+</script>
+<script type="text/javascript" src="/nicgep/app?service=asset&amp;path=%2Ftapestry%2Fcore.js"></script>
+<script type="text/javascript">
+dojo.require("tapestry.namespace");
+tapestry.requestEncoding='UTF-8';
+</script>
+<link rel="stylesheet" type="text/css" href="/nicgep/css/nicgep_web_style.css">
+
+
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="no-cache">
+<meta http-equiv="Expires" content="-1">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="shortcut icon" href="images/nation.ico">
+<link href="includes/dialog/nicgep_color_theme.css" rel="stylesheet" type="text/css">
+<link href="includes/dialog/dialog_box.css" rel="stylesheet" type="text/css">
+
+<!-- Javascript -->
+<script language="JavaScript" type="text/JavaScript" src="includes/evaluator.js"></script>
+<script language="javascript" src="includes/MessageDigest.js"></script>
+<script language="JavaScript" type="text/JavaScript" src="includes/dialog/dialog_box.js"></script>
+<!-- End -->
+<noscript>
+	<meta http-equiv="Refresh" content="2;url=https://iocletenders.nic.in/nicgep/app?page=ErrorNotice&amp;service=page" id="Any"></meta> 
+</noscript>
+<script language="JavaScript" type="text/JavaScript">
+<!--
+	function MM_swapImgRestore() { //v3.0
+	  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+	}
+	
+	function MM_preloadImages() { //v3.0
+	  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+	    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+	    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+	}
+	
+	function MM_findObj(n, d) { //v4.01
+	  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+	    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+	  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+	  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+	  if(!x && d.getElementById) x=d.getElementById(n); return x;
+	}
+	
+	function MM_swapImage() { //v3.0
+	  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+	   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+	}
+//-->
+</script>
+
+
+
+
+
+	
+	<script type="text/javascript">
+
+	if(navigator.appName == 'Microsoft Internet Explorer')
+	{
+	document.onkeydown = fnCheckKeysMIE;
+	}
+	else if(navigator.appName == 'Netscape')
+	{
+	document.onkeydown = fnCheckKeysNMF;
+	}
+	
+	function fnCheckKeysNMF(event)
+	{
+	
+	var e=event? event : window.event;
+	var event_element=e.target? e.target : e.srcElement;
+	
+	if (event.ctrlKey && (event.keyCode==78 || event.keyCode==84 || event.which==78 || event.which==84))
+	{
+	return false;
+	}
+	
+	if (event.altKey && (event.keyCode==37 || event.which==37))
+	{
+	return false;
+	}
+	
+	if (event.keyCode==8 && (event_element.tagName != 'INPUT' && event_element.tagName != 'TEXTAREA'))
+	{
+	return false;
+	}
+	
+	}
+	
+	function fnCheckKeysMIE()
+	{
+	
+	var e=event? event : window.event;
+	var event_element=e.target? e.target : e.srcElement;
+	
+	if (event.ctrlKey && (event.keyCode==78 || event.keyCode==84 || event.which==78 || event.which==84))
+	{
+	return false;
+	}
+	
+	if (event.altKey && (event.keyCode==37 || event.which==37))
+	{
+	return false;
+	}
+	
+	if (event.keyCode==8 && (event_element.tagName != 'INPUT' && event_element.tagName != 'TEXTAREA'))
+	{
+	return false;
+	}
+	
+	}
+
+	window.history.forward();
+	function noBack(){ window.history.forward(); }
+	
+	</script>
+	
+	<table width="1004" height="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+		<tbody><tr>
+			<td valign="top" height="40">
+				<table width="1000" border="0" align="center" cellspacing="0" cellpadding="0">
+    <tbody><tr> 
+    <td>
+		<table width="100%" height="22" border="0" cellpadding="0" cellspacing="0" id="Menu">
+		 <tbody><tr><td width="210" height="22" align="right" class="date topBannerGradient"><a id="link1" name="link1" class="Menu" href="/nicgep/app?page=WebScreenReaderAccess&amp;service=page">Screen Reader Access</a>
+				
+		  </td>
+		</tr></tbody></table>
+		</td>
+		</tr>
+   <tr> 
+    <td width="1005"><img border="0" width="1005" alt="Logo" src="images/topban.png" usemap="#Map" height="83" id="Any_0"></td>
+  </tr>		
+  <tr>
+    <td height="1" class="topBannerLine"></td>
+  </tr>
+
+  <tr> 
+    <td>
+		<table width="100%" height="22" border="0" cellpadding="0" cellspacing="0" id="Menu">
+        <tbody><tr> 
+          <td width="210" height="22" align="center" class="date primaryBg">
+				24-Sep-2026 
+		  </td>
+          <td align="center" class="secondaryBg">
+	           <span id="If">
+					<span id="For">
+						
+		             	 <span>
+							<a id="link1" name="link1" title="Search" class="Menu" href="/nicgep/app?page=FrontEndAdvancedSearch&amp;service=page" target="_self">Search</a>
+						</span>
+						<span class="divider1" id="Insert_2">|</span>
+					</span><span id="For_0">
+						
+		             	 <span>
+							<a id="link1" name="link1" title="Active Tenders" class="Menu" href="/nicgep/app?page=FrontEndLatestActiveTenders&amp;service=page" target="_self">Active Tenders</a>
+						</span>
+						<span class="divider1" id="Insert_2_0">|</span>
+					</span><span id="For_1">
+						
+		             	 <span>
+							<a id="link1" name="link1" title="Tenders by Closing Date" class="Menu" href="/nicgep/app?page=FrontEndListTendersbyDate&amp;service=page" target="_self">Tenders by Closing Date</a>
+						</span>
+						<span class="divider1" id="Insert_2_1">|</span>
+					</span><span id="For_2">
+						
+		             	 <span>
+							<a id="link1" name="link1" title="Corrigendum" class="Menu" href="/nicgep/app?page=FrontEndLatestActiveCorrigendums&amp;service=page" target="_self">Corrigendum</a>
+						</span>
+						<span class="divider1" id="Insert_2_2">|</span>
+					</span><span id="For_3">
+						
+		             	 <span>
+							<a id="link1" name="link1" title="Results of Tenders" class="Menu" href="/nicgep/app?page=ResultOfTenders&amp;service=page" target="_self">Results of Tenders</a>
+						</span>
+						
+					</span>
+	          </span>
+	          
+          </td>
+          <td width="215" valign="middle" class="primaryBg">
+			<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+              <tbody><tr> 
+                <td width="28%"><div align="center"><a id="homeLink" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image4','','images/homeb.png',1)" page="Home" href="/nicgep/app?service=restart"><img src="images/homea.png" alt="Home" name="Image4" width="47" height="18" border="0"></a></div></td>
+                <td width="40%"><div align="center"><a id="PageLink_6" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image5','','images/contactb.png',1)" href="/nicgep/app?page=FrontEndContactUs&amp;service=page"><img src="images/contacta.png" alt="Contact Us" name="Image5" width="78" height="18" border="0"></a></div></td>
+                <td width="32%"><div align="center"><a id="PageLink_7" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image6','','images/sitemapb.png',1)" href="/nicgep/app?page=SiteMap&amp;service=page"><img src="images/sitemapa.png" alt="Sitemap" name="Image6" width="63" height="18" border="0"></a></div></td>                 
+              </tr>
+            </tbody></table></td>
+        </tr>
+      </tbody></table></td>
+  </tr>
+  <tr>
+	<td>
+		<table width="100%" cellspacing="0" cellpadding="0">
+	<tbody><tr>
+		<td class="notice" width="20" align="right"><img src="images/notice.png" width="15" height="16" alt="Notices"> </td>
+		<td class="notice_strip">
+			<marquee align="left" id="gepNotice" onmouseover="this.stop();" onmouseout="this.start();" scrolldelay="200">
+				<span id="If_1">
+    				
+
+<table border="0" cellspacing="2" id="noticeView" wordwrap="false" cellpadding="0">
+	
+    					<tbody><tr>
+    						
+
+
+	<td style="padding-right:20px;" id="informal">
+		<a id="PageLink" class="notice_link" href="/nicgep/app?page=WebAnnouncements&amp;service=page#452">« Deployment of Version 1.09.22- Portal Browser Independence and Introducing Chatbot Support</a>
+	</td>
+
+	<td style="padding-right:20px;" id="informal_0">
+		<a id="PageLink_0" class="notice_link" href="/nicgep/app?page=WebAnnouncements&amp;service=page#440">« BOQ version updated</a>
+	</td>
+
+	<td style="padding-right:20px;" id="informal_1">
+		<a id="PageLink_1" class="notice_link" href="/nicgep/app?page=WebAnnouncements&amp;service=page#430">« Operational Help Book for Bidders on Preferential Bid Submission in IOCL E-Tender portal</a>
+	</td>
+
+	<td style="padding-right:20px;" id="informal_2">
+		<a id="PageLink_2" class="notice_link" href="/nicgep/app?page=WebAnnouncements&amp;service=page#429">« Restriction in IOCL E-Tendering Portal towards the number of users against single PAN</a>
+	</td>
+
+	<td style="padding-right:20px;" id="informal_3">
+		<a id="PageLink_3" class="notice_link" href="/nicgep/app?page=WebAnnouncements&amp;service=page#417">« Mail/SMS related</a>
+	</td>
+
+	<td style="padding-right:20px;" id="informal_4">
+		<a id="PageLink_4" class="notice_link" href="/nicgep/app?page=WebAnnouncements&amp;service=page#416">« Special Instructions to the Bidder - Updated on 01 July 2025</a>
+	</td>
+
+	<td style="padding-right:20px;" id="informal_5">
+		<a id="PageLink_5" class="notice_link" href="/nicgep/app?page=WebAnnouncements&amp;service=page#415">« Bidders Help Manual for availing Preferential Benefits in IOCL E-Tendering Portal</a>
+	</td>
+
+	<td style="padding-right:20px;" id="informal_6">
+		<a id="PageLink_8" class="notice_link" href="/nicgep/app?page=WebAnnouncements&amp;service=page#412">« Holiday Listing Guideline</a>
+	</td>
+
+	<td style="padding-right:20px;" id="informal_7">
+		<a id="PageLink_9" class="notice_link" href="/nicgep/app?page=WebAnnouncements&amp;service=page#410">« Bidders are advised not to use Information Rights Management (IRM) feature on BoQ and any other excel file submitted during bidding process. IOCL shall not be responsible for any consequential result due to same</a>
+	</td>
+
+	<td style="padding-right:20px;" id="informal_8">
+		<a id="PageLink_10" class="notice_link" href="/nicgep/app?page=WebAnnouncements&amp;service=page#387">« Instruction to Bidders for Tender cum Auction</a>
+	</td>
+
+
+
+    					</tr>
+    				
+</tbody></table>
+
+
+				</span>
+				
+			</marquee>
+		</td>
+	</tr>
+</tbody></table>
+	</td>
+  </tr>
+</tbody></table>
+<map name="Map">
+  <a id="PageLink_11" shape="circle" coords="43,43,37" href="/nicgep/app?page=Home&amp;service=page"></a>
+</map>
+
+			</td>
+		</tr>
+		<tr>
+			<td valign="top">
+				<table width="100%" height="100%" cellspacing="0" cellpadding="0" border="0">
+					<tbody><tr>
+
+						<td width="214" class="navigation"><script language="javascript">
+
+	// Script to view document in popup
+	function popup(mylink, windowname)
+	{
+		if (! window.focus)return true;
+		var href;
+		if (typeof(mylink) == 'string')
+	 		href=mylink;
+		else
+			href=mylink.href;
+			window.open(href, "Popup", 'location=no, scrollbars=yes, toolbar=no, width=700, height=550, directories=no, menubar=no, resizable=yes, status=no, titlebar=yes');
+			return false;   
+	}
+
+</script>
+
+<table width="100%" height="100%" cellspacing="0" cellpadding="0" class="left_nav">	
+	
+	<tbody><tr> 
+         <td height="10"></td>
+     </tr>
+     	
+	<tr>
+		<td valign="top">
+			<span id="If_2">
+					</span><span id="If_0_4">
+							<span id="If_3">
+			             		</span></span><span id="If_0_5">
+							
+			             	 <span>
+				             	 </span></span><span id="If_0_6">
+							
+			             	 <span>
+				             	 </span></span><span id="If_0_7">
+							
+			             	 <span>
+				             	 </span></span><span id="If_0_8">
+							
+			             	 <span>
+				             	 </span></span><span id="If_0_9">
+							
+			             	 <span>
+				             	 </span></span><span id="If_0_10">
+							
+			             	 <span>
+				             	 </span></span><span id="If_0_11">
+							
+			             	 <span>
+				             	 </span></span><span id="If_0_12">
+							
+			             	 <span>
+				             	 </span></span><span id="If_0_13">
+							
+			             	 <span>
+				             	 </span></span><span id="If_0_14">
+							
+			             	 <span>
+				             	 </span></span><span id="If_14">
+					</span><table width="214" border="0" cellspacing="0" cellpadding="0">
+				<tbody><tr id="For_5">
+						</tr><tr> 
+					             	<td height="37" background="images/textbg.png" align="center"><a id="GenericLink" rel="noopener noreferrer" title="MIS Reports Portal" class="link1" href="https://gepnicreports.gov.in/eprocreports/iocl/" target="_blank">MIS Reports</a></td>
+					             </tr>
+			             	 
+			             	 
+			             	 
+			             	 <tr> 
+				                <td height="10"></td>
+				             </tr>
+			             	 
+						
+					<tr id="For_6">
+						</tr><tr> 
+				                	<td height="37" background="images/textbg.png" align="center"><a id="PageLink_12" title="Tenders by Location" class="link1" href="/nicgep/app?page=FrontEndTendersByLocation&amp;service=page" target="_self">Tenders by Location</a></td>
+				             	 </tr>
+			             	 
+			             	 
+			             	 <tr> 
+				                <td height="10"></td>
+				             </tr>
+			             	 
+						
+					<tr id="For_7">
+						</tr><tr> 
+				                	<td height="37" background="images/textbg.png" align="center"><a id="PageLink_13" title="Tenders by Classification" class="link1" href="/nicgep/app?page=FrontEndTendersByClassification&amp;service=page" target="_self">Tenders by Classification</a></td>
+				             	 </tr>
+			             	 
+			             	 
+			             	 <tr> 
+				                <td height="10"></td>
+				             </tr>
+			             	 
+						
+					<tr id="For_8">
+						</tr><tr> 
+				                	<td height="37" background="images/textbg.png" align="center"><a id="PageLink_14" title="Tenders in Archive" class="link1" href="/nicgep/app?page=FrontEndTendersInArchive&amp;service=page" target="_self">Tenders in Archive</a></td>
+				             	 </tr>
+			             	 
+			             	 
+			             	 <tr> 
+				                <td height="10"></td>
+				             </tr>
+			             	 
+						
+					<tr id="For_9">
+						</tr><tr> 
+				                	<td height="37" background="images/textbg.png" align="center"><a id="PageLink_15" title="Tenders Status" class="link1" href="/nicgep/app?page=WebTenderStatusLists&amp;service=page" target="_self">Tenders Status</a></td>
+				             	 </tr>
+			             	 
+			             	 
+			             	 <tr> 
+				                <td height="10"></td>
+				             </tr>
+			             	 
+						
+					<tr id="For_10">
+						</tr><tr> 
+				                	<td height="37" background="images/textbg.png" align="center"><a id="PageLink_16" title="Cancelled Tenders" class="link1" href="/nicgep/app?page=WebCancelledTenderLists&amp;service=page" target="_self">Cancelled/Retendered</a></td>
+				             	 </tr>
+			             	 
+			             	 
+			             	 <tr> 
+				                <td height="10"></td>
+				             </tr>
+			             	 
+						
+					<tr id="For_11">
+						</tr><tr> 
+				                	<td height="37" background="images/textbg.png" align="center"><a id="PageLink_17" title="Downloads" class="link1" href="/nicgep/app?page=StandardBiddingDocuments&amp;service=page" target="_self">Downloads</a></td>
+				             	 </tr>
+			             	 
+			             	 
+			             	 <tr> 
+				                <td height="10"></td>
+				             </tr>
+			             	 
+						
+					<tr id="For_12">
+						</tr><tr> 
+				                	<td height="37" background="images/textbg.png" align="center"><a id="PageLink_18" title="Announcements" class="link1" href="/nicgep/app?page=WebAnnouncements&amp;service=page" target="_self">Announcements</a></td>
+				             	 </tr>
+			             	 
+			             	 
+			             	 <tr> 
+				                <td height="10"></td>
+				             </tr>
+			             	 
+						
+					<tr id="For_13">
+						</tr><tr> 
+				                	<td height="37" background="images/textbg.png" align="center"><a id="PageLink_19" title="D" class="link1" href="/nicgep/app?page=FrontEndDebarmentList&amp;service=page" target="_self">Debarment List</a></td>
+				             	 </tr>
+			             	 
+			             	 
+			             	 <tr> 
+				                <td height="10"></td>
+				             </tr>
+			             	 
+						
+					<tr id="For_14">
+						</tr><tr> 
+				                	<td height="37" background="images/textbg.png" align="center"><a id="PageLink_20" title="Recognitions" class="link1" href="/nicgep/app?page=WebAwards&amp;service=page" target="_self">Recognitions</a></td>
+				             	 </tr>
+			             	 
+			             	 
+			             	 <tr> 
+				                <td height="10"></td>
+				             </tr>
+			             	 
+						
+					<tr id="For_15">
+						</tr><tr> 
+				                	<td height="37" background="images/textbg.png" align="center"><a id="PageLink_21" title="Site compatibility" class="link1" href="/nicgep/app?page=SiteComp&amp;service=page" target="_self">Site compatibility</a></td>
+				             	 </tr>
+			             	 
+			             	 
+			             	 <tr> 
+				                <td height="10"></td>
+				             </tr>
+			             	 
+						
+					<tr id="For_16">
+						
+					</tr><tr id="For_17">
+						
+					</tr><tr id="For_18">
+						
+					</tr><tr id="For_19">
+						
+					</tr>
+					
+					<tr> 
+		                <td height="10"></td>
+		             </tr>
+				
+				
+				<tr> 
+	               		<td height="30" align="center">
+							<table width="160" height="114" border="0" align="center" cellpadding="0" cellspacing="0">
+								<tbody><tr id="For_21"> 
+				             		</tr><tr>
+				             			<td height="15" valign="top"><a id="GenericLink_0" rel="noopener noreferrer" title="DashBoard" href="https://eprocure.gov.in/eprocdashboard?siteCode=IOCL" target="_blank"><img border="0" width="160" src="images/dashboard.png" height="34" id="Any_1"></a></td>
+				             		</tr>
+				             		 <tr> 
+						                <td height="10"></td>
+						             </tr>
+				             	 <tr id="For_22"> 
+				             		</tr><tr>
+				             			<td height="15" valign="top"><a id="GenericLink_0_0" rel="noopener noreferrer" title="link" href="https://gepnic.gov.in" target="_blank"><img border="0" width="160" src="images/Gepnic Logo.png" height="34" id="Any_2"></a></td>
+				             		</tr>
+				             		 <tr> 
+						                <td height="10"></td>
+						             </tr>
+				             	 <tr id="For_23"> 
+				             		</tr><tr>
+				             			<td height="15" valign="top"><a id="GenericLink_0_1" rel="noopener noreferrer" title="National Portal of India - External Link that open in a new window" href="http://india.gov.in" target="_blank"><img border="0" width="160" src="images/indiagovin.png" height="34" id="Any_3"></a></td>
+				             		</tr>
+				             		 <tr> 
+						                <td height="10"></td>
+						             </tr>
+				             	 <tr id="For_24"> 
+				             		</tr><tr>
+				             			<td height="15" valign="top"><a id="GenericLink_0_2" rel="noopener noreferrer" title="Central Public Procurement portal - External Link that opens in a new window" href="http://eprocure.gov.in/cppp/searchbyorg/Indian Oil Corporation Limited" target="_blank"><img border="0" width="160" src="images/cppp-img.png" height="34" id="Any_4"></a></td>
+				             		</tr>
+				             		 <tr> 
+						                <td height="10"></td>
+						             </tr>
+				             	 
+							</tbody></table>
+				 		</td>
+	             	</tr>					
+					
+				
+				<tr> 
+					<td height="30" align="center">&nbsp;</td>
+			  	</tr>							
+			  	
+			</tbody></table>
+		</td>
+	</tr>
+	
+</tbody></table></td>
+						<td class="page_content" valign="top">
+						<!-- Page content starts here -->
+							
+<script language="javascript">
+	var delayTime=500;
+	var marqueeSpeed=1;
+	var pauseTime=1 ;
+	var copySpeed=marqueeSpeed;
+	var pauseSpeed=(pauseTime==0)? copySpeed: 0;
+	var actualHeight='';
+
+	function ScrollMarquee()
+	{
+		if (parseInt(crossMarquee.style.top)>(actualHeight*(-1)+8)) 
+			crossMarquee.style.top=parseInt(crossMarquee.style.top)-copySpeed+"px" ;
+		else 
+			crossMarquee.style.top=parseInt(marqueeheight)+8+"px";
+	}
+
+	function InitializeMarquee()
+	{
+		crossMarquee=document.getElementById("vmarquee");
+		crossMarquee.style.top=0;
+		marqueeheight=document.getElementById("marqueecontainer").offsetHeight;
+		actualHeight=crossMarquee.offsetHeight;
+		if (window.opera || navigator.userAgent.indexOf("Netscape/7")!=-1)
+		{ 
+			crossMarquee.style.height=marqueeheight+"px";
+			crossMarquee.style.overflow="scroll";
+			return;
+		}
+		setTimeout('lefttime=setInterval("ScrollMarquee()",30)', delayTime);
+	}
+
+	if (window.addEventListener)
+		window.addEventListener("load", InitializeMarquee, false);
+	else if (window.attachEvent)
+		window.attachEvent("onload", InitializeMarquee);
+	else if (document.getElementById)
+		window.onload=InitializeMarquee;
+
+
+	// Corrigendum
+	var delayTime1=500;
+	var marqueeSpeed1=1;
+	var pauseTime1=1 ;
+	var copySpeed1=marqueeSpeed1;
+	var pauseSpeed1=(pauseTime1==0)? copySpeed1: 0;
+	var actualHeight1='';
+
+	function ScrollMarquee1()
+	{
+		if (parseInt(crossMarquee1.style.top)>(actualHeight1*(-1)+8)) 
+		crossMarquee1.style.top=parseInt(crossMarquee1.style.top)-copySpeed1+"px" ;
+		else 
+		crossMarquee1.style.top=parseInt(marqueeheight1)+8+"px";
+	}
+
+	function InitializeMarquee1()
+	{
+		crossMarquee1=document.getElementById("vmarquee1");
+		crossMarquee1.style.top=0;
+		marqueeheight1=document.getElementById("marqueecontainer1").offsetHeight;
+		actualHeight1=crossMarquee1.offsetHeight ;
+		if (window.opera || navigator.userAgent.indexOf("Netscape/7")!=-1)
+		{ 
+			crossMarquee1.style.height=marqueeheight1+"px";
+			crossMarquee1.style.overflow="scroll";
+			return;
+		}
+		setTimeout('lefttime=setInterval("ScrollMarquee1()",30)', delayTime1);
+	}
+
+	if (window.addEventListener)
+	window.addEventListener("load", InitializeMarquee1, false);
+	else if (window.attachEvent)
+	window.attachEvent("onload", InitializeMarquee1);
+	else if (document.getElementById)
+	window.onload=InitializeMarquee1;
+	
+	// Corrigendum
+	var delayTime2=500;
+	var marqueeSpeed2=1;
+	var pauseTime2=1 ;
+	var copySpeed2=marqueeSpeed2;
+	var pauseSpeed2=(pauseTime2==0)? copySpeed2: 0;
+	var actualHeight2='';
+
+	function ScrollMarquee2()
+	{
+		if (parseInt(crossMarquee2.style.top)>(actualHeight2*(-1)+8)) 
+		crossMarquee2.style.top=parseInt(crossMarquee2.style.top)-copySpeed2+"px" ;
+		else 
+		crossMarquee2.style.top=parseInt(marqueeheight2)+8+"px";
+	}
+	
+	
+	function InitializeMarquee2()
+	{
+		crossMarquee2=document.getElementById("vmarquee2");
+		crossMarquee2.style.top=0;
+		marqueeheight2=document.getElementById("marqueecontainer2").offsetHeight;
+		actualHeight2=crossMarquee2.offsetHeight ;
+		if (window.opera || navigator.userAgent.indexOf("Netscape/7")!=-1)
+		{ 
+			crossMarquee2.style.height=marqueeheight2+"px";
+			crossMarquee2.style.overflow="scroll";
+			return;
+		}
+		setTimeout('lefttime=setInterval("ScrollMarquee2()",30)', delayTime2);
+	}
+
+	if (window.addEventListener)
+	window.addEventListener("load", InitializeMarquee2, false);
+	else if (window.attachEvent)
+	window.attachEvent("onload", InitializeMarquee2);
+	else if (document.getElementById)
+	window.onload=InitializeMarquee2;
+	
+	// Corrigendum
+	var delayTime3=500;
+	var marqueeSpeed3=1;
+	var pauseTime3=1 ;
+	var copySpeed3=marqueeSpeed3;
+	var pauseSpeed3=(pauseTime3==0)? copySpeed3: 0;
+	var actualHeight3='';
+
+	function ScrollMarquee3()
+	{
+		if (parseInt(crossMarquee3.style.top)>(actualHeight3*(-1)+8)) 
+		crossMarquee3.style.top=parseInt(crossMarquee3.style.top)-copySpeed3+"px" ;
+		else 
+		crossMarquee3.style.top=parseInt(marqueeheight3)+8+"px";
+	}
+	
+	
+	function InitializeMarquee3()
+	{
+		crossMarquee3=document.getElementById("vmarquee3");
+		crossMarquee3.style.top=0;
+		marqueeheight3=document.getElementById("marqueecontainer3").offsetHeight;
+		actualHeight3=crossMarquee3.offsetHeight ;
+		if (window.opera || navigator.userAgent.indexOf("Netscape/7")!=-1)
+		{ 
+			crossMarquee3.style.height=marqueeheight3+"px";
+			crossMarquee3.style.overflow="scroll";
+			return;
+		}
+		setTimeout('lefttime=setInterval("ScrollMarquee3()",30)', delayTime3);
+	}
+
+	if (window.addEventListener)
+	window.addEventListener("load", InitializeMarquee3, false);
+	else if (window.attachEvent)
+	window.attachEvent("onload", InitializeMarquee3);
+	else if (document.getElementById)
+	window.onload=InitializeMarquee3;
+		
+	function hideProgress(){
+		// Hide the progress bar
+		hideDialog();
+	}
+	
+	function showProgress(){
+		showDialog('Important Message', 
+				"Our application has been updated to support modern web standards. For the best experience, please use the latest version of Chrome, Firefox or Edge. Support for Internet Explorer and legacy browser modes has been discontinued. If you're using an outdated browser, please switch to a supported browser to continue using all features of this application. For more information, kindly visit the site compatibility page", 
+				'alertclose');
+	}
+	//showProgress();
+	
+	document.addEventListener('click', function(event) {
+	  const popup = document.getElementById('dialog');	  
+	  // Check if the click was outside the popup
+	  if (!popup.contains(event.target)) {
+	    //popup.style.display = 'none'; // or any method to close the popup
+	    hideProgress();
+	  }
+	});
+	
+	
+	
+</script> 
+
+<script type="text/javascript" src="includes/CsrfdeleteBlock.js"></script>
+<script type="text/javascript" src="js/autocomplete/jquery.js"></script>
+
+ <script src="js/jquery.min.js"></script> 
+   <script src="js/nicci.js"></script>
+    <script language="JavaScript" type="text/javascript"> 
+       $(document).ready(function() {
+            loadnicci('ContentNicci', 'vDOWF0A7F0DUpjzp');
+        });
+    </script>
+	
+	<div id="ContentNicci"></div>
+ 	<!--  
+		Page content
+	 -->
+	<span id="If_15">
+			</span><table width="100%" cellspacing="0" border="0" cellpadding="0">	
+		<tbody><tr>
+			<td height="40">
+				<table width="100%" cellspacing="2" cellpadding="0">
+					<tbody><tr>
+						<td class="pageheader">Welcome to eProcurement System</td>
+					</tr>
+					<tr>
+						<td class="page_desc">The eProcurement System of IndianOil e-Tendering Portal enables the Tenderers to download the Tender Schedule free of cost and then submit the bids online through this portal.</td>
+					</tr>
+				</tbody></table>
+			</td>
+		</tr>
+		<tr>
+			<td class="td_space">&nbsp;</td>
+		</tr>
+		<tr>
+				<td height="25%">
+					<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+						<tbody><tr>
+							<td align="center">
+								<a id="hleproc_dash" target="_blank" rel="noopener noreferrer" href="https://eprocure.gov.in/eprocdashboard/" title="CPPP Dashboard">
+									<img id="eproc_dash" border="0" alt="app-dashboard" src="images/app-dashboard.png">
+								</a>
+								<a id="hleproc_playstore" target="_blank" rel="noopener noreferrer" href="https://play.google.com/store/apps/details?id=gov.nic.eproc&amp;hl=en" title="Mobile App">
+									<img id="eproc_playstore" border="0" alt="playstore" src="images/playstore.png">
+								</a>
+								<a id="hleproc_playstore" target="_blank" rel="noopener noreferrer" href="https://itunes.apple.com/in/app/gepnic/id1330902501?mt=8" title="Mobile App">
+									<img id="eproc_playstore" border="0" alt="playstore" src="images/appstore.png">
+								</a>
+							</td>
+				
+						</tr>
+					</tbody></table>
+				</td>
+			</tr>
+		
+		<tr> 
+			<td height="25">
+				<span id="If_0_19">
+					</span><table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+				
+				<tbody><tr> 
+						<td width="31%"><img height="27" src="images/latestenders_title.png" alt="Latest Tenders" width="159">
+						</td><td width="69%" height="10">&nbsp;</td>
+					</tr>
+					<tr> 
+						<td valign="top" colspan="2">
+							<table width="100%" cellspacing="0" cellpadding="0" border="0" class="list_table">
+								<tbody><tr> 
+									<td>
+										<span id="If_17">
+											   			</span><table cellspacing="0" cellpadding="0" width="100%" border="0">
+											<tbody><tr class="list_header"> 
+												<td align="left" width="30%">Tender Title</td>
+												<td align="left" width="20%">Reference No</td>
+												<td align="left" width="25%">Closing Date</td>
+												<td align="left" width="25%">Bid Opening Date</td>
+											</tr>
+											<tr>
+												<td colspan="4" width="100%">
+													<div id="marqueecontainer" onmouseover="copySpeed=pauseSpeed" onmouseout="copySpeed=marqueeSpeed" style="width:560px;"> 
+														<div id="vmarquee" style="left: 4px; position: absolute; top: 0px; width: 560px;"> 
+															<span id="If_16">
+																
+
+<table border="0" width="100%" id="activeTenders" cellspacing="0" cellpadding="0">
+	
+																	
+
+
+	<tbody><tr class="even" id="informal_9">
+		 
+																		<td width="30%"><a id="DirectLink" class="link2" href="/nicgep/app?component=%24DirectLink&amp;page=Home&amp;service=direct&amp;session=T&amp;sp=S2aYqnJo%2BRVFSuC215QCCGw%3D%3D">1. IT HARDWARE REPLACEMENT AND CAMC TAS</a></td>
+																		<td width="20%">MnC/NR/UPSOII/OPS/PT-104/26-27</td>
+																		<td width="25%">08-Oct-2026 04:00 PM</td>
+																		<td width="25%">09-Oct-2026 04:00 PM</td>
+																	
+	</tr>
+
+	<tr class="odd" id="informal_10">
+		 
+																		<td width="30%"><a id="DirectLink_0" class="link2" href="/nicgep/app?component=%24DirectLink&amp;page=Home&amp;service=direct&amp;session=T&amp;sp=SjnbdlR3O%2FCwaK1ZLwmzw%2Fw%3D%3D">2. Development of new A site Retail Outlet Within 5 Kms from Sirajuli High School towards Dhekiajuli on NH 15, Village-Alisinga, District- Sonitpur, State- Assam under Guwahati Divisional Office</a></td>
+																		<td width="20%">ER-MnC/2026-27/LT/306</td>
+																		<td width="25%">30-Sep-2026 05:45 PM</td>
+																		<td width="25%">01-Oct-2026 05:45 PM</td>
+																	
+	</tr>
+
+	<tr class="even" id="informal_11">
+		 
+																		<td width="30%"><a id="DirectLink_1" class="link2" href="/nicgep/app?component=%24DirectLink&amp;page=Home&amp;service=direct&amp;session=T&amp;sp=SMPDBXtdCPewFsQcqbuLcxQ%3D%3D">3. Conversion of MS Tank T004 to Ethanol Service and compliance of MI recommendations of Tank T004 at Tikrikalan Terminal</a></td>
+																		<td width="20%">MnC/NR/DSO/OPS/LT-172/26-27</td>
+																		<td width="25%">30-Sep-2026 05:00 PM</td>
+																		<td width="25%">01-Oct-2026 05:00 PM</td>
+																	
+	</tr>
+
+	<tr class="odd" id="informal_12">
+		 
+																		<td width="30%"><a id="DirectLink_2" class="link2" href="/nicgep/app?component=%24DirectLink&amp;page=Home&amp;service=direct&amp;session=T&amp;sp=SJgXQyeBhayQUUB5mCDCNZA%3D%3D">4. Construction of A Site Retail Outlet on NH 8 within 4 KM from Bagma Sub Health Centre towards Bishramganj Dist Gomati Tripura under Silchar DO of IndianOil AOD state office</a></td>
+																		<td width="20%">ER MAC/2026-27/LT-339</td>
+																		<td width="25%">30-Sep-2026 06:00 PM</td>
+																		<td width="25%">01-Oct-2026 06:30 PM</td>
+																	
+	</tr>
+
+	<tr class="even" id="informal_13">
+		 
+																		<td width="30%"><a id="DirectLink_3" class="link2" href="/nicgep/app?component=%24DirectLink&amp;page=Home&amp;service=direct&amp;session=T&amp;sp=Sj8qKeqHkqq8ijwK7Rb0ZcQ%3D%3D">5. TENDER FOR ROAD TRANSPORTATION OF BULK PETROLEUM PRODUCTS BY TOP LOADING TANK TRUCKS ATF Ex-Panipat Marketing Terminal</a></td>
+																		<td width="20%">MnC/NR/DSO/OPS/PT-119/26-27</td>
+																		<td width="25%">14-Oct-2026 04:30 PM</td>
+																		<td width="25%">15-Oct-2026 04:30 PM</td>
+																	
+	</tr>
+
+	<tr class="odd" id="informal_14">
+		 
+																		<td width="30%"><a id="DirectLink_4" class="link2" href="/nicgep/app?component=%24DirectLink&amp;page=Home&amp;service=direct&amp;session=T&amp;sp=S5ENM32Zd3ow5hG945rBDkQ%3D%3D">6. MnC/SR/BNR/LT/137/TNSO/2026-27 DEVELOPMENT OF CODONEW RETAIL OUTLET of Ms. Chennai Petroleum Limited CPCL AT NH 44 BETWEEN KM STONE No.234  KM STONE No.226 ON LHS FROM NAMAKKAL TO SALEM</a></td>
+																		<td width="20%">MnC/SR/BNR/LT/137/TNSO/2026-27</td>
+																		<td width="25%">30-Sep-2026 04:00 PM</td>
+																		<td width="25%">01-Oct-2026 04:00 PM</td>
+																	
+	</tr>
+
+	<tr class="even" id="informal_15">
+		 
+																		<td width="30%"><a id="DirectLink_5" class="link2" href="/nicgep/app?component=%24DirectLink&amp;page=Home&amp;service=direct&amp;session=T&amp;sp=S1D7JqW%2B69ftdlYsjQ1T1dA%3D%3D">7. Construction of new A site Retail Outlet at Within 4 Kms from Sippi Village Dist Upper Subansiri Arunachal Pradesh under Tinsukia Divisional office under IndianOil AOD state office</a></td>
+																		<td width="20%">ER-MAC/2026-27/LT/337</td>
+																		<td width="25%">30-Sep-2026 04:00 PM</td>
+																		<td width="25%">01-Oct-2026 04:00 PM</td>
+																	
+	</tr>
+
+	<tr class="odd" id="informal_16">
+		 
+																		<td width="30%"><a id="DirectLink_6" class="link2" href="/nicgep/app?component=%24DirectLink&amp;page=Home&amp;service=direct&amp;session=T&amp;sp=SbcNxrgDT0qV84ItijJuzlQ%3D%3D">8. MISCELLANEOUS CIVIL WORKS FOR SLOTS AND DIVISIONS ALONG WITH PATHWAY WORKS IN PARKING, VAPOR TRAPS AND DRAIN WORKS AT TLD/TLF AT COCHIN BP</a></td>
+																		<td width="20%">MnC/SR/AR/PT/135/KESO/2026-27</td>
+																		<td width="25%">07-Oct-2026 04:00 PM</td>
+																		<td width="25%">08-Oct-2026 04:00 PM</td>
+																	
+	</tr>
+
+	<tr class="even" id="informal_17">
+		 
+																		<td width="30%"><a id="DirectLink_7" class="link2" href="/nicgep/app?component=%24DirectLink&amp;page=Home&amp;service=direct&amp;session=T&amp;sp=SNydnkWh1569A%2BP%2F3t%2F41jw%3D%3D">9. Pipeline modification (Conversion from top loading to bottom loading) in TLF bay due to revamping of Terminal Automation System at Barauni Terminal under BSO.</a></td>
+																		<td width="20%">RCC/ERO/37/2026-27/LT-252</td>
+																		<td width="25%">30-Sep-2026 04:00 PM</td>
+																		<td width="25%">01-Oct-2026 04:00 PM</td>
+																	
+	</tr>
+
+	<tr class="odd" id="informal_18">
+		 
+																		<td width="30%"><a id="DirectLink_8" class="link2" href="/nicgep/app?component=%24DirectLink&amp;page=Home&amp;service=direct&amp;session=T&amp;sp=S1MZEFVZM2U9mPXowipH%2FFA%3D%3D">10. CONSTRUCTION OF NEW A SITE OUTLET FROM UMMACHAGI VILLAGE MANCHIKERI HOBLI, YELLAPUR TALUK TO CHAVATTI VILLAGE MANCHIKERI HOBLI, YELLAPUR TALUK ON SH 93  SY NO. 41-1, CHAVATTI VILAGE, YELLAPUR TALUK, UTTAR KANNADA DISTRICTUNDER MANGALORE DO OF KASO</a></td>
+																		<td width="20%">MnC/SR/RS/LT/144/KASO/2026-27</td>
+																		<td width="25%">30-Sep-2026 03:00 PM</td>
+																		<td width="25%">01-Oct-2026 03:00 PM</td>
+																	
+	</tr>
+
+
+
+																
+</tbody></table>
+
+
+															
+															</span>
+															
+															
+														</div>
+													</div>
+												</td>
+											</tr>
+																		
+
+											
+												<tr class="list_header">
+											   		<td class="link2" colspan="3"><span class="Clickhere" style="display: block;">  Latest Tenders updates every 15 mins.</span></td>
+											   		<td>&nbsp;&nbsp;&nbsp;<a id="PageLink_22" title="More Tenders" class="Clickhere" href="/nicgep/app?page=FrontEndLatestActiveTenders&amp;service=page" style="display: block;">More...</a></td>
+											   		
+											   		
+											 	</tr>
+											
+											
+										</tbody></table>
+								
+									</td>
+								</tr>
+								
+							</tbody></table>
+						</td>
+						
+					</tr>
+					<tr> 
+						<td valign="top" colspan="2" height="27">&nbsp;</td>
+					</tr>
+					<tr> 
+						<td valign="top" colspan="2" height="27"><img height="27" src="images/latestcorrigendums_title.png" alt="Latest Corrigendums" width="209"></td>
+					</tr>
+					<tr> 
+						<td valign="top" colspan="2"> 
+							<table width="100%" cellspacing="0" cellpadding="0" border="0" class="list_table">
+								<tbody><tr> 
+									<td>
+										<span id="If_19">
+											   			</span><table cellspacing="0" cellpadding="0" width="100%" border="0">
+											<tbody><tr class="list_header"> 
+												<td align="left" width="30%">Corrigendum Title</td>
+												<td align="left" width="20%">Reference No</td>
+												<td align="left" width="25%">Closing Date</td>
+												<td align="left" width="25%">Bid Opening Date</td>
+											</tr>
+											<tr>
+												<td colspan="4" width="100%">
+													<div id="marqueecontainer1" onmouseover="copySpeed1=pauseSpeed1" onmouseout="copySpeed1=marqueeSpeed1" style="width:560px;"> 
+														<div id="vmarquee1" style="left: 4px; position: absolute; top: 0px; width: 560px;"> 
+															<span id="If_18">
+																
+
+<table border="0" width="100%" id="activeCorrigendums" cellspacing="0" cellpadding="0">
+	
+																	
+
+
+	<tbody><tr class="even" id="informal_19">
+		 
+																		<td width="30%"><a id="DirectLink_9" class="link2" href="/nicgep/app?component=%24DirectLink_0&amp;page=Home&amp;service=direct&amp;session=T&amp;sp=S03sqI9eaYapFA9hC3Fyhyw%3D%3D">1. Date Corrigendum3</a></td>
+																		<td width="20%">MnC/NR/RSO/ENG/PT-93/26-27</td>
+																		<td width="25%">05-Oct-2026 11:00 AM</td>
+																		<td width="25%">06-Oct-2026 11:00 AM</td>
+																	
+	</tr>
+
+	<tr class="odd" id="informal_20">
+		 
+																		<td width="30%"><a id="DirectLink_10" class="link2" href="/nicgep/app?component=%24DirectLink_0&amp;page=Home&amp;service=direct&amp;session=T&amp;sp=S7xb4NYLajjh6BAWzXvnQ5Q%3D%3D">2. Commercial Corrigendum-2</a></td>
+																		<td width="20%">RHQMM26422</td>
+																		<td width="25%">30-Sep-2026 03:00 PM</td>
+																		<td width="25%">01-Oct-2026 03:00 PM</td>
+																	
+	</tr>
+
+	<tr class="even" id="informal_21">
+		 
+																		<td width="30%"><a id="DirectLink_11" class="link2" href="/nicgep/app?component=%24DirectLink_0&amp;page=Home&amp;service=direct&amp;session=T&amp;sp=SiRMCf%2F4ZAS9IvEceLY1WCA%3D%3D">3. Due Date Extension-8</a></td>
+																		<td width="20%">RHQMM26422</td>
+																		<td width="25%">30-Sep-2026 03:00 PM</td>
+																		<td width="25%">01-Oct-2026 03:00 PM</td>
+																	
+	</tr>
+
+	<tr class="odd" id="informal_22">
+		 
+																		<td width="30%"><a id="DirectLink_12" class="link2" href="/nicgep/app?component=%24DirectLink_0&amp;page=Home&amp;service=direct&amp;session=T&amp;sp=S7xHZZfCH3xSg8aT8C63qhA%3D%3D">4. 2nd Due date extension</a></td>
+																		<td width="20%">ERKLC2653</td>
+																		<td width="25%">05-Oct-2026 05:00 PM</td>
+																		<td width="25%">06-Oct-2026 05:00 PM</td>
+																	
+	</tr>
+
+	<tr class="even" id="informal_23">
+		 
+																		<td width="30%"><a id="DirectLink_13" class="link2" href="/nicgep/app?component=%24DirectLink_0&amp;page=Home&amp;service=direct&amp;session=T&amp;sp=SAew2LPYI0eAoYk2uiI8UDg%3D%3D">5. 2nd Due date extension</a></td>
+																		<td width="20%">ERKLC2653</td>
+																		<td width="25%">05-Oct-2026 05:00 PM</td>
+																		<td width="25%">06-Oct-2026 05:00 PM</td>
+																	
+	</tr>
+
+	<tr class="odd" id="informal_24">
+		 
+																		<td width="30%"><a id="DirectLink_14" class="link2" href="/nicgep/app?component=%24DirectLink_0&amp;page=Home&amp;service=direct&amp;session=T&amp;sp=SCMIhareXVkKW2HP7EJS7hQ%3D%3D">6. Corrigendum_1</a></td>
+																		<td width="20%">9003C26A09</td>
+																		<td width="25%">30-Sep-2026 03:00 PM</td>
+																		<td width="25%">01-Oct-2026 03:00 PM</td>
+																	
+	</tr>
+
+	<tr class="even" id="informal_25">
+		 
+																		<td width="30%"><a id="DirectLink_15" class="link2" href="/nicgep/app?component=%24DirectLink_0&amp;page=Home&amp;service=direct&amp;session=T&amp;sp=S8qOUaA1O5uHzP1Sxc%2FGYUg%3D%3D">7. extension of bid submission end date</a></td>
+																		<td width="20%">PLCC/HRPL Fire alarm system/T and I/26060</td>
+																		<td width="25%">28-Sep-2026 02:30 PM</td>
+																		<td width="25%">29-Sep-2026 03:00 PM</td>
+																	
+	</tr>
+
+	<tr class="odd" id="informal_26">
+		 
+																		<td width="30%"><a id="DirectLink_16" class="link2" href="/nicgep/app?component=%24DirectLink_0&amp;page=Home&amp;service=direct&amp;session=T&amp;sp=Sb94NjV6HlPcIUQ4trgKiVQ%3D%3D">8. 2nd Due date extension</a></td>
+																		<td width="20%">ERKLC2653</td>
+																		<td width="25%">05-Oct-2026 05:00 PM</td>
+																		<td width="25%">06-Oct-2026 05:00 PM</td>
+																	
+	</tr>
+
+	<tr class="even" id="informal_27">
+		 
+																		<td width="30%"><a id="DirectLink_17" class="link2" href="/nicgep/app?component=%24DirectLink_0&amp;page=Home&amp;service=direct&amp;session=T&amp;sp=S2gKSAqinbZApFRu7RSm6sg%3D%3D">9. Due Date Extension</a></td>
+																		<td width="20%">9400M26B78</td>
+																		<td width="25%">28-Oct-2026 03:00 PM</td>
+																		<td width="25%">29-Oct-2026 03:00 PM</td>
+																	
+	</tr>
+
+	<tr class="odd" id="informal_28">
+		 
+																		<td width="30%"><a id="DirectLink_18" class="link2" href="/nicgep/app?component=%24DirectLink_0&amp;page=Home&amp;service=direct&amp;session=T&amp;sp=SzmP5S1tzpEUcuIaL9mnRSg%3D%3D">10. Corrigendum - III</a></td>
+																		<td width="20%">ER-MnC/2026-27/PT/199</td>
+																		<td width="25%">01-Oct-2026 04:00 PM</td>
+																		<td width="25%">03-Oct-2026 04:00 PM</td>
+																	
+	</tr>
+
+
+
+																	
+																
+</tbody></table>
+
+
+															</span>
+															
+														</div>
+													</div>
+												</td>
+											</tr>
+										
+											  
+											   
+												<tr class="list_header">
+											   		<td class="link2" colspan="3">&nbsp; <span class="Clickhere" style="display: block;">  Latest Corrigendum updates every 15 mins.</span></td>
+											   		<td>&nbsp;&nbsp;&nbsp;<a id="PageLink_23" title="More Corrigendums" class="Clickhere" href="/nicgep/app?page=FrontEndLatestActiveCorrigendums&amp;service=page" style="display: block;">More...</a></td>
+											   		
+											   		
+											 	</tr>
+
+											 	
+											 	
+										</tbody></table>
+									</td>
+								</tr>
+								
+							</tbody></table>
+						</td>
+					</tr>
+					
+					
+					
+					
+				</tbody></table>
+				
+			</td>
+		</tr>
+		<tr>
+			<td class="td_space">&nbsp;</td>
+		</tr>
+		<tr> 
+			<td align="center" colspan="2" valign="bottom">
+				<table width="100%" cellspacing="0" cellpadding="0" border="0" class="list_table">
+					<tbody><tr class="list_header">
+						<td>Certifying Agency</td>
+					</tr>
+					<tr> 
+						<td align="center">
+							<table cellspacing="2" cellpadding="2" border="0">
+								<tbody><tr>
+									<td>
+										<a id="DirectLink_19" href="/nicgep/app?component=%24DirectLink_3&amp;page=Home&amp;service=direct&amp;session=T&amp;sp=SSecurity_Audit_Report.pdf">	
+											<img src="images/security_cert.png" width="47" height="48" alt="STQC Logo" title="Security Audit Certificate">
+										</a>
+									</td>
+								</tr>
+							</tbody></table>
+						</td>
+					</tr>
+				</tbody></table>
+			</td>
+		</tr>
+	</tbody></table>
+	<!-- End of Page Content -->
+
+						<!-- Page content ends here -->	
+						</td>
+						<td width="215" class="navigation" valign="top">
+							<span id="If_21">
+									</span><table cellspacing="0" cellpadding="0">								
+								<tbody><tr>
+									<td width="215">	<form method="post" action="/nicgep/app" id="WebRightMenu_0" autocomplete="off">
+<div style="display:none;" id="WebRightMenu_0hidden"><input type="hidden" name="formids" value="">
+<input type="hidden" name="seedids" value="ZH4sIAAAAAAAAAE1PS07DMBRsF9zESy9ipwSxJHwrFYRKBcsoJC+JRfIc2W6jciZugzgGd+A5TkU29sz7zMz7+l2cfS4Wy5/lN7dgDqoAFvE+r/1X6K7XCOhGjC5XCIawBWuVRo96et7g/UF3kGpTju01kpJjIkr4SwNtS6UrPLJznuryGOZ3uk9zDGqtwg9B3XXFpOB32jCZEMkiJiN+21rw5aCZCSZWJyw9bsh4QwKk80yhPcySObkIhk/ahdNwBK8KBia4AaTIY6x46mz1QFPKgSFkWSy5wkqbLm+ZvOSDyfseSg9PDkyuvMEGKvcIuKfle6DDVDHFmjE6KeZ54dQBdqOzpQxzPlpG/EYZKFwQj6aBa22Mqmlq3/1vzYrTKiXZqroJUcQfxAOr494BAAA=">
+<input type="hidden" name="component" value="$WebHomeBorder.$WebRightMenu.WebRightMenu">
+<input type="hidden" name="page" value="Home">
+<input type="hidden" name="service" value="direct">
+<input type="hidden" name="session" value="T">
+<input type="hidden" name="submitmode" value="">
+<input type="hidden" name="submitname" value="">
+</div>
+		<table width="214" border="0" align="center" cellpadding="0" cellspacing="0">			
+			<tbody><tr> 
+				<td>
+					<table width="210" height="100" border="0" align="center" cellpadding="0" cellspacing="0">
+						<tbody><tr> 
+							<td valign="top">
+								<table width="210" border="0" align="center" cellpadding="5" cellspacing="5">
+		     						<tbody><tr> 
+										<td align="left">
+											<a id="login" style="display: block;" title="Login" value="Login" href="/nicgep/app?component=%24WebHomeBorder.%24WebRightMenu.login&amp;page=Home&amp;service=direct&amp;session=T"><img src="images/home_login_button_2.png" align="absmiddle" border="0"></a>											
+											<noscript>
+												<a href="" title="Login" ><img src="images/home_login_button_2.png" align="absmiddle" border="0"> </a>     								
+											</noscript>
+											<noscript> 
+		                                       <p align="justify" style="color:red;">Your browser JavaScript has been disabled. Kindly enable script for further process.</p>
+		     								</noscript>	
+										</td>
+									</tr>									
+									<tr> 
+										<td align="left">
+											<a id="DirectLink_20" style="display: block;" class="Clickhere" href="/nicgep/app?component=%24WebHomeBorder.%24WebRightMenu.%24DirectLink&amp;page=Home&amp;service=direct&amp;session=T"> &nbsp; Online Bidder Enrollment</a>
+											<noscript> <span  class="Clickhere"  title="Online Bidder Enrollment" style="color: #a03901;">&nbsp; Online Bidder Enrollment</span></noscript>	
+										</td>
+									</tr>							
+									<tr> 
+										<td align="left">
+											<a id="DirectLink_21" onclick="return openPopUp(this, 'location=no, scrollbars=yes, toolbar=no, width=1004, height=750, directories=no, menubar=no, resizable=yes, status=no, titlebar=yes');" style="display: block;" title="Generate / Forgot Password" class="Clickhere" href="/nicgep/app?component=%24WebHomeBorder.%24WebRightMenu.%24DirectLink_0&amp;page=Home&amp;service=direct&amp;session=T">&nbsp; Generate / Forgot Password?</a>
+											<noscript><span  class="Clickhere"  title="Generate / Forgot Password" style="color: #a03901;">&nbsp; Generate / Forgot Password?</span></noscript>
+										</td>
+									</tr>									
+									<tr> 
+										<td align="left">										
+											<a id="DirectLink_22" title="Find My Nodal Officer" class="Clickhere" href="/nicgep/app?component=%24WebHomeBorder.%24WebRightMenu.%24DirectLink_1&amp;page=Home&amp;service=direct&amp;session=T" style="display: block;">&nbsp; Find My Nodal Officer</a>
+										</td>
+									</tr>												  		 		  
+								</tbody></table>
+							</td>
+						</tr>
+					</tbody></table>
+				</td>
+			</tr>  
+		</tbody></table>
+	</form>
+	<script> 
+		document.getElementById("login").style.display='block';
+		var all = document.getElementsByClassName("Clickhere");
+		for (var i = 0; i < all.length; i++) {
+			all[i].style.display = 'block';
+	    } 
+    </script>
+	
+
+	
+	</td> 
+								</tr>
+								<tr>
+										<td class="page_notes">Search with ID/Title/Reference no </td>
+									</tr>
+									<tr>
+										<td width="215"><form method="post" action="/nicgep/app" id="tenderSearch">
+<div style="display:none;" id="tenderSearchhidden"><input type="hidden" name="formids" value="If_23,SearchDescription,Go">
+<input type="hidden" name="seedids" value="ZH4sIAAAAAAAAAFVQy07DMBBsD/yJjz7EbiniSHlWKgi1FRwrk2wSi2Q3st1W5Zv4Nf4AITZOKsIlntnHzGw+v0ZnH6PR+Gf8LT24vU1BJLIxRfukVDeEgCFiDMYiOMYevLeELWr48wpvD1TDnFwW2wtkpSBUMpPrEqqKS1d4FOdyTtmxm99QMzfYqVUW3xV3F7nQWt6RE3rGZJsIncjbyoPQqtfcKqGmJ6xbXLLxkgVY55lDt3A7G5KLzvCJQncaRvBi4SCUdIAcOcaa9J0VHXjKBnCMvJhoaTEnV5tK6Et5cKZpIGvhyUHoaWuwhDw8Au54+R74MJv2sQaMT5pIkwa7h0109pxhyKNlIm+sgzR04qeFa3LOFjy1q/+2BsV+lZOsbFF2UZSsqLDY//LosAbj0pIr4R/9BV8S9gMHAgAA">
+<input type="hidden" name="component" value="$WebHomeBorder.$WebTenderSearch.tenderSearch">
+<input type="hidden" name="page" value="Home">
+<input type="hidden" name="service" value="direct">
+<input type="hidden" name="session" value="T">
+<input type="hidden" name="submitmode" value="">
+<input type="hidden" name="submitname" value="">
+<input type="hidden" name="If_23" value="F">
+</div>
+<table width="210" height="90" border="0" align="center" cellpadding="0" cellspacing="0">
+	<tbody><tr>
+		<td>&nbsp;</td>
+	</tr>
+	<tr align="left">
+		
+	</tr>
+	<tr> 
+	  <td height="90" valign="top">
+	  <table width="213" height="90" border="0" align="center" cellpadding="0" cellspacing="0">
+		  <tbody><tr> 
+			<td valign="top" background="images/tendersearchbg.png">
+			<table width="181" border="0" align="center" cellpadding="2" cellspacing="2">
+				<tbody><tr> 
+				  <td colspan="2" height="25"></td>
+				</tr>
+				<tr> 
+				  <td width="69" class="logintext"><input type="text" name="SearchDescription" value="" id="SearchDescription" autocomplete="off" class="textbox2"></td>
+				  <td width="98"><div align="center"><input type="submit" name="Go" id="Go" border="0" autocomplete="off" title="Min. 3 chars. required for Tender Ref.no/Tender ID/Title" value="Go" class="customButton"></div></td>
+				</tr>				
+				<tr> 
+				 <td height="29" colspan="2" align="left">&nbsp;&nbsp;&nbsp;<a id="PageLink_24" title="Advanced Search" class="brown_link_white" href="/nicgep/app?page=FrontEndAdvancedSearch&amp;service=page"><b>Advanced Search</b></a>
+				  </td>
+				</tr>
+			  </tbody></table></td>
+		  </tr>
+		</tbody></table></td>
+	</tr>
+  </tbody></table>
+</form></td>					
+									</tr>
+								
+								
+								<tr>
+									<td width="215"><table width="214" border="0" align="center" cellpadding="0" cellspacing="0">
+	<tbody><tr valign="top"> 
+		<td colspan="5">
+			<span id="If_24">
+					</span><table width="204" border="0" align="center" cellpadding="0" cellspacing="0">
+				<tbody><tr>																	
+						<td>
+							<div id="secondcol"> 
+								<div id="menu4">
+									<ul>
+										<li id="For_26">
+											
+							             	 <span>
+												<a id="PageLink_25" title="Help For Contractors" href="/nicgep/app?page=HelpForContractors&amp;service=page" target="_self">Help For Contractors</a>																					
+											</span>
+										</li><li id="For_27">
+											<span id="If_0_22">
+								            	<a id="GenericLink_1" rel="noopener noreferrer" href="https://eprocure.gov.in/cppp/hassle_free_bid_submission.pdf" target="_blank">Guidelines for Hassle Free Bid Submission</a>
+							             	 </span>
+							             	 
+										</li><li id="For_28">
+											
+							             	 <span>
+												<a id="PageLink_26" title="Information About DSC" href="/nicgep/app?page=DSCInfo&amp;service=page" target="_self">Information About DSC</a>																					
+											</span>
+										</li><li id="For_29">
+											
+							             	 <span>
+												<a id="PageLink_27" title="FAQ" href="/nicgep/app?page=FAQFrontEnd&amp;service=page" target="_self">FAQ</a>																					
+											</span>
+										</li><li id="For_30">
+											
+							             	 <span>
+												<a id="PageLink_28" title="Feedback" href="/nicgep/app?page=FrontFeedback&amp;service=page" target="_self">Feedback</a>																					
+											</span>
+										</li><li id="For_31">
+											
+							             	 <span>
+												<a id="PageLink_29" title="Bidders Manual Kit" href="/nicgep/app?page=BiddersManualKit&amp;service=page" target="_self">Bidders Manual Kit</a>																					
+											</span>
+										</li>
+									</ul>
+								</div>
+				  			</div>
+						</td>
+					</tr>
+				
+				 <!-- tr> 
+					<td valign="top">
+					<div id="secondcol"> 
+						<div id="menu4"> 
+						  <ul>
+							<li><span jwcid="@PageLink" page="HelpForContractors">Help For Contractors </span></li>
+							<li><span jwcid="@PageLink" page="DSCInfo">Information About DSC</span></li>
+							<li><span jwcid="@PageLink" page="FAQFrontEnd">FAQ</span></li>
+							<li><span jwcid="@PageLink" page="FrontFeedback">Feedback</span></li>
+							<li><span jwcid="@DirectLink" listener="listener:showHelpForResources" >Resources Required</span></li>
+							<li><span jwcid="@PageLink" page="BiddersManualKit">Bidders Manual Kit</span></li>
+							</ul>
+						</div>
+					  </div>
+					</td>
+				  </tr-->
+			</tbody></table>
+		</td>
+	</tr>
+</tbody></table></td>					
+								</tr>
+							</tbody></table>
+						</td>						
+					</tr>
+				</tbody></table>
+			</td>
+		</tr>
+		<tr>
+			<td valign="bottom" height="40">
+				<table width="100%" cellspacing="0" cellpadding="0">
+	 <tbody><tr style="background-color:#E8E8E8;"> 
+	 <td height="25" class="text2" align="center"><b>Visitor No:16245771</b></td>
+		
+	  </tr>
+	 <tr style="background-color:#E8E8E8;"> 
+	
+		<td height="25" class="text2" align="center">Contents Owned and Maintained by IndianOil Corporation Limited		  
+		 </td>
+	  </tr>
+	  <tr valign="top" class="secondaryBg"> 
+		<td>
+			<table width="100%" height="22" border="0" cellpadding="1" cellspacing="1">
+
+				
+				<tbody><tr class="footer">
+					<td width="40%" valign="top" align="left">Designed, Developed and Hosted by<br>  <a href="http://www.nic.in" target="_blank" rel="noopener noreferrer" class="footerlink">National Informatics Centre</a></td>
+					<td width="40%" align="left">
+						 Version : 1.09.24 08-Sep-2026<br>
+						(c) 2017 Tenders NIC, All rights reserved.<br>Site best viewed with a screen resolution 1920 x 1080.</td>					
+					<td width="20%" valign="top" align="right"><a id="PageLink_30" class="footerlink" href="/nicgep/app?page=Disclaimer&amp;service=page">Portal policies</a></td>
+				</tr>
+			</tbody></table>
+		</td>
+	  </tr>
+</tbody></table>
+			</td>
+		</tr>
+	</tbody></table>
+<script type="text/javascript"><!--
+tapestry.addOnLoad(function(e) {
+dojo.require("tapestry.form");tapestry.form.registerForm("WebRightMenu_0");
+
+tapestry.form.registerForm("tenderSearch");
+
+tapestry.form.focusField('SearchDescription');});
+// --></script>
+
+</body></html>

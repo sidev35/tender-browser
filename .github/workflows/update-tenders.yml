@@ -6,7 +6,7 @@ on:
     # homepage widget actually rotates, so we catch a tender before it
     # scrolls off (GitHub Actions cron is always UTC, but this interval
     # doesn't depend on timezone). Email digests are throttled separately
-    # (see notify.py / MIN_HOURS_BETWEEN_DIGESTS) so this frequency doesn't
+    # (see tender_radar/notify.py / MIN_HOURS_BETWEEN_DIGESTS) so this frequency doesn't
     # translate into 96 emails a day.
     - cron: '*/15 * * * *'
   workflow_dispatch: {}   # adds a "Run workflow" button on the Actions tab for on-demand runs
@@ -33,13 +33,8 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      # Only needed while sources.json has at least one "js_rendered_table"
-      # source enabled. This adds real time to every single run (this
-      # workflow fires every 15 minutes) — a browser download/install plus
-      # several seconds of page-render time per JS source, not a one-off
-      # cost. If you end up with no js_rendered_table sources enabled,
-      # remove this step to go back to the lighter/faster run.
-      - name: Install Playwright browser (for JS-rendered sources)
+      # Required: scraper.py loads every source through a headless browser.
+      - name: Install Playwright browser
         run: playwright install --with-deps chromium
 
       - name: Run scraper

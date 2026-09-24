@@ -20,16 +20,18 @@ Two modes:
        python debug_js_source.py "<url>" --search "charging station"
 
 Uses the system's Microsoft Edge by default (same as scraper.py; see
-scraper.playwright_launch_kwargs), so no `playwright install` download is
+tender_radar/browser.py), so no `playwright install` download is
 needed. Set PLAYWRIGHT_CHROMIUM_CHANNEL=chromium to use Playwright's own
 bundled Chromium instead, if it's been installed.
 
 Requires: pip install playwright
 """
+
 import sys
+
 from playwright.sync_api import sync_playwright
 
-from scraper import playwright_launch_kwargs
+from tender_radar.browser import playwright_launch_kwargs
 
 # Windows' console defaults to cp1252, which can't encode plenty of
 # characters that show up in real page text on these portals (arrows,
@@ -80,8 +82,11 @@ def _safe_visible(el):
 
 def inspect_form_in(frame, label, search_term):
     inputs = [el for el in frame.query_selector_all("input") if _safe_visible(el)]
-    buttons = [el for el in frame.query_selector_all("button, input[type=submit], a[role=button]")
-               if _safe_visible(el)]
+    buttons = [
+        el
+        for el in frame.query_selector_all("button, input[type=submit], a[role=button]")
+        if _safe_visible(el)
+    ]
     if not inputs and not buttons:
         return False
     print(f"\n=== {label} ===")
@@ -105,17 +110,21 @@ def inspect_form(page, search_term):
             found_any = True
 
     if not found_any:
-        print("\nNo visible inputs/buttons found anywhere, including inside "
-              "iframes. The page may still be loading, need a click to reveal "
-              "the search form, or be blocking headless browsers. Diagnostics:")
+        print(
+            "\nNo visible inputs/buttons found anywhere, including inside "
+            "iframes. The page may still be loading, need a click to reveal "
+            "the search form, or be blocking headless browsers. Diagnostics:"
+        )
         print(f"  Rendered HTML length: {len(page.content())} chars")
         print(f"  Frames on page: {[f.url for f in page.frames]}")
         body_text = page.inner_text("body") if page.query_selector("body") else ""
         print(f"  First 500 chars of body text: {body_text[:500]!r}")
     else:
-        print(f"\nOnce we know the right selectors, we'll fill the search box "
-              f"with {search_term!r}, click the right button, wait for results, "
-              f"and re-dump the tables the same way inspect mode does.")
+        print(
+            f"\nOnce we know the right selectors, we'll fill the search box "
+            f"with {search_term!r}, click the right button, wait for results, "
+            f"and re-dump the tables the same way inspect mode does."
+        )
 
 
 def inspect(url, search_term=None, click_selector=None):
@@ -204,7 +213,7 @@ def inspect(url, search_term=None, click_selector=None):
 def run_search_and_dump(url, term, input_sel, button_sel, click_selector=None):
     """
     Actually performs the search (fill + click, same as
-    fetch_js_interactive_search in scraper.py) and dumps EVERY row found in
+    fetch_js_interactive_search in tender_radar/fetchers.py) and dumps EVERY row found in
     EVERY table afterward — not just a sample — so we can see exactly what
     landed in the DOM vs. what the real site showed you when you searched
     by hand. If the real site shows 3 results and this only shows 1 (or 0),
@@ -259,16 +268,18 @@ def run_search_and_dump(url, term, input_sel, button_sel, click_selector=None):
 if __name__ == "__main__":
     args = sys.argv[1:]
     if not args:
-        print('Usage:\n'
-              '  python debug_js_source.py <url> [--search "term"] [--click "<css selector>"]\n'
-              '  python debug_js_source.py <url> --search "term" '
-              '--input "<css selector>" --button "<css selector>" [--click "<css selector>"]  '
-              '(runs the real search and dumps every row found)\n'
-              '\n'
-              '  --click: use when the search form (or the results table, in '
-              'inspect mode) sits inside a tab/panel that\'s hidden until its '
-              'nav link is clicked (confirmed needed on Telangana\'s portal — '
-              'its "Live Tenders" link is a tab trigger, not a page navigation).')
+        print(
+            "Usage:\n"
+            '  python debug_js_source.py <url> [--search "term"] [--click "<css selector>"]\n'
+            '  python debug_js_source.py <url> --search "term" '
+            '--input "<css selector>" --button "<css selector>" [--click "<css selector>"]  '
+            "(runs the real search and dumps every row found)\n"
+            "\n"
+            "  --click: use when the search form (or the results table, in "
+            "inspect mode) sits inside a tab/panel that's hidden until its "
+            "nav link is clicked (confirmed needed on Telangana's portal — "
+            'its "Live Tenders" link is a tab trigger, not a page navigation).'
+        )
         sys.exit(1)
     url = args[0]
     search_term = None

@@ -1,7 +1,7 @@
 """
 Email digest for Tender Radar — sent from the same GitHub Actions run as
 the scraper, via SendGrid's REST API (plain `requests` call, no SDK
-dependency needed since scraper.py already depends on requests).
+dependency needed).
 
 This repo is public, so nothing sensitive or personal lives in it.
 Everything here is configured entirely through environment variables,
@@ -31,13 +31,20 @@ the scraper itself runs and updates the dashboard.
 """
 
 import json
+import logging
 import os
 from datetime import datetime
+from typing import Any
 
 import requests
 
-TEMPLATE_PATH = os.path.join(os.path.dirname(__file__), "email_template.txt")
-DIGEST_STATE_PATH = os.path.join(os.path.dirname(__file__), "digest_state.json")
+log = logging.getLogger(__name__)
+
+# Both live at the repo root (one level above this package); the workflow
+# commits digest_state.json from there.
+REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+TEMPLATE_PATH = os.path.join(REPO_ROOT, "email_template.txt")
+DIGEST_STATE_PATH = os.path.join(REPO_ROOT, "digest_state.json")
 SENDGRID_URL = "https://api.sendgrid.com/v3/mail/send"
 
 
@@ -68,15 +75,18 @@ def _render(new_records, due_soon_records, dashboard_url, due_soon_days):
         raw = f.read()
 
     subject_line, _, body = raw.partition("\n")
-    subject = subject_line[len("Subject:"):].strip() if subject_line.startswith("Subject:") else subject_line.strip()
+    subject = subject_line.removeprefix("Subject:").strip()
 
     new_section = (
         f"NEW TENDERS MATCHED ({len(new_records)}):\n{_format_list(new_records)}"
-        if new_records else "No new tenders matched this run."
+        if new_records
+        else "No new tenders matched this run."
     )
     due_section = (
-        f"CLOSING SOON — within {due_soon_days} days ({len(due_soon_records)}):\n{_format_list(due_soon_records)}"
-        if due_soon_records else "No tenders currently closing soon."
+        f"CLOSING SOON — within {due_soon_days} days ({len(due_soon_records)}):\n"
+        f"{_format_list(due_soon_records)}"
+        if due_soon_records
+        else "No tenders currently closing soon."
     )
 
     replacements = {
@@ -94,10 +104,13 @@ def _render(new_records, due_soon_records, dashboard_url, due_soon_days):
     return subject, body.strip()
 
 
-def send_digest(new_records, due_soon_records,
-                 dashboard_url="https://sidev35.github.io/tender-browser/"):
+def send_digest(
+    new_records: list[dict[str, Any]],
+    due_soon_records: list[dict[str, Any]],
+    dashboard_url: str = "https://sidev35.github.io/tender-browser/",
+) -> None:
     if not new_records and not due_soon_records:
-        print("Email digest: nothing new and nothing closing soon — skipping send.")
+        log.info("Email digest: nothing new and nothing closing soon — skipping send.")
         return
 
     min_hours = float(os.environ.get("MIN_HOURS_BETWEEN_DIGESTS") or "6")
@@ -106,9 +119,11 @@ def send_digest(new_records, due_soon_records,
     if last_sent is not None:
         elapsed_hours = (now - last_sent).total_seconds() / 3600
         if elapsed_hours < min_hours:
-            print(f"Email digest: last one sent {elapsed_hours:.1f}h ago, under the "
-                  f"{min_hours}h minimum gap — skipping to avoid spamming the inbox. "
-                  f"(The dashboard data itself was still updated this run.)")
+            log.info(
+                f"Email digest: last one sent {elapsed_hours:.1f}h ago, under the "
+                f"{min_hours}h minimum gap — skipping to avoid spamming the inbox. "
+                f"(The dashboard data itself was still updated this run.)"
+            )
             return
 
     api_key = os.environ.get("SENDGRID_API_KEY")
@@ -117,8 +132,10 @@ def send_digest(new_records, due_soon_records,
     due_soon_days = os.environ.get("DUE_SOON_DAYS") or "7"
 
     if not api_key or not from_email or not recipients:
-        print("Email digest: SENDGRID_API_KEY / NOTIFY_FROM_EMAIL / NOTIFY_RECIPIENTS "
-              "not fully configured — skipping send. See README for setup.")
+        log.info(
+            "Email digest: SENDGRID_API_KEY / NOTIFY_FROM_EMAIL / NOTIFY_RECIPIENTS "
+            "not fully configured — skipping send. See README for setup."
+        )
         return
 
     subject, body = _render(new_records, due_soon_records, dashboard_url, due_soon_days)
@@ -136,8 +153,10 @@ def send_digest(new_records, due_soon_records,
         timeout=20,
     )
     if resp.status_code >= 300:
-        print(f"  [!] SendGrid rejected the email: {resp.status_code} {resp.text}")
+        log.warning(f"  [!] SendGrid rejected the email: {resp.status_code} {resp.text}")
     else:
         _record_sent(now)
-        print(f"Email digest sent to {len(recipients)} recipient(s): "
-              f"{len(new_records)} new, {len(due_soon_records)} closing soon.")
+        log.info(
+            f"Email digest sent to {len(recipients)} recipient(s): "
+            f"{len(new_records)} new, {len(due_soon_records)} closing soon."
+        )

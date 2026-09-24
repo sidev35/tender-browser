@@ -1,0 +1,20 @@
+# Runs automatically on `git commit` once installed:
+#   pip install -r requirements-dev.txt
+#   pre-commit install
+# Or run it by hand on everything: pre-commit run --all-files
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.16.8
+    hooks:
+      - id: ruff-check   # lint (settings in pyproject.toml); fixes what it safely can
+        args: [--fix]
+      - id: ruff-format  # consistent formatting
+
+  - repo: local
+    hooks:
+      - id: pytest
+        name: pytest (parser tests, no network)
+        entry: python -m pytest -q
+        language: system
+        pass_filenames: false
+        types: [python]

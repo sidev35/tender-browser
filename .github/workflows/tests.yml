@@ -1,0 +1,39 @@
+name: Tests
+
+on:
+  push:
+    # Only when code/config changes: the scraper's own data commits
+    # (docs/data/tenders.json, every 15 min) don't need a test run.
+    paths:
+      - '**.py'
+      - 'tests/**'
+      - 'sources.json'
+      - 'requirements*.txt'
+      - 'config/**'
+      - 'pyproject.toml'
+      - '.github/workflows/tests.yml'
+  pull_request:
+  workflow_dispatch: {}
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      # No browser install needed: tests parse saved HTML in tests/fixtures/
+      # and never load a page.
+      - name: Install dependencies
+        run: pip install -r requirements-dev.txt
+
+      - name: Lint and format check (settings in pyproject.toml)
+        run: |
+          ruff check .
+          ruff format --check .
+
+      - name: Run tests
+        run: python -m pytest -q -rx

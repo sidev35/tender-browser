@@ -1,8 +1,7 @@
 requests==2.32.3
 beautifulsoup4==4.12.3
 
-# Optional: only needed for sources of type "js_rendered_table" in
-# sources.json (portals whose tender listing is rendered client-side via
-# JS, confirmed by manual check). After installing, also run:
-#   playwright install --with-deps chromium
+# Every source is loaded through a headless browser (see
+# tender_radar/browser.py). Locally it drives the system's Microsoft Edge by default,
+# so no browser download is needed; CI runs `playwright install chromium`.
 playwright>=1.47,<2.0

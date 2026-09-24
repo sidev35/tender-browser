@@ -86,6 +86,8 @@
     "searchInputSelector": "#TENDERTITLE:visible",
     "searchButtonSelector": "#searchButtonId:visible",
     "searchKeyword": "charging station",
+    "titleRegex": "Name Of Work\\s*:\\s*(.+?)\\s*(?:Corrigendum\\s*:|Estimated Contract Value|Last Date|$)",
+    "valueRegex": "Estimated Contract Value\\s*:\\s*([\\d,]+(?:\\.\\d+)?)",
     "notes": "Free/official (run by (n)Code Solutions, not NIC GePNIC). No-login public tender search, confirmed live 2026-09-22 — previously listed as 'unsupported'. Single-page app like Bihar/Telangana: URL doesn't change on search, so js_interactive_search is required. Unlike Bihar, these selectors are unique IDs with no hidden-duplicate issue (#TENDERTITLE is labeled 'Tender Title', #searchButtonId is the confirmed submit button). Searching 'charging station' returned 2 real matches during manual testing via debug_js_source.py. Left disabled until a first live run through the full scraper.py pipeline has been checked end-to-end (title/date parsing quality, not just raw fetch) — flip to true once confirmed."
   },
   {
