@@ -126,10 +126,14 @@ If the secrets/variables aren't set, `tender_radar/notify.py` prints why and ski
 sending — the scraper's core job (updating `tenders.json`) never fails
 because of a missing or broken email config.
 
-The email content is built from `email_template.txt` — edit that file
-to change wording/formatting; placeholders (`{{NEW_COUNT}}`,
-`{{NEW_SECTION}}`, `{{DUE_SOON_SECTION}}`, etc.) are filled in by
-`tender_radar/notify.py`.
+Each email is sent in two versions: **`email_template.html`** (what mail
+apps show: each tender as its own spaced-out block, and a clickable
+dashboard button and link) and **`email_template.txt`** (the plain-text
+fallback, with a blank line between tenders; its first line is the subject).
+Edit either file to change wording or layout; placeholders (`{{NEW_COUNT}}`,
+`{{NEW_SECTION}}`, `{{DUE_SOON_SECTION}}`, `{{DASHBOARD_URL}}`, etc.) are
+filled in by `tender_radar/notify.py`. Deleting the HTML file makes it send
+plain text only.
 
 ## Running the scraper locally
 

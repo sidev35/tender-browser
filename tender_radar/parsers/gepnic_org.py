@@ -29,9 +29,10 @@ _TENDER_ID = re.compile(r"^\d{4}_[A-Za-z0-9]+_\d+_\d+$")
 def is_captcha_page(html: str) -> bool:
     """True if the page is asking for a captcha instead of showing a list."""
     soup = BeautifulSoup(html, "html.parser")
-    return soup.find("input", attrs={"name": "captchaText"}) is not None and soup.find(
-        "table", id="table"
-    ) is None
+    return (
+        soup.find("input", attrs={"name": "captchaText"}) is not None
+        and soup.find("table", id="table") is None
+    )
 
 
 def parse_gepnic_org_list(html: str, base_url: str) -> list[dict]:

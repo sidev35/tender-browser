@@ -1,0 +1,23 @@
+<!-- HTML version of the digest email. Mail apps show this; email_template.txt
+     is the plain-text fallback. The subject line comes from email_template.txt.
+     tender_radar/notify.py fills in the placeholders below (the names in
+     double curly braces: RUN_TIME, NEW_SECTION, DUE_SOON_SECTION,
+     DASHBOARD_URL). Don't write a placeholder inside this comment: it would
+     be filled in here too. The two sections are lists of tenders, each with
+     space around it.
+     Keep styles inline: most mail apps ignore <style> blocks. -->
+<div style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; line-height: 1.5; color: #1f2d27; max-width: 680px;">
+  <p style="margin: 0 0 16px;"><strong>Tender Radar automatic digest</strong> — {{RUN_TIME}}</p>
+
+  {{NEW_SECTION}}
+
+  {{DUE_SOON_SECTION}}
+
+  <p style="margin: 28px 0 8px;">
+    <a href="{{DASHBOARD_URL}}" style="display: inline-block; background: #0f9d63; color: #ffffff; text-decoration: none; padding: 10px 16px; border-radius: 6px; font-weight: bold;">Open the Tender Radar dashboard</a>
+  </p>
+  <p style="margin: 0; color: #59695f; font-size: 12px;">
+    Or copy this link: <a href="{{DASHBOARD_URL}}" style="color: #0f9d63;">{{DASHBOARD_URL}}</a><br>
+    Sent automatically by the Tender Radar GitHub Actions workflow.
+  </p>
+</div>

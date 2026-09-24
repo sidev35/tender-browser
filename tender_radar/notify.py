@@ -30,6 +30,7 @@ sends to at most once per that many hours, tracked in digest_state.json
 the scraper itself runs and updates the dashboard.
 """
 
+import html
 import json
 import logging
 import os
@@ -44,6 +45,9 @@ log = logging.getLogger(__name__)
 # commits digest_state.json from there.
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE_PATH = os.path.join(REPO_ROOT, "email_template.txt")
+# HTML version, shown by mail apps (clickable link, spaced-out tenders); the
+# plain text above is the fallback. Optional: without it, only text is sent.
+HTML_TEMPLATE_PATH = os.path.join(REPO_ROOT, "email_template.html")
 DIGEST_STATE_PATH = os.path.join(REPO_ROOT, "digest_state.json")
 SENDGRID_URL = "https://api.sendgrid.com/v3/mail/send"
 
@@ -61,47 +65,90 @@ def _record_sent(when):
         json.dump({"last_sent": when.isoformat()}, f)
 
 
+def _details(t):
+    """ "Category · Source · due 2026-10-03 · ₹2.55 Cr" for one tender."""
+    parts = [t.get("category") or "Uncategorized", t.get("source")]
+    if t.get("location"):
+        parts.append(t["location"])
+    if t.get("dueDate"):
+        parts.append(f"due {t['dueDate']}")
+    if t.get("value"):
+        parts.append(t["value"])
+    return " · ".join(p for p in parts if p)
+
+
 def _format_list(records):
-    lines = []
-    for t in records:
-        loc = f" ({t['location']})" if t.get("location") else ""
-        due = f" — due {t['dueDate']}" if t.get("dueDate") else ""
-        lines.append(f"- [{t.get('category', 'Uncategorized')}] {t['desc']}{loc}{due}")
-    return "\n".join(lines)
+    """Plain text: one tender per block, with a blank line between tenders."""
+    return "\n\n".join(f"- {t['desc']}\n  {_details(t)}" for t in records)
+
+
+def _format_list_html(records):
+    """HTML: one spaced-out block per tender. Scraped text is escaped."""
+    return "\n".join(
+        '<div style="margin: 0 0 14px; padding: 10px 12px; border-left: 3px solid #0f9d63; '
+        'background: #f5f8f6;">'
+        f'<div style="font-weight: bold;">{html.escape(t["desc"])}</div>'
+        f'<div style="color: #59695f; font-size: 13px; margin-top: 4px;">{html.escape(_details(t))}</div>'
+        "</div>"
+        for t in records
+    )
+
+
+def _section_heading_html(text):
+    return f'<h3 style="font-size: 15px; margin: 24px 0 10px;">{html.escape(text)}</h3>'
 
 
 def _render(new_records, due_soon_records, dashboard_url, due_soon_days):
+    """Returns (subject, plain-text body, HTML body or None)."""
     with open(TEMPLATE_PATH, encoding="utf-8") as f:
         raw = f.read()
 
     subject_line, _, body = raw.partition("\n")
     subject = subject_line.removeprefix("Subject:").strip()
 
-    new_section = (
-        f"NEW TENDERS MATCHED ({len(new_records)}):\n{_format_list(new_records)}"
-        if new_records
-        else "No new tenders matched this run."
-    )
-    due_section = (
-        f"CLOSING SOON — within {due_soon_days} days ({len(due_soon_records)}):\n"
-        f"{_format_list(due_soon_records)}"
-        if due_soon_records
-        else "No tenders currently closing soon."
-    )
+    new_heading = f"NEW TENDERS MATCHED ({len(new_records)}):"
+    due_heading = f"CLOSING SOON — within {due_soon_days} days ({len(due_soon_records)}):"
+    no_new, no_due = "No new tenders matched this run.", "No tenders currently closing soon."
 
-    replacements = {
+    common = {
         "{{NEW_COUNT}}": str(len(new_records)),
         "{{DUE_SOON_COUNT}}": str(len(due_soon_records)),
         "{{RUN_TIME}}": datetime.now().strftime("%Y-%m-%d %H:%M"),
-        "{{NEW_SECTION}}": new_section,
-        "{{DUE_SOON_SECTION}}": due_section,
+    }
+    text = {
+        **common,
+        "{{NEW_SECTION}}": f"{new_heading}\n\n{_format_list(new_records)}" if new_records else no_new,
+        "{{DUE_SOON_SECTION}}": (
+            f"{due_heading}\n\n{_format_list(due_soon_records)}" if due_soon_records else no_due
+        ),
         "{{DASHBOARD_URL}}": dashboard_url,
     }
-    for key, value in replacements.items():
+    for key, value in text.items():
         subject = subject.replace(key, value)
         body = body.replace(key, value)
 
-    return subject, body.strip()
+    html_body = None
+    if os.path.exists(HTML_TEMPLATE_PATH):
+        with open(HTML_TEMPLATE_PATH, encoding="utf-8") as f:
+            html_body = f.read()
+        rich = {
+            **common,
+            "{{NEW_SECTION}}": (
+                _section_heading_html(new_heading) + _format_list_html(new_records)
+                if new_records
+                else f"<p>{no_new}</p>"
+            ),
+            "{{DUE_SOON_SECTION}}": (
+                _section_heading_html(due_heading) + _format_list_html(due_soon_records)
+                if due_soon_records
+                else f"<p>{no_due}</p>"
+            ),
+            "{{DASHBOARD_URL}}": html.escape(dashboard_url, quote=True),
+        }
+        for key, value in rich.items():
+            html_body = html_body.replace(key, value)
+
+    return subject, body.strip(), html_body
 
 
 def send_digest(
@@ -138,13 +185,18 @@ def send_digest(
         )
         return
 
-    subject, body = _render(new_records, due_soon_records, dashboard_url, due_soon_days)
+    subject, body, html_body = _render(new_records, due_soon_records, dashboard_url, due_soon_days)
 
+    # SendGrid requires text/plain first; mail apps show the HTML part if
+    # there is one and fall back to the text.
+    content = [{"type": "text/plain", "value": body}]
+    if html_body:
+        content.append({"type": "text/html", "value": html_body})
     payload = {
         "personalizations": [{"to": [{"email": r} for r in recipients]}],
         "from": {"email": from_email},
         "subject": subject,
-        "content": [{"type": "text/plain", "value": body}],
+        "content": content,
     }
     resp = requests.post(
         SENDGRID_URL,

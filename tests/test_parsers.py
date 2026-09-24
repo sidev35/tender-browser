@@ -94,6 +94,13 @@ def test_tenderdetail_card_fields(tenderdetail_rows):
     assert row["refNo"] is None
 
 
+def test_tenderdetail_drops_the_corrigendum_prefix(tenderdetail_rows):
+    # The site lists an amended tender as "Corrigendum : <title>".
+    assert not any(r["raw_title"].lower().startswith("corrigendum") for r in tenderdetail_rows)
+    row = next(r for r in tenderdetail_rows if r["stableKey"] == "td-57366481")
+    assert row["raw_title"] == "Bids Are invited for Ac Ev Charging Station (Q2)"
+
+
 def test_tenderdetail_undisclosed_value_is_none(tenderdetail_rows):
     # Cards that say "Ref. Document" instead of an amount.
     assert sum(1 for r in tenderdetail_rows if r["value"]) == 35

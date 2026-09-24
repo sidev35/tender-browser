@@ -8,6 +8,8 @@ from bs4 import BeautifulSoup
 
 from ..models import Row
 
+CORRIGENDUM_PREFIX = re.compile(r"^\s*corrigendum\s*[:\-–]\s*", re.IGNORECASE)
+
 
 def parse_tenderdetail_list(html: str, source_name: str, base_url: str) -> list[Row]:
     """
@@ -32,7 +34,10 @@ def parse_tenderdetail_list(html: str, source_name: str, base_url: str) -> list[
         title_link = card.select_one("a.tc-title")
         if not title_link:
             continue
-        title = title_link.get_text(" ", strip=True)
+        # An amended tender is listed as "Corrigendum : <real title>"; the
+        # prefix isn't part of the tender's title (confirmed 2026-09-24:
+        # 8 of 50 saved TenderDetail titles had it).
+        title = CORRIGENDUM_PREFIX.sub("", title_link.get_text(" ", strip=True))
         td_id = next(
             (
                 t.get_text(strip=True)[1:]

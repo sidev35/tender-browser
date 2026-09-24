@@ -44,12 +44,15 @@ def test_captcha_page_is_recognised(fixture_html):
     assert not is_captcha_page(fixture_html("gepnic_org_list_cppp"))
 
 
-@pytest.mark.parametrize("slot, expected", [
-    (0, [0, 1, 2]),
-    (1, [3, 4, 5]),
-    (2, [6, 0, 1]),  # wraps around
-    (3, [2, 3, 4]),
-])
+@pytest.mark.parametrize(
+    "slot, expected",
+    [
+        (0, [0, 1, 2]),
+        (1, [3, 4, 5]),
+        (2, [6, 0, 1]),  # wraps around
+        (3, [2, 3, 4]),
+    ],
+)
 def test_rotation_walks_through_every_organisation(slot, expected):
     assert rotation_slice(list(range(7)), 3, slot) == expected
 

@@ -7,5 +7,7 @@ Tender Radar automatic digest — {{RUN_TIME}}
 {{DUE_SOON_SECTION}}
 
 --
+Open the dashboard:
+{{DASHBOARD_URL}}
+
 Sent automatically by the Tender Radar GitHub Actions workflow.
-Dashboard: {{DASHBOARD_URL}}
