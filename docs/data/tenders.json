@@ -752,5 +752,44 @@
     "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57056698/238763393c3652df152c66ff10c1bf1f",
     "linkType": "direct",
     "firstSeen": "2026-09-25"
+  },
+  {
+    "id": "AUTO-4baa0b4397",
+    "desc": "Tender for Ev Charging Stations At Agcl Multi-Fuel Retail Outlets",
+    "refNo": null,
+    "location": "Assam",
+    "value": null,
+    "dueDate": "2026-10-16",
+    "category": "Charger Supply & Installation",
+    "source": "TenderDetail (charging station listing)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57705744/adae3532ed69c3ab3ddfdbf24018e661",
+    "linkType": "direct",
+    "firstSeen": "2026-09-25"
+  },
+  {
+    "id": "AUTO-a05551c3f3",
+    "desc": "Tender for Provision Of Electric Vehicle Charging Station At Mic&S, Ahilyanagar",
+    "refNo": null,
+    "location": "Maharashtra",
+    "value": "₹34.95 Lakh",
+    "dueDate": "2026-10-01",
+    "category": "Charger Supply & Installation",
+    "source": "TenderDetail (charging station listing)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57344716/acec8ec09d31cfa13c4272fd0e9b235c",
+    "linkType": "direct",
+    "firstSeen": "2026-09-25"
+  },
+  {
+    "id": "AUTO-32c408945b",
+    "desc": "Corrigendum Tender For Development Of Electric Vehicle Charging Station On Dbfot Basis In Various Parking Places Of Different Municipal Corporations On Ppp Format",
+    "refNo": null,
+    "location": "Delhi",
+    "value": null,
+    "dueDate": "2026-10-15",
+    "category": "PPP / Concession / CPO Selection",
+    "source": "TenderDetail (charging station listing)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57703972/f65cea9ff8251b30a448a20be0856739",
+    "linkType": "direct",
+    "firstSeen": "2026-09-25"
   }
 ]
