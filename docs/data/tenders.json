@@ -804,5 +804,31 @@
     "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57718607/df9b283bb6f6c7e1b49f653ec9425bb8",
     "linkType": "direct",
     "firstSeen": "2026-09-26"
+  },
+  {
+    "id": "AUTO-50dc071eed",
+    "desc": "Bids Are invited for Dc Ev Charging Station (Q2)",
+    "refNo": null,
+    "location": "Uttar Pradesh",
+    "value": "₹12.00 Lakh",
+    "dueDate": "2026-10-05",
+    "category": "Charger Supply & Installation",
+    "source": "TenderDetail (charging station listing)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57723446/84ec22e5f51e15255d18a2b76babcc8e",
+    "linkType": "direct",
+    "firstSeen": "2026-09-26"
+  },
+  {
+    "id": "AUTO-f0118d3330",
+    "desc": "Tender for Improvement Of Electrical Wiring From Battery Charging Station To Fitter Shop Room Near Sector Adm Block Under Shq Bsf Panisagar.",
+    "refNo": null,
+    "location": "Tripura",
+    "value": null,
+    "dueDate": "2026-10-08",
+    "category": "Other EV Charging",
+    "source": "TenderDetail (charging station listing)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57724429/8d5141729d644908645525089fbd979e",
+    "linkType": "direct",
+    "firstSeen": "2026-09-26"
   }
 ]
