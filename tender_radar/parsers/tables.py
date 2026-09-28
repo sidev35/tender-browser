@@ -9,6 +9,39 @@ import re
 from bs4 import BeautifulSoup
 
 from ..models import Row
+from ..normalize import format_rupees
+
+# Header text -> what the column holds, checked in this order (first match
+# wins). Seen live 2026-09-28:
+#   Telangana: Tender ID | Enquiry/IFB/Tender Notice Number | Name of Work |
+#              Estimated Contract Value
+#   Bihar:     Tender/RFQ ID | Tender Description | Reference No.
+#   Gujarat:   IFB/Tender Notice No. | Tender Brief
+COLUMN_NAMES = [
+    ("tenderId", re.compile(r"\b(tender|rfq)\s*(/\s*rfq\s*)?id\b", re.IGNORECASE)),
+    ("refNo", re.compile(r"reference\s*no|tender\s*notice|ifb", re.IGNORECASE)),
+    ("title", re.compile(r"name\s*of\s*work|tender\s*description|tender\s*brief|\btitle\b", re.IGNORECASE)),
+    ("value", re.compile(r"(estimated|contract)\s*(contract\s*)?value", re.IGNORECASE)),
+]
+
+
+def named_columns(header_cells: list[str]) -> dict[str, int]:
+    """{"tenderId": 1, "title": 4, ...} for header cells that name a known column."""
+    found: dict[str, int] = {}
+    for idx, header in enumerate(header_cells):
+        for name, pattern in COLUMN_NAMES:
+            if name not in found and pattern.search(header):
+                found[name] = idx
+                break
+    return found
+
+
+def _cell(cells: list[str], columns: dict[str, int], name: str) -> str | None:
+    """The text of the column named `name` (see named_columns), or None."""
+    idx = columns.get(name)
+    if idx is None or idx >= len(cells):
+        return None
+    return cells[idx].strip() or None
 
 
 def parse_gepnic_table(html: str, source_name: str) -> list[Row]:
@@ -68,6 +101,7 @@ def parse_gepnic_table(html: str, source_name: str) -> list[Row]:
         # is found, so portals without a recognizable header row — or
         # without this ambiguity in the first place — aren't affected.
         closing_col_idx = None
+        columns: dict[str, int] = {}
         if rows:
             header_cells = [c.get_text(" ", strip=True) for c in rows[0].find_all(["th", "td"])]
             for idx, h in enumerate(header_cells):
@@ -75,6 +109,7 @@ def parse_gepnic_table(html: str, source_name: str) -> list[Row]:
                 if "closing" in h_l or "end date" in h_l:
                     closing_col_idx = idx
                     break
+            columns = named_columns(header_cells)
         for row in rows:
             cells = [c.get_text(" ", strip=True) for c in row.find_all(["td", "th"])]
             if len(cells) < 3:
@@ -93,7 +128,8 @@ def parse_gepnic_table(html: str, source_name: str) -> list[Row]:
                 def strip_prefix(c: str) -> str:
                     return re.sub(r"^\s*\d+\.\s*", "", c).strip()
 
-                title = strip_prefix(max(cells, key=len))  # longest cell is usually the title
+                # A column named like a title wins; else the longest cell is usually the title.
+                title = strip_prefix(_cell(cells, columns, "title") or max(cells, key=len))
                 # Best-effort: the reference number is the remaining
                 # short, non-date, non-title cell (e.g. "1/WKS/04/26-Gl" or a
                 # numeric tender id) — gives users a second, more precise
@@ -121,6 +157,10 @@ def parse_gepnic_table(html: str, source_name: str) -> list[Row]:
                 )
                 if ref_no:
                     ref_no = strip_prefix(ref_no) or None
+                # A column named like a reference number wins over the guess
+                # above: Telangana's first column is the department name, which
+                # the guess used to pick (the known Telangana refNo bug).
+                ref_no = _cell(cells, columns, "refNo") or ref_no
                 due_date_hint = (
                     cells[closing_col_idx]
                     if closing_col_idx is not None and closing_col_idx < len(cells)
@@ -133,6 +173,13 @@ def parse_gepnic_table(html: str, source_name: str) -> list[Row]:
                         "source": source_name,
                         "refNo": ref_no,
                         "dueDateHint": due_date_hint,
+                        # The portal's own tender id, when a column is named
+                        # like one (Telangana "Tender ID", Bihar "Tender/RFQ
+                        # ID"): searching it on the portal finds exactly this
+                        # tender. Not used as the record's id, so tenders
+                        # already saved keep theirs.
+                        "tenderId": _cell(cells, columns, "tenderId"),
+                        "value": format_rupees(_cell(cells, columns, "value")),
                     }
                 )
     return results

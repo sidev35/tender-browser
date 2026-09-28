@@ -33,6 +33,33 @@ def backfill_link_types(
             t["linkType"] = "direct" if source_types.get(t.get("source")) in direct_link_types else "search"
 
 
+def apply_search_help(records: Iterable[Record], sources: list[Source]) -> None:
+    """
+    Sets each record's searchText and searchHint from its source, on every
+    run, so editing sources.json updates tenders already saved.
+
+    searchText, for keyword-search portals (pasting the full title finds
+    nothing there; checked 2026-09-28): an exact one from the tender's own
+    row when the source's "searchBy" asks for it and one was found
+    (normalize.search_text, set while scraping: Telangana's tender ID,
+    Gujarat's exact title start), else the source's "searchKeyword", which
+    lists the tender among a few results. None elsewhere: the card copies
+    the title.
+    searchHint: the source's optional "searchHint", e.g. Telangana's "click
+    More... first".
+    """
+    by_name = {s["name"]: s for s in sources}
+    for t in records:
+        src = by_name.get(t.get("source"), {})
+        keyword = src.get("searchKeyword") if src.get("type") == "js_interactive_search" else None
+        if t.get("linkType") != "search" or not keyword or src.get("searchBy") == "title":
+            t["searchText"] = None  # the card copies the full title
+        elif src.get("searchBy", "keyword") == "keyword" or not t.get("searchText"):
+            t["searchText"] = keyword
+        # else: keep the exact searchText found for this tender while scraping
+        t["searchHint"] = src.get("searchHint")
+
+
 def drop_expired(records: Iterable[Record]) -> list[Record]:
     """
     Drops tenders whose due date has clearly passed, to keep the file from

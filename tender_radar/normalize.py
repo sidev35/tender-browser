@@ -7,7 +7,7 @@ import hashlib
 import re
 from datetime import datetime
 
-from .models import Source
+from .models import Row, Source
 
 
 def make_stable_id(source_name: str, title: str) -> str:
@@ -86,6 +86,61 @@ def clean_title(source: Source, raw_title: str) -> str:
     return " ".join(raw_title.split())
 
 
+# Limits for a "titlePrefix" search (see search_text): long enough to find one
+# tender, short enough for the portal's box. Checked live on Gujarat nProcure
+# 2026-09-28: ~100 characters found exactly the right tender; a 243-character
+# title found nothing, and so did anything reaching past a line break the
+# site keeps inside its own copy of the title.
+TITLE_PREFIX_MAX_CHARS = 100
+TITLE_PREFIX_MIN_CHARS = 25
+
+
+def exact_title_prefix(raw: str) -> str | None:
+    """
+    The start of a title exactly as the portal stores it: up to the first
+    line break, tab or double space (a pasted search can't reproduce those),
+    and at most TITLE_PREFIX_MAX_CHARS, ending on a whole word. None if what's
+    left is too short to single out one tender.
+    """
+    text = raw.strip()
+    irregular = re.search(r"[^\S ]| {2,}", text)
+    if irregular:
+        text = text[: irregular.start()].rstrip()
+    if len(text) > TITLE_PREFIX_MAX_CHARS:
+        text = text[:TITLE_PREFIX_MAX_CHARS].rsplit(" ", 1)[0]
+    text = text.rstrip(" ,;:-(")
+    return text if len(text) >= TITLE_PREFIX_MIN_CHARS else None
+
+
+def search_text(source: Source, row: Row) -> str | None:
+    """
+    What a dashboard card copies for the visitor to search the portal with,
+    by the source's "searchBy" (sources.json):
+      - "tenderId": the portal's own tender id (finds exactly one; Telangana)
+      - "titlePrefix": exact_title_prefix of the title as the page shows it
+        (Gujarat, whose box only matches its own text, whitespace included)
+      - "keyword": the source's searchKeyword (lists it among a few results)
+      - "title": nothing, so the card copies the full title (Bihar: its search
+        box finds a pasted full title fine)
+    Falls back to the keyword when the exact option isn't available for this
+    row. None for sources without a searchKeyword: the card copies the title.
+    """
+    keyword = source.get("searchKeyword")
+    how = source.get("searchBy", "keyword")
+    if how == "title":
+        return None
+    if how == "tenderId" and row.get("tenderId"):
+        return row["tenderId"]
+    if how == "titlePrefix":
+        pattern = source.get("titleRegex")
+        raw = row["raw_title"]
+        m = re.search(pattern, raw, re.IGNORECASE | re.DOTALL) if pattern else None
+        prefix = exact_title_prefix(m.group(1) if m else raw)
+        if prefix:
+            return prefix
+    return keyword
+
+
 def extract_value(source: Source, raw_row: str) -> str | None:
     """
     Applies the source's optional "valueRegex" (sources.json): a regex whose
@@ -97,10 +152,18 @@ def extract_value(source: Source, raw_row: str) -> str | None:
     """
     pattern = source.get("valueRegex")
     m = re.search(pattern, raw_row, re.IGNORECASE) if pattern else None
-    if not m:
+    return format_rupees(m.group(1)) if m else None
+
+
+def format_rupees(text: str | None) -> str | None:
+    """
+    "25481341.00" -> "₹2.55 Cr", "3425556" -> "₹34.26 Lakh", "75,000" -> "₹75,000".
+    None for empty text, a non-number, or 0 (portals use 0.00 for "not disclosed").
+    """
+    if not text:
         return None
     try:
-        amount = float(m.group(1).replace(",", ""))
+        amount = float(text.replace(",", "").replace("₹", "").strip())
     except ValueError:
         return None
     if amount <= 0:

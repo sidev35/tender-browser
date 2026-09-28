@@ -212,9 +212,17 @@ docs/js/util.js      escaping, dates, short names, safe localStorage
   (history shows its only entries were non-EV, from when show-all mode was
   on), and GitHub ran the job every 3-5 hours in practice. Every source
   now shows its full current list, so nothing scrolls off between runs.
-- Rajasthan and MP still use the homepage widget; they can move to
-  `gepnic_by_organisation` the same way once IOCL and CPPP have run for a
-  few days.
+- **2026-09-28: Rajasthan and MP moved to `gepnic_by_organisation` too**
+  (~87 organisations / ~3,100 tenders and ~95 / ~5,500; MP's largest, 3,057
+  tenders, is still one page). The first run found a real EV tender the
+  widget never showed: RRECL's RFP for public EV charging infrastructure in
+  Rajasthan under PM E-Drive. No source uses the homepage widget any more.
+- **Re-checked the four blocked sources (2026-09-28):** Maharashtra still
+  disallows all robots; NHAI is already covered through CPPP; GeM's
+  robots.txt now allows the bid list, but its copyright policy forbids
+  reproducing content without written permission; CESL's robots.txt is gone,
+  but its site shows nothing public to read. Details in each entry's
+  `sources.json` notes.
 
 ## Data quality fixes (2026-09-28)
 
@@ -240,10 +248,13 @@ docs/js/util.js      escaping, dates, short names, safe localStorage
 
 ## Open issues found along the way
 
-- **Telangana reference numbers are wrong.** The parser picks up the
-  department-name column instead. It's recorded as a known failing test
-  (`xfail`) in `tests/test_parsers.py`, so fixing it makes that test flip
-  and get noticed.
+- ~~**Telangana reference numbers are wrong.**~~ **Fixed 2026-09-28:** tables
+  are now read by their column names (Tender ID, Tender Notice Number, Name
+  of Work, Estimated Contract Value), so Telangana gets its real reference
+  numbers, tender IDs and values. That also made **exact searches**
+  possible: dashboard cards for Telangana copy the tender ID and for
+  Gujarat the exact title start (`searchBy` in `sources.json`), each
+  finding exactly one result on the portal.
 - **Bihar's search is occasionally read too early.** One run on 2026-09-24
   read 20 rows (apparently the unfiltered list, before the search results
   replaced it) instead of the usual 1; the next run was normal. Nothing wrong

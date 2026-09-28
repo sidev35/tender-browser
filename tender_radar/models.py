@@ -31,6 +31,10 @@ class Tender:
     value: str | None = None  # formatted amount, e.g. "₹2.55 Cr", if disclosed
     refNo: str | None = None  # issuing authority's reference number, if found
     location: str | None = None  # state/city, if the page showed one
+    # How to find it on a "search" link, both set from the source's
+    # sources.json entry on every run (store.apply_search_help):
+    searchText: str | None = None  # what the card copies instead of the title
+    searchHint: str | None = None  # what to do on the portal, shown after copying
 
     def to_dict(self) -> Record:
         """The record as stored in tenders.json (same key order as before)."""
@@ -54,5 +58,7 @@ STORED_KEY_ORDER = [
     "url",
     "linkType",
     "firstSeen",
+    "searchText",
+    "searchHint",
 ]
 assert sorted(STORED_KEY_ORDER) == sorted(FIELD_NAMES)

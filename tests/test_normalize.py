@@ -4,7 +4,14 @@ parser edge cases that are easier to pin down with tiny hand-written HTML."""
 import pytest
 
 from tender_radar.matching import FALLBACK_EV_CATEGORY, matches_categories
-from tender_radar.normalize import clean_title, extract_due_date, extract_value, make_stable_id
+from tender_radar.normalize import (
+    clean_title,
+    exact_title_prefix,
+    extract_due_date,
+    extract_value,
+    make_stable_id,
+    search_text,
+)
 from tender_radar.parsers import parse_gepnic_table
 
 # --- extract_due_date --------------------------------------------------------
@@ -54,6 +61,64 @@ def test_extract_value_formats_amounts(amount, expected):
 
 def test_extract_value_without_regex_is_none():
     assert extract_value({}, "Estimated Contract Value : 100000") is None
+
+
+# --- search_text / exact_title_prefix ------------------------------------------
+
+
+def test_title_prefix_stops_before_a_line_break_the_portal_keeps():
+    # Gujarat's own copy has "Operate\nand"; a pasted search can't match past it.
+    raw = "Selection of Charge Point Operator (CPO) for Design, Build, Finance, Operate\nand Maintain EVPCS"
+    assert (
+        exact_title_prefix(raw)
+        == "Selection of Charge Point Operator (CPO) for Design, Build, Finance, Operate"
+    )
+
+
+def test_title_prefix_stops_before_a_double_space_and_at_100_chars():
+    assert exact_title_prefix("Request for Selection  for Charge Point Operators") is None  # too short left
+    long = (
+        "Supply, Installation, Testing and Commissioning of Electrical Infrastructure "
+        "from 11kV (HT) to 415 V (LT) under Phase-02"
+    )
+    prefix = exact_title_prefix(long)
+    assert len(prefix) <= 100 and long.startswith(prefix) and not prefix.endswith(" ")
+
+
+@pytest.mark.parametrize(
+    "source, row, expected",
+    [
+        (
+            {"searchKeyword": "charging station", "searchBy": "tenderId"},
+            {"tenderId": "736408", "raw_title": "x"},
+            "736408",
+        ),
+        (
+            {"searchKeyword": "charging station", "searchBy": "tenderId"},
+            {"raw_title": "x"},
+            "charging station",
+        ),
+        ({"searchKeyword": "charging station"}, {"tenderId": "736408", "raw_title": "x"}, "charging station"),
+        (
+            {
+                "searchKeyword": "charging station",
+                "searchBy": "titlePrefix",
+                "titleRegex": r"Name Of Work\s*:\s*(.+)",
+            },
+            {"raw_title": "VMC Tender Id :1 Name Of Work : Supply of EV chargers for the Gotri depot"},
+            "Supply of EV chargers for the Gotri depot",
+        ),
+        ({}, {"raw_title": "Anything"}, None),  # no keyword: the card copies the title
+        # "title": copy the full title (Bihar), even though it has a keyword and a tender ID.
+        (
+            {"searchKeyword": "charging stations", "searchBy": "title"},
+            {"tenderId": "7", "raw_title": "x"},
+            None,
+        ),
+    ],
+)
+def test_search_text_by_source_setting(source, row, expected):
+    assert search_text(source, row) == expected
 
 
 # --- matches_categories -------------------------------------------------------

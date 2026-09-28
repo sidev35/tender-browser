@@ -38,6 +38,8 @@ describes each field; the code's own definition is the `Tender` class in
 | `value` | When disclosed | The amount, already formatted, e.g. `₹2.55 Cr` or `₹26.09 Lakh`. | Yes, or "Value not disclosed" |
 | `refNo` | When found | The issuing authority's reference number. | No |
 | `location` | When found | State or city, when the website shows one. | No |
+| `searchText` | Keyword-search portals | What the card copies instead of the title, because pasting a full title finds nothing on those portals: by the source's `searchBy`, the portal's tender ID (Telangana, e.g. `736408`), the exact start of the title (Gujarat), or the search keyword (e.g. `charging station`). Each finds exactly this tender (checked 2026-09-28). | Via the button |
+| `searchHint` | When set | What to do on the portal after copying, e.g. Telangana's "click More... first". From the source's `searchHint` in `sources.json`, on every run. | In the message after clicking |
 
 Missing values are stored as `null`.
 

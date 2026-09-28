@@ -34,6 +34,8 @@ FIELDS = {
     "searchButtonSelector": "js_interactive_search: the Search button",
     "searchKeyword": "js_interactive_search: what to search for",
     "preClickSelector": "js_interactive_search: something to click before searching",
+    "searchHint": "what to do on the portal after a card copies the search text (shown on the dashboard)",
+    "searchBy": "js_interactive_search: what cards copy: keyword (default), tenderId, titlePrefix or title",
     "titleRegex": "pattern whose first group is the real title",
     "valueRegex": "pattern whose first group is the rupee amount",
 }
@@ -85,6 +87,9 @@ def validate_sources(sources: object) -> list[str]:
             for key in ("searchInputSelector", "searchButtonSelector"):
                 if not src.get(key):
                     problems.append(f'{label}: type js_interactive_search needs "{key}"')
+
+        if "searchBy" in src and src["searchBy"] not in ("keyword", "tenderId", "titlePrefix", "title"):
+            problems.append(f'{label}: "searchBy" must be keyword, tenderId, titlePrefix or title')
 
         for key in ("titleRegex", "valueRegex"):
             if key in src:

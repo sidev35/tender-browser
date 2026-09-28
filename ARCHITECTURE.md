@@ -19,7 +19,7 @@ Every 3 hours, a small robot wakes up, visits the tender websites, keeps
 only the EV-charging tenders, and saves them. The dashboard then shows what
 the robot saved.
 
-```	ext
+```text
 ┌──────────────────────────────────┐
 │ Every 3 hours, GitHub starts     │
 │ the robot (the scraper)          │
@@ -66,7 +66,7 @@ The list of websites to check is kept in one file, `sources.json`. Each
 website is checked in one of three ways, depending on how that site shows its
 tenders.
 
-```	ext
+```text
                             ┌─────────────────────────┐
                             │ sources.json            │
                             │ the list of websites    │
@@ -81,8 +81,8 @@ tenders.
              ▼                           ▼                           ▼
 ┌─────────────────────────┐ ┌─────────────────────────┐ ┌─────────────────────────┐
 │ Read the tender list    │ │ Type 'charging station' │ │ Read its public         │
-│ on the page (IOCL and   │ │ into its search box,    │ │ 'charging station' page │
-│ CPPP: one list per      │ │ click Search, then read │ │                         │
+│ on the page (government │ │ into its search box,    │ │ 'charging station' page │
+│ portals: one list per   │ │ click Search, then read │ │                         │
 │ organisation)           │ │ the results             │ │                         │
 │ Used for: IOCL, CPPP,   │ │ Used for: Gujarat,      │ │ Used for:               │
 │ Rajasthan, MP, EESL     │ │ Telangana, Bihar        │ │ TenderDetail            │
@@ -108,10 +108,10 @@ Things worth knowing:
 - **We're gentle with every site.** Each site is visited once per run, with
   a pause between sites, and pictures and videos are not downloaded, only
   the text of the page.
-- **For IOCL and CPPP, the robot reads every organisation's full list** of
-  open tenders, not just the 10 newest the homepage shows. IOCL is one
-  organisation; CPPP has about 78, so each run reads the next 10 and all of
-  them are covered in about a day. If a site ever asks for a captcha, the
+- **For IOCL, CPPP, Rajasthan and MP, the robot reads every organisation's
+  full list** of open tenders, not just the 10 newest the homepage shows.
+  IOCL is one organisation; the others have 78-95 each, so each run reads the
+  next 10 and all of them are covered in about a day. If a site ever asks for a captcha, the
   robot stops for that site instead of trying to get past it.
 - **At most 10 new tenders per site per run** (TenderDetail, IOCL, CPPP).
   The rest are picked up on the following runs, so the dashboard fills up
@@ -124,7 +124,7 @@ Things worth knowing:
 A website lists all kinds of tenders (roads, schools, IT, ...). Each one goes
 through the same checks:
 
-```	ext
+```text
 ┌────────────────────────────────┐
 │ A tender from a website        │
 └────────────────┬───────────────┘
@@ -187,7 +187,7 @@ through the same checks:
 Every card on the dashboard looks the same: category, title, website, value,
 date first seen, and closing date. The button on it depends on the website.
 
-```	ext
+```text
                   ┌────────────────────────────────┐
                   │ You click a tender card.       │
                   │ Does the website give a link   │
@@ -228,7 +228,7 @@ If email is set up, the robot also sends a summary after a run: new tenders,
 plus tenders closing within 7 days. To avoid flooding the inbox it sends at
 most one email every 6 hours, even though it runs every 3 hours.
 
-```	ext
+```text
 ┌────────────────────────────┐
 │ The robot finishes a run   │
 └──────────────┬─────────────┘
@@ -270,7 +270,7 @@ most one email every 6 hours, even though it runs every 3 hours.
 
 Inside `tender_radar/`, in the order one run uses them:
 
-```	ext
+```text
 scraper.py
    │
    ▼
@@ -314,7 +314,7 @@ named in `models.py` (`Source`, `Row`, `Record`).
 behaviour is split into small JavaScript modules, loaded by the browser with
 no build step:
 
-```	ext
+```text
 index.html ──loads──► js/main.js    page state, auto-refresh, controls, theme
                         │
                         ├──► js/data.js      fetch data/tenders.json

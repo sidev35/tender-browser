@@ -44,16 +44,17 @@ actually passed, whether or not the source still lists it.
 NIC GePNIC portals (CPPP, IOCL, Rajasthan, MP, most state portals) have
 three kinds of listing:
 
-- **Homepage widget:** only the 10 newest tenders, site-wide. Rajasthan and
-  MP are still read this way for now.
+- **Homepage widget:** only the 10 newest tenders, site-wide. No source uses
+  it any more.
 - **Active Tenders, Tenders by Closing Date, Advanced Search:** every tender,
   but behind a captcha.
 - **Tenders by Organisation:** every organisation with its tender count, and
   each organisation's full tender list, **with no captcha** (checked
-  2026-09-24). IOCL and CPPP are read this way (type
+  2026-09-24). IOCL, CPPP, Rajasthan and MP are read this way (type
   `gepnic_by_organisation`): IOCL is one organisation ("IndianOil", ~220
-  tenders, 2 page loads a run); CPPP has ~78, so each run reads the next 10
-  (`orgsPerRun`), covering all of them in about a day at ~11 page loads a run.
+  tenders, 2 page loads a run); CPPP (~78 organisations), Rajasthan (~87) and
+  MP (~95) each read the next 10 per run (`orgsPerRun`), covering all of them
+  in about a day at ~11 page loads a run.
 
 The "Tenders by Closing Date" report was once crawled page by page here, and
 a handful of rapid automated requests made every portal start demanding a
@@ -76,6 +77,25 @@ new tab. From there: paste, enter the captcha shown, search — that's a
 real person completing the one step (the captcha) this project won't
 automate around. Each record's `linkType` (`direct` or `search`) tells
 the dashboard which button to show.
+
+**On the keyword-search portals the card copies something that finds exactly
+that tender**, not the full title, because those search boxes find nothing
+for a full title (checked 2026-09-28). What it copies is set per source by
+`searchBy` in `sources.json`:
+
+- **Telangana (`tenderId`):** the portal's own Tender ID, e.g. `736408`.
+- **Gujarat (`titlePrefix`):** the start of the title exactly as the portal
+  stores it, cut before any line break or double space the site keeps in its
+  own copy (a pasted search can't match past those) and at most 100
+  characters.
+- **Bihar (`title`):** the full title, as before; its search box finds a
+  pasted full title fine.
+- **`keyword`** (the default) copies the source's search keyword instead.
+
+Each of these was checked live to return exactly the right tender. The
+button then says **Copy search & open portal ↗**, and the message after
+clicking says what to do on that site (the source's `searchHint`, e.g.
+Telangana's "click More... first").
 
 For GeM/CESL — not scraped at all, see "Managing sources" below — just
 use their own search bar directly on the site. Of the paid aggregators,

@@ -63,6 +63,32 @@ def test_saved_data_file_matches_the_record_format():
         assert rec["linkType"] in ("direct", "search")
 
 
+def test_search_help_comes_from_the_source():
+    from tender_radar.store import apply_search_help
+
+    sources = [
+        {
+            "name": "Telangana",
+            "type": "js_interactive_search",
+            "searchKeyword": "charging station",
+            "searchHint": "Click More... first.",
+        },
+        {"name": "CPPP", "type": "gepnic_by_organisation"},
+        {"name": "TenderDetail", "type": "tenderdetail_list", "searchHint": "unused"},
+    ]
+    recs = [
+        {"source": "Telangana", "linkType": "search"},
+        {"source": "CPPP", "linkType": "search"},
+        {"source": "TenderDetail", "linkType": "direct"},
+    ]
+    apply_search_help(recs, sources)
+    # Keyword-search portal: paste its keyword (a full title finds nothing there).
+    assert (recs[0]["searchText"], recs[0]["searchHint"]) == ("charging station", "Click More... first.")
+    # Other search links keep copying the title; direct links copy nothing.
+    assert recs[1]["searchText"] is None and recs[1]["searchHint"] is None
+    assert recs[2]["searchText"] is None
+
+
 def test_doc_url_makes_a_direct_link(run_source):
     _, new = run_source([ev_row(1, docUrl="https://example.test/tender/1.pdf")])
     assert new[0]["url"] == "https://example.test/tender/1.pdf"

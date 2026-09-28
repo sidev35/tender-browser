@@ -29,7 +29,7 @@ export function renderCard(t, isNew) {
     </div>
     ${t.url ? `
     <div class="card-action">
-      <button class="card-action-btn" type="button" title="${isDirect ? 'Opens this tender on the source site' : 'Copies the title, then opens the portal to search it'}">${isDirect ? 'View tender ↗' : 'Copy title & open portal ↗'}</button>
+      <button class="card-action-btn" type="button" title="${isDirect ? 'Opens this tender on the source site' : t.searchText ? `Copies “${escapeHtml(t.searchText)}”, then opens the portal to search it` : 'Copies the title, then opens the portal to search it'}">${isDirect ? 'View tender ↗' : t.searchText ? 'Copy search & open portal ↗' : 'Copy title & open portal ↗'}</button>
     </div>` : ''}
   `;
   if (t.url) {
@@ -50,15 +50,23 @@ async function openTender(t) {
     window.open(t.url, '_blank', 'noopener');
     return;
   }
-  // Start the copy while this page still has focus (the clipboard API
-  // refuses unfocused pages), then open the tab within the same click so
-  // popup blockers allow it. Only await after both have started.
+  // What to paste: the portal's own search keyword when the source sets one
+  // (searchText, from sources.json: keyword-search portals find nothing for a
+  // full title), else the title. Start the copy while this page still has
+  // focus (the clipboard API refuses unfocused pages), then open the tab
+  // within the same click so popup blockers allow it. Only await after both
+  // have started.
+  const text = t.searchText || t.desc;
   let copyDone;
-  try { copyDone = navigator.clipboard.writeText(t.desc); } catch (err) { copyDone = Promise.reject(err); }
+  try { copyDone = navigator.clipboard.writeText(text); } catch (err) { copyDone = Promise.reject(err); }
   window.open(t.url, '_blank', 'noopener');
   let copied = false;
   try { await copyDone; copied = true; } catch (err) {}
+  const site = escapeHtml(shortSource(t.source));
+  const how = t.searchHint ? escapeHtml(t.searchHint) : `Paste it into the search box on ${site}, then enter the captcha if asked.`;
+  // With a keyword, the portal lists a few results: say which one this is.
+  const lookFor = t.searchText ? ` Then look for: <em>${escapeHtml(t.desc.slice(0, 90))}${t.desc.length > 90 ? '…' : ''}</em>` : '';
   showToast(copied
-    ? { title: 'Title copied', body: `Paste it into the search box on ${escapeHtml(shortSource(t.source))}, then enter the captcha if asked.` }
-    : { title: 'Couldn’t copy the title', body: `Search ${escapeHtml(shortSource(t.source))} for: ${escapeHtml(t.desc)}`, kind: 'error' });
+    ? { title: t.searchText ? `“${escapeHtml(t.searchText)}” copied` : 'Title copied', body: how + lookFor }
+    : { title: 'Couldn’t copy', body: `Search ${site} for: ${escapeHtml(text)}.${lookFor}`, kind: 'error' });
 }

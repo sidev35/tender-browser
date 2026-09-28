@@ -20,19 +20,23 @@
   },
   {
     "name": "Rajasthan e-Tendering",
-    "url": "https://eproc.rajasthan.gov.in/nicgep/app",
+    "url": "https://eproc.rajasthan.gov.in/nicgep/app?page=FrontEndTendersByOrganisation&service=page",
     "searchUrl": "https://eproc.rajasthan.gov.in/nicgep/app?page=FrontEndAdvancedSearch&service=page",
-    "type": "gepnic_table",
+    "type": "gepnic_by_organisation",
     "enabled": true,
-    "notes": "Free/official. Verified live 2026-09-17: no robots.txt restriction. Homepage widget (10 latest, site-wide). searchUrl verified live 2026-09-18."
+    "maxNewPerRun": 10,
+    "orgsPerRun": 10,
+    "notes": "Free/official. No robots.txt (checked again 2026-09-28). Reads every active tender through the public 'Tenders by Organisation' page (no captcha, checked 2026-09-28): ~87 organisations with ~3,100 active tenders (largest: Panchayati Raj Department, ~860), each organisation's list on one page. orgsPerRun=10 reads the next 10 each scheduled run (~11 page loads), covering all of them in about a day. At most 10 new matches added per run. Replaced the homepage widget (10 newest only). searchUrl verified live 2026-09-18."
   },
   {
     "name": "Madhya Pradesh e-Tendering",
-    "url": "https://mptenders.gov.in/nicgep/app",
+    "url": "https://mptenders.gov.in/nicgep/app?page=FrontEndTendersByOrganisation&service=page",
     "searchUrl": "https://mptenders.gov.in/nicgep/app?page=FrontEndAdvancedSearch&service=page",
-    "type": "gepnic_table",
+    "type": "gepnic_by_organisation",
     "enabled": true,
-    "notes": "Free/official. Verified live 2026-09-17: no robots.txt restriction. Homepage widget (10 latest, site-wide). searchUrl verified live 2026-09-18."
+    "maxNewPerRun": 10,
+    "orgsPerRun": 10,
+    "notes": "Free/official. No robots.txt (checked again 2026-09-28). Reads every active tender through the public 'Tenders by Organisation' page (no captcha, checked 2026-09-28): ~95 organisations with ~5,500 active tenders. The largest, Directorate Urban Administration and Development (the municipal bodies, ~3,060 tenders), is still one page: 6.3 MB, ~7 s to load, checked 2026-09-28. orgsPerRun=10 reads the next 10 each scheduled run, covering all of them in about a day. At most 10 new matches added per run. Replaced the homepage widget (10 newest only). searchUrl verified live 2026-09-18."
   },
 
 
@@ -50,29 +54,32 @@
     "url": null,
     "type": "unsupported",
     "enabled": true,
-    "notes": "No separate stable public listing URL as of last check — its tenders flow through CPPP/etenders.gov.in (above) and GeM (blocked, see below). Set url + type to gepnic_table and enabled to true if you confirm a dedicated NHAI e-tendering URL."
+    "notes": "Covered through CPPP: NHAI publishes its tenders on CPPP/etenders.gov.in, where it's one of the organisations the CPPP source rotates through (~412 active tenders, checked 2026-09-24). nhai.gov.in has no robots.txt, but no separate public listing is needed. Kept as 'unsupported' so it isn't scraped twice."
   },
   {
     "name": "Maharashtra e-Tendering (mahatenders.gov.in)",
     "url": "https://mahatenders.gov.in/nicgep/app",
     "type": "blocked_by_robots_txt",
     "enabled": true,
-    "notes": "Same NIC GePNIC engine as the others, but this specific domain's robots.txt disallows all automated access (checked 2026-09-17: 'Disallow: /'). Do not scrape — this is a real per-domain restriction, not the same as Rajasthan/MP above."
+    "notes": "Same NIC GePNIC engine as the others, but this domain's robots.txt disallows all automated access ('User-agent: * / Disallow: /', checked 2026-09-17 and again 2026-09-28). Do not scrape. Its tenders can still reach the dashboard through TenderDetail, which lists tenders from many portals."
   },
   {
     "name": "GeM (bidplus.gem.gov.in)",
     "url": "https://bidplus.gem.gov.in",
     "type": "blocked_by_robots_txt",
     "enabled": false,
-    "notes": "Disallows automated access via robots.txt — do not scrape. Use GeM's own keyword/email alert feature instead. (type is intentionally unrecognized by scraper.py so this can't be scraped even if enabled is flipped to true by mistake.)"
+    "notes": "Checked 2026-09-28: robots.txt now only disallows /resources/ and a few bank-guarantee paths (it used to disallow everything), and the 'All Bids' list is public with no captcha. But GeM's Copyright Policy (gem.gov.in/websitePolicies) says its contents 'may not be reproduced partially or fully without due permission in writing in advance from the GeM SPV'. So: don't scrape without that written permission. Some GeM bids reach the dashboard through TenderDetail. type stays blocked so it can't be scraped by flipping enabled."
   },
   {
     "name": "CESL e-procurement (cesl.eproc.in)",
     "url": "https://cesl.eproc.in",
     "type": "blocked_by_robots_txt",
     "enabled": false,
-    "notes": "Disallows automated access via robots.txt — do not scrape."
+    "notes": "Checked 2026-09-28: robots.txt no longer exists (404; it used to disallow all), but the homepage is only an empty 'CESL e-Procurement Portal' shell with no tender links, even after its scripts run, so there's nothing public to read automatically yet. Needs a manual look in a browser to see where (or whether) CESL lists tenders publicly; cesl.co.in timed out. Kept blocked until then."
   },
+
+
+  
   {
     "name": "Telangana e-Procurement (keyword search)",
     "url": "https://tender.telangana.gov.in/",
@@ -82,6 +89,8 @@
     "searchInputSelector": "#nTenderID",
     "searchButtonSelector": "#searchTender",
     "searchKeyword": "charging station",
+    "searchBy": "tenderId",
+    "searchHint": "On Telangana's homepage, click More... (the search page only opens that way), paste the Tender ID into the search box and click Search.",
     "notes": "Free/official. Not the classic NIC GePNIC layout (custom platform) — previously listed as 'unsupported' since neither /nicgep/app path resolved. Confirmed 2026-09-22: this is a single-page app similar to Bihar's, but with an extra wrinkle — loading https://tender.telangana.gov.in/TenderDetailsHome.html directly gets redirected to a session-timeout page; the search form is only reachable by loading the root URL above and clicking its homepage 'More...' link (#viewCurrentall) first, which is what preClickSelector does. Keyword box is #nTenderID, submit button is #searchTender. Verified live: searching 'charging station' this way returns all 3 real matching tenders (previously only Bihar-style direct navigation was supported, which silently produced 0/incomplete results here). Selectors found via debug_js_source.py's --click flag plus a manual Playwright REPL session against the live page. Left disabled until a first live run has been checked end-to-end — flip to true once confirmed working."
   },
   {
@@ -92,6 +101,8 @@
     "searchInputSelector": "#TENDERTITLE:visible",
     "searchButtonSelector": "#searchButtonId:visible",
     "searchKeyword": "charging station",
+    "searchBy": "titlePrefix",
+    "searchHint": "Paste it into the Tender Title box and click Search.",
     "titleRegex": "Name Of Work\\s*:\\s*(.+?)\\s*(?:Corrigendum\\s*:|Estimated Contract Value|Last Date|$)",
     "valueRegex": "Estimated Contract Value\\s*:\\s*([\\d,]+(?:\\.\\d+)?)",
     "notes": "Free/official (run by (n)Code Solutions, not NIC GePNIC). No-login public tender search, confirmed live 2026-09-22 — previously listed as 'unsupported'. Single-page app like Bihar/Telangana: URL doesn't change on search, so js_interactive_search is required. Unlike Bihar, these selectors are unique IDs with no hidden-duplicate issue (#TENDERTITLE is labeled 'Tender Title', #searchButtonId is the confirmed submit button). Searching 'charging station' returned 2 real matches during manual testing via debug_js_source.py. Left disabled until a first live run through the full scraper.py pipeline has been checked end-to-end (title/date parsing quality, not just raw fetch) — flip to true once confirmed."
@@ -104,6 +115,7 @@
     "searchInputSelector": "input[placeholder='Type any keyword']:visible",
     "searchButtonSelector": "button.submit_nil:visible",
     "searchKeyword": "charging stations",
+    "searchBy": "title",
     "notes": "Free/official. No-login public tender search (confirmed live 2026-09-22) — previously listed as 'unsupported' since this eProc 2.0 platform isn't the classic NIC GePNIC layout. Confirmed to be a single-page app: the URL never changes on search, so js_rendered_table (which just loads the URL) won't work here — needs js_interactive_search to actually type the keyword and click submit. Selectors found via debug_js_source.py --search against the live page on 2026-09-22; re-verify if the site's markup changes. Left disabled until a first live run has been checked end-to-end — flip to true once confirmed working."
   },
 

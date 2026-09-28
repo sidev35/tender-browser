@@ -17,10 +17,17 @@ from .browser import BrowserSession
 from .dedupe import DuplicateIndex, dedupe_records, fill_missing
 from .matching import matches_categories
 from .models import Record, Source, Tender
-from .normalize import clean_title, days_until, extract_due_date, extract_value, make_stable_id
+from .normalize import (
+    clean_title,
+    days_until,
+    extract_due_date,
+    extract_value,
+    make_stable_id,
+    search_text,
+)
 from .notify import send_digest
 from .sources import load_sources
-from .store import backfill_link_types, drop_expired, load_existing, save
+from .store import apply_search_help, backfill_link_types, drop_expired, load_existing, save
 
 log = logging.getLogger(__name__)
 
@@ -78,6 +85,10 @@ def scrape_source(
             saved["desc"] = title
             if value:
                 saved["value"] = value
+            if row.get("refNo"):
+                saved["refNo"] = row["refNo"]
+            if search_text(source, row):
+                saved["searchText"] = search_text(source, row)
             duplicates.add(saved)
             continue  # already tracked from a previous run
         cats = matches_categories(title)
@@ -107,6 +118,7 @@ def scrape_source(
             # title for the visitor to search with.
             linkType="direct" if row.get("docUrl") else "search",
             firstSeen=datetime.now().strftime("%Y-%m-%d"),
+            searchText=search_text(source, row),
         ).to_dict()
 
         saved = duplicates.find(record)
@@ -178,6 +190,7 @@ def run() -> None:
         session.close()
 
     backfill_link_types(existing_by_id.values(), sources, fetchers.DIRECT_LINK_TYPES)
+    apply_search_help(existing_by_id.values(), sources)
     merged = drop_expired(existing_by_id.values())
     save(config.DATA_PATH, merged)
 

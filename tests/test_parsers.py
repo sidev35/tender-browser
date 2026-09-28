@@ -157,15 +157,19 @@ def test_telangana_uses_the_closing_date_column(fixture_html):
     assert [due(r) for r in rows] == ["2026-09-28", "2026-09-29", "2026-09-29"]
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="Known bug: Telangana's refNo picks up the department "
-    "name column instead of the reference number.",
-)
-def test_telangana_ref_no_is_a_reference_number(fixture_html):
-    rows = parse_generic_table(fixture_html("telangana"), TELANGANA)
-    # Real reference numbers contain digits; department names don't.
-    assert all(r["refNo"] is None or any(ch.isdigit() for ch in r["refNo"]) for r in rows)
+def test_telangana_columns_are_read_by_name(fixture_html):
+    # Used to be a known bug (refNo was the department-name column); fixed
+    # 2026-09-28 by reading columns by their header names.
+    row = parse_generic_table(fixture_html("telangana"), TELANGANA)[0]
+    assert row["refNo"] == "Item 5 of T N No.05/CCE/2026-27 dt.16.09.2026"
+    assert row["tenderId"] == "736408"  # searching this on the portal finds exactly this tender
+    assert row["value"] == "₹34.26 Lakh"  # "Estimated Contract Value" 3425556.00
+
+
+def test_bihar_tender_id_column(fixture_html):
+    row = parse_generic_table(fixture_html("bihar"), BIHAR)[0]
+    assert row["tenderId"] and row["tenderId"].strip()
+    assert row["refNo"] == "RFE Notice No. 7422"
 
 
 def test_bihar_skips_serial_number_for_ref_no(fixture_html):
