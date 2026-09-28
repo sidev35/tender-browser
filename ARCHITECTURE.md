@@ -167,6 +167,11 @@ through the same checks:
 - **"Already saved?"** Every tender gets a fingerprint made from its website
   and title (or the site's own tender number). Seeing the same fingerprint
   again means it's not new, so nothing is shown twice.
+- **The same tender on two websites is shown once.** TenderDetail also lists
+  tenders from government portals. When the robot finds a tender whose title
+  and closing date match one it already has from another website, it keeps
+  just one copy: the official portal's, filling in anything it was missing
+  (like the value) from the other.
 - **The EV words and the categories** are lists in `config/categories.json`,
   a plain file anyone can edit without touching code (it explains its own
   format at the top). A tender that is clearly about EV charging but doesn't
@@ -294,6 +299,7 @@ tender_radar/pipeline.py   run() does these steps, in order:
 | `normalize.py` | Stable id, due date, title cleanup (`titleRegex`), value (`valueRegex`) |
 | `matching.py` | Loads and checks `config/categories.json`; decides if a title is EV-related and which category it gets |
 | `models.py` | `Tender`: the one definition of a saved record (described in [DATA_FORMAT.md](DATA_FORMAT.md)) |
+| `dedupe.py` | Spots the same tender listed by two sources (title + closing date) and keeps one copy, the official portal's first |
 | `store.py` | Load existing tenders, drop expired ones, save |
 | `notify.py` | Optional SendGrid email digest, throttled |
 | `pipeline.py` | `scrape_source()` for one source, `run()` for a whole run |

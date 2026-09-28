@@ -46,6 +46,14 @@ Missing values are stored as `null`.
 - **A tender is never added twice:** if its `id` is already in the file, the
   saved entry is kept (its title and value are refreshed, in case they're
   now extracted better).
+- **A tender listed by two sources is kept once.** Some tenders appear both
+  on an official portal and on TenderDetail, each with its own `id`. They're
+  matched by title (ignoring case, punctuation and spaces; for a title
+  TenderDetail cut short with "...", by its complete words) and closing
+  date. The official portal's copy is kept, and any `value`, `dueDate`,
+  `location` or `refNo` it lacks is filled in from the other copy. Two
+  tenders from the same official portal are never merged. See
+  `tender_radar/dedupe.py`.
 - **Tenders are removed once their `dueDate` has passed.** Tenders with no
   known due date are kept, because hiding them silently would be worse.
 - **Nothing else edits this file.** It's written only by the scraper (locally

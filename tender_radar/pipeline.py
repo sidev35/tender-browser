@@ -1,7 +1,8 @@
 """
 One scraper run, start to finish:
 
-    sources.json -> for each enabled source: fetch rows -> keep EV matches
+    sources.json -> merge duplicates already saved -> for each enabled source:
+    fetch rows -> keep EV matches -> skip ones another source already listed
     -> merge into tenders.json -> drop expired -> save -> email digest
 
 scrape_source() handles one source; run() is the whole run.
@@ -13,6 +14,7 @@ from datetime import datetime
 
 from . import config, fetchers
 from .browser import BrowserSession
+from .dedupe import DuplicateIndex, dedupe_records, fill_missing
 from .matching import matches_categories
 from .models import Record, Source, Tender
 from .normalize import clean_title, days_until, extract_due_date, extract_value, make_stable_id
@@ -24,9 +26,22 @@ log = logging.getLogger(__name__)
 
 
 def scrape_source(
-    source: Source, session: BrowserSession, existing_by_id: dict[str, Record], new_records: list[Record]
+    source: Source,
+    session: BrowserSession,
+    existing_by_id: dict[str, Record],
+    new_records: list[Record],
+    duplicates: DuplicateIndex | None = None,
 ) -> None:
-    """Fetches one source and merges its matches into existing_by_id."""
+    """
+    Fetches one source and merges its matches into existing_by_id.
+
+    `duplicates` (built by run() from the saved records) spots a new match
+    that's the same tender as one already saved from another source; see
+    dedupe.py. Such a match isn't counted as new: it either replaces the saved
+    copy (an official portal's copy replacing an aggregator's) or is skipped.
+    """
+    if duplicates is None:
+        duplicates = DuplicateIndex(existing_by_id.values(), [source])
     fetch_rows = fetchers.TYPE_FETCHERS.get(source.get("type"))
     if not fetch_rows:
         log.info(
@@ -47,6 +62,7 @@ def scrape_source(
     max_new = source.get("maxNewPerRun")
     matched_here = 0
     deferred = 0
+    duplicate_count = 0
     for row in rows:
         title = clean_title(source, row["raw_title"])
         value = row.get("value") or extract_value(source, row["raw_row"])
@@ -57,18 +73,18 @@ def scrape_source(
         tid = make_stable_id(source["name"], row.get("stableKey") or row["raw_title"])
         if tid in existing_by_id:
             # Pick up improved title/value extraction on already-tracked tenders.
-            existing_by_id[tid]["desc"] = title
+            saved = existing_by_id[tid]
+            duplicates.remove(saved)
+            saved["desc"] = title
             if value:
-                existing_by_id[tid]["value"] = value
+                saved["value"] = value
+            duplicates.add(saved)
             continue  # already tracked from a previous run
         cats = matches_categories(title)
         if not cats:
             if not config.SHOW_ALL_TENDERS:
                 continue
             cats = ["General / All Tenders"]
-        if max_new and matched_here >= max_new:
-            deferred += 1
-            continue
         record = Tender(
             id=tid,
             desc=title,
@@ -92,11 +108,31 @@ def scrape_source(
             linkType="direct" if row.get("docUrl") else "search",
             firstSeen=datetime.now().strftime("%Y-%m-%d"),
         ).to_dict()
+
+        saved = duplicates.find(record)
+        if saved is not None:
+            # Same tender as one already saved from another source: not new.
+            keep, drop = duplicates.prefer(saved, record)
+            fill_missing(keep, drop)
+            if keep is record:  # an official portal's copy replaces an aggregator's
+                del existing_by_id[saved["id"]]
+                duplicates.remove(saved)
+                existing_by_id[tid] = record
+                duplicates.add(record)
+            duplicate_count += 1
+            continue
+
+        if max_new and matched_here >= max_new:
+            deferred += 1
+            continue
         existing_by_id[tid] = record
+        duplicates.add(record)
         new_records.append(record)
         matched_here += 1
 
     log.info(f"  -> {len(rows)} rows scanned, {matched_here} new match(es)")
+    if duplicate_count:
+        log.info(f"     ({duplicate_count} already listed by another source; kept once, official copy first)")
     if deferred:
         log.info(
             f"     ({deferred} more new match(es) held back by maxNewPerRun={max_new} "
@@ -115,10 +151,13 @@ def scrape_source(
 def run() -> None:
     if config.SHOW_ALL_TENDERS:
         log.info("TENDER_SHOW_ALL is on — keeping every scraped tender, not just EV-charging matches.\n")
-    existing = load_existing(config.DATA_PATH)
-    existing_by_id = {t["id"]: t for t in existing if t.get("id")}
-    new_records = []
     sources = load_sources()
+    existing, dropped = dedupe_records([t for t in load_existing(config.DATA_PATH) if t.get("id")], sources)
+    if dropped:
+        log.info(f"Merged {len(dropped)} duplicate tender(s) listed by more than one source.\n")
+    existing_by_id = {t["id"]: t for t in existing}
+    duplicates = DuplicateIndex(existing, sources)
+    new_records = []
 
     session = BrowserSession()
     try:
@@ -133,7 +172,7 @@ def run() -> None:
     try:
         for source in sources:
             if source.get("enabled"):
-                scrape_source(source, session, existing_by_id, new_records)
+                scrape_source(source, session, existing_by_id, new_records, duplicates)
                 time.sleep(1)  # be polite between sources
     finally:
         session.close()

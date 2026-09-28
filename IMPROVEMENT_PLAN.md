@@ -216,6 +216,20 @@ docs/js/util.js      escaping, dates, short names, safe localStorage
   `gepnic_by_organisation` the same way once IOCL and CPPP have run for a
   few days.
 
+## Data quality fixes (2026-09-28)
+
+- **TenderDetail's "Corrigendum : " prefix** (how it marks an amended
+  tender) is no longer kept in titles; 8 saved titles were cleaned.
+- **Duplicates across sources are merged** (`tender_radar/dedupe.py`): the
+  same tender from an official portal and TenderDetail, or listed twice by
+  TenderDetail, is kept once, official copy first, with missing fields
+  filled in from the other copy. Matching is by title (ignoring case,
+  punctuation and spaces; cut-short "..." titles by their complete words,
+  at least 6) and closing date. Existing duplicates are merged at the start
+  of each run; new ones are skipped as they arrive, without counting as new
+  or using up `maxNewPerRun`. On the data at the time: 56 tenders → 49,
+  including 4 TenderDetail copies of Gujarat's Vadodara CPO tender.
+
 ## Dashboard additions made along the way
 
 - **New pill:** next to **All**, lists the tenders you haven't seen yet (the
