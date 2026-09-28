@@ -853,5 +853,50 @@
     "firstSeen": "2026-09-28",
     "searchText": null,
     "searchHint": null
+  },
+  {
+    "id": "AUTO-085d760c20",
+    "desc": "Bids Are invited for Ev Smart Charging Station",
+    "refNo": null,
+    "location": "West Bengal",
+    "value": null,
+    "dueDate": "2026-10-09",
+    "category": "Other EV Charging",
+    "source": "TenderDetail (charging station listing)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57746267/1e754bf3bc4596be83b76f99c958bb99",
+    "linkType": "direct",
+    "firstSeen": "2026-09-28",
+    "searchText": null,
+    "searchHint": null
+  },
+  {
+    "id": "AUTO-8b42b66267",
+    "desc": "Providing CC Pavement, Washing Plant With RCC Tank For Installation Of EV Charging Stations To Retrofitting Buses Of Ranigunj Bus Depot-I",
+    "refNo": null,
+    "location": "Telangana",
+    "value": "₹34.25 Lakh",
+    "dueDate": "2026-10-05",
+    "category": "Charger Supply & Installation",
+    "source": "TenderDetail (charging station listing)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57610351/9cb5798056bbae686dacc3e12e7b08f5",
+    "linkType": "direct",
+    "firstSeen": "2026-09-28",
+    "searchText": null,
+    "searchHint": null
+  },
+  {
+    "id": "AUTO-d69170467b",
+    "desc": "Short Dated Tender - Tender For Estimate For Nsc 5000 Kva Installation Of Summation Meter Charging Station At Depo Chowraha . Meter 100 Kva Dtr Lt Line Dp Structure 11 Kv Line Double Circuit 33 Kv Double Ckt .",
+    "refNo": null,
+    "location": "Madhya Pradesh",
+    "value": "₹12,907",
+    "dueDate": "2026-09-29",
+    "category": "Other EV Charging",
+    "source": "TenderDetail (charging station listing)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57740285/952cc1aa26116b38d62c9da300ecba94",
+    "linkType": "direct",
+    "firstSeen": "2026-09-28",
+    "searchText": null,
+    "searchHint": null
   }
 ]
