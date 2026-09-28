@@ -823,5 +823,35 @@
     "firstSeen": "2026-09-28",
     "searchText": null,
     "searchHint": null
+  },
+  {
+    "id": "AUTO-ab36ef2fa2",
+    "desc": "Establishment Of 7 Nos Ev Charging Station",
+    "refNo": null,
+    "location": "Chhattisgarh",
+    "value": null,
+    "dueDate": "2026-10-19",
+    "category": "Charger Supply & Installation",
+    "source": "TenderDetail (charging station listing)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57731389/09e63deb32ee9bbf6e25299973962461",
+    "linkType": "direct",
+    "firstSeen": "2026-09-28",
+    "searchText": null,
+    "searchHint": null
+  },
+  {
+    "id": "AUTO-881388c643",
+    "desc": "Short dated tender - Tender for Patch Repair Work By Hmp From Krishna Traders To Bus Charging Station Sanigawa Ward 31 Under Zone02",
+    "refNo": null,
+    "location": "Uttar Pradesh",
+    "value": "₹6.59 Lakh",
+    "dueDate": "2026-09-28",
+    "category": "Other EV Charging",
+    "source": "TenderDetail (charging station listing)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57735304/ff8a140544fd7a8105df446ec98ddae7",
+    "linkType": "direct",
+    "firstSeen": "2026-09-28",
+    "searchText": null,
+    "searchHint": null
   }
 ]
