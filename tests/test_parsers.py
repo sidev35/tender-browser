@@ -101,6 +101,20 @@ def test_tenderdetail_drops_the_corrigendum_prefix(tenderdetail_rows):
     assert row["raw_title"] == "Bids Are invited for Ac Ev Charging Station (Q2)"
 
 
+@pytest.mark.parametrize(
+    "listed",
+    [
+        "Corrigendum : Tender for EV charging stations",
+        "Corrigendum - Tender for EV charging stations",
+        "Corrigendum Tender for EV charging stations",  # no colon, seen 2026-09-28
+    ],
+)
+def test_every_corrigendum_prefix_form_is_dropped(listed):
+    from tender_radar.parsers.tenderdetail import CORRIGENDUM_PREFIX
+
+    assert CORRIGENDUM_PREFIX.sub("", listed) == "Tender for EV charging stations"
+
+
 def test_tenderdetail_undisclosed_value_is_none(tenderdetail_rows):
     # Cards that say "Ref. Document" instead of an amount.
     assert sum(1 for r in tenderdetail_rows if r["value"]) == 35

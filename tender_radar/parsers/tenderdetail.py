@@ -8,7 +8,8 @@ from bs4 import BeautifulSoup
 
 from ..models import Row
 
-CORRIGENDUM_PREFIX = re.compile(r"^\s*corrigendum\s*[:\-–]\s*", re.IGNORECASE)
+# "Corrigendum : ...", "Corrigendum - ..." and, seen 2026-09-28, "Corrigendum Tender For ...".
+CORRIGENDUM_PREFIX = re.compile(r"^\s*corrigendum\b\s*[:\-–]?\s*", re.IGNORECASE)
 
 
 def parse_tenderdetail_list(html: str, source_name: str, base_url: str) -> list[Row]:
