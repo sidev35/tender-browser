@@ -3,7 +3,7 @@
 // grouped by category.
 import { getSeen } from './alerts.js';
 import { renderCard } from './cards.js';
-import { DUE_SOON_DAYS, daysUntil, escapeHtml } from './util.js';
+import { DUE_SOON_DAYS, daysUntil, escapeHtml, shortSource } from './util.js';
 
 // The "New" pill: not a real category, but the tenders you haven't seen yet
 // (the same ones the "New since last visit" tile counts and that carry a NEW
@@ -37,7 +37,8 @@ function renderStats(state, seen) {
   document.getElementById('statUrgent').textContent = state.data.filter(t => {
     const d = daysUntil(t.dueDate); return d !== null && d <= DUE_SOON_DAYS && d >= 0;
   }).length;
-  document.getElementById('statSources').textContent = new Set(state.data.map(t => t.source)).size;
+  // By site, as cards show it: both TenderDetail sources count once.
+  document.getElementById('statSources').textContent = new Set(state.data.map(t => shortSource(t.source))).size;
   const newCount = state.data.filter(t => !seen.includes(t.id)).length;
   document.getElementById('statNew').textContent = newCount;
 

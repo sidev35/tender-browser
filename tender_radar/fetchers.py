@@ -156,11 +156,23 @@ def fetch_tenderdetail_list(source: Source, session: BrowserSession) -> list[Row
     this source's "maxNewPerRun" in sources.json: only that many not-yet-seen
     tenders are added per run, so the rest trickle in as "new" over the
     next scheduled runs instead of all at once.
+
+    Optional "extraUrls" (sources.json): more listing pages read by the same
+    source (e.g. BESS, inverter and battery-tester listings), one page load
+    each, with a tender listed on several pages kept once.
     """
-    html = session.get_html(source["url"])
-    if not html:
-        return []
-    return parse_tenderdetail_list(html, source["name"], source["url"])
+    rows: list[Row] = []
+    seen: set[str] = set()
+    for i, url in enumerate([source["url"], *source.get("extraUrls", [])]):
+        if i:
+            time.sleep(ORG_PAGE_PAUSE_SECONDS)
+        html = session.get_html(url)
+        for row in parse_tenderdetail_list(html, source["name"], url) if html else []:
+            key = row.get("stableKey") or row["raw_title"]
+            if key not in seen:
+                seen.add(key)
+                rows.append(row)
+    return rows
 
 
 def fetch_js_rendered_table(source: Source, session: BrowserSession) -> list[Row]:
@@ -210,11 +222,25 @@ def fetch_js_interactive_search(source: Source, session: BrowserSession) -> list
         session/referrer state that link sets up isn't present on a cold
         direct load. Use debug_js_source.py's --click flag against the
         root page to find/verify this selector before adding it here.
+      - "extraSearchKeywords": more searches after the main one (e.g.
+        "battery", "inverter"), each a separate page load with a pause in
+        between. A tender found by several is kept once; each row records
+        the keyword that found it ("foundBy"), which a dashboard card copies
+        when it has nothing more exact (normalize.search_text).
     """
-    html = load_interactive_search_html(source, session)
-    if not html:
-        return []
-    return parse_generic_table(html, source["name"])
+    rows: list[Row] = []
+    seen: set[str] = set()
+    keywords = [source.get("searchKeyword", "ev charging station"), *source.get("extraSearchKeywords", [])]
+    for i, keyword in enumerate(keywords):
+        if i:
+            time.sleep(ORG_PAGE_PAUSE_SECONDS)
+        html = load_interactive_search_html({**source, "searchKeyword": keyword}, session)
+        for row in parse_generic_table(html, source["name"]) if html else []:
+            key = row.get("tenderId") or row["raw_title"]
+            if key not in seen:
+                seen.add(key)
+                rows.append({**row, "foundBy": keyword})
+    return rows
 
 
 def load_interactive_search_html(source: Source, session: BrowserSession) -> str | None:

@@ -1,12 +1,16 @@
 {
   "_readme": [
-    "Which tenders count as EV-charging tenders, and which category each goes under.",
+    "Which tenders are kept, and which category each goes under.",
     "Edit the word lists below; no code change is needed. Matching ignores upper/lower case.",
-    "1. evGateTerms: a tender is kept only if its title contains at least one of these.",
-    "2. categories: a kept tender is tagged with every category that has a matching phrase.",
+    "1. evGateTerms: an EV-charging tender is kept only if its title contains at least one of these.",
+    "2. categories: a kept EV tender is tagged with every category that has a matching phrase.",
     "   The FIRST matching category (in the order listed here) is the one shown on its card.",
     "   Phrases are regular expressions, so '.*' means 'anything in between'.",
     "3. fallbackCategory: used when a tender passes step 1 but matches no category.",
+    "4. extraCategories: other products to keep even without an EV word (batteries, BESS,",
+    "   power electronics...). A title matching one of these phrases is kept under that",
+    "   category. Keep these phrases specific: '\\\\b' marks a word boundary, and '(?!...)'",
+    "   excludes look-alikes (e.g. 'inverter' but not 'inverter split AC').",
     "After editing, run `python -m pytest` to check nothing broke."
   ],
   "evGateTerms": [
@@ -95,6 +99,23 @@
       "ev charging bay",
       "ev charging yard",
       "ev parking"
+    ]
+  },
+  "extraCategories": {
+    "Battery, BESS & Power Electronics": [
+      "battery\\s*(pack\\s*)?(capacity\\s*|impedance\\s*|load\\s*|discharge\\s*)?test(er|ers|ing\\s*(kit|equipment|system|machine|unit))",
+      "battery\\s*analy[sz]er",
+      "\\bbess\\b",
+      "battery\\s*energy\\s*storage",
+      "energy\\s*storage\\s*system",
+      "battery\\s*storage",
+      "^(?!.*(iso\\s*50001|certification)).*energy\\s*management\\s*system",
+      "power\\s*conversion\\s*system",
+      "^(?!.*(weld|split|air\\s*condition|\\d\\s*(\\.\\d+)?\\s*(ton|tr)\\b|\\bac\\b.{0,20}inverter|inverter.{0,25}\\bac\\b)).*\\binverters?\\b(?!.{0,25}(type\\s*(led|light)|batten|based\\s*led))",
+      "electroly[sz]er",
+      "(\\b3|three)[\\s-]*w(heeler)?s?\\b.{0,60}charg",
+      "e-?\\s*rickshaw.{0,60}charg",
+      "charg.{0,60}(\\b3|three)[\\s-]*wheeler"
     ]
   }
 }

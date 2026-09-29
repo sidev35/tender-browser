@@ -54,9 +54,10 @@ def apply_search_help(records: Iterable[Record], sources: list[Source]) -> None:
         keyword = src.get("searchKeyword") if src.get("type") == "js_interactive_search" else None
         if t.get("linkType") != "search" or not keyword or src.get("searchBy") == "title":
             t["searchText"] = None  # the card copies the full title
-        elif src.get("searchBy", "keyword") == "keyword" or not t.get("searchText"):
+        elif not t.get("searchText"):
             t["searchText"] = keyword
-        # else: keep the exact searchText found for this tender while scraping
+        # else: keep the searchText found for this tender while scraping (its
+        # tender ID, exact title start, or the extra keyword that found it)
         t["searchHint"] = src.get("searchHint")
 
 

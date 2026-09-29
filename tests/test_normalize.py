@@ -145,6 +145,53 @@ def test_irregular_whitespace_still_matches():
     assert matches_categories("installation of EV  Charging stations") != []
 
 
+BATTERY = "Battery, BESS & Power Electronics"
+
+
+@pytest.mark.parametrize(
+    "title",
+    [
+        "Bids invited Battery Tester (Q3)",
+        "Bids invited Battery Pack Tester 600 A, 1000V, 2 Channels",
+        "Tender Epc Package Bess (400Mwh) Implementation",
+        "Supply of Truck Mounted Mobile Battery Energy Storage System",
+        "Supply and Installation UPS Energy Storage System",
+        "Energy Management System for the substation",
+        "Power Conversion System for BESS",
+        "Supply of 10 kW solar inverter",
+        "Tender Supply Installation Commissioning Hydrogen Electrolyser",
+        "Procurement of E-Rickshaw with battery charger",
+        "Supply of 3W charger for electric three wheelers",
+    ],
+)
+def test_battery_and_power_electronics_tenders_are_kept(title):
+    assert matches_categories(title) == [BATTERY]
+
+
+@pytest.mark.parametrize(
+    "title",
+    [
+        "Supply of 1.5 Ton 3 Star Inverter Split Air Conditioners",  # an AC, not an inverter
+        "Bids invited 1.8Tr/2Tr Inverter Type Split Ac",
+        "Replacement of Non- Inverter Type Led Batten Fittings",
+        "Civil maintenance works inside battery area at Gujarat refinery",  # just "battery"
+        "Supply of 100 Pcs of LED lamps",  # "Pcs" = pieces
+        "108 EMS ambulance services",  # emergency medical services
+        "Bids invited Split Ac ( Inverter Type) 2 Ton Capacity",  # AC named before "inverter"
+        "Bids Are invited for Portable Inverter Dc Welding Machine",
+        "Recertification Energy Management System (EnMS) ISO 50001",  # a certification service
+        "Bids invited Inverter Based Led Street Light (V2)",
+    ],
+)
+def test_look_alikes_are_not_kept(title):
+    assert matches_categories(title) == []
+
+
+def test_an_ev_tender_mentioning_bess_stays_an_ev_tender():
+    # The EV categories come first.
+    assert matches_categories("EV charging station with BESS") == ["Charger Supply & Installation"]
+
+
 # --- make_stable_id ----------------------------------------------------------
 
 

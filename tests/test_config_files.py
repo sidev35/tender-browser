@@ -21,10 +21,11 @@ def test_real_sources_json_is_valid():
 
 
 def test_real_categories_json_is_valid():
-    gate, cats, fallback = load_categories(os.path.join(ROOT, "config", "categories.json"))
+    gate, cats, fallback, extra = load_categories(os.path.join(ROOT, "config", "categories.json"))
     assert "charging station" in gate
     assert list(cats)[0] == "PPP / Concession / CPO Selection"  # order decides a record's category
     assert fallback == "Other EV Charging"
+    assert list(extra) == ["Battery, BESS & Power Electronics"]
 
 
 # --- sources.json mistakes ---------------------------------------------------

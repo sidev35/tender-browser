@@ -238,6 +238,25 @@ docs/js/util.js      escaping, dates, short names, safe localStorage
   or using up `maxNewPerRun`. On the data at the time: 56 tenders → 49,
   including 4 TenderDetail copies of Gujarat's Vadodara CPO tender.
 
+## Battery, BESS & power electronics tenders (2026-09-29)
+
+- New `extraCategories` in `config/categories.json`: categories kept without
+  the EV gate. First one: **Battery, BESS & Power Electronics** (battery
+  testers, BESS, EMS, PCS, inverters, electrolysers, 3W / e-rickshaw
+  chargers), shown as its own dashboard section.
+- Phrases tested against 1,520 real titles from all sources (3 matches, all
+  genuine) and 8 TenderDetail product listings; look-alikes excluded and
+  pinned by tests (inverter ACs and welding machines, "Pcs" = pieces, "EMS"
+  ambulances, ISO 50001 certification, "battery area" civil works).
+- Keyword portals also search `extraSearchKeywords` (battery, inverter,
+  energy storage, electrolyser: 4 extra searches each per run; "charger"
+  found nothing new, so it was left out). New source "TenderDetail (battery &
+  power electronics listings)" reads 8 listing pages (`extraUrls`), 10 new
+  tenders per run.
+- First run: 20 tenders in the new section (MP, EESL, Telangana, Gujarat,
+  Bihar, TenderDetail), ~114 more queued behind TenderDetail's limit. A run
+  now takes ~5.5 minutes (was ~1).
+
 ## Dashboard additions made along the way
 
 - **New pill:** next to **All**, lists the tenders you haven't seen yet (the

@@ -125,7 +125,8 @@ def search_text(source: Source, row: Row) -> str | None:
     Falls back to the keyword when the exact option isn't available for this
     row. None for sources without a searchKeyword: the card copies the title.
     """
-    keyword = source.get("searchKeyword")
+    # The keyword that found this row (extraSearchKeywords), else the main one.
+    keyword = row.get("foundBy") or source.get("searchKeyword")
     how = source.get("searchBy", "keyword")
     if how == "title":
         return None

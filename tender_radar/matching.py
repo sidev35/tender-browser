@@ -14,11 +14,16 @@ class CategoriesError(ValueError):
     """config/categories.json is missing something or has a bad entry."""
 
 
-def load_categories(path: str | None = None) -> tuple[list[str], dict[str, list[str]], str]:
+def load_categories(
+    path: str | None = None,
+) -> tuple[list[str], dict[str, list[str]], str, dict[str, list[str]]]:
     """
     Reads and checks config/categories.json. Returns
-    (gate_terms, categories, fallback_category), where categories keeps the
-    file's order (the first matching category is the one a record gets).
+    (gate_terms, categories, fallback_category, extra_categories), where the
+    category dicts keep the file's order (the first matching category is the
+    one a record gets). extra_categories ("extraCategories", optional) are
+    categories whose own phrases admit a tender without the EV gate, e.g.
+    batteries, BESS and power electronics.
     """
     path = path or config.CATEGORIES_PATH
     # utf-8-sig: also accepts files saved with a byte-order mark, which
@@ -45,7 +50,13 @@ def load_categories(path: str | None = None) -> tuple[list[str], dict[str, list[
     if not isinstance(cats, dict) or not cats:
         problems.append('"categories" must map each category name to a list of phrases')
         cats = {}
-    for name, phrases in cats.items():
+    extra = doc.get("extraCategories", {})
+    if not isinstance(extra, dict):
+        problems.append('"extraCategories" must map each category name to a list of phrases')
+        extra = {}
+    for name in set(cats) & set(extra):
+        problems.append(f'category "{name}" is in both "categories" and "extraCategories"')
+    for name, phrases in [*cats.items(), *extra.items()]:
         if not isinstance(phrases, list) or not phrases:
             problems.append(f'category "{name}" needs a non-empty list of phrases')
             continue
@@ -56,14 +67,18 @@ def load_categories(path: str | None = None) -> tuple[list[str], dict[str, list[
                 problems.append(f'category "{name}": phrase {p!r} is not a valid pattern ({e})')
     if problems:
         raise CategoriesError(f"{path} has problems:\n  - " + "\n  - ".join(problems))
-    return [t.lower() for t in gate], cats, fallback
+    return [t.lower() for t in gate], cats, fallback, extra
 
 
 # The first check: a title must contain at least one of these (plain text,
 # not patterns) to count as an EV-charging tender at all. It's then tagged
 # with every category whose phrases (regular expressions) it matches.
 # Loaded once, when the package is imported.
-GENERIC_GATE_TERMS, CATEGORY_KEYWORDS, FALLBACK_EV_CATEGORY = load_categories()
+GENERIC_GATE_TERMS, CATEGORY_KEYWORDS, FALLBACK_EV_CATEGORY, EXTRA_CATEGORIES = load_categories()
+
+
+def _matching(categories: dict[str, list[str]], title_l: str) -> list[str]:
+    return [c for c, keywords in categories.items() if any(re.search(kw, title_l) for kw in keywords)]
 
 
 def matches_categories(title: str) -> list[str]:
@@ -78,16 +93,14 @@ def matches_categories(title: str) -> list[str]:
     # source's markup could produce the same irregular spacing.
     title_l = " ".join(title.lower().split())
     if not any(term in title_l for term in GENERIC_GATE_TERMS):
-        return []
-    matched = []
-    for category, keywords in CATEGORY_KEYWORDS.items():
-        for kw in keywords:
-            if re.search(kw, title_l):
-                matched.append(category)
-                break
+        # Not EV charging: it can still be kept by an "extraCategories"
+        # category (batteries, BESS, power electronics...), whose own
+        # phrases admit it. Those never fall back to the EV catch-all.
+        return _matching(EXTRA_CATEGORIES, title_l)
+    matched = _matching(CATEGORY_KEYWORDS, title_l)
     # Passed the EV gate but no specific category's keywords: still a real
     # EV-charging tender, so keep it under a catch-all instead of dropping
     # it. Confirmed 2026-09-23 on TenderDetail: 31 of 50 "charging station"
     # results (e.g. "Electrical Infrastructure For Intermediate Charging
     # Station At Tuni Bus Station") matched the gate but no category.
-    return matched or [FALLBACK_EV_CATEGORY]
+    return matched or _matching(EXTRA_CATEGORIES, title_l) or [FALLBACK_EV_CATEGORY]

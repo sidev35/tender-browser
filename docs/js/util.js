@@ -19,6 +19,7 @@ const CATEGORY_SHORT = {
   'PPP / Concession / CPO Selection': 'PPP / CPO',
   'Charger Supply & Installation': 'Charger Supply',
   'Infrastructure & Electrical Works': 'Infra & Electrical',
+  'Battery, BESS & Power Electronics': 'Battery & Power',
 };
 export function shortCategory(cat) {
   return CATEGORY_SHORT[cat] || cat || 'Uncategorized';

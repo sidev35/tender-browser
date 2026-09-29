@@ -18,6 +18,7 @@ from tender_radar.parsers import (
 GUJARAT = "Gujarat nProcure (keyword search)"
 TELANGANA = "Telangana e-Procurement (keyword search)"
 BIHAR = "Bihar e-Procurement 2.0 (keyword search)"
+BATTERY = "Battery, BESS & Power Electronics"
 
 
 def due(row):
@@ -56,11 +57,18 @@ def test_eesl_reads_every_entry(fixture_html):
 
 def test_eesl_ev_matches_link_to_their_pdfs(fixture_html):
     rows = parse_eesl_tenders(fixture_html("eesl"), "EESL", "https://eeslindia.org/en/tenders/")
-    ev = [r for r in rows if matches_categories(r["raw_title"])]
+    ev = [r for r in rows if set(matches_categories(r["raw_title"])) - {BATTERY}]
     assert [r["docUrl"] for r in ev] == [
         "https://eeslindia.org/wp-content/uploads/2026/06/TenderDocument_EVCI.pdf",
         "https://eeslindia.org/wp-content/uploads/2025/10/RFP_EVCI_MH_252605_Signed.pdf",
     ]
+
+
+def test_eesl_bess_tenders_are_found_by_the_battery_category(fixture_html):
+    rows = parse_eesl_tenders(fixture_html("eesl"), "EESL", "https://eeslindia.org/en/tenders/")
+    bess = [r for r in rows if matches_categories(r["raw_title"]) == [BATTERY]]
+    assert len(bess) == 2
+    assert any("Battery Energy Storage System" in r["raw_title"] for r in bess)
 
 
 # --- TenderDetail listing ----------------------------------------------------

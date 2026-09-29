@@ -177,6 +177,12 @@ through the same checks:
   format at the top). A tender that is clearly about EV charging but doesn't
   fit a specific category goes under **Other EV Charging** rather than being
   thrown away.
+- **Batteries and power electronics too:** tenders for battery testers, BESS
+  (battery energy storage), inverters, electrolysers, energy management
+  systems and 3-wheeler chargers are kept even without an EV word, under their
+  own section, **Battery, BESS & Power Electronics**. Their word list is in
+  the same file (`extraCategories`), kept strict so that e.g. an "inverter
+  split AC" isn't picked up.
 - **Tenders stay on the dashboard until they close**, even after the
   website itself has stopped listing them.
 

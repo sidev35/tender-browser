@@ -89,6 +89,7 @@
     "searchInputSelector": "#nTenderID",
     "searchButtonSelector": "#searchTender",
     "searchKeyword": "charging station",
+    "extraSearchKeywords": ["battery", "inverter", "energy storage", "electrolyser"],
     "searchBy": "tenderId",
     "searchHint": "On Telangana's homepage, click More... (the search page only opens that way), paste the Tender ID into the search box and click Search.",
     "notes": "Free/official. Not the classic NIC GePNIC layout (custom platform) — previously listed as 'unsupported' since neither /nicgep/app path resolved. Confirmed 2026-09-22: this is a single-page app similar to Bihar's, but with an extra wrinkle — loading https://tender.telangana.gov.in/TenderDetailsHome.html directly gets redirected to a session-timeout page; the search form is only reachable by loading the root URL above and clicking its homepage 'More...' link (#viewCurrentall) first, which is what preClickSelector does. Keyword box is #nTenderID, submit button is #searchTender. Verified live: searching 'charging station' this way returns all 3 real matching tenders (previously only Bihar-style direct navigation was supported, which silently produced 0/incomplete results here). Selectors found via debug_js_source.py's --click flag plus a manual Playwright REPL session against the live page. Left disabled until a first live run has been checked end-to-end — flip to true once confirmed working."
@@ -101,6 +102,7 @@
     "searchInputSelector": "#TENDERTITLE:visible",
     "searchButtonSelector": "#searchButtonId:visible",
     "searchKeyword": "charging station",
+    "extraSearchKeywords": ["battery", "inverter", "energy storage", "electrolyser"],
     "searchBy": "titlePrefix",
     "searchHint": "Paste it into the Tender Title box and click Search.",
     "titleRegex": "Name Of Work\\s*:\\s*(.+?)\\s*(?:Corrigendum\\s*:|Estimated Contract Value|Last Date|$)",
@@ -115,6 +117,7 @@
     "searchInputSelector": "input[placeholder='Type any keyword']:visible",
     "searchButtonSelector": "button.submit_nil:visible",
     "searchKeyword": "charging stations",
+    "extraSearchKeywords": ["battery", "inverter", "energy storage", "electrolyser"],
     "searchBy": "title",
     "notes": "Free/official. No-login public tender search (confirmed live 2026-09-22) — previously listed as 'unsupported' since this eProc 2.0 platform isn't the classic NIC GePNIC layout. Confirmed to be a single-page app: the URL never changes on search, so js_rendered_table (which just loads the URL) won't work here — needs js_interactive_search to actually type the keyword and click submit. Selectors found via debug_js_source.py --search against the live page on 2026-09-22; re-verify if the site's markup changes. Left disabled until a first live run has been checked end-to-end — flip to true once confirmed working."
   },
@@ -138,6 +141,23 @@
 
 
 
+  {
+    "name": "TenderDetail (battery & power electronics listings)",
+    "url": "https://www.tenderdetail.com/Indian-tender/battery-energy-storage-system-tenders",
+    "extraUrls": [
+      "https://www.tenderdetail.com/Indian-tender/bess-tenders",
+      "https://www.tenderdetail.com/Indian-tender/battery-tester-tenders",
+      "https://www.tenderdetail.com/Indian-tender/inverter-tenders",
+      "https://www.tenderdetail.com/Indian-tender/electrolyser-tenders",
+      "https://www.tenderdetail.com/Indian-tender/electrolyzer-tenders",
+      "https://www.tenderdetail.com/Indian-tender/energy-management-system-tenders",
+      "https://www.tenderdetail.com/Indian-tender/e-rickshaw-charger-tenders"
+    ],
+    "type": "tenderdetail_list",
+    "enabled": true,
+    "maxNewPerRun": 10,
+    "notes": "Same site and terms as 'TenderDetail (charging station listing)': public keyword listing pages, no login, robots.txt allows all, terms allow internal use. Added 2026-09-29 for the 'Battery, BESS & Power Electronics' category: 8 listing pages (BESS, battery tester, inverter, electrolyser/electrolyzer, energy management system, e-rickshaw charger), all checked live that day (2-50 tenders each). One page load each per run (8 total), with a pause between. Only titles matching config/categories.json are kept, so e.g. inverter ACs on the inverter page are dropped. At most 10 new tenders added per run."
+  },
   {
     "name": "TendersOnTime",
     "url": "https://www.tendersontime.com",

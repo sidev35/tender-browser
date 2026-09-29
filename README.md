@@ -175,6 +175,17 @@ due to browser security rules.
 format at the top). The scraper checks the file when it starts and says
 exactly what's wrong if an entry is invalid.
 
+**Besides EV charging**, `extraCategories` in that file keeps tenders for other
+products even when they don't mention EV charging. Today that's one category,
+**Battery, BESS & Power Electronics** (battery testers, BESS, energy management
+and power conversion systems, inverters, electrolysers, 3-wheeler / e-rickshaw
+chargers). Its phrases are deliberately strict, tested against ~1,500 real
+titles, so look-alikes are skipped: inverter ACs, inverter welding machines,
+"100 Pcs" (pieces), "108 EMS" (ambulances), "battery area" civil works. To
+find these tenders the keyword portals also search `extraSearchKeywords`
+(battery, inverter, energy storage, electrolyser), and a second TenderDetail
+source reads 8 product listing pages (`extraUrls`).
+
 **`TENDER_SHOW_ALL` controls whether every scraped tender is kept**, or
 only ones matching those categories. Non-matching tenders get tagged
 `"General / All Tenders"` instead of being dropped when this is on.
