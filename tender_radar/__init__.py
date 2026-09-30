@@ -16,7 +16,7 @@ Module map, in the order a run uses them:
     models.py     Tender: the saved record's fields (see DATA_FORMAT.md)
     dedupe.py     same tender from two sources? keep one, official portal first
     store.py      read/write tenders.json, drop expired tenders
-    notify.py     optional email digest (SendGrid)
+    notify.py     optional email digest (SMTP)
     pipeline.py   run(): ties the steps above together
 """
 

@@ -307,7 +307,7 @@ tender_radar/pipeline.py   run() does these steps, in order:
 | `models.py` | `Tender`: the one definition of a saved record (described in [DATA_FORMAT.md](DATA_FORMAT.md)) |
 | `dedupe.py` | Spots the same tender listed by two sources (title + closing date) and keeps one copy, the official portal's first |
 | `store.py` | Load existing tenders, drop expired ones, save |
-| `notify.py` | Optional SendGrid email digest, throttled |
+| `notify.py` | Optional SMTP email digest, throttled |
 | `pipeline.py` | `scrape_source()` for one source, `run()` for a whole run |
 
 All modules report through Python `logging` (`LOG_LEVEL=WARNING` shows only

@@ -106,23 +106,26 @@ own keyword-alert features.
 
 ## Email digest setup (optional)
 
-Each scraper run can also email a digest via SendGrid. This repo is
+Each scraper run can also email a digest via SMTP. This repo is
 public, so none of this configuration lives in a committed file —
 it's all GitHub Actions secrets/variables, injected as env vars into
 the workflow.
 
-1. **Create a SendGrid account** (free tier: 100 emails/day) and verify
-   a **single sender** address under Settings → Sender Authentication —
-   that address is what you'll use as `NOTIFY_FROM_EMAIL`.
-2. **Create an API key** under Settings → API Keys (Restricted Access →
-   Mail Send is enough).
-3. In this repo, go to **Settings → Secrets and variables → Actions**:
-   - Under **Secrets**, add `SENDGRID_API_KEY` = the API key from step 2.
-   - Under **Variables**, add:
-     - `NOTIFY_FROM_EMAIL` = the verified sender address from step 1
-     - `NOTIFY_RECIPIENTS` = comma-separated list of who should get the digest
-     - `DUE_SOON_DAYS` (optional) = override the 7-day "closing soon" window
-     - `MIN_HOURS_BETWEEN_DIGESTS` (optional) = override the 6-hour minimum gap between emails (see below)
+In this repo, go to **Settings → Secrets and variables → Actions**
+and map your SMTP account settings as follows:
+
+- Under **Secrets**:
+  - `SMTP_USERNAME` = `Username`
+  - `SMTP_PASSWORD` = `SmtpPassword`
+- Under **Variables**:
+  - `SMTP_HOST` = `SmtpHost`
+  - `SMTP_PORT` = `SmtpPort` (defaults to 587)
+  - `SMTP_ENABLE_SSL` = `EnableSsl` (`true`/`false`, defaults to `true`;
+    port 465 uses implicit SSL, other ports use STARTTLS)
+  - `NOTIFY_FROM_EMAIL` = `EmailFrom`
+  - `NOTIFY_RECIPIENTS` = comma-separated list of who should get the digest
+  - `DUE_SOON_DAYS` (optional) = override the 7-day "closing soon" window
+  - `MIN_HOURS_BETWEEN_DIGESTS` (optional) = override the 6-hour minimum gap between emails (see below)
 
 Once configured, the workflow's "Run scraper" step passes these through
 to `scraper.py`, which calls `tender_radar/notify.py` at the end of each run.
@@ -162,7 +165,7 @@ pip install -r requirements.txt
 python scraper.py
 ```
 
-Without the SendGrid env vars set, this updates `docs/data/tenders.json`
+Without the SMTP env vars set, this updates `docs/data/tenders.json`
 locally and skips the email step (with a printed explanation). Set
 `LOG_LEVEL=WARNING` to see only problems in the output. To
 preview the dashboard against local data, serve the repo root
