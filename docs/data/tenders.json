@@ -2668,5 +2668,35 @@
     "firstSeen": "2026-10-03",
     "searchText": null,
     "searchHint": null
+  },
+  {
+    "id": "AUTO-7ec1e9688e",
+    "desc": "Tender For Selection Of Battery Energy Storage System Developers (Bessds) For Supply Of Energy From 800 Mw/ 3200 Mwh Standalone Battery Energy Storage Systems In India For “On Demand” Usage Under Tariff-Based Competitive Bidding (Seci-Ess-Iv)",
+    "refNo": null,
+    "location": "Delhi",
+    "value": null,
+    "dueDate": null,
+    "category": "Battery, BESS & Power Electronics",
+    "source": "TenderDetail (battery & power electronics listings)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57847433/3d9844442c41522ce9fee466c3a25ca8",
+    "linkType": "direct",
+    "firstSeen": "2026-10-03",
+    "searchText": null,
+    "searchHint": null
+  },
+  {
+    "id": "AUTO-2dbfd505ab",
+    "desc": "Tender For Request For Selection (Rfs) Document For Supply Of Energy From 800 Mw/ 3200 Mwh Standalone Battery Energy Storage Systems In India Under Tariff-Based Competitive Bidding (Seci-Ess-Iv)",
+    "refNo": null,
+    "location": "Multi State",
+    "value": null,
+    "dueDate": null,
+    "category": "Battery, BESS & Power Electronics",
+    "source": "TenderDetail (battery & power electronics listings)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57846672/c811dc3232ac08d46c0a056af08c416b",
+    "linkType": "direct",
+    "firstSeen": "2026-10-03",
+    "searchText": null,
+    "searchHint": null
   }
 ]
