@@ -2698,5 +2698,20 @@
     "firstSeen": "2026-10-03",
     "searchText": null,
     "searchHint": null
+  },
+  {
+    "id": "AUTO-734c8aad4f",
+    "desc": "Bids Are invited for Inverter (V2) (Q2)",
+    "refNo": null,
+    "location": "Kerala",
+    "value": null,
+    "dueDate": "2026-10-14",
+    "category": "Battery, BESS & Power Electronics",
+    "source": "TenderDetail (battery & power electronics listings)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57850053/c5aad57729bec0951d6ad26e0928d296",
+    "linkType": "direct",
+    "firstSeen": "2026-10-03",
+    "searchText": null,
+    "searchHint": null
   }
 ]
