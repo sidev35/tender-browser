@@ -240,21 +240,6 @@
     "searchHint": null
   },
   {
-    "id": "AUTO-be0011fc58",
-    "desc": "Tender for Repair/ Replacement Of Lt Electric Supply, Distribution Network Of Various Otm Bldgs And Replacement Of Various Under Water Lights Including Comprehensive Maintenance Of Ev Charging Station At Navy Nagar, Colaba, Mumbai.",
-    "refNo": null,
-    "location": "Maharashtra",
-    "value": "₹44.92 Lakh",
-    "dueDate": "2026-10-02",
-    "category": "Charger Supply & Installation",
-    "source": "TenderDetail (charging station listing)",
-    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57484139/7e1995dc94d285e9b0358ec504c77062",
-    "linkType": "direct",
-    "firstSeen": "2026-09-24",
-    "searchText": null,
-    "searchHint": null
-  },
-  {
     "id": "AUTO-7f433f3dac",
     "desc": "Bids Are invited for Dc Ev Charging Station (Q2)",
     "refNo": null,
@@ -2235,21 +2220,6 @@
     "searchHint": null
   },
   {
-    "id": "AUTO-e5737b5463",
-    "desc": "...(Refer Nit) , Wind Charge Controller And Rectifier (Refer Nit) , Grid-Forming Inverter (Refer Nit) , Generator Specifications (Refer Nit) , Generator Synchronization And Interface (Refer Nit) , Energy Management And Control System (Ems) (Refer Nit)",
-    "refNo": null,
-    "location": "Tamil Nadu",
-    "value": null,
-    "dueDate": "2026-10-02",
-    "category": "Battery, BESS & Power Electronics",
-    "source": "TenderDetail (battery & power electronics listings)",
-    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57564791/ac543912dc6081f769953615d9dbb431",
-    "linkType": "direct",
-    "firstSeen": "2026-10-01",
-    "searchText": null,
-    "searchHint": null
-  },
-  {
     "id": "AUTO-f745d656bd",
     "desc": "Tender for Development Of Public Charging Stations Through Design, Build, Finance, Operate & Maintain (Dbfom) In Meerut City",
     "refNo": null,
@@ -2681,6 +2651,21 @@
     "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/14860741/fc3b60171b8deea151ae7c3ae94378e5",
     "linkType": "direct",
     "firstSeen": "2026-10-02",
+    "searchText": null,
+    "searchHint": null
+  },
+  {
+    "id": "AUTO-5506b16ae6",
+    "desc": "Development of 3 MW Green Hydrogen Electrolyzers and Refueling Station with Comprehensive Operation and Maintenance for a period of 7 years including two years guarantee period",
+    "refNo": "MEE-EEPandM-9160-2026",
+    "location": null,
+    "value": null,
+    "dueDate": "2026-10-06",
+    "category": "Battery, BESS & Power Electronics",
+    "source": "CPPP / etenders.gov.in",
+    "url": "https://etenders.gov.in/eprocure/app?page=FrontEndAdvancedSearch&service=page",
+    "linkType": "search",
+    "firstSeen": "2026-10-03",
     "searchText": null,
     "searchHint": null
   }
