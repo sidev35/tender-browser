@@ -2713,5 +2713,20 @@
     "firstSeen": "2026-10-03",
     "searchText": null,
     "searchHint": null
+  },
+  {
+    "id": "AUTO-922125db56",
+    "desc": "RFP for Design, Installation, Commissioning and Operation and Maintenance of Public Electric Vehicle Charging Infrastructure in Rajasthan under Category A and Category B, in accordance with the PM E Drive Scheme.",
+    "refNo": "RRECL/TN-03/2026-27",
+    "location": null,
+    "value": null,
+    "dueDate": "2026-10-06",
+    "category": "Charger Supply & Installation",
+    "source": "Rajasthan e-Tendering",
+    "url": "https://eproc.rajasthan.gov.in/nicgep/app?page=FrontEndAdvancedSearch&service=page",
+    "linkType": "search",
+    "firstSeen": "2026-10-03",
+    "searchText": null,
+    "searchHint": null
   }
 ]
