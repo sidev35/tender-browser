@@ -2473,5 +2473,20 @@
     "firstSeen": "2026-10-03",
     "searchText": null,
     "searchHint": null
+  },
+  {
+    "id": "AUTO-5fe3cd1dda",
+    "desc": "Request for Qualification cum RFP for Development of 200 MW (Plus Minus 10 Percent) Solar Plant with 50 or 100MWh Battery Energy Storage System Under Captive Mode for ULBs of MP",
+    "refNo": "MPUDC/PMU/2026/9571",
+    "location": null,
+    "value": null,
+    "dueDate": "2026-11-23",
+    "category": "Battery, BESS & Power Electronics",
+    "source": "Madhya Pradesh e-Tendering",
+    "url": "https://mptenders.gov.in/nicgep/app?page=FrontEndAdvancedSearch&service=page",
+    "linkType": "search",
+    "firstSeen": "2026-10-04",
+    "searchText": null,
+    "searchHint": null
   }
 ]
