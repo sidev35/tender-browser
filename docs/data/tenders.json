@@ -2473,5 +2473,35 @@
     "firstSeen": "2026-10-04",
     "searchText": null,
     "searchHint": null
+  },
+  {
+    "id": "AUTO-773705e7e9",
+    "desc": "...For Proposal (Rfp) For Selection Of Charge Point Operators (Cpo) For Supply, Installation, Commissioning, Operation And Maintenance (O&M) Of Electric Vehicle Public Charging Stations (Evpcs) At Identified Locations In Odisha Under Pm Edrive Scheme",
+    "refNo": null,
+    "location": "Odisha",
+    "value": "₹40.51 Crore",
+    "dueDate": "2026-10-26",
+    "category": "PPP / Concession / CPO Selection",
+    "source": "TenderDetail (charging station listing)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57854566/5ba81cd867f95e1008c3c974bb2ee1a1",
+    "linkType": "direct",
+    "firstSeen": "2026-10-05",
+    "searchText": null,
+    "searchHint": null
+  },
+  {
+    "id": "AUTO-d021c2e8d9",
+    "desc": "Tender for Limited Tender Regarding Solar Grid Connected Pv Inverter",
+    "refNo": null,
+    "location": "Rajasthan",
+    "value": "₹1.70 Lakh",
+    "dueDate": "2026-10-12",
+    "category": "Battery, BESS & Power Electronics",
+    "source": "TenderDetail (battery & power electronics listings)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57856897/a536792eb8fa4a24d6a5f52da5b83b10",
+    "linkType": "direct",
+    "firstSeen": "2026-10-05",
+    "searchText": null,
+    "searchHint": null
   }
 ]
