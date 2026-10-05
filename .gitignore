@@ -6,3 +6,20 @@ __pycache__/
 .claude/
 graphify-out/
 bash.exe.stackdump
+
+# Developer-only files: kept on the local machine, not pushed to GitHub
+ARCHITECTURE.md
+CONTRIBUTING.md
+DATA_FORMAT.md
+IMPROVEMENT_PLAN.md
+tests/
+.github/workflows/tests.yml
+.pre-commit-config.yaml
+pyproject.toml
+requirements-dev.txt
+debug_js_source.py
+.ruff_cache/
+
+# Deployment copy and archives
+tender-radar-production/
+*.zip
