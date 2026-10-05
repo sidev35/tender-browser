@@ -50,6 +50,7 @@ jobs:
           NOTIFY_FROM_EMAIL: ${{ vars.NOTIFY_FROM_EMAIL }}
           NOTIFY_RECIPIENTS: ${{ vars.NOTIFY_RECIPIENTS }}
           DUE_SOON_DAYS: ${{ vars.DUE_SOON_DAYS }}
+          DASHBOARD_URL: ${{ vars.DASHBOARD_URL }}
           MIN_HOURS_BETWEEN_DIGESTS: ${{ vars.MIN_HOURS_BETWEEN_DIGESTS }}
           # scraper.py defaults to the system's Microsoft Edge (for local runs
           # on networks that block Playwright's browser download); here, use

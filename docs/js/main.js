@@ -18,8 +18,13 @@ const state = {
 };
 let isRefreshing = false;
 
+function markAllRead() {
+  setSeen(state.data.map(t => t.id));
+  redraw();
+}
+
 function redraw() {
-  render(state, { onPickCategory: (c) => { state.category = c; redraw(); } });
+  render(state, { onPickCategory: (c) => { state.category = c; redraw(); }, onMarkRead: markAllRead });
 }
 
 async function refreshData({ manual = false } = {}) {
@@ -51,10 +56,7 @@ async function refreshData({ manual = false } = {}) {
 
 document.getElementById('searchBox').addEventListener('input', e => { state.query = e.target.value; redraw(); });
 document.getElementById('sortSel').addEventListener('change', e => { state.sort = e.target.value; redraw(); });
-document.getElementById('dismissNew').addEventListener('click', () => {
-  setSeen(state.data.map(t => t.id));
-  redraw();
-});
+document.getElementById('dismissNew').addEventListener('click', markAllRead);
 document.getElementById('updateBtn').addEventListener('click', () => { refreshData({ manual: true }); });
 
 // The "New since last visit" tile opens the New pill: the tenders it counts.
@@ -80,7 +82,9 @@ setupNotifyButton();
   // First load: pull live data, seed the "seen"/known-id baselines so
   // "NEW" badges and popups only fire for genuinely new data afterwards.
   await refreshData({ manual: false });
-  if (!hasSeenBaseline()) {
+  // (Only once data actually loaded: seeding an empty list would leave every
+  // tender that arrives later flagged as new.)
+  if (!hasSeenBaseline() && state.data.length > 0) {
     setSeen(state.data.map(t => t.id));
   }
   redraw();

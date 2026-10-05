@@ -224,7 +224,7 @@ tries to get around a captcha, so a person does that one step.
 Your browser remembers which tenders you've already seen. Anything found
 since then gets a **NEW** badge, and the **New** pill (next to **All**) shows
 just those tenders. Clicking the "New since last visit" tile opens it too.
-**Mark as seen** clears them once you've looked.
+**Mark all as read** clears them once you've looked. A tender only counts as new for 7 days after it was first found.
 
 ---
 

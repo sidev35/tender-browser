@@ -4,6 +4,11 @@
 // card borders, and the closing-soon alerts all use it.
 export const DUE_SOON_DAYS = 7;
 
+// A tender can only count as "new" for this many days after the scraper
+// first found it, so a fresh browser or cleared site data can't flag the
+// whole list as new.
+export const NEW_WINDOW_DAYS = 7;
+
 // Scraped text is untrusted: escape it before putting it into innerHTML.
 export function escapeHtml(s) {
   return String(s ?? '').replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -32,6 +37,13 @@ export function daysUntil(dateStr) {
   const now = new Date();
   now.setHours(0, 0, 0, 0);
   return Math.round((due - now) / 86400000);
+}
+
+// New = not marked as read yet, and first found within NEW_WINDOW_DAYS.
+export function isNew(t, seen) {
+  if (seen.includes(t.id)) return false;
+  const age = daysUntil(t.firstSeen);
+  return age === null || age >= -NEW_WINDOW_DAYS;
 }
 
 export function fmtDue(dateStr) {

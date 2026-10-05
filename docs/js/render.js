@@ -3,17 +3,17 @@
 // grouped by category.
 import { getSeen } from './alerts.js';
 import { renderCard } from './cards.js';
-import { DUE_SOON_DAYS, daysUntil, escapeHtml, shortSource } from './util.js';
+import { DUE_SOON_DAYS, daysUntil, escapeHtml, isNew, shortSource } from './util.js';
 
 // The "New" pill: not a real category, but the tenders you haven't seen yet
 // (the same ones the "New since last visit" tile counts and that carry a NEW
-// badge). "Mark as seen" empties it.
+// badge). "Mark all as read" empties it.
 export const NEW_FILTER = '__new__';
 
 // Applies the category pill, the search box and the sort order.
 function visibleTenders(state, seen) {
   let items = state.data.slice();
-  if (state.category === NEW_FILTER) items = items.filter(t => !seen.includes(t.id));
+  if (state.category === NEW_FILTER) items = items.filter(t => isNew(t, seen));
   else if (state.category !== 'All') items = items.filter(t => t.category === state.category);
   if (state.query.trim()) {
     const q = state.query.toLowerCase();
@@ -39,11 +39,11 @@ function renderStats(state, seen) {
   }).length;
   // By site, as cards show it: both TenderDetail sources count once.
   document.getElementById('statSources').textContent = new Set(state.data.map(t => shortSource(t.source))).size;
-  const newCount = state.data.filter(t => !seen.includes(t.id)).length;
+  const newCount = state.data.filter(t => isNew(t, seen)).length;
   document.getElementById('statNew').textContent = newCount;
 
   const banner = document.getElementById('newBanner');
-  if (newCount > 0 && seen.length > 0) {
+  if (newCount > 0) {
     document.getElementById('newBannerText').textContent =
       `${newCount} new tender${newCount > 1 ? 's' : ''} matched since your last visit.`;
     banner.classList.add('show');
@@ -54,7 +54,7 @@ function renderStats(state, seen) {
 
 // Pills: All, New, then one per category present in the data.
 function renderPills(state, seen, onPick) {
-  const newCount = state.data.filter(t => !seen.includes(t.id)).length;
+  const newCount = state.data.filter(t => isNew(t, seen)).length;
   const pills = [
     { key: 'All', label: `All (${state.data.length})` },
     { key: NEW_FILTER, label: `New (${newCount})`, extraClass: ' pill-new' },
@@ -84,8 +84,9 @@ function renderEmpty(state, groupsEl) {
     : '<div class="empty">No tenders match this filter right now. Try clearing the search or picking a different category.</div>';
 }
 
-// onPickCategory(category) is called when a pill is clicked.
-export function render(state, { onPickCategory }) {
+// onPickCategory(category) is called when a pill is clicked; onMarkRead() when
+// "Mark all as read" is.
+export function render(state, { onPickCategory, onMarkRead }) {
   const seen = getSeen();
   const items = visibleTenders(state, seen);
   renderStats(state, seen);
@@ -98,6 +99,14 @@ export function render(state, { onPickCategory }) {
     return;
   }
 
+  if (state.category === NEW_FILTER) {
+    const bar = document.createElement('div');
+    bar.className = 'new-toolbar';
+    bar.innerHTML = `<span>${items.length} unread tender${items.length > 1 ? 's' : ''}</span><button type="button">✓ Mark all as read</button>`;
+    bar.querySelector('button').onclick = onMarkRead;
+    groupsEl.appendChild(bar);
+  }
+
   const byCat = {};
   items.forEach(t => { (byCat[t.category] = byCat[t.category] || []).push(t); });
   Object.keys(byCat).forEach(cat => {
@@ -106,7 +115,7 @@ export function render(state, { onPickCategory }) {
     groupEl.innerHTML = `<div class="group-head"><h2>${escapeHtml(cat)}</h2><span class="count">${byCat[cat].length} tender${byCat[cat].length > 1 ? 's' : ''}</span></div>`;
     const grid = document.createElement('div');
     grid.className = 'card-grid';
-    byCat[cat].forEach(t => grid.appendChild(renderCard(t, !seen.includes(t.id))));
+    byCat[cat].forEach(t => grid.appendChild(renderCard(t, isNew(t, seen))));
     groupEl.appendChild(grid);
     groupsEl.appendChild(groupEl);
   });
