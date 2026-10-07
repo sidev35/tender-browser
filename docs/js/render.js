@@ -41,8 +41,10 @@ function renderStats(state, seen) {
   const portals = [...new Set(state.data.map(t => shortSource(t.source)))].sort();
   const sourcesEl = document.getElementById('statSources');
   sourcesEl.textContent = portals.length;
-  // Hovering the tile lists the portals (a plain browser tooltip, one per line).
-  sourcesEl.parentElement.title = portals.length ? portals.join('\n') : 'No portals yet';
+  // Hovering (or focusing) the tile lists the portals in a small panel.
+  document.getElementById('statSourcesTip').innerHTML = portals.length
+    ? portals.map(p => `<div>${escapeHtml(p)}</div>`).join('')
+    : '<div>No portals yet</div>';
   const newCount = state.data.filter(t => isNew(t, seen)).length;
   document.getElementById('statNew').textContent = newCount;
 

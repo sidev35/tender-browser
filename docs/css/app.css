@@ -91,6 +91,14 @@ header.top {
 .stat .lbl { font-size: 12px; color: var(--text-dim); margin-top: 6px; }
 .stat.urgent .num { color: var(--danger); }
 .stat.new .num { color: var(--accent); }
+.stat.has-tip { position: relative; cursor: help; }
+.stat .tip {
+  display: none; position: absolute; left: 0; top: calc(100% + 6px); z-index: 20;
+  min-width: 100%; max-width: 280px; padding: 8px 12px; border-radius: 10px;
+  background: var(--surface); border: 1px solid var(--accent-dim); box-shadow: 0 6px 18px rgba(0,0,0,.18);
+  font-size: 12.5px; line-height: 1.7; color: var(--text); white-space: nowrap;
+}
+.stat.has-tip:hover .tip, .stat.has-tip:focus .tip { display: block; }
 
 /* New tenders banner */
 .new-banner {
