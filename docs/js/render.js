@@ -38,7 +38,11 @@ function renderStats(state, seen) {
     const d = daysUntil(t.dueDate); return d !== null && d <= DUE_SOON_DAYS && d >= 0;
   }).length;
   // By site, as cards show it: both TenderDetail sources count once.
-  document.getElementById('statSources').textContent = new Set(state.data.map(t => shortSource(t.source))).size;
+  const portals = [...new Set(state.data.map(t => shortSource(t.source)))].sort();
+  const sourcesEl = document.getElementById('statSources');
+  sourcesEl.textContent = portals.length;
+  // Hovering the tile lists the portals (a plain browser tooltip, one per line).
+  sourcesEl.parentElement.title = portals.length ? portals.join('\n') : 'No portals yet';
   const newCount = state.data.filter(t => isNew(t, seen)).length;
   document.getElementById('statNew').textContent = newCount;
 

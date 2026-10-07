@@ -86,18 +86,54 @@ def _details(t):
     return " · ".join(p for p in parts if p)
 
 
+def _link(t):
+    """The tender's portal link, only if it is a web address (scraped text is untrusted)."""
+    url = (t.get("url") or "").strip()
+    return url if url.startswith(("http://", "https://")) else None
+
+
+def _is_direct(t):
+    """Same split as the dashboard: a direct link opens the tender itself, any other
+    opens the portal's search/listing page, where the title has to be searched."""
+    return t.get("linkType") == "direct"
+
+
 def _format_list(records):
     """Plain text: one tender per block, with a blank line between tenders."""
-    return "\n\n".join(f"- {t['desc']}\n  {_details(t)}" for t in records)
+    blocks = []
+    for t in records:
+        block = f"- {t['desc']}\n  {_details(t)}"
+        if url := _link(t):
+            label = "Tender" if _is_direct(t) else "Portal (search for the title)"
+            block += f"\n  {label}: {url}"
+        blocks.append(block)
+    return "\n\n".join(blocks)
 
 
 def _format_list_html(records):
-    """HTML: one spaced-out block per tender. Scraped text is escaped."""
+    """HTML: one spaced-out block per tender, the title linking to the portal.
+    Scraped text is escaped."""
+    def title(t):
+        text = html.escape(t["desc"])
+        if url := _link(t):
+            href = html.escape(url, quote=True)
+            return f'<a href="{href}" style="color: #0b6e45; text-decoration: underline;">{text}</a>'
+        return text
+
+    def note(t):
+        if _link(t) and not _is_direct(t):
+            return (
+                '<div style="color: #59695f; font-size: 12px; margin-top: 4px;">'
+                "Opens the portal's search page — search for this title there.</div>"
+            )
+        return ""
+
     return "\n".join(
         '<div style="margin: 0 0 14px; padding: 10px 12px; border-left: 3px solid #0f9d63; '
         'background: #f5f8f6;">'
-        f'<div style="font-weight: bold;">{html.escape(t["desc"])}</div>'
+        f'<div style="font-weight: bold;">{title(t)}</div>'
         f'<div style="color: #59695f; font-size: 13px; margin-top: 4px;">{html.escape(_details(t))}</div>'
+        f"{note(t)}"
         "</div>"
         for t in records
     )
