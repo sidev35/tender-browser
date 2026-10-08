@@ -2248,5 +2248,50 @@
     "firstSeen": "2026-10-08",
     "searchText": null,
     "searchHint": null
+  },
+  {
+    "id": "AUTO-57f1c1e300",
+    "desc": "Supply, Ercetion And Commissioning Of 500 Kva Transformer At NMC Office Building Shifting, Erection And Commissioning Of Existing 315 Kva Transformer To Proposed EV Charging Station At Autonagar In Division No.25 Of Nellore Municipal Corporation",
+    "refNo": null,
+    "location": "Andhra Pradesh",
+    "value": "₹37.36 Lakh",
+    "dueDate": "2026-10-14",
+    "category": "Charger Supply & Installation",
+    "source": "TenderDetail (charging station listing)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57917131/604e10d483abed5a62a012ea359b9edd",
+    "linkType": "direct",
+    "firstSeen": "2026-10-08",
+    "searchText": null,
+    "searchHint": null
+  },
+  {
+    "id": "AUTO-55adbe0a14",
+    "desc": "Setting Up Of 1500 Mw/6,000 Mwh (4-Hour) Bess Capacity In Andhra Pradesh, For Procurement By Apdiscoms, On Demand Basis",
+    "refNo": null,
+    "location": "Andhra Pradesh",
+    "value": null,
+    "dueDate": "2026-11-23",
+    "category": "Battery, BESS & Power Electronics",
+    "source": "TenderDetail (battery & power electronics listings)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57914878/b885ee9ca2c9c19fbde227110063908d",
+    "linkType": "direct",
+    "firstSeen": "2026-10-08",
+    "searchText": null,
+    "searchHint": null
+  },
+  {
+    "id": "AUTO-dc6a5c16b6",
+    "desc": "Tender for Repairing Of Generator And Inverter In All Property Of Kbmc",
+    "refNo": null,
+    "location": "Maharashtra",
+    "value": null,
+    "dueDate": "2026-10-15",
+    "category": "Battery, BESS & Power Electronics",
+    "source": "TenderDetail (battery & power electronics listings)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57918522/333f6f31332b64803422894f7b3618c3",
+    "linkType": "direct",
+    "firstSeen": "2026-10-08",
+    "searchText": null,
+    "searchHint": null
   }
 ]
