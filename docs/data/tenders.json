@@ -12,7 +12,8 @@
     "linkType": "direct",
     "firstSeen": "2026-09-22",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-73b07a63eb",
@@ -27,7 +28,8 @@
     "linkType": "direct",
     "firstSeen": "2026-09-22",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-b3d64d8aa2",
@@ -42,7 +44,8 @@
     "linkType": "search",
     "firstSeen": "2026-09-23",
     "searchText": "Selection of Charge Point Operator (CPO) for Design, Build, Finance, Operate",
-    "searchHint": "Paste it into the Tender Title box and click Search."
+    "searchHint": "Paste it into the Tender Title box and click Search.",
+    "dueTime": null
   },
   {
     "id": "AUTO-a745c7dbf8",
@@ -57,7 +60,8 @@
     "linkType": "direct",
     "firstSeen": "2026-09-23",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-016990375b",
@@ -72,7 +76,8 @@
     "linkType": "direct",
     "firstSeen": "2026-09-24",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-b295a176f6",
@@ -87,7 +92,8 @@
     "linkType": "direct",
     "firstSeen": "2026-09-24",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-1d5d0c1614",
@@ -102,7 +108,8 @@
     "linkType": "direct",
     "firstSeen": "2026-09-24",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-7f433f3dac",
@@ -117,7 +124,8 @@
     "linkType": "direct",
     "firstSeen": "2026-09-24",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-efe9aff134",
@@ -132,7 +140,8 @@
     "linkType": "direct",
     "firstSeen": "2026-09-25",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-4baa0b4397",
@@ -147,7 +156,8 @@
     "linkType": "direct",
     "firstSeen": "2026-09-25",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-58ff9dd83b",
@@ -162,7 +172,8 @@
     "linkType": "direct",
     "firstSeen": "2026-09-26",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-ab36ef2fa2",
@@ -177,7 +188,8 @@
     "linkType": "direct",
     "firstSeen": "2026-09-28",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-3d441e30fd",
@@ -192,7 +204,8 @@
     "linkType": "search",
     "firstSeen": "2026-09-29",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-a00175ed6f",
@@ -207,7 +220,8 @@
     "linkType": "direct",
     "firstSeen": "2026-09-29",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-b3e4a18e51",
@@ -222,7 +236,8 @@
     "linkType": "direct",
     "firstSeen": "2026-09-29",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-7b4ddcf694",
@@ -237,7 +252,8 @@
     "linkType": "search",
     "firstSeen": "2026-09-29",
     "searchText": "735516",
-    "searchHint": "On Telangana's homepage, click More... (the search page only opens that way), paste the Tender ID into the search box and click Search."
+    "searchHint": "On Telangana's homepage, click More... (the search page only opens that way), paste the Tender ID into the search box and click Search.",
+    "dueTime": null
   },
   {
     "id": "AUTO-bca2f1301d",
@@ -252,7 +268,8 @@
     "linkType": "search",
     "firstSeen": "2026-09-29",
     "searchText": "IMPLEMENTATION OF 75 MW (AC) GRID-CONNECTED GROUND-MOUNTED",
-    "searchHint": "Paste it into the Tender Title box and click Search."
+    "searchHint": "Paste it into the Tender Title box and click Search.",
+    "dueTime": null
   },
   {
     "id": "AUTO-053937cb79",
@@ -267,7 +284,8 @@
     "linkType": "search",
     "firstSeen": "2026-09-29",
     "searchText": "E-3121/ PROJECT MANAGEMENT CONSULTANT (PMC) through QCBS method to provide Technical Assistance in",
-    "searchHint": "Paste it into the Tender Title box and click Search."
+    "searchHint": "Paste it into the Tender Title box and click Search.",
+    "dueTime": null
   },
   {
     "id": "AUTO-1550482fb9",
@@ -282,7 +300,8 @@
     "linkType": "search",
     "firstSeen": "2026-09-29",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": "10:30"
   },
   {
     "id": "AUTO-901fba76c1",
@@ -297,7 +316,8 @@
     "linkType": "search",
     "firstSeen": "2026-09-29",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": "10:30"
   },
   {
     "id": "AUTO-085d760c20",
@@ -312,7 +332,8 @@
     "linkType": "direct",
     "firstSeen": "2026-09-29",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-91dace38c3",
@@ -327,7 +348,8 @@
     "linkType": "direct",
     "firstSeen": "2026-09-29",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-1359e5f8cb",
@@ -342,7 +364,8 @@
     "linkType": "direct",
     "firstSeen": "2026-09-29",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-b1e6d4ba23",
@@ -357,7 +380,8 @@
     "linkType": "direct",
     "firstSeen": "2026-09-29",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-9fb4280eaf",
@@ -372,7 +396,8 @@
     "linkType": "direct",
     "firstSeen": "2026-09-29",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-b165ff622d",
@@ -387,7 +412,8 @@
     "linkType": "direct",
     "firstSeen": "2026-09-29",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-3609cb8347",
@@ -402,7 +428,8 @@
     "linkType": "direct",
     "firstSeen": "2026-09-29",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-20deb93896",
@@ -417,7 +444,8 @@
     "linkType": "search",
     "firstSeen": "2026-09-29",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-8de2b17741",
@@ -432,7 +460,8 @@
     "linkType": "direct",
     "firstSeen": "2026-09-29",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-6f9ec3494c",
@@ -447,7 +476,8 @@
     "linkType": "direct",
     "firstSeen": "2026-09-29",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-e2ed75d236",
@@ -462,7 +492,8 @@
     "linkType": "direct",
     "firstSeen": "2026-09-29",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-a65bc17684",
@@ -477,7 +508,8 @@
     "linkType": "direct",
     "firstSeen": "2026-09-29",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-149ed40088",
@@ -492,7 +524,8 @@
     "linkType": "direct",
     "firstSeen": "2026-09-29",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-1f015656d6",
@@ -507,7 +540,8 @@
     "linkType": "direct",
     "firstSeen": "2026-09-29",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-35e62e2240",
@@ -522,7 +556,8 @@
     "linkType": "direct",
     "firstSeen": "2026-09-29",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-3ec94f0b25",
@@ -537,7 +572,8 @@
     "linkType": "direct",
     "firstSeen": "2026-09-29",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-1796254996",
@@ -552,7 +588,8 @@
     "linkType": "direct",
     "firstSeen": "2026-09-29",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-7f337be2ce",
@@ -567,7 +604,8 @@
     "linkType": "direct",
     "firstSeen": "2026-09-29",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-c308a75bd3",
@@ -582,7 +620,8 @@
     "linkType": "direct",
     "firstSeen": "2026-09-29",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-fb60c4f0c1",
@@ -597,7 +636,8 @@
     "linkType": "direct",
     "firstSeen": "2026-09-29",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-20814b675a",
@@ -612,7 +652,8 @@
     "linkType": "direct",
     "firstSeen": "2026-09-29",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-ee8946ee7d",
@@ -627,7 +668,8 @@
     "linkType": "direct",
     "firstSeen": "2026-09-29",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-ec09d916a2",
@@ -642,7 +684,8 @@
     "linkType": "search",
     "firstSeen": "2026-09-30",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-b153fbf8db",
@@ -657,7 +700,8 @@
     "linkType": "direct",
     "firstSeen": "2026-09-30",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-89572c531e",
@@ -672,7 +716,8 @@
     "linkType": "direct",
     "firstSeen": "2026-09-30",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-6c1d75da42",
@@ -687,7 +732,8 @@
     "linkType": "direct",
     "firstSeen": "2026-09-30",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-aaa288da2e",
@@ -702,7 +748,8 @@
     "linkType": "direct",
     "firstSeen": "2026-09-30",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-d1229cb396",
@@ -717,7 +764,8 @@
     "linkType": "direct",
     "firstSeen": "2026-09-30",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-bd5810da5f",
@@ -732,7 +780,8 @@
     "linkType": "direct",
     "firstSeen": "2026-09-30",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-6e6fbfce0d",
@@ -747,7 +796,8 @@
     "linkType": "direct",
     "firstSeen": "2026-09-30",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-f727b03346",
@@ -762,7 +812,8 @@
     "linkType": "search",
     "firstSeen": "2026-09-30",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-a01e27c39c",
@@ -777,7 +828,8 @@
     "linkType": "direct",
     "firstSeen": "2026-09-30",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-c5027d5b53",
@@ -792,7 +844,8 @@
     "linkType": "direct",
     "firstSeen": "2026-09-30",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-569c4b5f46",
@@ -807,7 +860,8 @@
     "linkType": "direct",
     "firstSeen": "2026-09-30",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-8edead518f",
@@ -822,7 +876,8 @@
     "linkType": "direct",
     "firstSeen": "2026-09-30",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-ac03e6ffa2",
@@ -837,7 +892,8 @@
     "linkType": "direct",
     "firstSeen": "2026-09-30",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-926cbefdad",
@@ -852,7 +908,8 @@
     "linkType": "direct",
     "firstSeen": "2026-09-30",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-24e6c6da7f",
@@ -867,7 +924,8 @@
     "linkType": "search",
     "firstSeen": "2026-09-30",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-c16eae782e",
@@ -882,7 +940,8 @@
     "linkType": "direct",
     "firstSeen": "2026-09-30",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-3f7ef04778",
@@ -897,7 +956,8 @@
     "linkType": "direct",
     "firstSeen": "2026-09-30",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-5ad5afe80f",
@@ -912,7 +972,8 @@
     "linkType": "direct",
     "firstSeen": "2026-09-30",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-f27b2ecb76",
@@ -927,7 +988,8 @@
     "linkType": "direct",
     "firstSeen": "2026-09-30",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-224ab22c72",
@@ -942,7 +1004,8 @@
     "linkType": "direct",
     "firstSeen": "2026-09-30",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-8e4ab46df1",
@@ -957,7 +1020,8 @@
     "linkType": "direct",
     "firstSeen": "2026-09-30",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-db129a738c",
@@ -972,7 +1036,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-01",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-1a75bd6b97",
@@ -987,7 +1052,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-01",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-002a1cd450",
@@ -1002,7 +1068,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-01",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-400423c982",
@@ -1017,7 +1084,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-01",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-49e3d089be",
@@ -1032,7 +1100,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-01",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-29902ab807",
@@ -1047,7 +1116,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-01",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-434c0e58c7",
@@ -1062,7 +1132,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-01",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-b3324e32e6",
@@ -1077,7 +1148,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-02",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-5592732fe3",
@@ -1092,7 +1164,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-02",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-2e05b40b3c",
@@ -1107,7 +1180,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-02",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-62847512f8",
@@ -1122,7 +1196,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-02",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-db1a2b44bf",
@@ -1137,7 +1212,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-02",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-ec38bcb5ee",
@@ -1152,7 +1228,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-02",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-6db33d0208",
@@ -1167,7 +1244,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-02",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-8f374998b5",
@@ -1182,7 +1260,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-02",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-0615912015",
@@ -1197,7 +1276,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-02",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-7ec1e9688e",
@@ -1212,7 +1292,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-03",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-2dbfd505ab",
@@ -1227,7 +1308,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-03",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-734c8aad4f",
@@ -1242,7 +1324,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-03",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-5fe3cd1dda",
@@ -1257,7 +1340,8 @@
     "linkType": "search",
     "firstSeen": "2026-10-04",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-773705e7e9",
@@ -1272,7 +1356,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-05",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-d021c2e8d9",
@@ -1287,7 +1372,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-05",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-fe9d359480",
@@ -1302,7 +1388,8 @@
     "linkType": "search",
     "firstSeen": "2026-10-06",
     "searchText": "735650",
-    "searchHint": "On Telangana's homepage, click More... (the search page only opens that way), paste the Tender ID into the search box and click Search."
+    "searchHint": "On Telangana's homepage, click More... (the search page only opens that way), paste the Tender ID into the search box and click Search.",
+    "dueTime": null
   },
   {
     "id": "AUTO-ff774a3b2c",
@@ -1317,7 +1404,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-06",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-fb79fa6f3e",
@@ -1332,7 +1420,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-06",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-f88ad1e975",
@@ -1347,7 +1436,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-06",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-be0011fc58",
@@ -1362,7 +1452,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-06",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-6036a7d331",
@@ -1377,7 +1468,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-06",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-22e7002628",
@@ -1392,7 +1484,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-06",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-1dfdbbf9c6",
@@ -1407,7 +1500,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-06",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-e23ad3ddb4",
@@ -1422,7 +1516,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-06",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-1e87f96a74",
@@ -1437,7 +1532,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-06",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-91b67e2b9a",
@@ -1452,7 +1548,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-06",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-fd6e62e197",
@@ -1467,7 +1564,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-06",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-da40136680",
@@ -1482,7 +1580,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-06",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-8968070665",
@@ -1497,7 +1596,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-06",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-56e13a9aa5",
@@ -1512,7 +1612,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-06",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-abaf0f7e4b",
@@ -1527,7 +1628,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-06",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-be82248431",
@@ -1542,7 +1644,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-06",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-2bfee84bae",
@@ -1557,7 +1660,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-06",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-83685dc4ee",
@@ -1572,7 +1676,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-06",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-bd79fac3af",
@@ -1587,7 +1692,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-06",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-a2af77443f",
@@ -1602,7 +1708,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-06",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-7913ed7d52",
@@ -1617,7 +1724,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-06",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-c591f50305",
@@ -1632,7 +1740,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-06",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-61da841b44",
@@ -1647,7 +1756,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-06",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-9ef8f32524",
@@ -1662,7 +1772,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-06",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-dfb76937ee",
@@ -1677,7 +1788,8 @@
     "linkType": "search",
     "firstSeen": "2026-10-07",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-b42c3f9d37",
@@ -1692,7 +1804,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-07",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-3d20f57e84",
@@ -1707,7 +1820,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-07",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-69755935d9",
@@ -1722,7 +1836,8 @@
     "linkType": "search",
     "firstSeen": "2026-10-07",
     "searchText": "740281",
-    "searchHint": "On Telangana's homepage, click More... (the search page only opens that way), paste the Tender ID into the search box and click Search."
+    "searchHint": "On Telangana's homepage, click More... (the search page only opens that way), paste the Tender ID into the search box and click Search.",
+    "dueTime": null
   },
   {
     "id": "AUTO-cb82ec3442",
@@ -1737,7 +1852,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-07",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-5d678d0ccc",
@@ -1752,7 +1868,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-07",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-ae0ebd3078",
@@ -1767,7 +1884,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-07",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-5f38d65ce9",
@@ -1782,7 +1900,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-07",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-f76dafd731",
@@ -1797,7 +1916,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-07",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-8d0b6d83b9",
@@ -1812,7 +1932,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-07",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-8ca4f8fc3d",
@@ -1827,7 +1948,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-07",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-bb2b4770a8",
@@ -1842,7 +1964,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-07",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-a0dec6e4ed",
@@ -1857,7 +1980,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-07",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-cb5bbe2b0c",
@@ -1872,7 +1996,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-07",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-f1c3430637",
@@ -1887,7 +2012,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-08",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-747615ac4a",
@@ -1902,7 +2028,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-08",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-9082d61411",
@@ -1917,7 +2044,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-08",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-9cdbdf2b10",
@@ -1932,7 +2060,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-08",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-1f68262da0",
@@ -1947,7 +2076,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-08",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-83514c3303",
@@ -1962,7 +2092,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-08",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-1b32329562",
@@ -1977,7 +2108,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-08",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-619fd6fc3c",
@@ -1992,7 +2124,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-08",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-ae747cbb2e",
@@ -2007,7 +2140,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-08",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-73388dd610",
@@ -2022,7 +2156,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-08",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-57f1c1e300",
@@ -2037,7 +2172,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-08",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-55adbe0a14",
@@ -2052,7 +2188,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-08",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-dc6a5c16b6",
@@ -2067,7 +2204,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-08",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-040a6131e8",
@@ -2082,7 +2220,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-08",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-427f2bf5ee",
@@ -2097,7 +2236,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-08",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-507c57e5f4",
@@ -2112,7 +2252,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-08",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-484f5ff5c0",
@@ -2127,7 +2268,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-08",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-8f99bba893",
@@ -2142,7 +2284,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-08",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-685b681f65",
@@ -2157,7 +2300,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-08",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-fb81d12652",
@@ -2172,7 +2316,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-08",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-37f3a14db8",
@@ -2187,7 +2332,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-08",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-f4aee5e973",
@@ -2202,7 +2348,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-08",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-a18d52c3d6",
@@ -2217,7 +2364,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-08",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-43b2f65670",
@@ -2232,7 +2380,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-08",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-6011f5af4d",
@@ -2247,7 +2396,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-08",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-f1bd3d019a",
@@ -2262,7 +2412,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-09",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-8f3d368f47",
@@ -2277,7 +2428,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-09",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-922820e0eb",
@@ -2292,7 +2444,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-09",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-2fd5b2ea73",
@@ -2307,7 +2460,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-09",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-0ac8452139",
@@ -2322,7 +2476,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-09",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-4abc94b974",
@@ -2337,7 +2492,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-09",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-ad04cf0b12",
@@ -2352,7 +2508,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-09",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-b29cc08cc3",
@@ -2367,7 +2524,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-09",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "dueTime": null
   },
   {
     "id": "AUTO-2edd67c582",
@@ -2379,6 +2537,135 @@
     "category": "Battery, BESS & Power Electronics",
     "source": "TenderDetail (battery & power electronics listings)",
     "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57940412/4a6521bd6280f11b6f70b80ba86f4e9f",
+    "linkType": "direct",
+    "firstSeen": "2026-10-09",
+    "searchText": null,
+    "searchHint": null,
+    "dueTime": null
+  },
+  {
+    "id": "AUTO-5506b16ae6",
+    "desc": "Development of 3 MW Green Hydrogen Electrolyzers and Refueling Station with Comprehensive Operation and Maintenance for a period of 7 years including two years guarantee period",
+    "refNo": "MEE-EEPandM-9160-2026",
+    "location": null,
+    "value": null,
+    "dueDate": "2026-10-13",
+    "dueTime": "15:00",
+    "category": "Battery, BESS & Power Electronics",
+    "source": "CPPP / etenders.gov.in",
+    "url": "https://etenders.gov.in/eprocure/app?page=FrontEndAdvancedSearch&service=page",
+    "linkType": "search",
+    "firstSeen": "2026-10-09",
+    "searchText": null,
+    "searchHint": null
+  },
+  {
+    "id": "AUTO-caed26ddb8",
+    "desc": "Tender for Providing Ac Dc Charging Station System In Nandgaon Nagarparishad Area At Nandgaon Tal Nandgaon Dist Nashik",
+    "refNo": null,
+    "location": "Maharashtra",
+    "value": "₹9.41 Lakh",
+    "dueDate": "2026-10-10",
+    "dueTime": null,
+    "category": "Other EV Charging",
+    "source": "TenderDetail (charging station listing)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57788949/d3e656224bfef7d7bc3f217f4e402286",
+    "linkType": "direct",
+    "firstSeen": "2026-10-09",
+    "searchText": null,
+    "searchHint": null
+  },
+  {
+    "id": "AUTO-6e2aee0d32",
+    "desc": "Tender for Tender For providing Sop For Augmentation Of Existing 11/0.4Kv, 100Kva S/Stn Into 11/0.4Kv 250Kva S/Stn Petrol Pump, Hanuman Chowk In Favour Of Newly Proposed Ev Charging Station At Shaheed Bajinder Singh Petrol Pump, Dehra.",
+    "refNo": null,
+    "location": "Himachal Pradesh",
+    "value": "₹6.38 Lakh",
+    "dueDate": "2026-10-16",
+    "dueTime": null,
+    "category": "Charger Supply & Installation",
+    "source": "TenderDetail (charging station listing)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57954626/4d14dd6d01bfdee8fd4a3d224cbee2b1",
+    "linkType": "direct",
+    "firstSeen": "2026-10-09",
+    "searchText": null,
+    "searchHint": null
+  },
+  {
+    "id": "AUTO-a678f39073",
+    "desc": "Tender for Nit For Consultancy Firm For Feasibility Study For Bess And detail project report For Battery Bank System For Ktps",
+    "refNo": null,
+    "location": "West Bengal",
+    "value": null,
+    "dueDate": "2026-10-27",
+    "dueTime": null,
+    "category": "Battery, BESS & Power Electronics",
+    "source": "TenderDetail (battery & power electronics listings)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57325050/13f5f28c4a229b94895414bd23e42f4a",
+    "linkType": "direct",
+    "firstSeen": "2026-10-09",
+    "searchText": null,
+    "searchHint": null
+  },
+  {
+    "id": "AUTO-c41ceca871",
+    "desc": "...15 Mm Dia Or Equivalent , Welding Goggle For Industrial Type , Cl Meter Digital Ac Dc Current Measurement, Volatage , Battery Tester Load Tester For 12V, 24V Vehicle Battery , Screw Driver Set Heavy Vehicle , Spanner Set 6Mm To 32Mm , Filter Cl...",
+    "refNo": null,
+    "location": "Punjab",
+    "value": null,
+    "dueDate": "2026-10-19",
+    "dueTime": null,
+    "category": "Battery, BESS & Power Electronics",
+    "source": "TenderDetail (battery & power electronics listings)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57953568/a445babaa7494f1ac597b0241541e4dc",
+    "linkType": "direct",
+    "firstSeen": "2026-10-09",
+    "searchText": null,
+    "searchHint": null
+  },
+  {
+    "id": "AUTO-20b5daf455",
+    "desc": "Bids Are invited for Steel Tray 12 X 18 - Tool , Welding Cable 08 Mtr - Tool , Fuel Injector Pipe - Tool , Battery Tester - Tool , Nut Operator Machine - Tool",
+    "refNo": null,
+    "location": "Assam",
+    "value": null,
+    "dueDate": "2026-10-19",
+    "dueTime": null,
+    "category": "Battery, BESS & Power Electronics",
+    "source": "TenderDetail (battery & power electronics listings)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57956291/bba00a7f8360853486f50629c5bd2c07",
+    "linkType": "direct",
+    "firstSeen": "2026-10-09",
+    "searchText": null,
+    "searchHint": null
+  },
+  {
+    "id": "AUTO-cc3be66780",
+    "desc": "Tender for Procurement Of 3.5Kva Inverter Tall Tubular Battery150ah",
+    "refNo": null,
+    "location": "Maharashtra",
+    "value": "₹1.97 Lakh",
+    "dueDate": "2026-10-21",
+    "dueTime": null,
+    "category": "Battery, BESS & Power Electronics",
+    "source": "TenderDetail (battery & power electronics listings)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57956575/0ba407ec4fbea53876bb8569e0ad4c4c",
+    "linkType": "direct",
+    "firstSeen": "2026-10-09",
+    "searchText": null,
+    "searchHint": null
+  },
+  {
+    "id": "AUTO-0d80aba038",
+    "desc": "Tender For Supply Of Inverter With Battery And Complete Installation",
+    "refNo": null,
+    "location": "Rajasthan",
+    "value": "₹4.00 Lakh",
+    "dueDate": "2026-10-17",
+    "dueTime": null,
+    "category": "Battery, BESS & Power Electronics",
+    "source": "TenderDetail (battery & power electronics listings)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57949436/f2881e1bc01564c6c24dda1337231dd7",
     "linkType": "direct",
     "firstSeen": "2026-10-09",
     "searchText": null,
