@@ -3,6 +3,7 @@
 import { checkForAlerts, hasSeenBaseline, setSeen, setupNotifyButton, showToast } from './alerts.js';
 import { fetchLiveData } from './data.js';
 import { NEW_FILTER, render } from './render.js';
+import { isClosed } from './util.js';
 
 const AUTO_REFRESH_MS = 10 * 60 * 1000; // re-check for updates every 10 min while the tab is open
 
@@ -33,7 +34,9 @@ async function refreshData({ manual = false } = {}) {
   const btn = document.getElementById('updateBtn');
   if (manual) btn.classList.add('spinning');
   try {
-    const data = await fetchLiveData();
+    // Tenders whose closing time has passed are hidden at once, without waiting
+    // for the next scraper run to drop them.
+    const data = (await fetchLiveData()).filter(t => !isClosed(t));
     // An empty array is a real, valid result (currently zero matches) —
     // it must still replace stale data, not be treated as "no update".
     state.lastFetchFailed = false;

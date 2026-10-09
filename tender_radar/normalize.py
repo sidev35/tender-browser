@@ -57,6 +57,32 @@ def extract_due_date(row_text: str) -> str | None:
     return None
 
 
+def extract_due_time(row_text: str) -> str | None:
+    """
+    The closing time ("HH:MM", 24-hour) that directly follows the date
+    extract_due_date picks, e.g. "09-10-2026 13:00:00" or "03-Oct-2026 11:00 AM".
+    None when the page shows only a date. Portal times are India time.
+    """
+    for date in (
+        r"\d{4}-\d{2}-\d{2}",
+        r"\d{1,2}[-/][A-Za-z]{3}[-/]\d{2,4}",
+        r"\d{1,2}[-/]\d{1,2}[-/]\d{2,4}",
+    ):
+        m = re.search(date, row_text)
+        if not m:
+            continue
+        t = re.match(r"[ T,]+(?:at\s+)?(\d{1,2}):(\d{2})(?::\d{2})?\s*([AaPp][Mm])?", row_text[m.end() :])
+        if not t:
+            return None
+        hour, minute, ampm = int(t.group(1)), int(t.group(2)), (t.group(3) or "").lower()
+        if ampm == "pm" and hour < 12:
+            hour += 12
+        elif ampm == "am" and hour == 12:
+            hour = 0
+        return f"{hour:02d}:{minute:02d}" if hour < 24 and minute < 60 else None
+    return None
+
+
 def days_until(date_str: str | None) -> int | None:
     """Days from today until a "yyyy-mm-dd" date (negative if past), or None."""
     if not date_str:

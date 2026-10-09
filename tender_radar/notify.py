@@ -80,7 +80,7 @@ def _details(t):
     if t.get("location"):
         parts.append(t["location"])
     if t.get("dueDate"):
-        parts.append(f"due {t['dueDate']}")
+        parts.append(f"due {t['dueDate']}" + (f" {t['dueTime']}" if t.get("dueTime") else ""))
     if t.get("value"):
         parts.append(t["value"])
     return " · ".join(p for p in parts if p)

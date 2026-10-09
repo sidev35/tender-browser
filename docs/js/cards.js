@@ -1,6 +1,6 @@
 // One tender card, and what clicking it does.
 import { showToast } from './alerts.js';
-import { DUE_SOON_DAYS, daysUntil, escapeHtml, fmtDue, shortCategory, shortSource } from './util.js';
+import { DUE_SOON_DAYS, daysUntil, escapeHtml, fmtDue, fmtTime, shortCategory, shortSource } from './util.js';
 
 // Every card shows the same set of fields (category, title, source, value,
 // tracked-since, due date), so cards look the same whichever portal a tender
@@ -25,7 +25,7 @@ export function renderCard(t, isNew) {
     </div>
     <div class="card-due">
       <div class="due-badge ${urgency}">${fmtDue(t.dueDate)}</div>
-      ${d !== null ? `<div class="due-days">${d < 0 ? 'Closed' : d === 0 ? 'Due today' : d + ' day' + (d === 1 ? '' : 's') + ' left'}</div>` : ''}
+      ${d !== null ? `<div class="due-days">${d < 0 ? 'Closed' : d === 0 ? 'Due today' : d + ' day' + (d === 1 ? '' : 's') + ' left'}${t.dueTime && d >= 0 ? ' · ' + fmtTime(t.dueTime) : ''}</div>` : ''}
     </div>
     ${t.url ? `
     <div class="card-action">

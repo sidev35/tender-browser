@@ -6,7 +6,7 @@ import json
 import logging
 import os
 from collections.abc import Iterable
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 
 from .models import Record, Source
 
@@ -61,14 +61,34 @@ def apply_search_help(records: Iterable[Record], sources: list[Source]) -> None:
         t["searchHint"] = src.get("searchHint")
 
 
-def drop_expired(records: Iterable[Record]) -> list[Record]:
+# Portals show closing times in India time, whatever time zone this runs in.
+IST = timezone(timedelta(hours=5, minutes=30))
+
+
+def backfill_due_times(records: Iterable[Record]) -> None:
+    """Gives records saved before dueTime existed an empty one, so every record has the same fields."""
+    for t in records:
+        t.setdefault("dueTime", None)
+
+
+def drop_expired(records: Iterable[Record], now: datetime | None = None) -> list[Record]:
     """
-    Drops tenders whose due date has clearly passed, to keep the file from
-    growing forever. Keeps anything with no parsed due date (safer to show
-    than silently hide).
+    Drops tenders that have closed, to keep the file from growing forever:
+    a due date before today, or today's date with a closing time that has
+    passed (portals stop listing a tender once its time is up). Keeps
+    anything with no parsed due date (safer to show than silently hide), and
+    today's tenders with no known time until the day ends.
     """
-    today = datetime.now().strftime("%Y-%m-%d")
-    return [t for t in records if not t.get("dueDate") or t["dueDate"] >= today]
+    now = now or datetime.now(IST)
+    today, clock = now.strftime("%Y-%m-%d"), now.strftime("%H:%M")
+
+    def open_now(t: Record) -> bool:
+        due = t.get("dueDate")
+        if not due or due > today:
+            return True
+        return due == today and (not t.get("dueTime") or t["dueTime"] > clock)
+
+    return [t for t in records if open_now(t)]
 
 
 def save(path: str, records: list[Record]) -> None:

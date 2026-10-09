@@ -28,6 +28,7 @@ class Tender:
     linkType: LinkType  # "direct": url is this exact tender; "search": url is the portal's search page
     firstSeen: str  # "yyyy-mm-dd" of the run that first found it
     dueDate: str | None = None  # closing date "yyyy-mm-dd", if the page showed one
+    dueTime: str | None = None  # closing time "HH:MM" (24h, India time), if the page showed one
     value: str | None = None  # formatted amount, e.g. "₹2.55 Cr", if disclosed
     refNo: str | None = None  # issuing authority's reference number, if found
     location: str | None = None  # state/city, if the page showed one
@@ -53,6 +54,7 @@ STORED_KEY_ORDER = [
     "location",
     "value",
     "dueDate",
+    "dueTime",
     "category",
     "source",
     "url",

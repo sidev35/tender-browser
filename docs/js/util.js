@@ -46,6 +46,26 @@ export function isNew(t, seen) {
   return age === null || age >= -NEW_WINDOW_DAYS;
 }
 
+// "13:00" -> "1:00 PM"
+export function fmtTime(hhmm) {
+  const [h, m] = hhmm.split(':').map(Number);
+  return `${h % 12 || 12}:${String(m).padStart(2, '0')} ${h < 12 ? 'AM' : 'PM'}`;
+}
+
+// Closed = due date passed, or due today with a closing time (India time, as
+// the portals show it) that has passed. Portals stop listing a tender once its
+// time is up, so showing it longer sends people to a search that finds nothing.
+export function isClosed(t) {
+  if (!t.dueDate) return false;
+  const p = Object.fromEntries(new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'Asia/Kolkata', year: 'numeric', month: '2-digit', day: '2-digit',
+    hour: '2-digit', minute: '2-digit', hourCycle: 'h23',
+  }).formatToParts(new Date()).map(x => [x.type, x.value]));
+  const today = `${p.year}-${p.month}-${p.day}`;
+  if (t.dueDate !== today) return t.dueDate < today;
+  return !!t.dueTime && t.dueTime <= `${p.hour}:${p.minute}`;
+}
+
 export function fmtDue(dateStr) {
   if (!dateStr) return 'Not specified';
   const d = new Date(dateStr + 'T00:00:00');

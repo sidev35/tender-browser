@@ -21,13 +21,21 @@ from .normalize import (
     clean_title,
     days_until,
     extract_due_date,
+    extract_due_time,
     extract_value,
     make_stable_id,
     search_text,
 )
 from .notify import send_digest
 from .sources import load_sources
-from .store import apply_search_help, backfill_link_types, drop_expired, load_existing, save
+from .store import (
+    apply_search_help,
+    backfill_due_times,
+    backfill_link_types,
+    drop_expired,
+    load_existing,
+    save,
+)
 
 log = logging.getLogger(__name__)
 
@@ -87,6 +95,12 @@ def scrape_source(
                 saved["value"] = value
             if row.get("refNo"):
                 saved["refNo"] = row["refNo"]
+            # Picks up the closing time on tenders saved before it was recorded
+            # (only while the page still shows the date we saved).
+            due_text = row.get("dueDateHint") or row["raw_row"]
+            due_time = extract_due_time(due_text)
+            if due_time and extract_due_date(due_text) == saved.get("dueDate"):
+                saved["dueTime"] = due_time
             if search_text(source, row):
                 saved["searchText"] = search_text(source, row)
             duplicates.add(saved)
@@ -103,6 +117,7 @@ def scrape_source(
             location=row.get("location"),
             value=value,
             dueDate=extract_due_date(row.get("dueDateHint") or row["raw_row"]),
+            dueTime=extract_due_time(row.get("dueDateHint") or row["raw_row"]),
             category=cats[0],
             source=source["name"],
             # Prefer a real per-tender document URL when the fetcher
@@ -190,6 +205,7 @@ def run() -> None:
         session.close()
 
     backfill_link_types(existing_by_id.values(), sources, fetchers.DIRECT_LINK_TYPES)
+    backfill_due_times(existing_by_id.values())
     apply_search_help(existing_by_id.values(), sources)
     merged = drop_expired(existing_by_id.values())
     save(config.DATA_PATH, merged)
