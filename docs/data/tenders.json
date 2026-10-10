@@ -365,7 +365,7 @@
     "firstSeen": "2026-09-29",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": "18:00"
   },
   {
     "id": "AUTO-8de2b17741",
@@ -2348,6 +2348,38 @@
     "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57949436/f2881e1bc01564c6c24dda1337231dd7",
     "linkType": "direct",
     "firstSeen": "2026-10-09",
+    "searchText": null,
+    "searchHint": null
+  },
+  {
+    "id": "AUTO-9bbc3a0ba8",
+    "desc": "Tender for Land Development For Ev Charging & Parking At Bkc & Sahar Road Metro Station Of Mumbai Metro Line-3",
+    "refNo": null,
+    "location": "Maharashtra",
+    "value": "₹1.59 Crore",
+    "dueDate": "2026-10-29",
+    "dueTime": null,
+    "category": "Other EV Charging",
+    "source": "TenderDetail (charging station listing)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57954819/c36d8a2d169bb75458960d053809455d",
+    "linkType": "direct",
+    "firstSeen": "2026-10-10",
+    "searchText": null,
+    "searchHint": null
+  },
+  {
+    "id": "AUTO-159bb2fea7",
+    "desc": "Tender for Land Development For Ev Charging And Parking At Bkc And Sahar Road Metro Station Of Mumbai Metro Line-3.",
+    "refNo": null,
+    "location": "Maharashtra",
+    "value": "₹1.59 Crore",
+    "dueDate": "2026-10-29",
+    "dueTime": null,
+    "category": "Other EV Charging",
+    "source": "TenderDetail (charging station listing)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57943001/ebf0dd4fade1ae9864350b281b4164ce",
+    "linkType": "direct",
+    "firstSeen": "2026-10-10",
     "searchText": null,
     "searchHint": null
   }
