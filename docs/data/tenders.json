@@ -64,22 +64,6 @@
     "dueTime": null
   },
   {
-    "id": "AUTO-b295a176f6",
-    "desc": "Tender for Provn Of Infra Of Installation Of 240 Kw Electric Fast Charging Station Alongwith Connected Fittings For Electric Vehs At Selection Centre East Under Ge (West) Prayagraj.",
-    "refNo": null,
-    "location": "Uttar Pradesh",
-    "value": "₹41.04 Lakh",
-    "dueDate": "2026-10-10",
-    "category": "Charger Supply & Installation",
-    "source": "TenderDetail (charging station listing)",
-    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57540138/a30e64f2f65100c00f15424d0b4c17f0",
-    "linkType": "direct",
-    "firstSeen": "2026-09-24",
-    "searchText": null,
-    "searchHint": null,
-    "dueTime": null
-  },
-  {
     "id": "AUTO-1d5d0c1614",
     "desc": "Tender For Kaushal Bhawan In Electric Vehicle (Ev) Charging Station At Skill Development Extension Centre (Sdec), Govt. Polytechnic Campus, Plot No: 1, Xavier Road, Chandrasekharpur, Bhubaneswar, Odisha, Pin-751013, Odisha.",
     "refNo": null,
@@ -768,22 +752,6 @@
     "dueTime": null
   },
   {
-    "id": "AUTO-5ad5afe80f",
-    "desc": "Bids Are invited for Inverter (V2) (Q2)",
-    "refNo": null,
-    "location": "Kerala",
-    "value": "₹62,800",
-    "dueDate": "2026-10-10",
-    "category": "Battery, BESS & Power Electronics",
-    "source": "TenderDetail (battery & power electronics listings)",
-    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57795552/0e5e01bc0e3ca8999bf3217057e2b60c",
-    "linkType": "direct",
-    "firstSeen": "2026-09-30",
-    "searchText": null,
-    "searchHint": null,
-    "dueTime": null
-  },
-  {
     "id": "AUTO-224ab22c72",
     "desc": "Bids Are Invited For Lp(P) -2691 Inverter Module 22Kw",
     "refNo": null,
@@ -811,22 +779,6 @@
     "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57756163/de2fb0ad2cc8dc821ba42c081144d2ee",
     "linkType": "direct",
     "firstSeen": "2026-09-30",
-    "searchText": null,
-    "searchHint": null,
-    "dueTime": null
-  },
-  {
-    "id": "AUTO-db129a738c",
-    "desc": "Bids Are invited for Inverter Grade 3-Ph Squirrel Cage Induction Motor",
-    "refNo": null,
-    "location": "Odisha",
-    "value": null,
-    "dueDate": "2026-10-10",
-    "category": "Battery, BESS & Power Electronics",
-    "source": "TenderDetail (battery & power electronics listings)",
-    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57788333/75fcd2947ae91edfd851d0a4b3228e84",
-    "linkType": "direct",
-    "firstSeen": "2026-10-01",
     "searchText": null,
     "searchHint": null,
     "dueTime": null
@@ -2016,22 +1968,6 @@
     "dueTime": null
   },
   {
-    "id": "AUTO-f4aee5e973",
-    "desc": "Short dated tender - Bids Are invited for Inverter (V2)",
-    "refNo": null,
-    "location": "Karnataka",
-    "value": null,
-    "dueDate": "2026-10-10",
-    "category": "Battery, BESS & Power Electronics",
-    "source": "TenderDetail (battery & power electronics listings)",
-    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57925825/1b33fca960d4a0eb5e4be4fb8d324198",
-    "linkType": "direct",
-    "firstSeen": "2026-10-08",
-    "searchText": null,
-    "searchHint": null,
-    "dueTime": null
-  },
-  {
     "id": "AUTO-a18d52c3d6",
     "desc": "Tender For Supply, Installation, Testing & Commissioning Of 30 Kw On-Grid Solar Inverter",
     "refNo": null,
@@ -2235,22 +2171,6 @@
     "source": "CPPP / etenders.gov.in",
     "url": "https://etenders.gov.in/eprocure/app?page=FrontEndAdvancedSearch&service=page",
     "linkType": "search",
-    "firstSeen": "2026-10-09",
-    "searchText": null,
-    "searchHint": null
-  },
-  {
-    "id": "AUTO-caed26ddb8",
-    "desc": "Tender for Providing Ac Dc Charging Station System In Nandgaon Nagarparishad Area At Nandgaon Tal Nandgaon Dist Nashik",
-    "refNo": null,
-    "location": "Maharashtra",
-    "value": "₹9.41 Lakh",
-    "dueDate": "2026-10-10",
-    "dueTime": null,
-    "category": "Other EV Charging",
-    "source": "TenderDetail (charging station listing)",
-    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57788949/d3e656224bfef7d7bc3f217f4e402286",
-    "linkType": "direct",
     "firstSeen": "2026-10-09",
     "searchText": null,
     "searchHint": null
