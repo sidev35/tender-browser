@@ -2430,5 +2430,37 @@
     "firstSeen": "2026-10-10",
     "searchText": null,
     "searchHint": null
+  },
+  {
+    "id": "AUTO-b295a176f6",
+    "desc": "Tender for Provn Of Infra Of Installation Of 240 Kw Electric Fast Charging Station Alongwith Connected Fittings For Electric Vehs At Selection Centre East Under Ge (West) Prayagraj.",
+    "refNo": null,
+    "location": "Uttar Pradesh",
+    "value": "₹41.04 Lakh",
+    "dueDate": "2026-10-26",
+    "dueTime": null,
+    "category": "Charger Supply & Installation",
+    "source": "TenderDetail (charging station listing)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57540138/a30e64f2f65100c00f15424d0b4c17f0",
+    "linkType": "direct",
+    "firstSeen": "2026-10-11",
+    "searchText": null,
+    "searchHint": null
+  },
+  {
+    "id": "AUTO-27a7fb4602",
+    "desc": "Tender for Providing 11 Kv Sub- Station For Charging Infrastructure Of E-Buses At Bus Depot Cum Workshop, Raipur Kalan, Chandigarh.",
+    "refNo": null,
+    "location": "Chandigarh",
+    "value": "₹4.70 Crore",
+    "dueDate": "2026-10-12",
+    "dueTime": null,
+    "category": "Other EV Charging",
+    "source": "TenderDetail (charging station listing)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57582572/ffe31593443cb733eff67d12d6ae1301",
+    "linkType": "direct",
+    "firstSeen": "2026-10-11",
+    "searchText": null,
+    "searchHint": null
   }
 ]
