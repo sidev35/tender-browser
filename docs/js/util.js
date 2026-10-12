@@ -20,6 +20,21 @@ export function shortSource(name) {
   return (name || 'Govt Portal').replace(/\s*\([^)]*\)\s*$/, '') || name;
 }
 
+// Each portal's official home page, by the name cards show (shortSource). The
+// Source portals tile links to these. A portal missing here is listed without a link.
+const PORTAL_HOME = {
+  'IOCL e-Tendering': 'https://iocletenders.nic.in/',
+  'CPPP / etenders.gov.in': 'https://etenders.gov.in/eprocure/app',
+  'Rajasthan e-Tendering': 'https://eproc.rajasthan.gov.in/nicgep/app',
+  'Madhya Pradesh e-Tendering': 'https://mptenders.gov.in/',
+  'EESL': 'https://eeslindia.org/',
+  'Telangana e-Procurement': 'https://tender.telangana.gov.in/',
+  'Gujarat nProcure': 'https://tender.nprocure.com/',
+  'Bihar e-Procurement 2.0': 'https://eproc2.bihar.gov.in/',
+  'TenderDetail': 'https://www.tenderdetail.com/',
+};
+export const portalHome = (name) => PORTAL_HOME[name] || null;
+
 const CATEGORY_SHORT = {
   'PPP / Concession / CPO Selection': 'PPP / CPO',
   'Charger Supply & Installation': 'Charger Supply',

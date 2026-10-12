@@ -98,7 +98,11 @@ header.top {
   background: var(--surface); border: 1px solid var(--accent-dim); box-shadow: 0 6px 18px rgba(0,0,0,.18);
   font-size: 12.5px; line-height: 1.7; color: var(--text); white-space: nowrap;
 }
-.stat.has-tip:hover .tip, .stat.has-tip:focus .tip { display: block; }
+.stat .tip::before { content: ''; position: absolute; left: 0; right: 0; top: -8px; height: 8px; } /* no gap to lose hover in */
+.stat .tip a, .stat .tip span { display: block; }
+.stat .tip a { color: var(--accent); text-decoration: none; }
+.stat .tip a:hover { text-decoration: underline; }
+.stat.has-tip:hover .tip, .stat.has-tip:focus .tip, .stat.has-tip:focus-within .tip { display: block; }
 
 /* New tenders banner */
 .new-banner {

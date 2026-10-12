@@ -3,7 +3,7 @@
 // grouped by category.
 import { getSeen } from './alerts.js';
 import { renderCard } from './cards.js';
-import { DUE_SOON_DAYS, daysUntil, escapeHtml, isNew, shortSource } from './util.js';
+import { DUE_SOON_DAYS, daysUntil, escapeHtml, isNew, portalHome, shortSource } from './util.js';
 
 // The "New" pill: not a real category, but the tenders you haven't seen yet
 // (the same ones the "New since last visit" tile counts and that carry a NEW
@@ -41,10 +41,16 @@ function renderStats(state, seen) {
   const portals = [...new Set(state.data.map(t => shortSource(t.source)))].sort();
   const sourcesEl = document.getElementById('statSources');
   sourcesEl.textContent = portals.length;
-  // Hovering (or focusing) the tile lists the portals in a small panel.
+  // Hovering (or focusing) the tile lists the portals in a small panel; each
+  // name opens that portal's official home page in a new tab.
   document.getElementById('statSourcesTip').innerHTML = portals.length
-    ? portals.map(p => `<div>${escapeHtml(p)}</div>`).join('')
-    : '<div>No portals yet</div>';
+    ? portals.map(p => {
+        const home = portalHome(p);
+        return home
+          ? `<a href="${escapeHtml(home)}" target="_blank" rel="noopener noreferrer" title="Open ${escapeHtml(home)}">${escapeHtml(p)} ↗</a>`
+          : `<span>${escapeHtml(p)}</span>`;
+      }).join('')
+    : '<span>No portals yet</span>';
   const newCount = state.data.filter(t => isNew(t, seen)).length;
   document.getElementById('statNew').textContent = newCount;
 
