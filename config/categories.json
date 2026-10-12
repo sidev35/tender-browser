@@ -11,6 +11,7 @@
     "   power electronics...). A title matching one of these phrases is kept under that",
     "   category. Keep these phrases specific: '\\\\b' marks a word boundary, and '(?!...)'",
     "   excludes look-alikes (e.g. 'inverter' but not 'inverter split AC').",
+    "   Traffic tenders (ATMS, traffic signals, ANPR...) are kept the same way. 'traffic' alone is too common (barricades, police stations), so each phrase needs a 'system', 'signal' or similar beside it.",
     "After editing, run `python -m pytest` to check nothing broke."
   ],
   "evGateTerms": [
@@ -116,6 +117,21 @@
       "(\\b3|three)[\\s-]*w(heeler)?s?\\b.{0,60}charg",
       "e-?\\s*rickshaw.{0,60}charg",
       "charg.{0,60}(\\b3|three)[\\s-]*wheeler"
+    ],
+    "Traffic Management & ITS": [
+      "traffic\\s*(management|monitoring|control|surveillance|enforcement)\\s*systems?",
+      "(automatic|automated|advanced|adaptive|area)\\s*traffic\\s*(management|control|signal)",
+      "intelligent\\s*(traffic|transport)",
+      "^(?!.*(training|iot|workbench|boom\\s*barrier)).*traffic\\s*(signal|light)s?\\b",
+      "(nhai|highway|road|expressway|safety|traffic).{0,60}\\batms\\b|\\batms\\b.{0,60}(nhai|highway|road|expressway|safety|traffic)",
+      "red[\\s-]*light\\s*(violation|enforcement)",
+      "\\brlvd\\b",
+      "\\banpr\\b",
+      "number\\s*plate\\s*recognition",
+      "(speed|traffic)\\s*(violation|enforcement)|radar\\s*speed",
+      "variable\\s*message\\s*sign",
+      "vehicle[\\s-]*actuated",
+      "traffic.{0,20}(command|control)\\s*(and\\s*control\\s*)?(room|cent(re|er))"
     ]
   }
 }

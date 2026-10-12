@@ -211,6 +211,8 @@ def fetch_js_interactive_search(source: Source, session: BrowserSession) -> list
         the page are unrelated UI chrome)
     Optional:
       - "searchKeyword": defaults to "ev charging station" if not set
+      - "dismissSelector": a notice's close button, clicked first when a popup
+        covers the page (Telangana's "emSigner upgraded" notice).
       - "preClickSelector": a selector to click once, right after the
         initial page load, BEFORE filling the search box. Needed when the
         real search form only exists on a page reached via an in-page
@@ -263,6 +265,16 @@ def load_interactive_search_html(source: Source, session: BrowserSession) -> str
     if page is None:
         return None
     try:
+        # A site notice can cover the page and swallow every click (Telangana's
+        # "emSigner upgraded" popup, whose OK button only works after a
+        # countdown): click its close button first, if it shows up.
+        dismiss_sel = source.get("dismissSelector")
+        if dismiss_sel:
+            try:
+                page.click(dismiss_sel, timeout=15000)
+                page.wait_for_timeout(500)
+            except Exception:
+                log.info(f"  (no notice to close on {source['name']}, carrying on)")
         pre_click_sel = source.get("preClickSelector")
         if pre_click_sel:
             page.click(pre_click_sel, timeout=10000)

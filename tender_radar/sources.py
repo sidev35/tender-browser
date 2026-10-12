@@ -36,6 +36,7 @@ FIELDS = {
     "extraSearchKeywords": "js_interactive_search: more searches after searchKeyword (list)",
     "extraUrls": "tenderdetail_list: more listing pages read by this source (list)",
     "preClickSelector": "js_interactive_search: something to click before searching",
+    "dismissSelector": "js_interactive_search: a notice's close button to click first, if one covers the page",
     "searchHint": "what to do on the portal after a card copies the search text (shown on the dashboard)",
     "searchBy": "js_interactive_search: what cards copy: keyword (default), tenderId, titlePrefix or title",
     "titleRegex": "pattern whose first group is the real title",

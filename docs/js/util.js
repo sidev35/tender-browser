@@ -25,6 +25,7 @@ const CATEGORY_SHORT = {
   'Charger Supply & Installation': 'Charger Supply',
   'Infrastructure & Electrical Works': 'Infra & Electrical',
   'Battery, BESS & Power Electronics': 'Battery & Power',
+  'Traffic Management & ITS': 'Traffic & ITS',
 };
 export function shortCategory(cat) {
   return CATEGORY_SHORT[cat] || cat || 'Uncategorized';
