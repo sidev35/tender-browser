@@ -19,6 +19,7 @@ export function renderCard(t, isNew) {
       <div class="card-desc" title="${escapeHtml(displayDesc(t.desc))}">${escapeHtml(displayDesc(t.desc))}</div>
       <div class="card-meta">
         <span>🏛 ${escapeHtml(shortSource(t.source))}</span>
+        ${t.location ? `<span>📍 ${escapeHtml(t.location)}</span>` : ''}
         <span>💰 ${t.value ? escapeHtml(t.value) : 'Value not disclosed'}</span>
         ${t.firstSeen ? `<span>🕒 Tracked since ${fmtDue(t.firstSeen)}</span>` : ''}
       </div>
