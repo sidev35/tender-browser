@@ -224,22 +224,6 @@
     "dueTime": "10:30"
   },
   {
-    "id": "AUTO-901fba76c1",
-    "desc": "Selection of Solar Power Developers for Setting up of 150 MW Solar PV Power Projects with 75 MW/300 MWh Energy Storage Systems (ESS) in the state of Bihar under Tariff-Based Competitive Bidding",
-    "refNo": "NIT No. 05/PR/BSPGCL/2026",
-    "location": null,
-    "value": null,
-    "dueDate": "2026-10-13",
-    "category": "Battery, BESS & Power Electronics",
-    "source": "Bihar e-Procurement 2.0 (keyword search)",
-    "url": "https://eproc2.bihar.gov.in/EPSV2Web/openarea/tenderListingPage.action",
-    "linkType": "search",
-    "firstSeen": "2026-09-29",
-    "searchText": null,
-    "searchHint": null,
-    "dueTime": "10:30"
-  },
-  {
     "id": "AUTO-91dace38c3",
     "desc": "Tender For The Procurement Of Power From 500 Mw/2000 Mwh Co-Located Battery Energy Storage System (Bess) Projects",
     "refNo": null,
