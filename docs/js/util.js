@@ -14,6 +14,14 @@ export function escapeHtml(s) {
   return String(s ?? '').replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
+// "...Installation, Testing & Commissioning" -> "Installation, Testing &
+// Commissioning": aggregators cut titles short and leave a leading "..." that
+// looks broken on a card (the portal itself shows the full title). Display
+// only: the saved desc keeps it, which the duplicate check relies on.
+export function displayDesc(desc) {
+  return String(desc ?? '').replace(/^[\s.…]+/, '');
+}
+
 // "Gujarat nProcure (keyword search)" -> "Gujarat nProcure": drops the
 // trailing "(...)" note that sources.json names carry.
 export function shortSource(name) {

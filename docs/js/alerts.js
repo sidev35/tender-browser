@@ -1,7 +1,7 @@
 // Everything that tells the visitor something happened: in-page toasts,
 // browser (system) notifications, and remembering which tenders they've
 // already been told about, so nothing alerts twice.
-import { DUE_SOON_DAYS, daysUntil, escapeHtml, fmtDue, loadJSON, saveJSON } from './util.js';
+import { DUE_SOON_DAYS, daysUntil, displayDesc, escapeHtml, fmtDue, loadJSON, saveJSON } from './util.js';
 
 // Remembered per browser in localStorage:
 //   tenderRadar_seen             ids already seen (drives "NEW" badges and the banner)
@@ -39,7 +39,7 @@ export function checkForAlerts(data) {
 
   if (newOnes.length > 0) {
     const title = `${newOnes.length} new tender${newOnes.length > 1 ? 's' : ''} matched`;
-    const body = newOnes.slice(0, 3).map(t => escapeHtml(t.desc)).join(' • ') + (newOnes.length > 3 ? ' …' : '');
+    const body = newOnes.slice(0, 3).map(t => escapeHtml(displayDesc(t.desc))).join(' • ') + (newOnes.length > 3 ? ' …' : '');
     showToast({ title, body, kind: 'new' });
     maybeNativeNotify(title, body);
   }
@@ -54,7 +54,7 @@ export function checkForAlerts(data) {
     saveJSON('tenderRadar_dueSoonNotified', dueSoonNotified);
     if (!isFirstRun) {
       const title = `${dueSoon.length} tender${dueSoon.length > 1 ? 's' : ''} closing within ${DUE_SOON_DAYS} days`;
-      const body = dueSoon.slice(0, 3).map(t => `${escapeHtml(t.desc)} (${fmtDue(t.dueDate)})`).join(' • ') + (dueSoon.length > 3 ? ' …' : '');
+      const body = dueSoon.slice(0, 3).map(t => `${escapeHtml(displayDesc(t.desc))} (${fmtDue(t.dueDate)})`).join(' • ') + (dueSoon.length > 3 ? ' …' : '');
       showToast({ title, body, kind: 'due' });
       maybeNativeNotify(title, body);
     }

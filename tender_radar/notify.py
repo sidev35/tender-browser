@@ -39,6 +39,7 @@ import html
 import json
 import logging
 import os
+import re
 import smtplib
 from datetime import datetime
 from email.message import EmailMessage
@@ -76,7 +77,10 @@ def _record_sent(when):
 
 def _details(t):
     """ "Category · Source · due 2026-10-03 · ₹2.55 Cr" for one tender."""
-    parts = [t.get("category") or "Uncategorized", t.get("source")]
+    # Drop the trailing "(...)" note sources.json names carry (how the portal
+    # is read, e.g. "(keyword search)"); the reader only needs the portal.
+    source = re.sub(r"\s*\([^)]*\)\s*$", "", t.get("source") or "")
+    parts = [t.get("category") or "Uncategorized", source]
     if t.get("location"):
         parts.append(t["location"])
     if t.get("dueDate"):
@@ -102,7 +106,7 @@ def _format_list(records):
     """Plain text: one tender per block, with a blank line between tenders."""
     blocks = []
     for t in records:
-        block = f"- {t['desc']}\n  {_details(t)}"
+        block = f"- {t['desc'].lstrip(' .…')}\n  {_details(t)}"
         if url := _link(t):
             label = "Tender" if _is_direct(t) else "Portal (search for the title)"
             block += f"\n  {label}: {url}"
@@ -114,7 +118,7 @@ def _format_list_html(records):
     """HTML: one spaced-out block per tender, the title linking to the portal.
     Scraped text is escaped."""
     def title(t):
-        text = html.escape(t["desc"])
+        text = html.escape(t["desc"].lstrip(" .…"))
         if url := _link(t):
             href = html.escape(url, quote=True)
             return f'<a href="{href}" style="color: #0b6e45; text-decoration: underline;">{text}</a>'

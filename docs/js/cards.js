@@ -1,6 +1,6 @@
 // One tender card, and what clicking it does.
 import { showToast } from './alerts.js';
-import { DUE_SOON_DAYS, daysUntil, escapeHtml, fmtDue, fmtTime, shortCategory, shortSource } from './util.js';
+import { DUE_SOON_DAYS, daysUntil, displayDesc, escapeHtml, fmtDue, fmtTime, shortCategory, shortSource } from './util.js';
 
 // Every card shows the same set of fields (category, title, source, value,
 // tracked-since, due date), so cards look the same whichever portal a tender
@@ -16,7 +16,7 @@ export function renderCard(t, isNew) {
       <div class="card-top-row">
         <span class="cat-badge">${escapeHtml(shortCategory(t.category))}</span>
       </div>
-      <div class="card-desc" title="${escapeHtml(t.desc)}">${escapeHtml(t.desc)}</div>
+      <div class="card-desc" title="${escapeHtml(displayDesc(t.desc))}">${escapeHtml(displayDesc(t.desc))}</div>
       <div class="card-meta">
         <span>🏛 ${escapeHtml(shortSource(t.source))}</span>
         <span>💰 ${t.value ? escapeHtml(t.value) : 'Value not disclosed'}</span>
@@ -65,7 +65,7 @@ async function openTender(t) {
   const site = escapeHtml(shortSource(t.source));
   const how = t.searchHint ? escapeHtml(t.searchHint) : `Paste it into the search box on ${site}, then enter the captcha if asked.`;
   // With a keyword, the portal lists a few results: say which one this is.
-  const lookFor = t.searchText ? ` Then look for: <em>${escapeHtml(t.desc.slice(0, 90))}${t.desc.length > 90 ? '…' : ''}</em>` : '';
+  const lookFor = t.searchText ? ` Then look for: <em>${escapeHtml(displayDesc(t.desc).slice(0, 90))}${t.desc.length > 90 ? '…' : ''}</em>` : '';
   showToast(copied
     ? { title: t.searchText ? `“${escapeHtml(t.searchText)}” copied` : 'Title copied', body: how + lookFor }
     : { title: 'Couldn’t copy', body: `Search ${site} for: ${escapeHtml(text)}.${lookFor}`, kind: 'error' });
