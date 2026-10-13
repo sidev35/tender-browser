@@ -11,6 +11,20 @@ export const getSeen = () => loadJSON('tenderRadar_seen', []);
 export const setSeen = (ids) => saveJSON('tenderRadar_seen', ids);
 export const hasSeenBaseline = () => loadJSON('tenderRadar_seen', null) !== null;
 
+// Most tenders a toast lists before collapsing the rest into "+N more".
+const TOAST_MAX_ITEMS = 5;
+
+// One list row per tender: the title, and (for closing-soon) its due date.
+function toastList(records, meta) {
+  const rows = records.slice(0, TOAST_MAX_ITEMS).map(t => {
+    const extra = meta ? `<span class="toast-meta">${escapeHtml(meta(t))}</span>` : '';
+    return `<li><span class="toast-item-title">${escapeHtml(displayDesc(t.desc))}</span>${extra}</li>`;
+  });
+  const more = records.length - TOAST_MAX_ITEMS;
+  if (more > 0) rows.push(`<li class="toast-more">+${more} more on the dashboard</li>`);
+  return `<ul class="toast-list">${rows.join('')}</ul>`;
+}
+
 // `title` and `body` are HTML: escape any scraped text before passing it in.
 export function showToast({ title, body, kind = 'new' }) {
   const stack = document.getElementById('toastStack');
@@ -39,9 +53,8 @@ export function checkForAlerts(data) {
 
   if (newOnes.length > 0) {
     const title = `${newOnes.length} new tender${newOnes.length > 1 ? 's' : ''} matched`;
-    const body = newOnes.slice(0, 3).map(t => escapeHtml(displayDesc(t.desc))).join(' • ') + (newOnes.length > 3 ? ' …' : '');
-    showToast({ title, body, kind: 'new' });
-    maybeNativeNotify(title, body);
+    showToast({ title, body: toastList(newOnes), kind: 'new' });
+    maybeNativeNotify(title, newOnes.slice(0, 3).map(t => displayDesc(t.desc)).join(' • ') + (newOnes.length > 3 ? ' …' : ''));
   }
 
   const dueSoonNotified = loadJSON('tenderRadar_dueSoonNotified', {});
@@ -54,9 +67,8 @@ export function checkForAlerts(data) {
     saveJSON('tenderRadar_dueSoonNotified', dueSoonNotified);
     if (!isFirstRun) {
       const title = `${dueSoon.length} tender${dueSoon.length > 1 ? 's' : ''} closing within ${DUE_SOON_DAYS} days`;
-      const body = dueSoon.slice(0, 3).map(t => `${escapeHtml(displayDesc(t.desc))} (${fmtDue(t.dueDate)})`).join(' • ') + (dueSoon.length > 3 ? ' …' : '');
-      showToast({ title, body, kind: 'due' });
-      maybeNativeNotify(title, body);
+      showToast({ title, body: toastList(dueSoon, t => `Closes ${fmtDue(t.dueDate)}`), kind: 'due' });
+      maybeNativeNotify(title, dueSoon.slice(0, 3).map(t => `${displayDesc(t.desc)} (${fmtDue(t.dueDate)})`).join(' • ') + (dueSoon.length > 3 ? ' …' : ''));
     }
   }
 }
