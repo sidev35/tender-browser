@@ -16,8 +16,8 @@
   ],
   "evGateTerms": [
     "ev charg",
-    "electric vehicle charg",
-    "e-vehicle charg",
+    "electric vehicle charging",
+    "e-vehicle charging",
     "charging station",
     "charging infrastructure",
     "charging point",
@@ -26,9 +26,7 @@
     "evse",
     "battery swapping",
     "e-mobility",
-    "pm e-drive",
-    "pm e drive",
-    "fame scheme"
+    "pm e-drive"
   ],
   "fallbackCategory": "Other EV Charging",
   "categories": {
