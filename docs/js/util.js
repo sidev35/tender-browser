@@ -49,6 +49,8 @@ const CATEGORY_SHORT = {
   'Infrastructure & Electrical Works': 'Infra & Electrical',
   'Battery, BESS & Power Electronics': 'Battery & Power',
   'Traffic Management & ITS': 'Traffic & ITS',
+  'Defence': 'Defence',
+  'Marine': 'Marine',
 };
 export function shortCategory(cat) {
   return CATEGORY_SHORT[cat] || cat || 'Uncategorized';
