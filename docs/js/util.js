@@ -40,6 +40,8 @@ const PORTAL_HOME = {
   'Gujarat nProcure': 'https://tender.nprocure.com/',
   'Bihar e-Procurement 2.0': 'https://eproc2.bihar.gov.in/',
   'TenderDetail': 'https://www.tenderdetail.com/',
+  'Buying for Victoria': 'https://www.tenders.vic.gov.au/',
+  'Tasmania Tenders': 'https://www.tenders.tas.gov.au/',
 };
 export const portalHome = (name) => PORTAL_HOME[name] || null;
 
