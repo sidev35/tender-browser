@@ -33,6 +33,21 @@ def backfill_link_types(
             t["linkType"] = "direct" if source_types.get(t.get("source")) in direct_link_types else "search"
 
 
+def apply_source_region(records: Iterable[Record], sources: list[Source]) -> None:
+    """
+    Sets each record's country from its source ("country" in sources.json,
+    India when unset), on every run, so tenders saved before the country
+    field existed get one. A record with no location takes the source's
+    default "location" (e.g. "Victoria, Australia").
+    """
+    by_name = {s["name"]: s for s in sources}
+    for t in records:
+        src = by_name.get(t.get("source"), {})
+        t["country"] = src.get("country") or t.get("country") or "India"
+        if not t.get("location") and src.get("location"):
+            t["location"] = src["location"]
+
+
 def apply_search_help(records: Iterable[Record], sources: list[Source]) -> None:
     """
     Sets each record's searchText and searchHint from its source, on every

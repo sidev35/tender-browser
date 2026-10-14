@@ -31,7 +31,8 @@ class Tender:
     dueTime: str | None = None  # closing time "HH:MM" (24h, India time), if the page showed one
     value: str | None = None  # formatted amount, e.g. "₹2.55 Cr", if disclosed
     refNo: str | None = None  # issuing authority's reference number, if found
-    location: str | None = None  # state/city, if the page showed one
+    location: str | None = None  # state/city, if the page showed one (else the source's default)
+    country: str = "India"  # the source's "country" in sources.json; the dashboard's country filter
     # How to find it on a "search" link, both set from the source's
     # sources.json entry on every run (store.apply_search_help):
     searchText: str | None = None  # what the card copies instead of the title
@@ -52,6 +53,7 @@ STORED_KEY_ORDER = [
     "desc",
     "refNo",
     "location",
+    "country",
     "value",
     "dueDate",
     "dueTime",

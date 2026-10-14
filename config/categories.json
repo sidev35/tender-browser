@@ -167,8 +167,6 @@
       "^(?!.*(pipelines?|highway|gravity\\s*main|insurance|\\bdpr\\b|\\broad\\b|tunnel|national\\s*park|\\bnh\\s*\\d+)).*\\bdredg(e|er|ers|ing)\\b",
       "^(?!.*(pipelines?|highway|gravity\\s*main|insurance|\\bdpr\\b|\\broad\\b|tunnel|national\\s*park|\\bnh\\s*\\d+)).*\\btug(s|boats?)\\b",
       "^(?!.*(pipelines?|highway|gravity\\s*main|insurance|\\bdpr\\b|\\broad\\b|tunnel|national\\s*park|\\bnh\\s*\\d+)).*\\bboats?\\b",
-      "^(?!.*(pipelines?|highway|gravity\\s*main|insurance|\\bdpr\\b|\\broad\\b|tunnel|national\\s*park|\\bnh\\s*\\d+)).*\\bferry\\b",
-      "^(?!.*(pipelines?|highway|gravity\\s*main|insurance|\\bdpr\\b|\\broad\\b|tunnel|national\\s*park|\\bnh\\s*\\d+)).*\\bferries\\b",
       "^(?!.*(pipelines?|highway|gravity\\s*main|insurance|\\bdpr\\b|\\broad\\b|tunnel|national\\s*park|\\bnh\\s*\\d+)).*\\bshipping\\s*(company|companies|line|agent|services?|container)\\b",
       "^(?!.*(pipelines?|highway|gravity\\s*main|insurance|\\bdpr\\b|\\broad\\b|tunnel|national\\s*park|\\bnh\\s*\\d+)).*\\boffshore\\b",
       "^(?!.*(pipelines?|highway|gravity\\s*main|insurance|\\bdpr\\b|\\broad\\b|tunnel|national\\s*park|\\bnh\\s*\\d+)).*\\bsubsea\\b",
@@ -179,7 +177,8 @@
       "^(?!.*(pipelines?|highway|gravity\\s*main|insurance|\\bdpr\\b|\\broad\\b|tunnel|national\\s*park|\\bnh\\s*\\d+)).*\\bcold\\s*ironing\\b",
       "^(?!.*(pipelines?|highway|gravity\\s*main|insurance|\\bdpr\\b|\\broad\\b|tunnel|national\\s*park|\\bnh\\s*\\d+)).*\\bmarine\\s*(engine|propulsion|battery|crane)\\b",
       "^(?!.*(pipelines?|highway|gravity\\s*main|insurance|\\bdpr\\b|\\broad\\b|tunnel|national\\s*park|\\bnh\\s*\\d+)).*\\bquay\\s*cranes?\\b",
-      "^(?!.*(pipelines?|highway|gravity\\s*main|insurance|\\bdpr\\b|\\broad\\b|tunnel|national\\s*park|\\bnh\\s*\\d+)).*\\bberth\\s*(construction|repair|dredging)\\b"
+      "^(?!.*(pipelines?|highway|gravity\\s*main|insurance|\\bdpr\\b|\\broad\\b|tunnel|national\\s*park|\\bnh\\s*\\d+)).*\\bberth\\s*(construction|repair|dredging)\\b",
+      "^(?!.*(pipelines?|highway|gravity\\s*main|insurance|\\bdpr\\b|\\broad\\b|tunnel|national\\s*park|\\bnh\\s*\\d+)).*\\bferry\\s*(service|services|vessel|terminal|boat|operations?|charter|wharf)\\b"
     ]
   }
 }

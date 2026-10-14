@@ -15,6 +15,7 @@ Row fields (only raw_title and raw_row are always present):
     organisation      the issuing organisation, when the page names it
 """
 
+from .australia import parse_tas_tenders, parse_vic_tenders
 from .eesl import parse_eesl_tenders
 from .gepnic_org import is_captcha_page, parse_gepnic_org_list, parse_gepnic_org_tenders
 from .tables import parse_generic_table, parse_gepnic_table
@@ -27,5 +28,7 @@ __all__ = [
     "parse_gepnic_org_list",
     "parse_gepnic_org_tenders",
     "parse_gepnic_table",
+    "parse_tas_tenders",
     "parse_tenderdetail_list",
+    "parse_vic_tenders",
 ]

@@ -13,7 +13,8 @@
     "firstSeen": "2026-09-22",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-73b07a63eb",
@@ -29,7 +30,8 @@
     "firstSeen": "2026-09-22",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-a745c7dbf8",
@@ -45,7 +47,8 @@
     "firstSeen": "2026-09-23",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-016990375b",
@@ -61,7 +64,8 @@
     "firstSeen": "2026-09-24",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-1d5d0c1614",
@@ -77,7 +81,8 @@
     "firstSeen": "2026-09-24",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-7f433f3dac",
@@ -93,7 +98,8 @@
     "firstSeen": "2026-09-24",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-efe9aff134",
@@ -109,7 +115,8 @@
     "firstSeen": "2026-09-25",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-4baa0b4397",
@@ -125,7 +132,8 @@
     "firstSeen": "2026-09-25",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-ab36ef2fa2",
@@ -141,7 +149,8 @@
     "firstSeen": "2026-09-28",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-a00175ed6f",
@@ -157,7 +166,8 @@
     "firstSeen": "2026-09-29",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-b3e4a18e51",
@@ -173,23 +183,8 @@
     "firstSeen": "2026-09-29",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
-  },
-  {
-    "id": "AUTO-7b4ddcf694",
-    "desc": "Supply, Installation and Commissioning of a 500 KW Solar Central Inverter with UPS set and ACDB along with ACB arrangements and Hot Air Duct; Removal of existing 250KW Inverter with Duct and LT Panel-1, and Supervision of the entire work at the 1MWp Solar Plant, PJHES, Revulapally",
-    "refNo": "E-31 /26-27/CE/O&M/SLBHES Complex/JHEP",
-    "location": null,
-    "value": null,
-    "dueDate": "2026-10-14",
-    "category": "Battery, BESS & Power Electronics",
-    "source": "Telangana e-Procurement (keyword search)",
-    "url": "https://tender.telangana.gov.in/",
-    "linkType": "search",
-    "firstSeen": "2026-09-29",
-    "searchText": "735516",
-    "searchHint": "On Telangana's homepage, click More... (the search page only opens that way), paste the Tender ID into the search box and click Search.",
-    "dueTime": "15:30"
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-053937cb79",
@@ -205,7 +200,8 @@
     "firstSeen": "2026-09-29",
     "searchText": "E-3121/ PROJECT MANAGEMENT CONSULTANT (PMC) through QCBS method to provide Technical Assistance in",
     "searchHint": "Paste it into the Tender Title box and click Search.",
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-91dace38c3",
@@ -221,7 +217,8 @@
     "firstSeen": "2026-09-29",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-b1e6d4ba23",
@@ -237,7 +234,8 @@
     "firstSeen": "2026-09-29",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-9fb4280eaf",
@@ -253,7 +251,8 @@
     "firstSeen": "2026-09-29",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-b165ff622d",
@@ -269,7 +268,8 @@
     "firstSeen": "2026-09-29",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-3609cb8347",
@@ -285,7 +285,8 @@
     "firstSeen": "2026-09-29",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-20deb93896",
@@ -301,7 +302,8 @@
     "firstSeen": "2026-09-29",
     "searchText": null,
     "searchHint": null,
-    "dueTime": "18:00"
+    "dueTime": "18:00",
+    "country": "India"
   },
   {
     "id": "AUTO-8de2b17741",
@@ -317,7 +319,8 @@
     "firstSeen": "2026-09-29",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-6f9ec3494c",
@@ -333,7 +336,8 @@
     "firstSeen": "2026-09-29",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-e2ed75d236",
@@ -349,7 +353,8 @@
     "firstSeen": "2026-09-29",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-a65bc17684",
@@ -365,7 +370,8 @@
     "firstSeen": "2026-09-29",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-35e62e2240",
@@ -381,7 +387,8 @@
     "firstSeen": "2026-09-29",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-3ec94f0b25",
@@ -397,7 +404,8 @@
     "firstSeen": "2026-09-29",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-1796254996",
@@ -413,7 +421,8 @@
     "firstSeen": "2026-09-29",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-c308a75bd3",
@@ -429,7 +438,8 @@
     "firstSeen": "2026-09-29",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-fb60c4f0c1",
@@ -445,7 +455,8 @@
     "firstSeen": "2026-09-29",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-20814b675a",
@@ -461,7 +472,8 @@
     "firstSeen": "2026-09-29",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-ee8946ee7d",
@@ -477,7 +489,8 @@
     "firstSeen": "2026-09-29",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-89572c531e",
@@ -493,7 +506,8 @@
     "firstSeen": "2026-09-30",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-6c1d75da42",
@@ -509,7 +523,8 @@
     "firstSeen": "2026-09-30",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-aaa288da2e",
@@ -525,7 +540,8 @@
     "firstSeen": "2026-09-30",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-6e6fbfce0d",
@@ -541,7 +557,8 @@
     "firstSeen": "2026-09-30",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-569c4b5f46",
@@ -557,7 +574,8 @@
     "firstSeen": "2026-09-30",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-24e6c6da7f",
@@ -573,7 +591,8 @@
     "firstSeen": "2026-09-30",
     "searchText": null,
     "searchHint": null,
-    "dueTime": "17:30"
+    "dueTime": "17:30",
+    "country": "India"
   },
   {
     "id": "AUTO-3f7ef04778",
@@ -589,7 +608,8 @@
     "firstSeen": "2026-09-30",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-224ab22c72",
@@ -605,7 +625,8 @@
     "firstSeen": "2026-09-30",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-8e4ab46df1",
@@ -621,7 +642,8 @@
     "firstSeen": "2026-09-30",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-1a75bd6b97",
@@ -637,7 +659,8 @@
     "firstSeen": "2026-10-01",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-49e3d089be",
@@ -653,7 +676,8 @@
     "firstSeen": "2026-10-01",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-5592732fe3",
@@ -669,7 +693,8 @@
     "firstSeen": "2026-10-02",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-2e05b40b3c",
@@ -685,7 +710,8 @@
     "firstSeen": "2026-10-02",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-62847512f8",
@@ -701,7 +727,8 @@
     "firstSeen": "2026-10-02",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-6db33d0208",
@@ -717,7 +744,8 @@
     "firstSeen": "2026-10-02",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-8f374998b5",
@@ -733,7 +761,8 @@
     "firstSeen": "2026-10-02",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-0615912015",
@@ -749,7 +778,8 @@
     "firstSeen": "2026-10-02",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-7ec1e9688e",
@@ -765,7 +795,8 @@
     "firstSeen": "2026-10-03",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-2dbfd505ab",
@@ -781,7 +812,8 @@
     "firstSeen": "2026-10-03",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-734c8aad4f",
@@ -797,7 +829,8 @@
     "firstSeen": "2026-10-03",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-5fe3cd1dda",
@@ -813,7 +846,8 @@
     "firstSeen": "2026-10-04",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-773705e7e9",
@@ -829,7 +863,8 @@
     "firstSeen": "2026-10-05",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-fe9d359480",
@@ -845,7 +880,8 @@
     "firstSeen": "2026-10-06",
     "searchText": "735650",
     "searchHint": "On Telangana's homepage, click More... (the search page only opens that way), paste the Tender ID into the search box and click Search.",
-    "dueTime": "11:00"
+    "dueTime": "11:00",
+    "country": "India"
   },
   {
     "id": "AUTO-ff774a3b2c",
@@ -861,7 +897,8 @@
     "firstSeen": "2026-10-06",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-fb79fa6f3e",
@@ -877,7 +914,8 @@
     "firstSeen": "2026-10-06",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-f88ad1e975",
@@ -893,7 +931,8 @@
     "firstSeen": "2026-10-06",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-22e7002628",
@@ -909,7 +948,8 @@
     "firstSeen": "2026-10-06",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-1e87f96a74",
@@ -925,7 +965,8 @@
     "firstSeen": "2026-10-06",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-91b67e2b9a",
@@ -941,7 +982,8 @@
     "firstSeen": "2026-10-06",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-fd6e62e197",
@@ -957,7 +999,8 @@
     "firstSeen": "2026-10-06",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-da40136680",
@@ -973,7 +1016,8 @@
     "firstSeen": "2026-10-06",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-8968070665",
@@ -989,7 +1033,8 @@
     "firstSeen": "2026-10-06",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-56e13a9aa5",
@@ -1005,7 +1050,8 @@
     "firstSeen": "2026-10-06",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-83685dc4ee",
@@ -1021,23 +1067,8 @@
     "firstSeen": "2026-10-06",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
-  },
-  {
-    "id": "AUTO-bd79fac3af",
-    "desc": "IMPLEMENTATION OF 75 MW (AC) GRID-CONNECTED GROUND-MOUNTED SOLAR PV POWER PROJECT ALONG WITH 7.5 MW / 30 MWh BATTERY ENERGY STORAGE SYSTEM ( BESS ) UNDER GROUP CAPTIVE MODE FOR AHMEDABAD MUNICIPAL CORPORATION (AMC) IN THE STATE OF GUJARAT",
-    "refNo": null,
-    "location": "Gujarat",
-    "value": null,
-    "dueDate": "2026-10-23",
-    "category": "Battery, BESS & Power Electronics",
-    "source": "TenderDetail (battery & power electronics listings)",
-    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57553234/637569bf3293327354cb678950117a0e",
-    "linkType": "direct",
-    "firstSeen": "2026-10-06",
-    "searchText": null,
-    "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-a2af77443f",
@@ -1053,7 +1084,8 @@
     "firstSeen": "2026-10-06",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-dfb76937ee",
@@ -1069,7 +1101,8 @@
     "firstSeen": "2026-10-07",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-3d20f57e84",
@@ -1085,7 +1118,8 @@
     "firstSeen": "2026-10-07",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-cb82ec3442",
@@ -1101,7 +1135,8 @@
     "firstSeen": "2026-10-07",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-5d678d0ccc",
@@ -1117,7 +1152,8 @@
     "firstSeen": "2026-10-07",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-ae0ebd3078",
@@ -1133,7 +1169,8 @@
     "firstSeen": "2026-10-07",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-5f38d65ce9",
@@ -1149,7 +1186,8 @@
     "firstSeen": "2026-10-07",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-f76dafd731",
@@ -1165,7 +1203,8 @@
     "firstSeen": "2026-10-07",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-8d0b6d83b9",
@@ -1181,7 +1220,8 @@
     "firstSeen": "2026-10-07",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-8ca4f8fc3d",
@@ -1197,7 +1237,8 @@
     "firstSeen": "2026-10-07",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-bb2b4770a8",
@@ -1213,7 +1254,8 @@
     "firstSeen": "2026-10-07",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-a0dec6e4ed",
@@ -1229,7 +1271,8 @@
     "firstSeen": "2026-10-07",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-1b32329562",
@@ -1245,7 +1288,8 @@
     "firstSeen": "2026-10-08",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-619fd6fc3c",
@@ -1261,7 +1305,8 @@
     "firstSeen": "2026-10-08",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-73388dd610",
@@ -1277,7 +1322,8 @@
     "firstSeen": "2026-10-08",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-57f1c1e300",
@@ -1293,7 +1339,8 @@
     "firstSeen": "2026-10-08",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-55adbe0a14",
@@ -1309,7 +1356,8 @@
     "firstSeen": "2026-10-08",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-dc6a5c16b6",
@@ -1325,7 +1373,8 @@
     "firstSeen": "2026-10-08",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-040a6131e8",
@@ -1341,7 +1390,8 @@
     "firstSeen": "2026-10-08",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-427f2bf5ee",
@@ -1357,7 +1407,8 @@
     "firstSeen": "2026-10-08",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-507c57e5f4",
@@ -1373,7 +1424,8 @@
     "firstSeen": "2026-10-08",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-484f5ff5c0",
@@ -1389,7 +1441,8 @@
     "firstSeen": "2026-10-08",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-8f99bba893",
@@ -1405,7 +1458,8 @@
     "firstSeen": "2026-10-08",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-685b681f65",
@@ -1421,7 +1475,8 @@
     "firstSeen": "2026-10-08",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-37f3a14db8",
@@ -1437,7 +1492,8 @@
     "firstSeen": "2026-10-08",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-a18d52c3d6",
@@ -1453,7 +1509,8 @@
     "firstSeen": "2026-10-08",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-43b2f65670",
@@ -1469,7 +1526,8 @@
     "firstSeen": "2026-10-08",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-6011f5af4d",
@@ -1485,7 +1543,8 @@
     "firstSeen": "2026-10-08",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-f1bd3d019a",
@@ -1501,7 +1560,8 @@
     "firstSeen": "2026-10-09",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-922820e0eb",
@@ -1517,7 +1577,8 @@
     "firstSeen": "2026-10-09",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-2fd5b2ea73",
@@ -1533,7 +1594,8 @@
     "firstSeen": "2026-10-09",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-0ac8452139",
@@ -1549,7 +1611,8 @@
     "firstSeen": "2026-10-09",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-4abc94b974",
@@ -1565,7 +1628,8 @@
     "firstSeen": "2026-10-09",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-ad04cf0b12",
@@ -1581,7 +1645,8 @@
     "firstSeen": "2026-10-09",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-b29cc08cc3",
@@ -1597,7 +1662,8 @@
     "firstSeen": "2026-10-09",
     "searchText": null,
     "searchHint": null,
-    "dueTime": null
+    "dueTime": null,
+    "country": "India"
   },
   {
     "id": "AUTO-6e2aee0d32",
@@ -1613,7 +1679,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-09",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-a678f39073",
@@ -1629,7 +1696,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-09",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-c41ceca871",
@@ -1645,7 +1713,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-09",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-20b5daf455",
@@ -1661,7 +1730,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-09",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-cc3be66780",
@@ -1677,7 +1747,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-09",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-0d80aba038",
@@ -1693,7 +1764,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-09",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-9bbc3a0ba8",
@@ -1709,7 +1781,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-10",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-159bb2fea7",
@@ -1725,7 +1798,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-10",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-1073e8b9d2",
@@ -1741,7 +1815,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-10",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-03e5bccbd3",
@@ -1757,7 +1832,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-10",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-f9d6ad4963",
@@ -1773,7 +1849,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-10",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-67c5c5c46e",
@@ -1789,7 +1866,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-10",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-67e77aaf62",
@@ -1805,7 +1883,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-10",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-7c87f408b7",
@@ -1821,7 +1900,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-10",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-3fe9fccb75",
@@ -1837,7 +1917,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-10",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-b295a176f6",
@@ -1853,7 +1934,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-11",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-ed27f2e645",
@@ -1869,7 +1951,8 @@
     "linkType": "search",
     "firstSeen": "2026-10-12",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-2684c12b52",
@@ -1885,7 +1968,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-12",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-b1e85590c9",
@@ -1901,7 +1985,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-12",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-2b9b57a2df",
@@ -1917,7 +2002,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-12",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-d699c9b70d",
@@ -1933,7 +2019,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-12",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-0c5e8ddc89",
@@ -1949,7 +2036,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-12",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-a6385b7d24",
@@ -1965,7 +2053,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-12",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-60eec4e69c",
@@ -1981,7 +2070,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-12",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-923d0c77d2",
@@ -1997,7 +2087,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-12",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-d03419b9de",
@@ -2013,7 +2104,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-12",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-8e3201bbed",
@@ -2029,7 +2121,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-12",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-81be035e44",
@@ -2045,7 +2138,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-12",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-88ee39406e",
@@ -2061,7 +2155,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-12",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-ae6f5468fa",
@@ -2077,7 +2172,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-12",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-6042d187ca",
@@ -2093,7 +2189,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-12",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-b3cf1274ca",
@@ -2109,7 +2206,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-12",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-0ab001ccce",
@@ -2125,7 +2223,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-12",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-7c0163eeb5",
@@ -2141,7 +2240,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-12",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-67910051e5",
@@ -2157,7 +2257,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-12",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-ed53a877e3",
@@ -2173,7 +2274,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-12",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-fd51c928af",
@@ -2189,7 +2291,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-12",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-4777381591",
@@ -2205,7 +2308,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-12",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-93a96196cb",
@@ -2221,7 +2325,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-12",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-73ef0e8ba3",
@@ -2237,7 +2342,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-12",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-373d9884be",
@@ -2253,7 +2359,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-12",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-cf8314676e",
@@ -2269,7 +2376,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-12",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-fe74f207c9",
@@ -2285,7 +2393,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-12",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-b5ccbba954",
@@ -2301,7 +2410,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-12",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-47454de11d",
@@ -2317,7 +2427,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-12",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-d26982586e",
@@ -2333,7 +2444,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-12",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-21b3d86b99",
@@ -2349,7 +2461,8 @@
     "linkType": "search",
     "firstSeen": "2026-10-12",
     "searchText": "730456",
-    "searchHint": "On Telangana's homepage, click More... (the search page only opens that way), paste the Tender ID into the search box and click Search."
+    "searchHint": "On Telangana's homepage, click More... (the search page only opens that way), paste the Tender ID into the search box and click Search.",
+    "country": "India"
   },
   {
     "id": "AUTO-f1b0518bb4",
@@ -2365,7 +2478,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-12",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-ec53768161",
@@ -2381,7 +2495,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-12",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-f138c559bd",
@@ -2397,7 +2512,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-12",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-b1e5abc9ef",
@@ -2413,7 +2529,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-12",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-77006a49bf",
@@ -2429,7 +2546,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-12",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-e4d08c28e4",
@@ -2445,7 +2563,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-12",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-1348e71005",
@@ -2461,7 +2580,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-12",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-de174548d4",
@@ -2477,7 +2597,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-12",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-f27b2ecb76",
@@ -2493,7 +2614,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-12",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-1f23a2c87e",
@@ -2509,7 +2631,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-12",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-ff0abce44d",
@@ -2525,7 +2648,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-12",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-8b4c986b21",
@@ -2541,7 +2665,8 @@
     "linkType": "search",
     "firstSeen": "2026-10-12",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-b910b87fd1",
@@ -2557,7 +2682,8 @@
     "linkType": "search",
     "firstSeen": "2026-10-13",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-0145c928ec",
@@ -2573,7 +2699,8 @@
     "linkType": "search",
     "firstSeen": "2026-10-13",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-a247d31f94",
@@ -2589,7 +2716,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-13",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-b153fbf8db",
@@ -2605,7 +2733,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-13",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-2bfee84bae",
@@ -2621,7 +2750,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-13",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-926cbefdad",
@@ -2637,7 +2767,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-13",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-2aec035746",
@@ -2653,7 +2784,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-13",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-de2ad74e1a",
@@ -2669,7 +2801,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-13",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-a6a4b775ad",
@@ -2685,7 +2818,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-13",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-959d355a4e",
@@ -2701,7 +2835,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-13",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-cde501a96e",
@@ -2717,7 +2852,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-13",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-901fba76c1",
@@ -2726,14 +2862,15 @@
     "location": null,
     "value": null,
     "dueDate": "2026-10-22",
-    "dueTime": "10:30",
+    "dueTime": "16:00",
     "category": "Battery, BESS & Power Electronics",
     "source": "Bihar e-Procurement 2.0 (keyword search)",
     "url": "https://eproc2.bihar.gov.in/EPSV2Web/openarea/tenderListingPage.action",
     "linkType": "search",
     "firstSeen": "2026-10-13",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-fb6fb8304f",
@@ -2749,23 +2886,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-13",
     "searchText": null,
-    "searchHint": null
-  },
-  {
-    "id": "AUTO-0ede38428c",
-    "desc": "Selection Of Battery Energy Storage System Developer (BESSD) For Setting Up Of 500 Mwh (125 MW For 4 Hours) Standalone Battery Energy Storage System (BESS) Under Tariff-Based Competitive Bidding (TBCB) On ?BOOT? Basis At Land To Be Provided At Kajra,...",
-    "refNo": null,
-    "location": "Bihar",
-    "value": null,
-    "dueDate": "2026-10-26",
-    "dueTime": null,
-    "category": "Battery, BESS & Power Electronics",
-    "source": "TenderDetail (battery & power electronics listings)",
-    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/58002256/87a0bdb8a87f01f1bec1f008236f84e7",
-    "linkType": "direct",
-    "firstSeen": "2026-10-13",
-    "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-fb25ea24c4",
@@ -2781,7 +2903,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-13",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-2307f9c9c6",
@@ -2797,7 +2920,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-13",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-4e669810f1",
@@ -2813,7 +2937,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-13",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-7ecd41f26f",
@@ -2829,7 +2954,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-13",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-a3d4c79978",
@@ -2845,7 +2971,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-13",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-515c707251",
@@ -2861,7 +2988,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-13",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-abfd60ba7f",
@@ -2877,7 +3005,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-13",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-731df00b16",
@@ -2893,7 +3022,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-13",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-bc17cb8aae",
@@ -2909,7 +3039,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-13",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-40dc78ae9b",
@@ -2925,7 +3056,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-13",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-963e4c5f35",
@@ -2941,7 +3073,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-13",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-01a906789b",
@@ -2957,7 +3090,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-13",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-fb81d12652",
@@ -2973,7 +3107,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-13",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-e91e4af515",
@@ -2989,7 +3124,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-13",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-61da841b44",
@@ -3005,7 +3141,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-13",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-8b6f9f032c",
@@ -3021,7 +3158,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-13",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-3306643ec9",
@@ -3037,7 +3175,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-13",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-f90abcb098",
@@ -3053,7 +3192,8 @@
     "linkType": "direct",
     "firstSeen": "2026-10-13",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-68962eecfb",
@@ -3069,23 +3209,8 @@
     "linkType": "search",
     "firstSeen": "2026-10-14",
     "searchText": null,
-    "searchHint": null
-  },
-  {
-    "id": "AUTO-d2db4daee8",
-    "desc": "Request for Proposal for Selection of Master System Integrator (MSI) to Design, Implement, Integrate, Operate and Maintain Intelligent Traffic and Management and Enforcement System (ITMES) in Ahmedabad City for a period of 10 years",
-    "refNo": null,
-    "location": "Gujarat",
-    "value": null,
-    "dueDate": "2026-10-23",
-    "dueTime": null,
-    "category": "Traffic Management & ITS",
-    "source": "TenderDetail (traffic management listings)",
-    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/56722506/c526b1915d526b294703d30067cf51ab",
-    "linkType": "direct",
-    "firstSeen": "2026-10-14",
-    "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-a7839288c5",
@@ -3101,7 +3226,8 @@
     "linkType": "search",
     "firstSeen": "2026-10-14",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-7669ddec84",
@@ -3117,7 +3243,8 @@
     "linkType": "search",
     "firstSeen": "2026-10-14",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-3c71a8e30d",
@@ -3133,7 +3260,8 @@
     "linkType": "search",
     "firstSeen": "2026-10-14",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-d5f0566a33",
@@ -3149,7 +3277,8 @@
     "linkType": "search",
     "firstSeen": "2026-10-14",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-edceba4163",
@@ -3165,7 +3294,8 @@
     "linkType": "search",
     "firstSeen": "2026-10-14",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-05087f4551",
@@ -3181,7 +3311,8 @@
     "linkType": "search",
     "firstSeen": "2026-10-14",
     "searchText": null,
-    "searchHint": null
+    "searchHint": null,
+    "country": "India"
   },
   {
     "id": "AUTO-9fa3368c6b",
@@ -3195,6 +3326,194 @@
     "source": "CPPP / etenders.gov.in",
     "url": "https://etenders.gov.in/eprocure/app?page=FrontEndAdvancedSearch&service=page",
     "linkType": "search",
+    "firstSeen": "2026-10-14",
+    "searchText": null,
+    "searchHint": null,
+    "country": "India"
+  },
+  {
+    "id": "AUTO-459cd21536",
+    "desc": "EMPANELMENT OF SHIPPING COMPANIES/ LINER/ AGENT AS FREIGHT FORWARDER FOR EXPORTING LUBE/GREASE IN SMALLS, PACKS, BARRELS/LOBS(BULK) IN FLEXI TANKS IN ISO CONTAINERS BY SEA SHIPMENTS FROM LBP, CHENNAI FOR THREE YEARS",
+    "refNo": "SR/LC/EXP/PT-01/FF EMP/2026-27/May 2026",
+    "location": null,
+    "value": null,
+    "dueDate": "2027-02-17",
+    "dueTime": "15:00",
+    "category": "Marine",
+    "source": "IOCL e-Tendering",
+    "url": "https://iocletenders.nic.in/nicgep/app?page=FrontEndAdvancedSearch&service=page",
+    "linkType": "search",
+    "firstSeen": "2026-10-14",
+    "searchText": null,
+    "searchHint": null,
+    "country": "India"
+  },
+  {
+    "id": "AUTO-7e974fc6a5",
+    "desc": "Open Tender no E3121R on n-procure portal for hiring of PROJECT MANAGEMENT CONSULTANT (PMC) through QCBS method to provide Technical Assistance in the Execution of the Pilot Project on AGC-Enabled Battery Energy Storage System (BESS) for Grid Support Services to State Load Dispatch Centre (SLDC), Gujarat",
+    "refNo": "ACE (P&C)/TN-15/26-27",
+    "location": null,
+    "value": "₹30.00 Lakh",
+    "dueDate": null,
+    "dueTime": null,
+    "category": "Battery, BESS & Power Electronics",
+    "source": "Gujarat nProcure (keyword search)",
+    "url": "https://tender.nprocure.com/",
+    "linkType": "search",
+    "firstSeen": "2026-10-14",
+    "searchText": "Open Tender no E3121R on n-procure portal for hiring of PROJECT MANAGEMENT CONSULTANT (PMC) through",
+    "searchHint": "Paste it into the Tender Title box and click Search.",
+    "country": "India"
+  },
+  {
+    "id": "AUTO-2a6980994a",
+    "desc": "IMPLEMENTATION OF 75 MW (AC) GRID-CONNECTED GROUND-MOUNTED SOLAR PV POWER PROJECT ALONG WITH 7.5 MW / 30 MWh BATTERY ENERGY STORAGE SYSTEM (BESS) UNDER GROUP CAPTIVE MODE FOR AHMEDABAD MUNICIPAL CORPORATION (AMC) IN THE STATE OF GUJARAT",
+    "refNo": "AMC/Group Captive/September-2026",
+    "location": "Gujarat",
+    "value": null,
+    "dueDate": "2026-10-23",
+    "dueTime": "16:00",
+    "category": "Battery, BESS & Power Electronics",
+    "source": "Gujarat nProcure (keyword search)",
+    "url": "https://tender.nprocure.com/",
+    "linkType": "search",
+    "firstSeen": "2026-10-06",
+    "searchText": "IMPLEMENTATION OF 75 MW (AC) GRID-CONNECTED GROUND-MOUNTED",
+    "searchHint": "Paste it into the Tender Title box and click Search.",
+    "country": "India"
+  },
+  {
+    "id": "AUTO-84348d731b",
+    "desc": "Request for Proposal for Selection of Master System Integrator (MSI) to Design, Implement, Integrate, Operate and Maintain Intelligent Traffic and Management and Enforcement System (ITMES) in Ahmedabad City for a period of 10 years",
+    "refNo": "AMC_EGOV_2026_27/02",
+    "location": "Gujarat",
+    "value": null,
+    "dueDate": "2026-10-23",
+    "dueTime": "15:00",
+    "category": "Traffic Management & ITS",
+    "source": "Gujarat nProcure (keyword search)",
+    "url": "https://tender.nprocure.com/",
+    "linkType": "search",
+    "firstSeen": "2026-10-14",
+    "searchText": "Request for Proposal for Selection of Master System Integrator (MSI) to Design, Implement",
+    "searchHint": "Paste it into the Tender Title box and click Search.",
+    "country": "India"
+  },
+  {
+    "id": "AUTO-1550482fb9",
+    "desc": "Selection of Battery Energy Storage System Developer (BESSD) For Setting up of 500 MWh (125 MW for 4 Hours) Standalone Battery Energy Storage System (BESS) Under Tariff-Based Competitive Bidding (TBCB) on ‘BOOT’ Basis at land to be provided at Kajra, Distt. Lakhisarai, Bihar.",
+    "refNo": "07/PR/BSPGCL/2026",
+    "location": "Bihar",
+    "value": null,
+    "dueDate": "2026-10-26",
+    "dueTime": "16:00",
+    "category": "Battery, BESS & Power Electronics",
+    "source": "Bihar e-Procurement 2.0 (keyword search)",
+    "url": "https://eproc2.bihar.gov.in/EPSV2Web/openarea/tenderListingPage.action",
+    "linkType": "search",
+    "firstSeen": "2026-10-13",
+    "searchText": null,
+    "searchHint": null,
+    "country": "India"
+  },
+  {
+    "id": "AUTO-d2b9d23780",
+    "desc": "Dry Dock and Major Lay up repair of Offshore Drilling Jack up Rig Sagar Ratna",
+    "refNo": "ZW1PC26007",
+    "location": null,
+    "value": null,
+    "dueDate": "2026-11-23",
+    "dueTime": "15:00",
+    "category": "Marine",
+    "source": "CPPP / etenders.gov.in",
+    "url": "https://etenders.gov.in/eprocure/app?page=FrontEndAdvancedSearch&service=page",
+    "linkType": "search",
+    "firstSeen": "2026-10-14",
+    "searchText": null,
+    "searchHint": null,
+    "country": "India"
+  },
+  {
+    "id": "AUTO-c26c7aff70",
+    "desc": "Procurement of spares for Twin Disc make QR Assembly for overhauling of E-3000 Drawworks at ONGC CWS Sivasagar, through OEM authorized dealer M/s Island Marine.",
+    "refNo": "RE2AS26003",
+    "location": null,
+    "value": null,
+    "dueDate": "2026-10-21",
+    "dueTime": "09:00",
+    "category": "Marine",
+    "source": "CPPP / etenders.gov.in",
+    "url": "https://etenders.gov.in/eprocure/app?page=FrontEndAdvancedSearch&service=page",
+    "linkType": "search",
+    "firstSeen": "2026-10-14",
+    "searchText": null,
+    "searchHint": null,
+    "country": "India"
+  },
+  {
+    "id": "AUTO-737a8a0442",
+    "desc": "Rate Contract for Procurement of 1,93,696 KL HFHSD for Western Offshore for a period of 02 years",
+    "refNo": "ZV1VC26011",
+    "location": null,
+    "value": null,
+    "dueDate": "2026-10-30",
+    "dueTime": "15:00",
+    "category": "Marine",
+    "source": "CPPP / etenders.gov.in",
+    "url": "https://etenders.gov.in/eprocure/app?page=FrontEndAdvancedSearch&service=page",
+    "linkType": "search",
+    "firstSeen": "2026-10-14",
+    "searchText": null,
+    "searchHint": null,
+    "country": "India"
+  },
+  {
+    "id": "AUTO-591f37a271",
+    "desc": "Insitu Five yearly servicing of lifeboats inspection testing overhauling and certification Launching Appliances and on Load Release Gear installed at Offshore Installations of ONGC",
+    "refNo": "Q15VC26006",
+    "location": null,
+    "value": null,
+    "dueDate": "2026-10-19",
+    "dueTime": "15:00",
+    "category": "Marine",
+    "source": "CPPP / etenders.gov.in",
+    "url": "https://etenders.gov.in/eprocure/app?page=FrontEndAdvancedSearch&service=page",
+    "linkType": "search",
+    "firstSeen": "2026-10-14",
+    "searchText": null,
+    "searchHint": null,
+    "country": "India"
+  },
+  {
+    "id": "AUTO-e93ecf2ffb",
+    "desc": "E-TENDER FORM FOR TRANSPORTATION OF MILK AND MILK PRODUCTS TO DIFFERENT OUTLETS IN MILITARY AREA A. No. 116 INSULATED VEHICLE TATA-709 OR EQUIVALENT CAPACITY SITUATED IN VARIOUS PARTS OF JAIPUR CITY.",
+    "refNo": "JZDUSSL/SALE/F9/2026/4223-35",
+    "location": null,
+    "value": null,
+    "dueDate": "2026-10-22",
+    "dueTime": "15:00",
+    "category": "Defence",
+    "source": "Rajasthan e-Tendering",
+    "url": "https://eproc.rajasthan.gov.in/nicgep/app?page=FrontEndAdvancedSearch&service=page",
+    "linkType": "search",
+    "firstSeen": "2026-10-14",
+    "searchText": null,
+    "searchHint": null,
+    "country": "India"
+  },
+  {
+    "id": "AUTO-01c36be1fa",
+    "desc": "Installation of traffic signals and associated roadworks at the Princes Highway East and Dargo Road intersection in Bairnsdale",
+    "refNo": "DOT44580",
+    "location": "Victoria, Australia",
+    "country": "Australia",
+    "value": null,
+    "dueDate": "2026-10-23",
+    "dueTime": null,
+    "category": "Traffic Management & ITS",
+    "source": "Buying for Victoria (tenders.vic.gov.au)",
+    "url": "https://www.tenders.vic.gov.au/tender/view?id=334566",
+    "linkType": "direct",
     "firstSeen": "2026-10-14",
     "searchText": null,
     "searchHint": null

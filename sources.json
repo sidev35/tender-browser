@@ -203,5 +203,50 @@
     "type": "tenderdetail_list",
     "enabled": false,
     "notes": ""
+  },
+  {
+    "name": "Buying for Victoria (tenders.vic.gov.au)",
+    "url": "https://www.tenders.vic.gov.au/tender/search?preset=open",
+    "searchUrl": "https://www.tenders.vic.gov.au/tender/search?preset=open",
+    "type": "vic_tenders_list",
+    "enabled": true,
+    "country": "Australia",
+    "location": "Victoria, Australia",
+    "maxPages": 5,
+    "notes": "Free/official Victorian Government portal. Checked 2026-10-14: robots.txt disallows only /tender/view, /contract/view, /secure/ and similar, so the search listing is allowed and the detail pages are linked for visitors but never fetched. The list is plain server-rendered HTML (25 rows a page, ?page=N), no login or captcha. Rows give code, title, agency and closing date but no city, so cards show the state."
+  },
+  {
+    "name": "Tasmania Tenders (tenders.tas.gov.au)",
+    "url": "https://www.tenders.tas.gov.au/OpenForBids/Index",
+    "searchUrl": "https://www.tenders.tas.gov.au/OpenForBids/Index",
+    "type": "tas_tenders_list",
+    "enabled": true,
+    "country": "Australia",
+    "location": "Tasmania, Australia",
+    "notes": "Free/official Tasmanian Government portal. Checked 2026-10-14: robots.txt allows /OpenForBids/ (and disallows /Tender/ and /AwardedContract/); the list is one server-rendered HTML page with the closing date above each tender. No city on the list, so cards show the state."
+  },
+  {
+    "name": "AusTender (tenders.gov.au)",
+    "url": null,
+    "type": "unsupported",
+    "enabled": false,
+    "country": "Australia",
+    "notes": "Federal portal. Checked 2026-10-14: every request (including robots.txt) from a plain HTTP client gets a CloudFront 403 block, so automated reading is not allowed to start. Its OCDS API lists awarded contracts, not open tenders."
+  },
+  {
+    "name": "NSW eTendering (tenders.nsw.gov.au)",
+    "url": null,
+    "type": "unsupported",
+    "enabled": false,
+    "country": "Australia",
+    "notes": "NSW. Checked 2026-10-14: robots.txt only disallows advancedsearch, but the public pages do not list tenders in plain HTML (they need a search or the buy.nsw API key). Not set up yet."
+  },
+  {
+    "name": "WA Tenders (tenders.wa.gov.au)",
+    "url": null,
+    "type": "blocked_by_robots_txt",
+    "enabled": false,
+    "country": "Australia",
+    "notes": "Western Australia. Checked 2026-10-14: robots.txt is 'Disallow: /' apart from the index page, so it must not be scraped."
   }
 ]

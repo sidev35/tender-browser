@@ -30,6 +30,7 @@ from .notify import send_digest
 from .sources import load_sources
 from .store import (
     apply_search_help,
+    apply_source_region,
     backfill_due_times,
     backfill_link_types,
     drop_expired,
@@ -114,7 +115,8 @@ def scrape_source(
             id=tid,
             desc=title,
             refNo=row.get("refNo"),
-            location=row.get("location"),
+            location=row.get("location") or source.get("location"),
+            country=source.get("country") or "India",
             value=value,
             dueDate=extract_due_date(row.get("dueDateHint") or row["raw_row"]),
             dueTime=extract_due_time(row.get("dueDateHint") or row["raw_row"]),
@@ -207,6 +209,7 @@ def run() -> None:
     backfill_link_types(existing_by_id.values(), sources, fetchers.DIRECT_LINK_TYPES)
     backfill_due_times(existing_by_id.values())
     apply_search_help(existing_by_id.values(), sources)
+    apply_source_region(existing_by_id.values(), sources)
     merged = drop_expired(existing_by_id.values())
     save(config.DATA_PATH, merged)
 

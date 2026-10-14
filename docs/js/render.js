@@ -106,7 +106,9 @@ function renderEmpty(state, groupsEl) {
 
 // onPickCategory(category) is called when a pill is clicked; onMarkRead() when
 // "Mark all as read" is.
-export function render(state, { onPickCategory, onMarkRead }) {
+export function render(fullState, { onPickCategory, onMarkRead }) {
+  // Tiles, pills and cards all show the chosen country only (old records have no country: India).
+  const state = { ...fullState, data: fullState.data.filter(t => (t.country || 'India') === fullState.country) };
   const seen = getSeen();
   const items = visibleTenders(state, seen);
   renderStats(state, seen);

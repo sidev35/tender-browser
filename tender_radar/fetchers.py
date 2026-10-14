@@ -24,7 +24,9 @@ from .parsers import (
     parse_gepnic_org_list,
     parse_gepnic_org_tenders,
     parse_gepnic_table,
+    parse_tas_tenders,
     parse_tenderdetail_list,
+    parse_vic_tenders,
 )
 
 log = logging.getLogger(__name__)
@@ -175,6 +177,39 @@ def fetch_tenderdetail_list(source: Source, session: BrowserSession) -> list[Row
     return rows
 
 
+def fetch_vic_tenders(source: Source, session: BrowserSession) -> list[Row]:
+    """
+    Buying for Victoria's open-tender list (tenders.vic.gov.au), read page by
+    page ("&page=N") until a page has no new rows or "maxPages" (default 5)
+    is reached. Only the search listing is loaded: robots.txt disallows the
+    /tender/view detail pages, so those are linked for visitors but never
+    fetched here (checked 2026-10-14).
+    """
+    rows: list[Row] = []
+    seen: set[str] = set()
+    for page_no in range(1, int(source.get("maxPages", 5)) + 1):
+        url = source["url"]
+        if page_no > 1:
+            time.sleep(ORG_PAGE_PAUSE_SECONDS)
+            url += ("&" if "?" in url else "?") + f"page={page_no}"
+        html = session.get_html(url)
+        page_rows = parse_vic_tenders(html, source["name"], source["url"]) if html else []
+        fresh = [r for r in page_rows if r["stableKey"] not in seen]
+        if not fresh:
+            break
+        seen.update(r["stableKey"] for r in fresh)
+        rows.extend(fresh)
+    return rows
+
+
+def fetch_tas_tenders(source: Source, session: BrowserSession) -> list[Row]:
+    """Tasmania's "Open for bids" list (tenders.tas.gov.au/OpenForBids), one page."""
+    html = session.get_html(source["url"])
+    if not html:
+        return []
+    return parse_tas_tenders(html, source["name"], source["url"])
+
+
 def fetch_js_rendered_table(source: Source, session: BrowserSession) -> list[Row]:
     """
     For portals that render their tender listing client-side via JavaScript
@@ -316,6 +351,8 @@ TYPE_FETCHERS: dict[str, Callable[[Source, BrowserSession], list[Row]]] = {
     "js_rendered_table": fetch_js_rendered_table,
     "js_interactive_search": fetch_js_interactive_search,
     "tenderdetail_list": fetch_tenderdetail_list,
+    "vic_tenders_list": fetch_vic_tenders,
+    "tas_tenders_list": fetch_tas_tenders,
 }
 
 # Types a sources.json entry may use to record a portal that is deliberately
@@ -324,4 +361,4 @@ NON_SCRAPED_TYPES = {"paid_aggregator", "blocked_by_robots_txt", "unsupported"}
 
 # Source types whose fetcher always provides a per-tender URL. Only used to
 # fill in linkType on records saved before that field existed.
-DIRECT_LINK_TYPES = {"eesl_wp_list", "tenderdetail_list"}
+DIRECT_LINK_TYPES = {"eesl_wp_list", "tenderdetail_list", "vic_tenders_list", "tas_tenders_list"}

@@ -3,7 +3,7 @@
 import { checkForAlerts, hasSeenBaseline, setSeen, setupNotifyButton, showToast } from './alerts.js';
 import { fetchLiveData } from './data.js';
 import { NEW_FILTER, render } from './render.js';
-import { isClosed } from './util.js';
+import { isClosed, loadJSON, saveJSON } from './util.js';
 
 const AUTO_REFRESH_MS = 10 * 60 * 1000; // re-check for updates every 10 min while the tab is open
 
@@ -13,6 +13,7 @@ const AUTO_REFRESH_MS = 10 * 60 * 1000; // re-check for updates every 10 min whi
 const state = {
   data: [],
   category: 'All',
+  country: loadJSON('tenderRadar_country', 'India'),
   query: '',
   sort: 'due',
   minValue: 0,
@@ -58,6 +59,15 @@ async function refreshData({ manual = false } = {}) {
 
 // --- Controls -----------------------------------------------------------
 
+const countrySel = document.getElementById('countrySel');
+if (![...countrySel.options].some(o => o.value === state.country)) state.country = 'India';
+countrySel.value = state.country;
+countrySel.addEventListener('change', e => {
+  state.country = e.target.value;
+  state.category = 'All'; // a category pill from the other country may not exist here
+  saveJSON('tenderRadar_country', state.country);
+  redraw();
+});
 document.getElementById('searchBox').addEventListener('input', e => { state.query = e.target.value; redraw(); });
 document.getElementById('sortSel').addEventListener('change', e => { state.sort = e.target.value; redraw(); });
 document.getElementById('minValueSel').addEventListener('change', e => { state.minValue = Number(e.target.value); redraw(); });

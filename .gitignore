@@ -23,3 +23,6 @@ debug_js_source.py
 # Deployment copy and archives
 tender-radar-production/
 *.zip
+
+# Personal full guide, kept local
+README2.md
