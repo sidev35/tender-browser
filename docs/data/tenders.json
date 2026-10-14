@@ -2033,7 +2033,7 @@
   },
   {
     "id": "AUTO-8e3201bbed",
-    "desc": "...On Battery Pack Assembly, Testing, Dismantling, Bms Practice And Battery Manufacturing Activities. , Battery Pack Tester Charging And Discharging 99V 20A 1Ch - Battery Pack Tester For Charging , Discharging, Cycling, Testing And Analysis Of Ev Battery ...",
+    "desc": "...Study Of Battery Pack Charging , Discharging, Monitoring, Protection, Bms Operation And Parameter Measurement. , Charging Station Instruction And Training Kit - Charging Station Instruction And Training Kit For Practical Learning Of Ev Ac...",
     "refNo": null,
     "location": "Bihar",
     "value": null,
@@ -2401,7 +2401,7 @@
   },
   {
     "id": "AUTO-f138c559bd",
-    "desc": "...Waiting Hall At Veraval Railway Station.,The Licensee Shall Develop, Install, Operate, And Maintain Electric Vehicle ( Ev) Charging Station At Botad (Btd), Dhandhuka (Dck), Bavla (Vla), Sarkhej (Sej), And Gandhigram (Gg) Railway Stations, Each Over...",
+    "desc": "...Hall At Veraval Railway Station .,The Licensee Shall Develop, Install, Operate, And Maintain Electric Vehicle (Ev) Charging Station At Botad (Btd), Dhandhuka (Dck), Bavla (Vla), Sarkhej (Sej), And Gandhigram (Gg) Railway Stations , Each Over An Area...",
     "refNo": null,
     "location": "Gujarat",
     "value": null,
@@ -3068,6 +3068,38 @@
     "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/56964950/b3b2318060f8572a16f2a625a75c8ede",
     "linkType": "direct",
     "firstSeen": "2026-10-13",
+    "searchText": null,
+    "searchHint": null
+  },
+  {
+    "id": "AUTO-68962eecfb",
+    "desc": "SOLAR TRAFFIC SIGNAL AT 13 LOCATION",
+    "refNo": "2158/2026",
+    "location": null,
+    "value": null,
+    "dueDate": "2026-10-21",
+    "dueTime": "18:00",
+    "category": "Traffic Management & ITS",
+    "source": "Madhya Pradesh e-Tendering",
+    "url": "https://mptenders.gov.in/nicgep/app?page=FrontEndAdvancedSearch&service=page",
+    "linkType": "search",
+    "firstSeen": "2026-10-14",
+    "searchText": null,
+    "searchHint": null
+  },
+  {
+    "id": "AUTO-d2db4daee8",
+    "desc": "Request for Proposal for Selection of Master System Integrator (MSI) to Design, Implement, Integrate, Operate and Maintain Intelligent Traffic and Management and Enforcement System (ITMES) in Ahmedabad City for a period of 10 years",
+    "refNo": null,
+    "location": "Gujarat",
+    "value": null,
+    "dueDate": "2026-10-23",
+    "dueTime": null,
+    "category": "Traffic Management & ITS",
+    "source": "TenderDetail (traffic management listings)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/56722506/c526b1915d526b294703d30067cf51ab",
+    "linkType": "direct",
+    "firstSeen": "2026-10-14",
     "searchText": null,
     "searchHint": null
   }
