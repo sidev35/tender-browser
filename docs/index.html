@@ -51,7 +51,7 @@
   </div>
 
   <div class="stats">
-    <div class="stat"><div class="num" id="statTotal">0</div><div class="lbl">Matched tenders</div></div>
+    <div class="stat clickable" id="statTotalTile" role="button" tabindex="0" title="Show all tenders"><div class="num" id="statTotal">0</div><div class="lbl">Matched tenders</div></div>
     <div class="stat urgent"><div class="num" id="statUrgent">0</div><div class="lbl">Due within 7 days</div></div>
     <div class="stat has-tip" tabindex="0"><div class="num" id="statSources">0</div><div class="lbl">Source portals</div><div class="tip" id="statSourcesTip" role="tooltip"></div></div>
     <div class="stat new clickable" id="statNewTile" role="button" tabindex="0" title="Show only the new tenders"><div class="num" id="statNew">0</div><div class="lbl">New since last visit</div></div>
@@ -62,6 +62,16 @@
     <select class="sortsel" id="sortSel">
       <option value="due">Sort: Due date (soonest)</option>
       <option value="recent">Sort: Recently added</option>
+    </select>
+    <select class="sortsel" id="minValueSel" title="Hide tenders below this value">
+      <option value="0">Min value: Any</option>
+      <option value="100000">₹1 Lakh+</option>
+      <option value="1000000">₹10 Lakh+</option>
+      <option value="2500000">₹25 Lakh+</option>
+      <option value="5000000">₹50 Lakh+</option>
+      <option value="10000000">₹1 Crore+</option>
+      <option value="50000000">₹5 Crore+</option>
+      <option value="100000000">₹10 Crore+</option>
     </select>
   </div>
   <div class="controls">

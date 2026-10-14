@@ -15,6 +15,7 @@ const state = {
   category: 'All',
   query: '',
   sort: 'due',
+  minValue: 0,
   lastFetchFailed: false,
 };
 let isRefreshing = false;
@@ -59,6 +60,7 @@ async function refreshData({ manual = false } = {}) {
 
 document.getElementById('searchBox').addEventListener('input', e => { state.query = e.target.value; redraw(); });
 document.getElementById('sortSel').addEventListener('change', e => { state.sort = e.target.value; redraw(); });
+document.getElementById('minValueSel').addEventListener('change', e => { state.minValue = Number(e.target.value); redraw(); });
 document.getElementById('dismissNew').addEventListener('click', markAllRead);
 document.getElementById('updateBtn').addEventListener('click', () => { refreshData({ manual: true }); });
 
@@ -67,6 +69,13 @@ const newTile = document.getElementById('statNewTile');
 const showNew = () => { state.category = NEW_FILTER; redraw(); };
 newTile.addEventListener('click', showNew);
 newTile.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); showNew(); } });
+
+// The "Matched tenders" tile resets the category filter back to all tenders
+// (there's no "All" pill — this tile doubles as that control).
+const totalTile = document.getElementById('statTotalTile');
+const showAll = () => { state.category = 'All'; redraw(); };
+totalTile.addEventListener('click', showAll);
+totalTile.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); showAll(); } });
 
 // Theme: light by default (set on <html> in index.html, and restored from
 // localStorage there before the page draws); the toggle remembers the choice.

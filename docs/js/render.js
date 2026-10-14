@@ -3,7 +3,7 @@
 // grouped by category.
 import { getSeen } from './alerts.js';
 import { renderCard } from './cards.js';
-import { DUE_SOON_DAYS, daysUntil, escapeHtml, isNew, portalHome, shortSource } from './util.js';
+import { DUE_SOON_DAYS, daysUntil, escapeHtml, isNew, parseValueINR, portalHome, shortSource } from './util.js';
 
 // The "New" pill: not a real category, but the tenders you haven't seen yet
 // (the same ones the "New since last visit" tile counts and that carry a NEW
@@ -15,6 +15,14 @@ function visibleTenders(state, seen) {
   let items = state.data.slice();
   if (state.category === NEW_FILTER) items = items.filter(t => isNew(t, seen));
   else if (state.category !== 'All') items = items.filter(t => t.category === state.category);
+  // Tenders with no disclosed value are kept regardless of the filter — an
+  // undisclosed value isn't known to be below the threshold.
+  if (state.minValue) {
+    items = items.filter(t => {
+      const v = parseValueINR(t.value);
+      return v === null || v >= state.minValue;
+    });
+  }
   if (state.query.trim()) {
     const q = state.query.toLowerCase();
     items = items.filter(t =>
@@ -64,11 +72,11 @@ function renderStats(state, seen) {
   }
 }
 
-// Pills: All, New, then one per category present in the data.
+// Pills: New, then one per category present in the data. (No "All" pill —
+// the "Matched tenders" stat tile doubles as the reset-to-all control.)
 function renderPills(state, seen, onPick) {
   const newCount = state.data.filter(t => isNew(t, seen)).length;
   const pills = [
-    { key: 'All', label: `All (${state.data.length})` },
     { key: NEW_FILTER, label: `New (${newCount})`, extraClass: ' pill-new' },
     ...[...new Set(state.data.map(t => t.category))].map(c => (
       { key: c, label: `${c} (${state.data.filter(t => t.category === c).length})` })),
@@ -93,7 +101,7 @@ function renderEmpty(state, groupsEl) {
     ? (state.lastFetchFailed
         ? '<div class="empty">Couldn\'t load live tender data — check your connection and try the refresh icon above.</div>'
         : '<div class="empty">No EV charging tenders currently match your categories. The scraper checks every 3 hours — check back later, or click refresh to check now.</div>')
-    : '<div class="empty">No tenders match this filter right now. Try clearing the search or picking a different category.</div>';
+    : '<div class="empty">No tenders match this filter right now. Try clearing the search, picking a different category, or lowering the minimum value.</div>';
 }
 
 // onPickCategory(category) is called when a pill is clicked; onMarkRead() when

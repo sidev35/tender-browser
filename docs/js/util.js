@@ -63,6 +63,20 @@ export function daysUntil(dateStr) {
   return Math.round((due - now) / 86400000);
 }
 
+// "₹41.40 Lakh" -> 4140000, "₹23.48 Crore" -> 234800000, "₹45,759" -> 45759.
+// Returns null when there's no parseable value (most tenders don't disclose one).
+export function parseValueINR(value) {
+  if (!value) return null;
+  const m = String(value).match(/([\d,]+(?:\.\d+)?)\s*(lakh|crore)?/i);
+  if (!m) return null;
+  const num = parseFloat(m[1].replace(/,/g, ''));
+  if (Number.isNaN(num)) return null;
+  const unit = (m[2] || '').toLowerCase();
+  if (unit === 'lakh') return num * 1e5;
+  if (unit === 'crore') return num * 1e7;
+  return num;
+}
+
 // New = not marked as read yet, and first found within NEW_WINDOW_DAYS.
 export function isNew(t, seen) {
   if (seen.includes(t.id)) return false;
