@@ -3,7 +3,7 @@
 import { checkForAlerts, hasSeenBaseline, setSeen, setupNotifyButton, showToast } from './alerts.js';
 import { fetchLiveData } from './data.js';
 import { NEW_FILTER, render } from './render.js';
-import { isClosed, loadJSON, saveJSON } from './util.js';
+import { VALUE_STOPS, fmtINR, isClosed, loadJSON, saveJSON } from './util.js';
 
 const AUTO_REFRESH_MS = 10 * 60 * 1000; // re-check for updates every 10 min while the tab is open
 
@@ -16,7 +16,7 @@ const state = {
   country: loadJSON('tenderRadar_country', 'India'),
   query: '',
   sort: 'due',
-  minValue: 0,
+  minValue: 0, // minimum-value slider (shown with the value sorts): 0 = any value
   lastFetchFailed: false,
 };
 let isRefreshing = false;
@@ -27,7 +27,10 @@ function markAllRead() {
 }
 
 function redraw() {
-  render(state, { onPickCategory: (c) => { state.category = c; redraw(); }, onMarkRead: markAllRead });
+  render(state, {
+    onPickCategory: (c) => { state.category = c; redraw(); },
+    onMarkRead: markAllRead,
+  });
 }
 
 async function refreshData({ manual = false } = {}) {
@@ -69,8 +72,26 @@ countrySel.addEventListener('change', e => {
   redraw();
 });
 document.getElementById('searchBox').addEventListener('input', e => { state.query = e.target.value; redraw(); });
-document.getElementById('sortSel').addEventListener('change', e => { state.sort = e.target.value; redraw(); });
-document.getElementById('minValueSel').addEventListener('change', e => { state.minValue = Number(e.target.value); redraw(); });
+// The minimum-value slider sits beside the "Value" label, which shows only while
+// sorting by value. It moves along VALUE_STOPS; leaving the value sorts clears it.
+const slider = document.getElementById('minValueSlider');
+const sliderLabel = document.getElementById('minValueLabel');
+slider.max = String(VALUE_STOPS.length - 1);
+const showMinValue = () => { sliderLabel.textContent = state.minValue ? fmtINR(state.minValue) + '+' : 'Any value'; };
+slider.addEventListener('input', () => {
+  state.minValue = VALUE_STOPS[Number(slider.value)];
+  showMinValue();
+  redraw();
+});
+document.getElementById('sortSel').addEventListener('change', e => {
+  state.sort = e.target.value;
+  if (!state.sort.startsWith('value_')) { // the slider is hidden now: drop its filter
+    state.minValue = 0;
+    slider.value = '0';
+    showMinValue();
+  }
+  redraw();
+});
 document.getElementById('dismissNew').addEventListener('click', markAllRead);
 document.getElementById('updateBtn').addEventListener('click', () => { refreshData({ manual: true }); });
 

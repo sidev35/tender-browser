@@ -82,6 +82,17 @@ export function parseValueINR(value) {
   return num;
 }
 
+// The minimum-value slider moves along these stops (rupees), not a straight
+// scale: tender values range from thousands to hundreds of crores.
+export const VALUE_STOPS = [0, 1e5, 5e5, 1e6, 2.5e6, 5e6, 1e7, 5e7, 1e8, 5e8, 1e9];
+
+// 2500000 -> "₹25 Lakh", 50000000 -> "₹5 Crore", 0 -> "Any".
+export function fmtINR(n) {
+  if (!n) return 'Any';
+  const trim = (x) => String(+x.toFixed(2));
+  return n >= 1e7 ? `₹${trim(n / 1e7)} Crore` : `₹${trim(n / 1e5)} Lakh`;
+}
+
 // New = not marked as read yet, and first found within NEW_WINDOW_DAYS.
 export function isNew(t, seen) {
   if (seen.includes(t.id)) return false;

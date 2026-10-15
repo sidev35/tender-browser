@@ -10,19 +10,11 @@ import { DUE_SOON_DAYS, daysUntil, escapeHtml, isNew, parseValueINR, portalHome,
 // badge). "Mark all as read" empties it.
 export const NEW_FILTER = '__new__';
 
-// Applies the category pill, the search box and the sort order.
-function visibleTenders(state, seen) {
+// What the category pill and the search box leave, before the value pills.
+function baseTenders(state, seen) {
   let items = state.data.slice();
   if (state.category === NEW_FILTER) items = items.filter(t => isNew(t, seen));
   else if (state.category !== 'All') items = items.filter(t => t.category === state.category);
-  // Tenders with no disclosed value are kept regardless of the filter — an
-  // undisclosed value isn't known to be below the threshold.
-  if (state.minValue) {
-    items = items.filter(t => {
-      const v = parseValueINR(t.value);
-      return v === null || v >= state.minValue;
-    });
-  }
   if (state.query.trim()) {
     const q = state.query.toLowerCase();
     items = items.filter(t =>
@@ -30,8 +22,30 @@ function visibleTenders(state, seen) {
       (t.source || '').toLowerCase().includes(q)
     );
   }
+  return items;
+}
+
+// The value sorts also show a minimum-value slider (see main.js).
+const isValueSort = state => state.sort === 'value_desc' || state.sort === 'value_asc';
+
+// Applies the category pill, the search box, the minimum value and the sort order.
+function visibleTenders(state, seen) {
+  // The slider only applies while sorting by value. Above "Any", a tender with
+  // no disclosed value is hidden: it isn't known to reach the minimum.
+  const items = baseTenders(state, seen).filter(t => {
+    if (!isValueSort(state) || !state.minValue) return true;
+    const v = parseValueINR(t.value);
+    return v !== null && v >= state.minValue;
+  });
+  // Value sorts put tenders with no disclosed value last, whichever way it goes.
+  const val = t => parseValueINR(t.value);
   items.sort((a, b) => {
     if (state.sort === 'recent') return (b.firstSeen || '').localeCompare(a.firstSeen || '');
+    if (state.sort === 'value_desc' || state.sort === 'value_asc') {
+      const va = val(a), vb = val(b);
+      if (va === null || vb === null) return (va === null) - (vb === null);
+      return state.sort === 'value_desc' ? vb - va : va - vb;
+    }
     const da = a.dueDate ? new Date(a.dueDate) : new Date('2999-01-01');
     const db = b.dueDate ? new Date(b.dueDate) : new Date('2999-01-01');
     return da - db;
@@ -92,6 +106,11 @@ function renderPills(state, seen, onPick) {
   });
 }
 
+// The value row (label and minimum-value slider) shows only while sorting by value.
+function renderValueRow(state) {
+  document.getElementById('valueRow').hidden = !isValueSort(state);
+}
+
 function renderEmpty(state, groupsEl) {
   if (state.category === NEW_FILTER && !state.query.trim()) {
     groupsEl.innerHTML = '<div class="empty">No new tenders since your last visit. When the scraper finds new ones, they show up here with a NEW badge.</div>';
@@ -101,7 +120,7 @@ function renderEmpty(state, groupsEl) {
     ? (state.lastFetchFailed
         ? '<div class="empty">Couldn\'t load live tender data — check your connection and try the refresh icon above.</div>'
         : '<div class="empty">No EV charging tenders currently match your categories. The scraper checks every 3 hours — check back later, or click refresh to check now.</div>')
-    : '<div class="empty">No tenders match this filter right now. Try clearing the search, picking a different category, or lowering the minimum value.</div>';
+    : '<div class="empty">No tenders match this filter right now. Try clearing the search, picking a different category, or changing the value filter.</div>';
 }
 
 // onPickCategory(category) is called when a pill is clicked; onMarkRead() when
@@ -113,6 +132,7 @@ export function render(fullState, { onPickCategory, onMarkRead }) {
   const items = visibleTenders(state, seen);
   renderStats(state, seen);
   renderPills(state, seen, onPickCategory);
+  renderValueRow(state);
 
   const groupsEl = document.getElementById('groups');
   groupsEl.innerHTML = '';

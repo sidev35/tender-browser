@@ -66,20 +66,19 @@
     <select class="sortsel" id="sortSel">
       <option value="due">Sort: Due date (soonest)</option>
       <option value="recent">Sort: Recently added</option>
-    </select>
-    <select class="sortsel" id="minValueSel" title="Hide tenders below this value">
-      <option value="0">Min value: Any</option>
-      <option value="100000">₹1 Lakh+</option>
-      <option value="1000000">₹10 Lakh+</option>
-      <option value="2500000">₹25 Lakh+</option>
-      <option value="5000000">₹50 Lakh+</option>
-      <option value="10000000">₹1 Crore+</option>
-      <option value="50000000">₹5 Crore+</option>
-      <option value="100000000">₹10 Crore+</option>
+      <option value="value_desc">Sort: Value (highest)</option>
+      <option value="value_asc">Sort: Value (lowest)</option>
     </select>
   </div>
   <div class="controls">
     <div class="pills" id="categoryPills"></div>
+  </div>
+  <div class="controls value-row" id="valueRow" hidden>
+    <span class="vf-label">Value</span>
+    <div class="vf-slider" id="valueSlider">
+      <input type="range" id="minValueSlider" min="0" max="10" step="1" value="0" aria-label="Minimum tender value">
+      <output id="minValueLabel" for="minValueSlider">Any value</output>
+    </div>
   </div>
 
   <div id="groups"></div>

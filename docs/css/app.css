@@ -39,6 +39,7 @@
 }
 
 * { box-sizing: border-box; }
+html { scrollbar-gutter: stable; } /* the page keeps its width when a short list removes the scrollbar */
 html, body { margin: 0; padding: 0; }
 body {
   background: var(--bg);
@@ -152,6 +153,17 @@ header.top {
   background: var(--surface); border: 1px solid var(--border); color: var(--text);
   padding: 8px 10px; border-radius: 9px; font-size: 12.5px; font-family: inherit; cursor: pointer;
 }
+
+/* Value row: the label and a minimum-value slider, shown only while sorting by value. */
+.value-row { margin-top: 28px; gap: 12px; justify-content: flex-end; } /* right-aligned, with room below the category pills */
+.value-row[hidden] { display: none; }
+.vf-label { font-size: 12.5px; color: var(--text-dim); }
+.vf-slider {
+  display: flex; align-items: center; gap: 12px; box-sizing: border-box; height: 36px; width: 300px;
+  padding: 0 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 9px;
+}
+.vf-slider input[type="range"] { flex: 1; min-width: 0; margin: 0; accent-color: var(--accent); cursor: pointer; }
+.vf-slider output { width: 84px; text-align: right; font-size: 12.5px; font-weight: 600; color: var(--text); white-space: nowrap; }
 
 /* Groups & cards */
 .group { margin-bottom: 26px; }
