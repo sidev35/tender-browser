@@ -179,35 +179,49 @@ def fetch_tenderdetail_list(source: Source, session: BrowserSession) -> list[Row
 
 def fetch_vic_tenders(source: Source, session: BrowserSession) -> list[Row]:
     """
-    Buying for Victoria's open-tender list (tenders.vic.gov.au), read page by
-    page ("&page=N") until a page has no new rows or "maxPages" (default 5)
-    is reached. Only the search listing is loaded: robots.txt disallows the
-    /tender/view detail pages, so those are linked for visitors but never
-    fetched here (checked 2026-10-14).
+    Buying for Victoria (tenders.vic.gov.au) and Tenders ACT, which run on the
+    same platform: the open-tender list, read page by page ("&page=N") until a
+    page has no new rows or "maxPages" (default 5) is reached. Optional
+    "extraUrls" are more search lists read the same way, e.g. advance notices
+    ("?tenderState=ADVANCE_NOTICE"). Only search lists are loaded: robots.txt
+    disallows the /tender/view detail pages, so those are linked for visitors
+    but never fetched (checked 2026-10-14).
     """
     rows: list[Row] = []
     seen: set[str] = set()
-    for page_no in range(1, int(source.get("maxPages", 5)) + 1):
-        url = source["url"]
-        if page_no > 1:
-            time.sleep(ORG_PAGE_PAUSE_SECONDS)
-            url += ("&" if "?" in url else "?") + f"page={page_no}"
-        html = session.get_html(url)
-        page_rows = parse_vic_tenders(html, source["name"], source["url"]) if html else []
-        fresh = [r for r in page_rows if r["stableKey"] not in seen]
-        if not fresh:
-            break
-        seen.update(r["stableKey"] for r in fresh)
-        rows.extend(fresh)
+    for list_no, list_url in enumerate([source["url"], *source.get("extraUrls", [])]):
+        for page_no in range(1, int(source.get("maxPages", 5)) + 1):
+            url = list_url
+            if page_no > 1 or list_no:
+                time.sleep(ORG_PAGE_PAUSE_SECONDS)
+            if page_no > 1:
+                url += ("&" if "?" in url else "?") + f"page={page_no}"
+            html = session.get_html(url)
+            page_rows = parse_vic_tenders(html, source["name"], source["url"]) if html else []
+            fresh = [r for r in page_rows if r["stableKey"] not in seen]
+            if not fresh:
+                break
+            seen.update(r["stableKey"] for r in fresh)
+            rows.extend(fresh)
     return rows
 
 
 def fetch_tas_tenders(source: Source, session: BrowserSession) -> list[Row]:
-    """Tasmania's "Open for bids" list (tenders.tas.gov.au/OpenForBids), one page."""
-    html = session.get_html(source["url"])
-    if not html:
-        return []
-    return parse_tas_tenders(html, source["name"], source["url"])
+    """
+    Tasmania's "Open for bids" list (tenders.tas.gov.au/OpenForBids), one
+    page, plus any "extraUrls" (e.g. its "Future opportunities" list).
+    """
+    rows: list[Row] = []
+    seen: set[str] = set()
+    for i, url in enumerate([source["url"], *source.get("extraUrls", [])]):
+        if i:
+            time.sleep(ORG_PAGE_PAUSE_SECONDS)
+        html = session.get_html(url)
+        for row in parse_tas_tenders(html, source["name"], url) if html else []:
+            if row["stableKey"] not in seen:
+                seen.add(row["stableKey"])
+                rows.append(row)
+    return rows
 
 
 def fetch_js_rendered_table(source: Source, session: BrowserSession) -> list[Row]:
@@ -352,6 +366,7 @@ TYPE_FETCHERS: dict[str, Callable[[Source, BrowserSession], list[Row]]] = {
     "js_interactive_search": fetch_js_interactive_search,
     "tenderdetail_list": fetch_tenderdetail_list,
     "vic_tenders_list": fetch_vic_tenders,
+    "act_tenders_list": fetch_vic_tenders,  # same platform and page layout as Victoria
     "tas_tenders_list": fetch_tas_tenders,
 }
 
@@ -361,4 +376,10 @@ NON_SCRAPED_TYPES = {"paid_aggregator", "blocked_by_robots_txt", "unsupported"}
 
 # Source types whose fetcher always provides a per-tender URL. Only used to
 # fill in linkType on records saved before that field existed.
-DIRECT_LINK_TYPES = {"eesl_wp_list", "tenderdetail_list", "vic_tenders_list", "tas_tenders_list"}
+DIRECT_LINK_TYPES = {
+    "eesl_wp_list",
+    "tenderdetail_list",
+    "vic_tenders_list",
+    "act_tenders_list",
+    "tas_tenders_list",
+}

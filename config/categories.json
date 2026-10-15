@@ -12,7 +12,8 @@
     "   category. Keep these phrases specific: '\\\\b' marks a word boundary, and '(?!...)'",
     "   excludes look-alikes (e.g. 'inverter' but not 'inverter split AC').",
     "   Traffic tenders (ATMS, traffic signals, ANPR...) are kept the same way. 'traffic' alone is too common (barricades, police stations), so each phrase needs a 'system', 'signal' or similar beside it.",
-    "After editing, run `python -m pytest` to check nothing broke."
+    "After editing, run `python -m pytest` to check nothing broke.",
+    "5. countryExtraCategories: extra phrases used only for tenders from sources of that country (set \"country\" on a source in sources.json), added to extraCategories of the same name, e.g. Australian wording like 'Department of Defence'. They keep a tender without an EV word, so keep them specific."
   ],
   "evGateTerms": [
     "ev charg",
@@ -180,5 +181,48 @@
       "^(?!.*(pipelines?|highway|gravity\\s*main|insurance|\\bdpr\\b|\\broad\\b|tunnel|national\\s*park|\\bnh\\s*\\d+)).*\\bberth\\s*(construction|repair|dredging)\\b",
       "^(?!.*(pipelines?|highway|gravity\\s*main|insurance|\\bdpr\\b|\\broad\\b|tunnel|national\\s*park|\\bnh\\s*\\d+)).*\\bferry\\s*(service|services|vessel|terminal|boat|operations?|charter|wharf)\\b"
     ]
+  },
+  "countryExtraCategories": {
+    "Australia": {
+      "Battery, BESS & Power Electronics": [
+        "\\bmicro[\\s-]*grids?\\b",
+        "\\b(community|neighbourhood|standalone|stand[\\s-]alone)\\s*(battery|batteries|power\\s*systems?)\\b",
+        "\\bvirtual\\s*power\\s*plants?\\b",
+        "\\bgrid[\\s-]*(scale|forming)\\s*(battery|batteries|storage|inverters?)\\b",
+        "\\bsolar\\s*(and|&|\\+|with)\\s*(battery|batteries|storage)\\b",
+        "\\b(battery|batteries)\\s*(and|&|\\+|with)\\s*solar\\b",
+        "\\bdistributed\\s*energy\\s*resources?\\b",
+        "\\b(zero|low)[\\s-]*emissions?\\s*(buses?|vehicles?|fleet|transport)\\b",
+        "\\b(fleet|bus|depot)\\s*electrification\\b",
+        "\\belectrification\\s*of\\s*(the\\s*)?(fleet|buses|bus\\s*depots?|depots?)\\b",
+        "\\belectric\\s*(buses?|bus\\s*depots?)\\b",
+        "\\bhydrogen\\s*(refuelling|refueling|production|electroly[sz]er|fuel\\s*cell)\\b"
+      ],
+      "Defence": [
+        "\\bdepartment\\s*of\\s*defence\\b",
+        "\\baustralian\\s*(defence|army|navy)\\b",
+        "\\b(adf|raaf|dsto)\\b",
+        "\\broyal\\s*australian\\s*(navy|air\\s*force)\\b",
+        "\\bdefence\\s*(estate|housing|industry|science|force)\\b",
+        "\\bsubmarines?\\b",
+        "\\bnaval\\s*shipbuilding\\b",
+        "\\bguided\\s*weapons?\\b"
+      ],
+      "Marine": [
+        "^(?!.*(pipelines?|highway|gravity\\s*main|insurance|\\bdpr\\b|\\broad\\b|tunnel|national\\s*park|\\bnh\\s*\\d+)).*\\bport\\s*(authority|corporation)\\b",
+        "^(?!.*(pipelines?|highway|gravity\\s*main|insurance|\\bdpr\\b|\\broad\\b|tunnel|national\\s*park|\\bnh\\s*\\d+)).*\\bports?\\s*(of\\s*(melbourne|brisbane|fremantle|hastings|portland|geelong|newcastle|adelaide|darwin|hobart|botany|townsville|gladstone)|victoria)\\b",
+        "^(?!.*(pipelines?|highway|gravity\\s*main|insurance|\\bdpr\\b|\\broad\\b|tunnel|national\\s*park|\\bnh\\s*\\d+)).*\\bmaritime\\s*(safety|services|infrastructure)\\b",
+        "^(?!.*(pipelines?|highway|gravity\\s*main|insurance|\\bdpr\\b|\\broad\\b|tunnel|national\\s*park|\\bnh\\s*\\d+)).*\\b(wharf|wharves|pontoons?|marinas?|boat\\s*ramps?|boat\\s*harbou?rs?)\\b",
+        "^(?!.*(pipelines?|highway|gravity\\s*main|insurance|\\bdpr\\b|\\broad\\b|tunnel|national\\s*park|\\bnh\\s*\\d+)).*\\b(sea[\\s-]*walls?|breakwaters?|revetments?)\\b",
+        "^(?!.*(pipelines?|highway|gravity\\s*main|insurance|\\bdpr\\b|\\broad\\b|tunnel|national\\s*park|\\bnh\\s*\\d+)).*\\b(vessels?|barges?)\\s*(repair|maintenance|charter|hire|refit|replacement|construction|dry[\\s-]*dock)\\b"
+      ],
+      "Traffic Management & ITS": [
+        "\\b(smart|managed)\\s*motorways?\\b",
+        "\\b(speed|road\\s*safety|red[\\s-]*light)\\s*cameras?\\b",
+        "\\btolling\\s*(system|services?|back[\\s-]*office)\\b",
+        "\\bvariable\\s*speed\\s*limits?\\b",
+        "\\bintelligent\\s*transport\\s*systems?\\b"
+      ]
+    }
   }
 }

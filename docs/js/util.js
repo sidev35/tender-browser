@@ -42,6 +42,7 @@ const PORTAL_HOME = {
   'TenderDetail': 'https://www.tenderdetail.com/',
   'Buying for Victoria': 'https://www.tenders.vic.gov.au/',
   'Tasmania Tenders': 'https://www.tenders.tas.gov.au/',
+  'Tenders ACT': 'https://www.tenders.act.gov.au/',
 };
 export const portalHome = (name) => PORTAL_HOME[name] || null;
 

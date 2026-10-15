@@ -212,7 +212,8 @@
     "enabled": true,
     "country": "Australia",
     "location": "Victoria, Australia",
-    "maxPages": 5,
+    "extraUrls": ["https://www.tenders.vic.gov.au/tender/search?tenderState=ADVANCE_NOTICE"],
+        "maxPages": 5,
     "notes": "Free/official Victorian Government portal. Checked 2026-10-14: robots.txt disallows only /tender/view, /contract/view, /secure/ and similar, so the search listing is allowed and the detail pages are linked for visitors but never fetched. The list is plain server-rendered HTML (25 rows a page, ?page=N), no login or captcha. Rows give code, title, agency and closing date but no city, so cards show the state."
   },
   {
@@ -223,7 +224,8 @@
     "enabled": true,
     "country": "Australia",
     "location": "Tasmania, Australia",
-    "notes": "Free/official Tasmanian Government portal. Checked 2026-10-14: robots.txt allows /OpenForBids/ (and disallows /Tender/ and /AwardedContract/); the list is one server-rendered HTML page with the closing date above each tender. No city on the list, so cards show the state."
+    "extraUrls": ["https://www.tenders.tas.gov.au/FutureOpportunity/Index"],
+        "notes": "Free/official Tasmanian Government portal. Checked 2026-10-14: robots.txt allows /OpenForBids/ (and disallows /Tender/ and /AwardedContract/); the list is one server-rendered HTML page with the closing date above each tender. No city on the list, so cards show the state."
   },
   {
     "name": "AusTender (tenders.gov.au)",
@@ -236,11 +238,11 @@
   {
     "name": "NSW eTendering (tenders.nsw.gov.au)",
     "url": null,
-    "type": "unsupported",
+    "type": "blocked_by_robots_txt",
     "enabled": false,
     "country": "Australia",
-    "notes": "NSW. Checked 2026-10-14: robots.txt only disallows advancedsearch, but the public pages do not list tenders in plain HTML (they need a search or the buy.nsw API key). Not set up yet."
-  },
+    "notes": "NSW. Checked 2026-10-15: tenders are listed on buy.nsw.gov.au, whose robots.txt says 'Disallow: /search', and the old tenders.nsw.gov.au pages show no tender list in plain HTML. Must not be scraped. The buy.nsw API needs a registered key, a possible later option."
+    },
   {
     "name": "WA Tenders (tenders.wa.gov.au)",
     "url": null,
@@ -248,5 +250,57 @@
     "enabled": false,
     "country": "Australia",
     "notes": "Western Australia. Checked 2026-10-14: robots.txt is 'Disallow: /' apart from the index page, so it must not be scraped."
+  },
+  {
+    "name": "Tenders ACT (tenders.act.gov.au)",
+    "url": "https://www.tenders.act.gov.au/tender/search?preset=open",
+    "searchUrl": "https://www.tenders.act.gov.au/tender/search?preset=open",
+    "type": "act_tenders_list",
+    "enabled": true,
+    "country": "Australia",
+    "location": "Australian Capital Territory, Australia",
+    "extraUrls": ["https://www.tenders.act.gov.au/tender/search?tenderState=ADVANCE_NOTICE"],
+        "maxPages": 5,
+    "notes": "Free/official ACT Government portal, the same platform as Buying for Victoria (same page layout, so it reuses that parser). Checked 2026-10-15: robots.txt disallows only /tender/view, /contract/view, /secure/ and similar, so the open-tenders list is allowed and the detail pages are linked but never fetched. 25 rows a page, no captcha, no login. No city on the list, so cards show the territory."
+  },
+  {
+    "name": "SA Tenders and Contracts (tenders.sa.gov.au)",
+    "url": null,
+    "type": "unsupported",
+    "enabled": false,
+    "country": "Australia",
+    "notes": "South Australia. Checked 2026-10-15: same platform as Victoria, but its pages are protected by Cloudflare, which blocks automated browsers ('Sorry, you have been blocked'). Not worked around: this project does not try to get past bot protection."
+  },
+  {
+    "name": "QTenders (qtenders.epw.qld.gov.au)",
+    "url": null,
+    "type": "unsupported",
+    "enabled": false,
+    "country": "Australia",
+    "notes": "Queensland. Checked 2026-10-15: a single-page app that answers 403 Forbidden from its Azure application gateway to automated access. Not worked around."
+  },
+  {
+    "name": "NT Tenders (tenders.nt.gov.au)",
+    "url": null,
+    "type": "unsupported",
+    "enabled": false,
+    "country": "Australia",
+    "notes": "Northern Territory. Checked 2026-10-15: could not connect to tenders.nt.gov.au from here at all. Worth trying again later."
+  },
+  {
+    "name": "Tenderlink (tenderlink.com)",
+    "url": null,
+    "type": "unsupported",
+    "enabled": false,
+    "country": "Australia",
+    "notes": "Used by many councils. Checked 2026-10-15: protected by Incapsula bot protection, which blocks automated access. Not worked around."
+  },
+  {
+    "name": "LocalBuy (localbuy.net.au)",
+    "url": null,
+    "type": "unsupported",
+    "enabled": false,
+    "country": "Australia",
+    "notes": "Queensland councils. Checked 2026-10-15: 'Access Denied' (403) to automated access. Not worked around."
   }
 ]

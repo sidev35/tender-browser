@@ -70,18 +70,69 @@ def load_categories(
     return [t.lower() for t in gate], cats, fallback, extra
 
 
+def load_country_categories(path: str | None = None) -> dict[str, dict[str, list[str]]]:
+    """
+    Reads "countryExtraCategories" from config/categories.json (optional):
+    {country: {category: [phrases]}}. Tenders from a source whose "country"
+    is listed there also match these phrases, on top of "extraCategories",
+    so each country can use its own wording ("Department of Defence",
+    "microgrid") without loosening the lists for every other country. A
+    category name already in "extraCategories" adds to it, so the dashboard
+    shows both under the same pill.
+    """
+    path = path or config.CATEGORIES_PATH
+    try:
+        with open(path, encoding="utf-8-sig") as f:
+            doc = json.load(f)
+    except (OSError, json.JSONDecodeError):
+        return {}  # load_categories reports a bad or missing file
+    section = doc.get("countryExtraCategories", {})
+    problems = []
+    if not isinstance(section, dict):
+        problems.append('"countryExtraCategories" must map each country to {category: [phrases]}')
+        section = {}
+    for country, cats in section.items():
+        if not isinstance(cats, dict):
+            problems.append(f'country "{country}" must map each category name to a list of phrases')
+            continue
+        for name, phrases in cats.items():
+            if not isinstance(phrases, list) or not phrases:
+                problems.append(f'{country} / "{name}" needs a non-empty list of phrases')
+                continue
+            for ph in phrases:
+                try:
+                    re.compile(ph)
+                except (re.error, TypeError) as e:
+                    problems.append(f"{country} / {name}: phrase {ph!r} is not a valid pattern ({e})")
+    if problems:
+        raise CategoriesError(f"{path} has problems:\n  - " + "\n  - ".join(problems))
+    return section
+
+
 # The first check: a title must contain at least one of these (plain text,
 # not patterns) to count as an EV-charging tender at all. It's then tagged
 # with every category whose phrases (regular expressions) it matches.
 # Loaded once, when the package is imported.
 GENERIC_GATE_TERMS, CATEGORY_KEYWORDS, FALLBACK_EV_CATEGORY, EXTRA_CATEGORIES = load_categories()
+COUNTRY_EXTRA_CATEGORIES = load_country_categories()
+
+
+def _extra_for(country: str | None) -> dict[str, list[str]]:
+    """"extraCategories" plus that country's own phrases (see load_country_categories)."""
+    own = COUNTRY_EXTRA_CATEGORIES.get(country or "")
+    if not own:
+        return EXTRA_CATEGORIES
+    merged = {name: list(phrases) for name, phrases in EXTRA_CATEGORIES.items()}
+    for name, phrases in own.items():
+        merged.setdefault(name, []).extend(phrases)
+    return merged
 
 
 def _matching(categories: dict[str, list[str]], title_l: str) -> list[str]:
     return [c for c, keywords in categories.items() if any(re.search(kw, title_l) for kw in keywords)]
 
 
-def matches_categories(title: str) -> list[str]:
+def matches_categories(title: str, country: str | None = None) -> list[str]:
     # Collapse any run of whitespace (double spaces, tabs, newlines) to a
     # single space before matching. Without this, a keyword like "ev charg"
     # silently fails to match text like "installation of EV  Charging
@@ -92,15 +143,16 @@ def matches_categories(title: str) -> list[str]:
     # (SHOW_ALL_TENDERS is off by default). Not portal-specific — any
     # source's markup could produce the same irregular spacing.
     title_l = " ".join(title.lower().split())
+    extra = _extra_for(country)
     if not any(term in title_l for term in GENERIC_GATE_TERMS):
         # Not EV charging: it can still be kept by an "extraCategories"
         # category (batteries, BESS, power electronics...), whose own
         # phrases admit it. Those never fall back to the EV catch-all.
-        return _matching(EXTRA_CATEGORIES, title_l)
+        return _matching(extra, title_l)
     matched = _matching(CATEGORY_KEYWORDS, title_l)
     # Passed the EV gate but no specific category's keywords: still a real
     # EV-charging tender, so keep it under a catch-all instead of dropping
     # it. Confirmed 2026-09-23 on TenderDetail: 31 of 50 "charging station"
     # results (e.g. "Electrical Infrastructure For Intermediate Charging
     # Station At Tuni Bus Station") matched the gate but no category.
-    return matched or _matching(EXTRA_CATEGORIES, title_l) or [FALLBACK_EV_CATEGORY]
+    return matched or _matching(extra, title_l) or [FALLBACK_EV_CATEGORY]

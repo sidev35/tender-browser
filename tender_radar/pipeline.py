@@ -106,7 +106,7 @@ def scrape_source(
                 saved["searchText"] = search_text(source, row)
             duplicates.add(saved)
             continue  # already tracked from a previous run
-        cats = matches_categories(title)
+        cats = matches_categories(title, source.get("country"))
         if not cats:
             if not config.SHOW_ALL_TENDERS:
                 continue
