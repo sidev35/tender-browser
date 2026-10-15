@@ -11,10 +11,146 @@ export function initEffects() {
   setupScrollProgress();
   if (calm) return;
   setupRipples();
+  setupSparkBurst();
+  setupParticles();
+  setupTitleScramble();
+  setupTypingPlaceholder();
+  setupScrollParallax();
   if (!hasMouse) return;
   setupCursorGlow();
+  setupCursorDot();
   setupSpotlightAndTilt();
   setupMagnetic();
+}
+
+
+// A small accent dot that follows the pointer. The native cursor stays: this
+// is only decoration.
+function setupCursorDot() {
+  const dot = document.createElement('div');
+  dot.className = 'cursor-dot';
+  document.body.appendChild(dot);
+  document.addEventListener('pointermove', (e) => {
+    if (e.pointerType !== 'mouse') return;
+    dot.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`;
+    dot.classList.add('on');
+    document.documentElement.classList.add('no-cursor');
+  }, { passive: true });
+  document.addEventListener('pointerleave', () => dot.classList.remove('on'));
+}
+
+// A drifting network of accent-coloured nodes behind the page. Nodes link up
+// when close and are nudged away from the pointer. Pauses with the tab.
+function setupParticles() {
+  const cv = document.createElement('canvas');
+  cv.className = 'fx-canvas';
+  document.body.prepend(cv);
+  const ctx = cv.getContext('2d');
+  let w = 0, h = 0, dpr = 1, accent = '#38bdf8', parts = [];
+  const mouse = { x: -999, y: -999 };
+  const readAccent = () => { accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || accent; };
+  const resize = () => {
+    dpr = Math.min(2, window.devicePixelRatio || 1);
+    w = window.innerWidth; h = window.innerHeight;
+    cv.width = w * dpr; cv.height = h * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const n = Math.round(Math.min(70, (w * h) / 22000));
+    parts = Array.from({ length: n }, () => ({
+      x: Math.random() * w, y: Math.random() * h,
+      vx: (Math.random() - 0.5) * 0.28, vy: (Math.random() - 0.5) * 0.28, r: 1 + Math.random() * 1.6,
+    }));
+  };
+  window.addEventListener('resize', resize);
+  window.addEventListener('pointermove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; }, { passive: true });
+  new MutationObserver(readAccent).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+  const LINK = 130;
+  const frame = () => {
+    if (document.hidden) return;
+    ctx.clearRect(0, 0, w, h);
+    ctx.fillStyle = accent; ctx.strokeStyle = accent;
+    for (const p of parts) {
+      const dx = p.x - mouse.x, dy = p.y - mouse.y, d2 = dx * dx + dy * dy;
+      if (d2 < 150 * 150 && d2 > 1) { const f = (1 - Math.sqrt(d2) / 150) * 0.9; p.vx += (dx / Math.sqrt(d2)) * f * 0.08; p.vy += (dy / Math.sqrt(d2)) * f * 0.08; }
+      p.vx *= 0.99; p.vy *= 0.99;
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < -10) p.x = w + 10; else if (p.x > w + 10) p.x = -10;
+      if (p.y < -10) p.y = h + 10; else if (p.y > h + 10) p.y = -10;
+    }
+    for (let i = 0; i < parts.length; i++) {
+      const a = parts[i];
+      for (let j = i + 1; j < parts.length; j++) {
+        const b = parts[j], dx = a.x - b.x, dy = a.y - b.y, d2 = dx * dx + dy * dy;
+        if (d2 < LINK * LINK) { ctx.globalAlpha = (1 - Math.sqrt(d2) / LINK) * 0.22; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke(); }
+      }
+      ctx.globalAlpha = 0.5; ctx.beginPath(); ctx.arc(a.x, a.y, a.r, 0, Math.PI * 2); ctx.fill();
+    }
+    requestAnimationFrame(frame);
+  };
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) requestAnimationFrame(frame); });
+  readAccent(); resize(); requestAnimationFrame(frame);
+}
+
+// A burst of little sparks from the click point on pills and header buttons.
+function setupSparkBurst() {
+  document.addEventListener('pointerdown', (e) => {
+    const el = e.target.closest && e.target.closest('.pill, .icon-btn, .stat.clickable, .to-top');
+    if (!el) return;
+    for (let i = 0; i < 9; i++) {
+      const s = document.createElement('span');
+      const ang = (Math.PI * 2 * i) / 9 + Math.random() * 0.5, dist = 26 + Math.random() * 28;
+      s.className = 'spark';
+      s.style.cssText = `left:${e.clientX}px;top:${e.clientY}px;--dx:${(Math.cos(ang) * dist).toFixed(1)}px;--dy:${(Math.sin(ang) * dist).toFixed(1)}px`;
+      document.body.appendChild(s);
+      s.addEventListener('animationend', () => s.remove());
+    }
+  });
+}
+
+// The page title decodes from random letters once on load.
+function setupTitleScramble() {
+  const h = document.querySelector('.brand h1');
+  if (!h) return;
+  const text = h.textContent, glyphs = 'ABCDEFGHJKLMNPQRSTUVWXYZ0123456789';
+  h.style.minWidth = h.offsetWidth + 'px';
+  let frame = 0;
+  const tick = () => {
+    frame++;
+    h.textContent = [...text].map((c, i) => (c === ' ' || i < frame / 2 ? c : glyphs[(Math.random() * glyphs.length) | 0])).join('');
+    if (frame / 2 < text.length) setTimeout(tick, 35); else h.textContent = text;
+  };
+  setTimeout(tick, 350);
+}
+
+// The search box types out example searches while it is idle and empty.
+function setupTypingPlaceholder() {
+  const box = document.getElementById('searchBox');
+  if (!box) return;
+  const base = box.placeholder;
+  const phrases = ['EV charger tender…', 'Battery energy storage…', 'Power electronics…', 'Charging station RFP…', base];
+  let p = 0, i = 0, dir = 1, timer = 0;
+  const idle = () => document.activeElement !== box && !box.value;
+  const step = () => {
+    if (!idle()) { box.placeholder = base; timer = setTimeout(step, 1500); return; }
+    const full = phrases[p];
+    i += dir;
+    box.placeholder = full.slice(0, i) + (i < full.length || dir < 0 ? '▍' : '');
+    let delay = dir > 0 ? 70 : 35;
+    if (dir > 0 && i >= full.length) { dir = -1; delay = 1600; }
+    else if (dir < 0 && i <= 0) { dir = 1; p = (p + 1) % phrases.length; delay = 350; }
+    timer = setTimeout(step, delay);
+  };
+  box.addEventListener('blur', () => { clearTimeout(timer); timer = setTimeout(step, 800); });
+  timer = setTimeout(step, 2500);
+}
+
+// Gentle depth on scroll: the header drifts and fades a touch, the aurora lags.
+function setupScrollParallax() {
+  const root = document.documentElement;
+  let raf = 0;
+  window.addEventListener('scroll', () => {
+    if (raf) return;
+    raf = requestAnimationFrame(() => { root.style.setProperty('--scroll', String(window.scrollY)); raf = 0; });
+  }, { passive: true });
 }
 
 function setupScrollProgress() {
