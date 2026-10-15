@@ -267,3 +267,292 @@ footer.note {
 .icon-btn.active { border-color: var(--accent); color: var(--accent); }
 .icon-btn.spinning svg { animation: icon-spin .8s linear infinite; }
 @keyframes icon-spin { to { transform: rotate(360deg); } }
+
+/* ===========================================================================
+   Polish: ambient background, depth and motion.
+   Everything below moves things with transform / opacity / shadow only, so no
+   animation or hover ever changes the size or position of anything else on the
+   page. It all switches off for visitors who ask for reduced motion (last rule).
+   =========================================================================== */
+:root {
+  --ease: cubic-bezier(.2, .8, .2, 1);
+  --glow: color-mix(in srgb, var(--accent) 24%, transparent);
+  --shadow: 0 1px 2px rgba(16, 25, 21, .05), 0 8px 24px rgba(16, 25, 21, .06);
+  --shadow-up: 0 2px 4px rgba(16, 25, 21, .06), 0 16px 36px color-mix(in srgb, var(--accent) 16%, rgba(16, 25, 21, .1));
+}
+:root:not([data-theme="light"]) {
+  --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 10px 28px rgba(0, 0, 0, .28);
+  --shadow-up: 0 2px 4px rgba(0, 0, 0, .35), 0 18px 40px color-mix(in srgb, var(--accent) 14%, rgba(0, 0, 0, .4));
+}
+
+/* Ambient background: two soft accent glows behind the page */
+body {
+  background:
+    radial-gradient(900px 440px at 6% -10%, color-mix(in srgb, var(--accent) 15%, transparent), transparent 70%),
+    radial-gradient(760px 420px at 104% 2%, color-mix(in srgb, var(--accent) 9%, transparent), transparent 70%),
+    var(--bg);
+  background-attachment: fixed;
+}
+
+/* Smooth theme switch */
+body, .stat, .card, .pill, .sortsel, .icon-btn, .controls input[type="search"], .vf-slider, .toast, .due-badge, .cat-badge {
+  transition: background-color .3s var(--ease), border-color .25s var(--ease), color .25s var(--ease),
+              box-shadow .25s var(--ease), transform .25s var(--ease), opacity .25s var(--ease);
+}
+
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes pulse-dot { 0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--danger) 55%, transparent); } 50% { box-shadow: 0 0 0 6px transparent; } }
+@keyframes ring-out { 0% { opacity: .55; transform: scale(.92); } 70%, 100% { opacity: 0; transform: scale(1.3); } }
+@keyframes bolt-beat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.14); } }
+@keyframes shimmer { to { background-position: -200% 0; } }
+@keyframes badge-pulse { 0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--danger) 35%, transparent); } 50% { box-shadow: 0 0 0 5px transparent; } }
+
+/* Header */
+.brand-mark { position: relative; box-shadow: 0 6px 18px var(--glow); }
+.brand-mark::after {
+  content: ''; position: absolute; inset: -4px; border-radius: 14px;
+  border: 1.5px solid var(--accent); opacity: 0; animation: ring-out 3s var(--ease) infinite;
+}
+.brand-mark svg { animation: bolt-beat 3s ease-in-out infinite; }
+.brand h1 {
+  background: linear-gradient(90deg, var(--text) 35%, var(--accent));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.icon-btn { box-shadow: var(--shadow); }
+.icon-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 16px var(--glow); }
+.icon-btn:active { transform: scale(.94); }
+.icon-btn svg { transition: transform .45s var(--ease); }
+#themeToggle:hover svg { transform: rotate(60deg); }
+#notifyToggle:hover svg { transform: rotate(14deg); }
+
+/* Stat tiles */
+.stat { position: relative; box-shadow: var(--shadow); animation: rise .55s var(--ease) backwards; }
+.stat:nth-child(2) { animation-delay: .06s; }
+.stat:nth-child(3) { animation-delay: .12s; }
+.stat:nth-child(4) { animation-delay: .18s; }
+.stat::before {
+  content: ''; position: absolute; left: 16px; right: 16px; top: -1px; height: 2px; border-radius: 2px;
+  background: linear-gradient(90deg, var(--accent), transparent);
+  transform: scaleX(.22); transform-origin: left; transition: transform .5s var(--ease);
+}
+.stat:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--accent) 45%, var(--border)); box-shadow: var(--shadow-up); }
+.stat:hover::before { transform: scaleX(1); }
+.stat.urgent::before { background: linear-gradient(90deg, var(--danger), transparent); }
+.stat.urgent .num::after {
+  content: ''; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--danger);
+  margin-left: 9px; vertical-align: middle; animation: pulse-dot 1.8s infinite;
+}
+.stat .num { font-variant-numeric: tabular-nums; }
+
+/* Controls */
+.controls input[type="search"], .sortsel { box-shadow: var(--shadow); }
+.controls input[type="search"]:hover, .sortsel:hover { border-color: color-mix(in srgb, var(--accent) 40%, var(--border)); }
+.controls input[type="search"]:focus, .sortsel:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 4px var(--glow); }
+
+/* Pills */
+.pill:hover { transform: translateY(-2px); border-color: color-mix(in srgb, var(--accent) 50%, var(--border)); color: var(--text); box-shadow: 0 6px 14px var(--glow); }
+.pill:active { transform: scale(.95); }
+.pill.active {
+  background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 24%, var(--surface)), var(--accent-dim));
+  box-shadow: 0 5px 16px var(--glow); font-weight: 600;
+}
+
+/* Value slider: custom track (filled up to the thumb, set from js/main.js) and thumb */
+.value-row:not([hidden]) { animation: rise .4s var(--ease) backwards; }
+.vf-slider { box-shadow: var(--shadow); }
+.vf-slider:hover { border-color: color-mix(in srgb, var(--accent) 45%, var(--border)); }
+.vf-slider input[type="range"] { -webkit-appearance: none; appearance: none; height: 22px; background: transparent; }
+.vf-slider input[type="range"]::-webkit-slider-runnable-track {
+  height: 6px; border-radius: 6px;
+  background: linear-gradient(90deg, var(--accent) var(--p, 0%), color-mix(in srgb, var(--text-dim) 26%, transparent) var(--p, 0%));
+}
+.vf-slider input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; appearance: none; width: 18px; height: 18px; margin-top: -6px; border-radius: 50%;
+  background: #fff; border: 3px solid var(--accent); box-shadow: 0 2px 10px var(--glow); transition: transform .15s var(--ease);
+}
+.vf-slider input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.18); }
+.vf-slider input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.28); }
+.vf-slider input[type="range"]::-moz-range-track { height: 6px; border-radius: 6px; background: color-mix(in srgb, var(--text-dim) 26%, transparent); }
+.vf-slider input[type="range"]::-moz-range-progress { height: 6px; border-radius: 6px; background: var(--accent); }
+.vf-slider input[type="range"]::-moz-range-thumb {
+  width: 12px; height: 12px; border-radius: 50%; background: #fff; border: 3px solid var(--accent); box-shadow: 0 2px 10px var(--glow);
+}
+.vf-slider input[type="range"]:focus-visible { outline: none; }
+.vf-slider input[type="range"]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 5px var(--glow); }
+
+/* Group headings */
+.group-head h2::before {
+  content: ''; display: inline-block; width: 4px; height: 15px; margin-right: 9px; vertical-align: -2px;
+  border-radius: 2px; background: linear-gradient(180deg, var(--accent), var(--accent-dim));
+}
+.group-head .count { background: var(--surface-2); border: 1px solid var(--border); border-radius: 20px; padding: 2px 10px; }
+
+/* Cards: rise in (when the list was just changed), lift on hover, accent bar sweeps in */
+.card { box-shadow: var(--shadow); }
+#groups.enter .card { animation: rise .5s var(--ease) backwards; animation-delay: calc(var(--i, 0) * 32ms); }
+.card::after {
+  content: ''; position: absolute; left: -1px; top: 12px; bottom: 12px; width: 3px; border-radius: 3px;
+  background: var(--accent); transform: scaleY(0); transition: transform .3s var(--ease); pointer-events: none;
+}
+.card.urgent::after, .card.soon::after { display: none; }
+.card.clickable { transition: background-color .3s var(--ease), border-color .25s var(--ease), box-shadow .3s var(--ease), transform .3s var(--ease); }
+.card.clickable:hover { transform: translateY(-3px); box-shadow: var(--shadow-up); }
+.card.clickable:hover::after { transform: scaleY(1); }
+.card.clickable:active { transform: translateY(-1px) scale(.995); }
+.card.isnew::before {
+  background: linear-gradient(110deg, var(--accent) 30%, color-mix(in srgb, var(--accent) 45%, #fff) 50%, var(--accent) 70%);
+  background-size: 200% 100%; animation: shimmer 2.6s linear infinite;
+}
+.card.urgent .due-badge { animation: badge-pulse 2s infinite; }
+.cat-badge { transition: transform .25s var(--ease); }
+.card:hover .cat-badge { transform: translateX(2px); }
+.card-action-btn { transition: background-color .25s var(--ease), color .25s var(--ease), border-color .25s var(--ease), box-shadow .25s var(--ease), transform .2s var(--ease); }
+.card:hover .card-action-btn, .card-action-btn:hover { background: var(--accent); color: var(--bg); box-shadow: 0 6px 16px var(--glow); }
+.card-action-btn:active { transform: scale(.95); }
+
+/* Loading skeleton (replaced by the real list as soon as data arrives) */
+.skeleton { height: 96px; border-radius: 12px; margin-bottom: 10px; border: 1px solid var(--border);
+  background: linear-gradient(100deg, var(--surface) 30%, var(--surface-2) 50%, var(--surface) 70%);
+  background-size: 200% 100%; animation: shimmer 1.4s linear infinite; }
+
+/* Toasts slide in from the right */
+@keyframes toast-in { from { opacity: 0; transform: translateX(28px) scale(.97); } to { opacity: 1; transform: translateX(0) scale(1); } }
+.toast { animation: toast-in .4s var(--ease); }
+
+/* Back to top */
+.to-top {
+  position: fixed; right: 20px; bottom: 22px; z-index: 40; width: 42px; height: 42px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 18px; line-height: 1;
+  background: var(--accent); color: var(--bg); border: 0; box-shadow: 0 8px 22px var(--glow);
+  opacity: 0; transform: translateY(14px) scale(.9); pointer-events: none;
+  transition: opacity .3s var(--ease), transform .3s var(--ease), box-shadow .25s var(--ease);
+}
+.to-top.show { opacity: 1; transform: none; pointer-events: auto; }
+.to-top.show:hover { transform: translateY(-3px); box-shadow: 0 12px 28px var(--glow); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .001ms !important; animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important; scroll-behavior: auto !important;
+  }
+}
+
+/* ===========================================================================
+   More effects: drifting aurora, cursor glow, spotlight + tilt, ripples,
+   scroll progress and reveal, radar empty state, theme-switch reveal.
+   Again transform / opacity / shadow only: nothing here moves the layout.
+   =========================================================================== */
+
+/* Drifting aurora behind everything */
+body::before {
+  content: ''; position: fixed; inset: -25%; z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(34% 30% at 22% 28%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 70%),
+    radial-gradient(30% 34% at 78% 24%, color-mix(in srgb, var(--accent) 10%, transparent), transparent 70%),
+    radial-gradient(36% 30% at 56% 82%, color-mix(in srgb, var(--accent) 9%, transparent), transparent 70%);
+  filter: blur(30px);
+  animation: aurora 26s ease-in-out infinite alternate;
+}
+@keyframes aurora {
+  0%   { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+  50%  { transform: translate3d(3%, 4%, 0) rotate(6deg) scale(1.08); }
+  100% { transform: translate3d(-4%, 2%, 0) rotate(-5deg) scale(1.02); }
+}
+
+/* Soft glow that trails the cursor (moved by js/fx.js) */
+.cursor-glow {
+  position: fixed; left: 0; top: 0; z-index: 0; width: 520px; height: 520px; border-radius: 50%;
+  pointer-events: none; opacity: 0; transition: opacity .5s var(--ease);
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--accent) 13%, transparent), transparent);
+  will-change: transform;
+}
+.cursor-glow.on { opacity: 1; }
+.shell { position: relative; z-index: 1; }
+
+/* Scroll progress bar */
+.scroll-progress {
+  position: fixed; left: 0; top: 0; right: 0; height: 3px; z-index: 120; pointer-events: none;
+  background: linear-gradient(90deg, var(--accent-dim), var(--accent)); transform: scaleX(0); transform-origin: left;
+  box-shadow: 0 0 10px var(--glow);
+}
+
+/* Header drops in */
+header.top { animation: rise .7s var(--ease) backwards; }
+
+/* Spotlight under the cursor on cards and stat tiles; slight tilt on cards */
+.card.clickable:hover, .stat:hover {
+  background-image: radial-gradient(320px circle at var(--mx, 50%) var(--my, 0%), color-mix(in srgb, var(--accent) 11%, transparent), transparent 62%);
+}
+.card.clickable { transform-style: preserve-3d; }
+.card.clickable:hover {
+  transform: translateY(-3px) perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+}
+.card.clickable:hover .card-action-btn { transform: translateZ(0); }
+
+/* Header buttons lean towards the cursor */
+.icon-btn:hover { transform: translate(var(--tx, 0px), calc(var(--ty, 0px) - 2px)); }
+
+/* Ripples */
+.pill, .icon-btn, .card-action-btn, .new-toolbar button, .to-top { position: relative; overflow: hidden; }
+.to-top { position: fixed; }
+.ripple {
+  position: absolute; border-radius: 50%; pointer-events: none;
+  background: color-mix(in srgb, currentColor 35%, transparent); transform: scale(0); opacity: .55;
+  animation: ripple .65s var(--ease) forwards;
+}
+@keyframes ripple { to { transform: scale(1); opacity: 0; } }
+
+/* Cards below the first screen fade up as they scroll into view */
+#groups.enter .card.reveal { animation: none; }
+.card.reveal { opacity: 0; transform: translateY(22px); }
+.card.reveal.in { opacity: 1; transform: none; transition: opacity .55s var(--ease), transform .55s var(--ease); }
+.card.reveal.in.clickable:hover { transform: translateY(-3px) perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); }
+
+/* Urgent cards: the red edge glows when you hover */
+.card.urgent.clickable:hover { box-shadow: var(--shadow-up), -6px 0 18px -6px color-mix(in srgb, var(--danger) 60%, transparent); }
+
+/* Live "last synced" dot */
+#syncTime::before {
+  content: ''; display: inline-block; width: 7px; height: 7px; margin-right: 8px; border-radius: 50%;
+  background: var(--accent); vertical-align: 1px; animation: live-dot 2.2s ease-out infinite;
+}
+@keyframes live-dot { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 60%, transparent); } 100% { box-shadow: 0 0 0 9px transparent; } }
+
+/* Empty state: a radar that sweeps */
+.radar {
+  position: relative; width: 96px; height: 96px; margin: 0 auto 18px; border-radius: 50%;
+  border: 1.5px solid color-mix(in srgb, var(--accent) 55%, transparent);
+  background:
+    radial-gradient(circle, color-mix(in srgb, var(--accent) 80%, transparent) 0 2px, transparent 3px),
+    repeating-radial-gradient(circle, transparent 0 15px, color-mix(in srgb, var(--accent) 30%, transparent) 15px 16px);
+  box-shadow: 0 0 28px var(--glow);
+  overflow: hidden;
+}
+.radar::before {
+  content: ''; position: absolute; inset: 0; border-radius: 50%;
+  background: conic-gradient(from 0deg, transparent 0 292deg, color-mix(in srgb, var(--accent) 55%, transparent) 360deg);
+  animation: radar-sweep 2.8s linear infinite;
+}
+.radar::after {
+  content: ''; position: absolute; left: 64%; top: 30%; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--accent); box-shadow: 0 0 10px var(--accent); animation: blip 2.8s ease-out infinite;
+}
+@keyframes radar-sweep { to { transform: rotate(360deg); } }
+@keyframes blip { 0%, 30% { opacity: 0; transform: scale(.4); } 45% { opacity: 1; transform: scale(1.2); } 100% { opacity: 0; transform: scale(1); } }
+.empty p { margin: 0; }
+
+/* Theme switch: the new theme grows out of the toggle button (js/fx.js drives the clip) */
+::view-transition-old(root), ::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
+::view-transition-old(root) { z-index: 1; }
+::view-transition-new(root) { z-index: 2; }
+
+@media (prefers-reduced-motion: reduce) {
+  body::before, .cursor-glow, .radar::before, .radar::after, #syncTime::before { animation: none !important; }
+  .card.reveal { opacity: 1; transform: none; }
+}
+@media (hover: none), (pointer: coarse) { .cursor-glow { display: none; } }
+
+/* The source-portals list pops out under its tile: lift the hovered tile above the controls and
+   pills below it. (Pills and buttons became positioned for their click ripples, so without this
+   they painted over the list.) */
+.stat:hover, .stat:focus-within { z-index: 30; }

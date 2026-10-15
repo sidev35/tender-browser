@@ -18,6 +18,8 @@
 <link rel="stylesheet" href="css/app.css">
 </head>
 <body>
+<div class="scroll-progress" id="scrollProgress"></div>
+<div class="cursor-glow" id="cursorGlow"></div>
 <div class="shell">
 
   <header class="top">
@@ -81,13 +83,17 @@
     </div>
   </div>
 
-  <div id="groups"></div>
+  <div id="groups" aria-busy="true">
+    <div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div>
+  </div>
 
   <footer class="note">
     Last data sync: <strong id="syncTime"></strong>
   </footer>
 
 </div>
+
+<button class="to-top" id="toTop" type="button" aria-label="Back to top" title="Back to top">&uarr;</button>
 
 <!-- All behaviour lives in js/ (see js/main.js). Modules need the page served over
      http(s): run `python -m http.server` from the repo root, not file://. -->

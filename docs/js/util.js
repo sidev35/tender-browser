@@ -93,6 +93,23 @@ export function fmtINR(n) {
   return n >= 1e7 ? `₹${trim(n / 1e7)} Crore` : `₹${trim(n / 1e5)} Lakh`;
 }
 
+// Counts a number up (or down) to its new value, for the stat tiles. Does nothing
+// when the value is unchanged, so redrawing while typing never re-animates, and
+// jumps straight there for visitors who ask for reduced motion.
+export function countTo(el, to, ms = 650) {
+  const from = Number(el.dataset.v ?? 0);
+  el.dataset.v = String(to);
+  cancelAnimationFrame(el._raf);
+  if (from === to || window.matchMedia('(prefers-reduced-motion: reduce)').matches) { el.textContent = to; return; }
+  const t0 = performance.now();
+  const step = (now) => {
+    const k = Math.min(1, (now - t0) / ms);
+    el.textContent = Math.round(from + (to - from) * (1 - Math.pow(1 - k, 3)));
+    if (k < 1) el._raf = requestAnimationFrame(step);
+  };
+  el._raf = requestAnimationFrame(step);
+}
+
 // New = not marked as read yet, and first found within NEW_WINDOW_DAYS.
 export function isNew(t, seen) {
   if (seen.includes(t.id)) return false;

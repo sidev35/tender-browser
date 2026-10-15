@@ -3,7 +3,15 @@
 // grouped by category.
 import { getSeen } from './alerts.js';
 import { renderCard } from './cards.js';
-import { DUE_SOON_DAYS, daysUntil, escapeHtml, isNew, parseValueINR, portalHome, shortSource } from './util.js';
+import { DUE_SOON_DAYS, countTo, daysUntil, escapeHtml, isNew, parseValueINR, portalHome, shortSource } from './util.js';
+
+// Cards beyond the first screenful fade up as they scroll into view (only when
+// the list was just changed). Without IntersectionObserver they simply show.
+const reveal = 'IntersectionObserver' in window
+  ? new IntersectionObserver((entries) => entries.forEach(en => {
+      if (en.isIntersecting) { en.target.classList.add('in'); reveal.unobserve(en.target); }
+    }), { rootMargin: '0px 0px -8% 0px' })
+  : null;
 
 // The "New" pill: not a real category, but the tenders you haven't seen yet
 // (the same ones the "New since last visit" tile counts and that carry a NEW
@@ -55,14 +63,14 @@ function visibleTenders(state, seen) {
 
 // Stats are computed on the full data set, not just the filtered view.
 function renderStats(state, seen) {
-  document.getElementById('statTotal').textContent = state.data.length;
-  document.getElementById('statUrgent').textContent = state.data.filter(t => {
+  countTo(document.getElementById('statTotal'), state.data.length);
+  countTo(document.getElementById('statUrgent'), state.data.filter(t => {
     const d = daysUntil(t.dueDate); return d !== null && d <= DUE_SOON_DAYS && d >= 0;
-  }).length;
+  }).length);
   // By site, as cards show it: both TenderDetail sources count once.
   const portals = [...new Set(state.data.map(t => shortSource(t.source)))].sort();
   const sourcesEl = document.getElementById('statSources');
-  sourcesEl.textContent = portals.length;
+  countTo(sourcesEl, portals.length);
   // Hovering (or focusing) the tile lists the portals in a small panel; each
   // name opens that portal's official home page in a new tab.
   document.getElementById('statSourcesTip').innerHTML = portals.length
@@ -74,7 +82,7 @@ function renderStats(state, seen) {
       }).join('')
     : '<span>No portals yet</span>';
   const newCount = state.data.filter(t => isNew(t, seen)).length;
-  document.getElementById('statNew').textContent = newCount;
+  countTo(document.getElementById('statNew'), newCount);
 
   const banner = document.getElementById('newBanner');
   if (newCount > 0) {
@@ -113,19 +121,19 @@ function renderValueRow(state) {
 
 function renderEmpty(state, groupsEl) {
   if (state.category === NEW_FILTER && !state.query.trim()) {
-    groupsEl.innerHTML = '<div class="empty">No new tenders since your last visit. When the scraper finds new ones, they show up here with a NEW badge.</div>';
+    groupsEl.innerHTML = '<div class="empty"><div class="radar"></div><p>No new tenders since your last visit. When the scraper finds new ones, they show up here with a NEW badge.</p></div>';
     return;
   }
   groupsEl.innerHTML = state.data.length === 0
     ? (state.lastFetchFailed
-        ? '<div class="empty">Couldn\'t load live tender data — check your connection and try the refresh icon above.</div>'
-        : '<div class="empty">No EV charging tenders currently match your categories. The scraper checks every 3 hours — check back later, or click refresh to check now.</div>')
-    : '<div class="empty">No tenders match this filter right now. Try clearing the search, picking a different category, or changing the value filter.</div>';
+        ? '<div class="empty"><div class="radar"></div><p>Couldn\'t load live tender data — check your connection and try the refresh icon above.</p></div>'
+        : '<div class="empty"><div class="radar"></div><p>No EV charging tenders currently match your categories. The scraper checks every 3 hours — check back later, or click refresh to check now.</p></div>')
+    : '<div class="empty"><div class="radar"></div><p>No tenders match this filter right now. Try clearing the search, picking a different category, or changing the value filter.</p></div>';
 }
 
-// onPickCategory(category) is called when a pill is clicked; onMarkRead() when
+// animate: let the cards rise in (a list change, not typing). onPickCategory(category) is called when a pill is clicked; onMarkRead() when
 // "Mark all as read" is.
-export function render(fullState, { onPickCategory, onMarkRead }) {
+export function render(fullState, { onPickCategory, onMarkRead, animate = false }) {
   // Tiles, pills and cards all show the chosen country only (old records have no country: India).
   const state = { ...fullState, data: fullState.data.filter(t => (t.country || 'India') === fullState.country) };
   const seen = getSeen();
@@ -136,6 +144,9 @@ export function render(fullState, { onPickCategory, onMarkRead }) {
 
   const groupsEl = document.getElementById('groups');
   groupsEl.innerHTML = '';
+  // Cards rise in only when the list was just changed (not on every keystroke).
+  groupsEl.classList.toggle('enter', animate);
+  let cardNo = 0;
   if (items.length === 0) {
     renderEmpty(state, groupsEl);
     return;
@@ -157,7 +168,13 @@ export function render(fullState, { onPickCategory, onMarkRead }) {
     groupEl.innerHTML = `<div class="group-head"><h2>${escapeHtml(cat)}</h2><span class="count">${byCat[cat].length} tender${byCat[cat].length > 1 ? 's' : ''}</span></div>`;
     const grid = document.createElement('div');
     grid.className = 'card-grid';
-    byCat[cat].forEach(t => grid.appendChild(renderCard(t, isNew(t, seen))));
+    byCat[cat].forEach(t => {
+      const card = renderCard(t, isNew(t, seen));
+      card.style.setProperty('--i', Math.min(cardNo, 12)); // stagger the first dozen
+      if (animate && reveal && cardNo >= 12) { card.classList.add('reveal'); reveal.observe(card); }
+      cardNo++;
+      grid.appendChild(card);
+    });
     groupEl.appendChild(grid);
     groupsEl.appendChild(groupEl);
   });

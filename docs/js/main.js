@@ -2,6 +2,7 @@
 // Loaded by index.html as <script type="module">.
 import { checkForAlerts, hasSeenBaseline, setSeen, setupNotifyButton, showToast } from './alerts.js';
 import { fetchLiveData } from './data.js';
+import { initEffects, switchThemeWithReveal } from './fx.js';
 import { NEW_FILTER, render } from './render.js';
 import { VALUE_STOPS, fmtINR, isClosed, loadJSON, saveJSON } from './util.js';
 
@@ -26,10 +27,12 @@ function markAllRead() {
   redraw();
 }
 
-function redraw() {
+// animate: the list was just changed (a pill, the country, the sort), so the cards rise in.
+function redraw(animate = false) {
   render(state, {
-    onPickCategory: (c) => { state.category = c; redraw(); },
+    onPickCategory: (c) => { state.category = c; redraw(true); },
     onMarkRead: markAllRead,
+    animate,
   });
 }
 
@@ -47,7 +50,7 @@ async function refreshData({ manual = false } = {}) {
     state.lastFetchFailed = false;
     checkForAlerts(data);
     state.data = data;
-    redraw();
+    redraw(true);
     if (manual) showToast({ title: 'Synced', body: `Loaded ${data.length} tender(s) from the latest data sync.`, kind: 'new' });
   } catch (e) {
     state.lastFetchFailed = true;
@@ -69,7 +72,7 @@ countrySel.addEventListener('change', e => {
   state.country = e.target.value;
   state.category = 'All'; // a category pill from the other country may not exist here
   saveJSON('tenderRadar_country', state.country);
-  redraw();
+  redraw(true);
 });
 document.getElementById('searchBox').addEventListener('input', e => { state.query = e.target.value; redraw(); });
 // The minimum-value slider sits beside the "Value" label, which shows only while
@@ -78,9 +81,13 @@ const slider = document.getElementById('minValueSlider');
 const sliderLabel = document.getElementById('minValueLabel');
 slider.max = String(VALUE_STOPS.length - 1);
 const showMinValue = () => { sliderLabel.textContent = state.minValue ? fmtINR(state.minValue) + '+' : 'Any value'; };
+// The slider's track is filled up to the thumb (read by the CSS as --p).
+const paintSlider = () => slider.style.setProperty('--p', (Number(slider.value) / Number(slider.max)) * 100 + '%');
+paintSlider();
 slider.addEventListener('input', () => {
   state.minValue = VALUE_STOPS[Number(slider.value)];
   showMinValue();
+  paintSlider();
   redraw();
 });
 document.getElementById('sortSel').addEventListener('change', e => {
@@ -90,32 +97,35 @@ document.getElementById('sortSel').addEventListener('change', e => {
     slider.value = '0';
     showMinValue();
   }
-  redraw();
+  paintSlider();
+  redraw(true);
 });
 document.getElementById('dismissNew').addEventListener('click', markAllRead);
 document.getElementById('updateBtn').addEventListener('click', () => { refreshData({ manual: true }); });
 
 // The "New since last visit" tile opens the New pill: the tenders it counts.
 const newTile = document.getElementById('statNewTile');
-const showNew = () => { state.category = NEW_FILTER; redraw(); };
+const showNew = () => { state.category = NEW_FILTER; redraw(true); };
 newTile.addEventListener('click', showNew);
 newTile.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); showNew(); } });
 
 // The "Matched tenders" tile resets the category filter back to all tenders
 // (there's no "All" pill — this tile doubles as that control).
 const totalTile = document.getElementById('statTotalTile');
-const showAll = () => { state.category = 'All'; redraw(); };
+const showAll = () => { state.category = 'All'; redraw(true); };
 totalTile.addEventListener('click', showAll);
 totalTile.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); showAll(); } });
 
 // Theme: light by default (set on <html> in index.html, and restored from
 // localStorage there before the page draws); the toggle remembers the choice.
-document.getElementById('themeToggle').addEventListener('click', () => {
+document.getElementById('themeToggle').addEventListener('click', (e) => {
   const root = document.documentElement;
   const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-  root.setAttribute('data-theme', next);
-  try { localStorage.setItem('tenderRadar_theme', next); } catch (e) {}
+  switchThemeWithReveal(e.currentTarget, () => root.setAttribute('data-theme', next));
+  try { localStorage.setItem('tenderRadar_theme', next); } catch (err) {}
 });
+
+initEffects();
 
 setupNotifyButton();
 
@@ -130,7 +140,7 @@ setupNotifyButton();
   if (!hasSeenBaseline() && state.data.length > 0) {
     setSeen(state.data.map(t => t.id));
   }
-  redraw();
+  redraw(true);
 })();
 
 // Keep checking in the background: on an interval, and whenever the tab
@@ -139,3 +149,8 @@ setInterval(() => refreshData({ manual: false }), AUTO_REFRESH_MS);
 document.addEventListener('visibilitychange', () => {
   if (document.visibilityState === 'visible') refreshData({ manual: false });
 });
+
+// Back-to-top button: appears once the list has been scrolled a little.
+const toTop = document.getElementById('toTop');
+window.addEventListener('scroll', () => toTop.classList.toggle('show', window.scrollY > 500), { passive: true });
+toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
