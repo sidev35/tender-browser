@@ -3,6 +3,7 @@
 import { checkForAlerts, hasSeenBaseline, setSeen, setupNotifyButton, showToast } from './alerts.js';
 import { fetchLiveData } from './data.js';
 import { initEffects, switchThemeWithReveal } from './fx.js';
+import { initGlobe } from './globe.js';
 import { NEW_FILTER, render } from './render.js';
 import { VALUE_STOPS, fmtINR, isClosed, loadJSON, saveJSON } from './util.js';
 
@@ -47,8 +48,11 @@ async function refreshData({ manual = false } = {}) {
     const data = (await fetchLiveData()).filter(t => !isClosed(t));
     // An empty array is a real, valid result (currently zero matches) —
     // it must still replace stale data, not be treated as "no update".
+    // Nothing new: leave the page exactly as it is (no redraw, so no animation replay).
+    const unchanged = !manual && !state.lastFetchFailed && JSON.stringify(data) === JSON.stringify(state.data);
     state.lastFetchFailed = false;
     checkForAlerts(data);
+    if (unchanged) return;
     state.data = data;
     redraw(true);
     if (manual) showToast({ title: 'Synced', body: `Loaded ${data.length} tender(s) from the latest data sync.`, kind: 'new' });
@@ -126,6 +130,7 @@ document.getElementById('themeToggle').addEventListener('click', (e) => {
 });
 
 initEffects();
+initGlobe();
 
 setupNotifyButton();
 

@@ -16,6 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/app.css">
+<link rel="stylesheet" href="css/geo.css">
 </head>
 <body>
 <div class="scroll-progress" id="scrollProgress"></div>
@@ -59,7 +60,9 @@
   </div>
 
   <div class="controls">
-    <select class="sortsel" id="countrySel" title="Show tenders from this country">
+    <button class="geo-btn" id="geoBtn" type="button" title="Filter by region" aria-label="Filter by region"></button>
+    <div class="geo-chips" id="geoChips"></div>
+    <select class="sortsel" id="countrySel" title="Show tenders from this country" hidden>
       <option value="India">Country: India</option>
       <option value="Australia">Country: Australia</option>
     </select>

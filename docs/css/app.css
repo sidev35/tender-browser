@@ -690,12 +690,6 @@ header.top { opacity: max(.35, calc(1 - var(--scroll, 0) / 900)); }
 .card-action-btn svg, .card-action-btn span { transition: transform .25s var(--ease); }
 .card:hover .card-action-btn svg { transform: translateX(3px); }
 
-/* Pills enter with a stagger */
-#categoryPills .pill { animation: rise .45s var(--ease) backwards; }
-#categoryPills .pill:nth-child(2) { animation-delay: .04s; } #categoryPills .pill:nth-child(3) { animation-delay: .08s; }
-#categoryPills .pill:nth-child(4) { animation-delay: .12s; } #categoryPills .pill:nth-child(5) { animation-delay: .16s; }
-#categoryPills .pill:nth-child(6) { animation-delay: .20s; } #categoryPills .pill:nth-child(n+7) { animation-delay: .24s; }
-
 /* Search box: a glowing underline grows when focused */
 .controls input[type="search"]:focus { animation: focus-pop .35s var(--ease); }
 @keyframes focus-pop { 0% { transform: scale(1); } 50% { transform: scale(1.012); } 100% { transform: scale(1); } }
@@ -724,3 +718,7 @@ html { scrollbar-color: color-mix(in srgb, var(--accent) 55%, transparent) trans
 /* The dot replaces the arrow (class set by js/fx.js once a mouse moves) */
 html.no-cursor, html.no-cursor * { cursor: none !important; }
 .cursor-dot { width: 6px; height: 6px; box-shadow: 0 0 6px var(--glow); }
+
+/* A filter or sort change fades the cards in gently (no rise, no stagger), so it never feels like a reload */
+#groups.enter .card { animation: soft-in .22s ease-out backwards; animation-delay: 0s; }
+@keyframes soft-in { from { opacity: 0; } to { opacity: 1; } }
