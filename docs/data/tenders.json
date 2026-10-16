@@ -3483,5 +3483,22 @@
     "firstSeen": "2026-10-16",
     "searchText": null,
     "searchHint": null
+  },
+  {
+    "id": "AUTO-7283723709",
+    "desc": "Request for Proposal for Operation and Maintenance of Boat club and Development of Resort in Village Kanghatti Distt Mandsaur",
+    "refNo": "208/282/ MPTB /IP/Vyayan/2026",
+    "location": null,
+    "country": "India",
+    "value": null,
+    "dueDate": "2026-11-16",
+    "dueTime": "16:00",
+    "category": "Marine",
+    "source": "Madhya Pradesh e-Tendering",
+    "url": "https://mptenders.gov.in/nicgep/app?page=FrontEndAdvancedSearch&service=page",
+    "linkType": "search",
+    "firstSeen": "2026-10-16",
+    "searchText": null,
+    "searchHint": null
   }
 ]
