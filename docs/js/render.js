@@ -17,11 +17,15 @@ const reveal = 'IntersectionObserver' in window
 // (the same ones the "New since last visit" tile counts and that carry a NEW
 // badge). "Mark all as read" empties it.
 export const NEW_FILTER = '__new__';
+export const DUE_FILTER = '__due__'; // closing within DUE_SOON_DAYS
+
+const isDueSoon = (t) => { const d = daysUntil(t.dueDate); return d !== null && d <= DUE_SOON_DAYS && d >= 0; };
 
 // What the category pill and the search box leave, before the value pills.
 function baseTenders(state, seen) {
   let items = state.data.slice();
   if (state.category === NEW_FILTER) items = items.filter(t => isNew(t, seen));
+  else if (state.category === DUE_FILTER) items = items.filter(isDueSoon);
   else if (state.category !== 'All') items = items.filter(t => t.category === state.category);
   if (state.query.trim()) {
     const q = state.query.toLowerCase();
@@ -64,9 +68,7 @@ function visibleTenders(state, seen) {
 // Stats are computed on the full data set, not just the filtered view.
 function renderStats(state, seen) {
   countTo(document.getElementById('statTotal'), state.data.length);
-  countTo(document.getElementById('statUrgent'), state.data.filter(t => {
-    const d = daysUntil(t.dueDate); return d !== null && d <= DUE_SOON_DAYS && d >= 0;
-  }).length);
+  countTo(document.getElementById('statUrgent'), state.data.filter(isDueSoon).length);
   // By site, as cards show it: both TenderDetail sources count once.
   const portals = [...new Set(state.data.map(t => shortSource(t.source)))].sort();
   const sourcesEl = document.getElementById('statSources');
@@ -100,6 +102,7 @@ function renderPills(state, seen, onPick) {
   const newCount = state.data.filter(t => isNew(t, seen)).length;
   const pills = [
     { key: NEW_FILTER, label: `New (${newCount})`, extraClass: ' pill-new' },
+    { key: DUE_FILTER, label: `Closing soon (${state.data.filter(isDueSoon).length})`, extraClass: ' pill-due' },
     ...[...new Set(state.data.map(t => t.category))].map(c => (
       { key: c, label: `${c} (${state.data.filter(t => t.category === c).length})` })),
   ];
@@ -119,7 +122,18 @@ function renderValueRow(state) {
   document.getElementById('valueRow').hidden = !isValueSort(state);
 }
 
+// Countries that have tender sources; any other country gets the "no tenders yet" page.
+const COVERED = ['India', 'Australia'];
+
 function renderEmpty(state, groupsEl) {
+  if (state.data.length === 0 && !state.lastFetchFailed && !COVERED.includes(state.country)) {
+    groupsEl.innerHTML = `<div class="empty empty-country"><div class="radar"></div><h3>No tenders from ${escapeHtml(state.country)}</h3></div>`;
+    return;
+  }
+  if (state.category === DUE_FILTER && !state.query.trim()) {
+    groupsEl.innerHTML = '<div class="empty"><div class="radar"></div><p>No tenders are closing within the next ' + DUE_SOON_DAYS + ' days.</p></div>';
+    return;
+  }
   if (state.category === NEW_FILTER && !state.query.trim()) {
     groupsEl.innerHTML = '<div class="empty"><div class="radar"></div><p>No new tenders since your last visit. When the scraper finds new ones, they show up here with a NEW badge.</p></div>';
     return;

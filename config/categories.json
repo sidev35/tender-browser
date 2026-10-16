@@ -11,7 +11,7 @@
     "   power electronics...). A title matching one of these phrases is kept under that",
     "   category. Keep these phrases specific: '\\\\b' marks a word boundary, and '(?!...)'",
     "   excludes look-alikes (e.g. 'inverter' but not 'inverter split AC').",
-    "   Traffic tenders (ATMS, traffic signals, ANPR...) are kept the same way. 'traffic' alone is too common (barricades, police stations), so each phrase needs a 'system', 'signal' or similar beside it.",
+    "   Traffic tenders (ATMS, ANPR, traffic management systems, traffic cameras) are kept the same way. Plain traffic-signal or traffic-light installations are NOT wanted, so there is no phrase for them. 'traffic' alone is too common (barricades, police stations), so each phrase needs a 'system', 'camera' or similar beside it.",
     "After editing, run `python -m pytest` to check nothing broke.",
     "5. countryExtraCategories: extra phrases used only for tenders from sources of that country (set \"country\" on a source in sources.json), added to extraCategories of the same name, e.g. Australian wording like 'Department of Defence'. They keep a tender without an EV word, so keep them specific."
   ],
@@ -119,9 +119,8 @@
     ],
     "Traffic Management & ITS": [
       "traffic\\s*(management|monitoring|control|surveillance|enforcement)\\s*systems?",
-      "(automatic|automated|advanced|adaptive|area)\\s*traffic\\s*(management|control|signal)",
+      "(automatic|automated|advanced|adaptive|area)\\s*traffic\\s*(management|control)",
       "intelligent\\s*(traffic|transport)",
-      "^(?!.*(training|iot|workbench|boom\\s*barrier)).*traffic\\s*(signal|light)s?\\b",
       "(nhai|highway|road|expressway|safety|traffic).{0,60}\\batms\\b|\\batms\\b.{0,60}(nhai|highway|road|expressway|safety|traffic)",
       "red[\\s-]*light\\s*(violation|enforcement)",
       "\\brlvd\\b",
@@ -129,8 +128,10 @@
       "number\\s*plate\\s*recognition",
       "(speed|traffic)\\s*(violation|enforcement)|radar\\s*speed",
       "variable\\s*message\\s*sign",
-      "vehicle[\\s-]*actuated",
-      "traffic.{0,20}(command|control)\\s*(and\\s*control\\s*)?(room|cent(re|er))"
+      "traffic.{0,20}(command|control)\\s*(and\\s*control\\s*)?(room|cent(re|er))",
+      "traffic.{0,40}\\b(camera|cctv|video)s?\\b|\\b(camera|cctv|video)s?\\b.{0,40}traffic",
+      "video\\s*(incident\\s*)?detection\\s*systems?|\\bvids\\b",
+      "e[\\s-]*challan"
     ],
     "Defence": [
       "^(?!.*(colony|township|quarters|residential|sewerage|wiring|street\\s*light|distribution\\s*(panel|board)|xlpe|\\blt\\s*line|guest\\s*house)).*\\bdefen[cs]e\\s*(forces?|services?|ministry|equipment|stores|procurement|establishment|research)\\b",

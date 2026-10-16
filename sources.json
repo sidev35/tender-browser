@@ -168,8 +168,9 @@
       "https://www.tenderdetail.com/Indian-tender/traffic-monitoring-system-tenders",
       "https://www.tenderdetail.com/Indian-tender/intelligent-traffic-management-system-tenders",
       "https://www.tenderdetail.com/Indian-tender/automatic-traffic-management-system-tenders",
-      "https://www.tenderdetail.com/Indian-tender/traffic-signal-tenders",
-      "https://www.tenderdetail.com/Indian-tender/atms-tenders"
+      "https://www.tenderdetail.com/Indian-tender/atms-tenders",
+      "https://www.tenderdetail.com/Indian-tender/anpr-tenders",
+      "https://www.tenderdetail.com/Indian-tender/anpr-camera-tenders"
     ],
     "type": "tenderdetail_list",
     "enabled": true,
@@ -209,7 +210,9 @@
       "https://www.nationaltenders.com/site/keyword/energy-management-system",
       "https://www.nationaltenders.com/site/keyword/electrolyser",
       "https://www.nationaltenders.com/site/keyword/traffic-management-system",
-      "https://www.nationaltenders.com/site/keyword/traffic-signal"
+      "https://www.nationaltenders.com/site/keyword/atms",
+      "https://www.nationaltenders.com/site/keyword/anpr",
+      "https://www.nationaltenders.com/site/keyword/anpr-camera"
     ]
   },
   {
@@ -233,7 +236,9 @@
       "https://tender18.com/all-india-tenders/keyword-tenders/energy-management-system-tenders",
       "https://tender18.com/all-india-tenders/keyword-tenders/electrolyser-tenders",
       "https://tender18.com/all-india-tenders/keyword-tenders/traffic-management-system-tenders",
-      "https://tender18.com/all-india-tenders/keyword-tenders/traffic-signal-tenders"
+      "https://tender18.com/all-india-tenders/keyword-tenders/atms-tenders",
+      "https://tender18.com/all-india-tenders/keyword-tenders/anpr-tenders",
+      "https://tender18.com/all-india-tenders/keyword-tenders/traffic-camera-tenders"
     ]
   },
 

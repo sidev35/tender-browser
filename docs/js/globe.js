@@ -2,9 +2,9 @@
 // Pick a region on the globe (or in the list) and it zooms in, showing that
 // region's countries; pick a country and it becomes the active filter chip.
 //
-// Prototype stage: only India and Australia have tender data, so choosing one
-// of them drives the real country select; any other country just shows its
-// chip ("preview") until its data exists. The globe itself loads lazily from a
+// Only India and Australia have tender data today. Choosing any country calls
+// onChange(country): the dashboard then shows that country's tenders, or its
+// "no tenders yet" page when there are none. The globe itself loads lazily from a
 // CDN (d3-geo + world-atlas); if that fails the lists still work.
 
 const D3_GEO = 'https://cdn.jsdelivr.net/npm/d3-geo@3.1.1/+esm';
@@ -12,7 +12,6 @@ const TOPOJSON = 'https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/+esm';
 const WORLD = 'https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-110m.json';
 
 const LIVE = new Set(['India', 'Australia']);
-const GEO_KEY = 'tenderRadar_geo';
 
 // Region -> countries, by the names used in the world-atlas data.
 const REGIONS = {
@@ -38,22 +37,17 @@ const ICON_GLOBE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" s
 const ICON_BACK = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>';
 const ICON_X = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>';
 
-export function initGlobe() {
-  const select = document.getElementById('countrySel');
+// opts.country: the country the dashboard starts on; opts.onChange(country): called when one is picked.
+// Returns { choose(country) } so other parts of the page (the empty state) can switch country too.
+export function initGlobe({ country = 'India', onChange = () => {} } = {}) {
   const btn = document.getElementById('geoBtn');
   const chips = document.getElementById('geoChips');
-  if (!select || !btn || !chips) return;
+  if (!btn || !chips) return null;
 
   btn.innerHTML = ICON_GLOBE;
 
-  // The active filter: { country, region, live }. Starts from the real country select.
-  let active = { country: select.value, region: REGION_OF[select.value] || 'asia', live: true };
-  try {
-    const saved = JSON.parse(localStorage.getItem(GEO_KEY) || 'null');
-    if (saved && saved.country && REGION_OF[saved.country] && (LIVE.has(saved.country) ? saved.country === select.value : true)) {
-      active = { country: saved.country, region: REGION_OF[saved.country], live: LIVE.has(saved.country) };
-    }
-  } catch (e) {}
+  // The active filter: { country, region, live }.
+  let active = { country, region: REGION_OF[country] || 'asia', live: LIVE.has(country) };
 
   function paintChips() {
     const r = REGIONS[active.region];
@@ -61,7 +55,7 @@ export function initGlobe() {
     const chip = document.createElement('span');
     chip.className = 'geo-chip' + (active.live ? '' : ' preview');
     chip.style.setProperty('--rc', r.color);
-    chip.innerHTML = `<i class="geo-dot"></i><span class="geo-chip-region">${r.name}</span><span class="geo-chip-sep">›</span><strong>${label(active.country)}</strong>${active.live ? '' : '<em>preview</em>'}`;
+    chip.innerHTML = `<i class="geo-dot"></i><span class="geo-chip-region">${r.name}</span><span class="geo-chip-sep">›</span><strong>${label(active.country)}</strong>${active.live ? '' : '<em>no tenders yet</em>'}`;
     const x = document.createElement('button');
     x.type = 'button'; x.className = 'geo-chip-x'; x.innerHTML = ICON_X;
     x.title = 'Clear the location filter'; x.setAttribute('aria-label', 'Clear the location filter');
@@ -72,12 +66,8 @@ export function initGlobe() {
 
   function choose(country, silentClose) {
     active = { country, region: REGION_OF[country] || 'asia', live: LIVE.has(country) };
-    try { localStorage.setItem(GEO_KEY, JSON.stringify({ country })); } catch (e) {}
-    if (active.live && select.value !== country) {
-      select.value = country;
-      select.dispatchEvent(new Event('change'));
-    }
     paintChips();
+    onChange(country);
     if (!silentClose) close();
   }
 
@@ -102,7 +92,6 @@ export function initGlobe() {
         <p class="geo-sub">Pick a region, then a country to filter tenders by location.</p>
         <input class="geo-search" type="search" placeholder="Search countries…" hidden>
         <div class="geo-list"></div>
-        <p class="geo-foot"><i class="geo-dot live"></i> Live tender data today: India &amp; Australia. Other countries are a preview of what's coming.</p>
       </div>
     </div>`;
   document.body.appendChild(root);
@@ -402,4 +391,6 @@ export function initGlobe() {
       flyTo,
     };
   }
+
+  return { choose };
 }

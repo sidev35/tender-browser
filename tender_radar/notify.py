@@ -114,33 +114,66 @@ def _format_list(records):
     return "\n\n".join(blocks)
 
 
-def _format_list_html(records):
-    """HTML: one spaced-out block per tender, the title linking to the portal.
-    Scraped text is escaped."""
+def _details_parts(t):
+    """(category, [other details], due text or None) for the HTML card."""
+    source = re.sub(r"\s*\([^)]*\)\s*$", "", t.get("source") or "")
+    rest = [p for p in (source, t.get("location"), t.get("value")) if p]
+    due = None
+    if t.get("dueDate"):
+        due = f"due {t['dueDate']}" + (f" {t['dueTime']}" if t.get("dueTime") else "")
+    return t.get("category") or "Uncategorized", rest, due
+
+
+BORDER = "rgba(128, 128, 128, .35)"  # a translucent grey: visible on a light or a dark mail theme
+
+
+def _format_list_html(records, kind="new"):
+    """HTML: one bordered card per tender (category, the title linking to the
+    portal, then source / state / due / value). No colours are set, so the
+    reader's mail app (light or dark) supplies them. Scraped text is escaped."""
+    # New tenders get a stronger left edge than closing-soon ones.
+    edge = "rgba(128, 128, 128, .85)" if kind == "new" else "rgba(128, 128, 128, .45)"
+
     def title(t):
         text = html.escape(t["desc"].lstrip(" .…"))
         if url := _link(t):
             href = html.escape(url, quote=True)
-            return f'<a href="{href}" style="color: #0b6e45; text-decoration: underline;">{text}</a>'
+            return f'<a href="{href}" style="text-decoration: underline;">{text}</a>'
         return text
 
     def note(t):
         if _link(t) and not _is_direct(t):
             return (
-                '<div style="color: #59695f; font-size: 12px; margin-top: 4px;">'
+                '<div style="font-size: 12px; opacity: .7; margin-top: 6px;">'
                 "Opens the portal's search page — search for this title there.</div>"
             )
         return ""
 
-    return "\n".join(
-        '<div style="margin: 0 0 14px; padding: 10px 12px; border-left: 3px solid #0f9d63; '
-        'background: #f5f8f6;">'
-        f'<div style="font-weight: bold;">{title(t)}</div>'
-        f'<div style="color: #59695f; font-size: 13px; margin-top: 4px;">{html.escape(_details(t))}</div>'
-        f"{note(t)}"
-        "</div>"
-        for t in records
-    )
+    def card(i, t):
+        category, rest, due = _details_parts(t)
+        badge = (
+            f' <span class="tr-new" style="display: inline-block; vertical-align: middle; margin-left: 6px; padding: 0 7px; '
+            f"border: 1px solid {edge}; border-radius: 10px; font-size: 10px; font-weight: 700; letter-spacing: .06em;\">NEW</span>"
+            if kind == "new"
+            else ""
+        )
+        meta = " &middot; ".join(html.escape(p) for p in rest)
+        if due:
+            due_html = f'<strong>{html.escape(due)}</strong>' if kind == "due" else html.escape(due)
+            meta = f"{meta} &middot; {due_html}" if meta else due_html
+        return (
+            f'<div class="tr-card tr-d{min(i + 1, 6)}" style="margin: 0 0 12px; padding: 12px 14px; '
+            f"border: 1px solid {BORDER}; border-left: 3px solid {edge}; border-radius: 10px;\">"
+            '<div style="margin-bottom: 5px;">'
+            f'<span style="display: inline-block; padding: 0 9px; border: 1px solid {BORDER}; border-radius: 10px; '
+            f'font-size: 11px; font-weight: 600;">{html.escape(category)}</span>{badge}</div>'
+            f'<div style="font-weight: 600; font-size: 14.5px; line-height: 1.4;">{title(t)}</div>'
+            f'<div style="font-size: 12.5px; opacity: .7; margin-top: 5px;">{meta}</div>'
+            f"{note(t)}"
+            "</div>"
+        )
+
+    return "\n".join(card(i, t) for i, t in enumerate(records))
 
 
 def _more_text(hidden, dashboard_url):
@@ -150,13 +183,28 @@ def _more_text(hidden, dashboard_url):
 def _more_html(hidden, dashboard_url):
     return (
         '<p style="margin: 0 0 14px;">'
-        f'<a href="{html.escape(dashboard_url, quote=True)}" style="color: #0f9d63; font-weight: bold;">'
+        f'<a href="{html.escape(dashboard_url, quote=True)}" style="font-weight: bold;">'
         f"+ {hidden} more — see all on the dashboard &rarr;</a></p>"
     )
 
 
-def _section_heading_html(text):
-    return f'<h3 style="font-size: 15px; margin: 24px 0 10px;">{html.escape(text)}</h3>'
+def _section_heading_html(text, count=None, kind="new", sub=None):
+    """A plain heading with a small count pill."""
+    pill = (
+        f'<span style="display: inline-block; vertical-align: middle; margin-left: 8px; padding: 0 9px; '
+        f'border: 1px solid {BORDER}; border-radius: 12px; font-size: 12px; font-weight: 600;">{count}</span>'
+        if count is not None
+        else ""
+    )
+    subtext = f'<span style="font-size: 12px; font-weight: 400; opacity: .7; margin-left: 8px;">{html.escape(sub)}</span>' if sub else ""
+    return f'<h3 style="font-size: 16px; margin: 24px 0 12px;">{html.escape(text)}{pill}{subtext}</h3>'
+
+
+def _empty_html(text):
+    return (
+        f'<div style="margin: 0 0 12px; padding: 14px 16px; border: 1px dashed {BORDER}; border-radius: 10px; '
+        f'font-size: 13px; opacity: .75;">{html.escape(text)}</div>'
+    )
 
 
 def _render(new_records, due_soon_records, dashboard_url, due_soon_days):
@@ -203,16 +251,17 @@ def _render(new_records, due_soon_records, dashboard_url, due_soon_days):
         rich = {
             **common,
             "{{NEW_SECTION}}": (
-                _section_heading_html(new_heading) + _format_list_html(new_records)
+                _section_heading_html("New tenders matched", len(new_records), "new")
+                + _format_list_html(new_records, "new")
                 if new_records
-                else f"<p>{no_new}</p>"
+                else _empty_html(no_new)
             ),
             "{{DUE_SOON_SECTION}}": (
-                _section_heading_html(due_heading)
-                + _format_list_html(shown_due)
+                _section_heading_html("Closing soon", total_due, "due", sub=f"within {due_soon_days} days")
+                + _format_list_html(shown_due, "due")
                 + (_more_html(hidden_due, dashboard_url) if hidden_due else "")
                 if due_soon_records
-                else f"<p>{no_due}</p>"
+                else _empty_html(no_due)
             ),
             "{{DASHBOARD_URL}}": html.escape(dashboard_url, quote=True),
         }

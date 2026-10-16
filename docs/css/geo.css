@@ -183,3 +183,10 @@ html.geo-open body { overflow: hidden; }
 :root[data-theme="light"] .geo-tag { color: #0f1b2a; background: rgba(255, 255, 255, .92); box-shadow: 0 6px 18px rgba(20, 70, 120, .22); }
 :root[data-theme="light"] .geo-tag em { color: #15803d; }
 :root[data-theme="light"] .geo-backdrop { background: rgba(190, 215, 235, .55); }
+
+/* Empty page for a country with no tender sources yet */
+.empty-country h3 { margin: 0 0 6px; font-family: "Space Grotesk", inherit; font-size: 20px; letter-spacing: -.01em; }
+
+/* Closing soon pill, like the New pill but in the urgent colour */
+.pill-due { color: var(--danger); border-color: color-mix(in srgb, var(--danger) 35%, var(--border)); font-weight: 600; }
+.pill-due.active { border-color: var(--danger); }

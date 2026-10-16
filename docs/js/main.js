@@ -4,7 +4,7 @@ import { checkForAlerts, hasSeenBaseline, setSeen, setupNotifyButton, showToast 
 import { fetchLiveData } from './data.js';
 import { initEffects, switchThemeWithReveal } from './fx.js';
 import { initGlobe } from './globe.js';
-import { NEW_FILTER, render } from './render.js';
+import { DUE_FILTER, NEW_FILTER, render } from './render.js';
 import { VALUE_STOPS, fmtINR, isClosed, loadJSON, saveJSON } from './util.js';
 
 const AUTO_REFRESH_MS = 10 * 60 * 1000; // re-check for updates every 10 min while the tab is open
@@ -12,9 +12,19 @@ const AUTO_REFRESH_MS = 10 * 60 * 1000; // re-check for updates every 10 min whi
 // No bundled example data — the dashboard is driven entirely by the live
 // data/tenders.json fetch. If that fetch fails, we show an honest empty
 // state rather than stale placeholder tenders pretending to be current.
+// Email links open the dashboard on a view: ?view=new (the New pill) or ?view=closing (Closing soon).
+function startView() {
+  try {
+    const v = new URLSearchParams(window.location.search).get('view');
+    if (v === 'new') return NEW_FILTER;
+    if (v === 'closing') return DUE_FILTER;
+  } catch (e) {}
+  return 'All';
+}
+
 const state = {
   data: [],
-  category: 'All',
+  category: startView(),
   country: loadJSON('tenderRadar_country', 'India'),
   query: '',
   sort: 'due',
@@ -69,15 +79,15 @@ async function refreshData({ manual = false } = {}) {
 
 // --- Controls -----------------------------------------------------------
 
-const countrySel = document.getElementById('countrySel');
-if (![...countrySel.options].some(o => o.value === state.country)) state.country = 'India';
-countrySel.value = state.country;
-countrySel.addEventListener('change', e => {
-  state.country = e.target.value;
+// The country comes from the globe picker (js/globe.js). A country with no tender
+// source just shows an empty page that says so (render.js), never another country's tenders.
+function setCountry(country) {
+  if (country === state.country) return;
+  state.country = country;
   state.category = 'All'; // a category pill from the other country may not exist here
   saveJSON('tenderRadar_country', state.country);
   redraw(true);
-});
+}
 document.getElementById('searchBox').addEventListener('input', e => { state.query = e.target.value; redraw(); });
 // The minimum-value slider sits beside the "Value" label, which shows only while
 // sorting by value. It moves along VALUE_STOPS; leaving the value sorts clears it.
@@ -113,6 +123,12 @@ const showNew = () => { state.category = NEW_FILTER; redraw(true); };
 newTile.addEventListener('click', showNew);
 newTile.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); showNew(); } });
 
+// The "Due within 7 days" tile opens the Closing soon pill.
+const dueTile = document.getElementById('statDueTile');
+const showDue = () => { state.category = DUE_FILTER; redraw(true); };
+dueTile.addEventListener('click', showDue);
+dueTile.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); showDue(); } });
+
 // The "Matched tenders" tile resets the category filter back to all tenders
 // (there's no "All" pill — this tile doubles as that control).
 const totalTile = document.getElementById('statTotalTile');
@@ -130,7 +146,7 @@ document.getElementById('themeToggle').addEventListener('click', (e) => {
 });
 
 initEffects();
-initGlobe();
+initGlobe({ country: state.country, onChange: setCountry });
 
 setupNotifyButton();
 
