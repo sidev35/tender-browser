@@ -697,23 +697,6 @@
     "country": "India"
   },
   {
-    "id": "AUTO-dfb76937ee",
-    "desc": "Construction of Court Complex at Makrana HQ ( LAN, IPBX, VC System, and Inverter Work )",
-    "refNo": "NIT20 2026-27 EE PWD Elec Dn Ajmer",
-    "location": null,
-    "value": null,
-    "dueDate": "2026-10-16",
-    "category": "Battery, BESS & Power Electronics",
-    "source": "Rajasthan e-Tendering",
-    "url": "https://eproc.rajasthan.gov.in/nicgep/app?page=FrontEndAdvancedSearch&service=page",
-    "linkType": "search",
-    "firstSeen": "2026-10-07",
-    "searchText": null,
-    "searchHint": null,
-    "dueTime": "17:00",
-    "country": "India"
-  },
-  {
     "id": "AUTO-3d20f57e84",
     "desc": "Bids Are invited for Tool Kit With Battery Charging Station - Professional Drone Maint Tool Kit , Large Display Panel 4K - Uhd Dispaly , Online Interactive Ups 20 Kva With Battery - Online Double Conversion , Multi Purpose Printer - Laserjet , Thrust...",
     "refNo": null,
@@ -2885,23 +2868,6 @@
     "source": "Buying for Victoria (tenders.vic.gov.au)",
     "url": "https://www.tenders.vic.gov.au/tender/view?id=334138",
     "linkType": "direct",
-    "firstSeen": "2026-10-15",
-    "searchText": null,
-    "searchHint": null
-  },
-  {
-    "id": "AUTO-441d00f046",
-    "desc": "EOI for Design and Development of Camouflage Solution for the Armoured Fighting Vehicles",
-    "refNo": "HVF/CAM/AFV/310826",
-    "location": null,
-    "country": "India",
-    "value": null,
-    "dueDate": "2026-10-16",
-    "dueTime": "18:00",
-    "category": "Defence",
-    "source": "CPPP / etenders.gov.in",
-    "url": "https://etenders.gov.in/eprocure/app?page=FrontEndAdvancedSearch&service=page",
-    "linkType": "search",
     "firstSeen": "2026-10-15",
     "searchText": null,
     "searchHint": null
