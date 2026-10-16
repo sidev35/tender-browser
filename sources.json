@@ -192,18 +192,56 @@
   },
   {
     "name": "NationalTenders",
-    "url": "https://www.nationaltenders.com/site/keyword/electric-vehicle-charging-station",
-    "type": "tenderdetail_list",
+    "url": "https://www.nationaltenders.com/site/keyword/ev-charging",
+    "type": "nationaltenders_list",
     "enabled": false,
-    "notes": ""
+    "notes": "Parser and keyword pages are ready, but this source is OFF on purpose. Checked 2026-10-16: robots.txt allows everything and the listing is public, but its Terms and conditions say users may copy material 'for their personal use as private individuals only' and may not republish or redistribute 'any part of the data ... on another Website' without prior written permission from Nationaltenders.com (info@nationaltenders.in). The dashboard is a public website, so it needs that written permission first. Set enabled to true once it's granted.",
+    "searchUrl": "https://www.nationaltenders.com",
+    "extraUrls": [
+      "https://www.nationaltenders.com/site/keyword/charging-station",
+      "https://www.nationaltenders.com/site/keyword/electric-vehicle-charging-station",
+      "https://www.nationaltenders.com/site/keyword/ev-charger",
+      "https://www.nationaltenders.com/site/keyword/charging-infrastructure",
+      "https://www.nationaltenders.com/site/keyword/battery-energy-storage-system",
+      "https://www.nationaltenders.com/site/keyword/bess",
+      "https://www.nationaltenders.com/site/keyword/inverter",
+      "https://www.nationaltenders.com/site/keyword/battery-charger",
+      "https://www.nationaltenders.com/site/keyword/energy-management-system",
+      "https://www.nationaltenders.com/site/keyword/electrolyser",
+      "https://www.nationaltenders.com/site/keyword/traffic-management-system",
+      "https://www.nationaltenders.com/site/keyword/traffic-signal"
+    ]
   },
   {
     "name": "Tender18",
-    "url": "https://tender18.com/all-india-tenders/keyword-tenders/electrical-vehicle-charging-stations-tenders",
-    "type": "tenderdetail_list",
-    "enabled": false,
-    "notes": ""
+    "url": "https://tender18.com/all-india-tenders/keyword-tenders/ev-charging-tenders",
+    "type": "tender18_list",
+    "enabled": true,
+    "notes": "Aggregator with a free public keyword listing (no login, server-rendered). Checked 2026-10-16: robots.txt is 'Allow: /' and its Terms & Conditions page has no text about scraping or reuse. Each keyword page shows only the 10 newest-listed results (the rest load by script), so this source reads several keyword pages. Many results are old or only loosely related; the category matching drops the unrelated ones and closed tenders are hidden. Links go to Tender18's own tender page.",
+    "searchUrl": "https://tender18.com/all-india-tenders",
+    "extraUrls": [
+      "https://tender18.com/all-india-tenders/keyword-tenders/charging-station-tenders",
+      "https://tender18.com/all-india-tenders/keyword-tenders/electric-vehicle-charging-station-tenders",
+      "https://tender18.com/all-india-tenders/keyword-tenders/ev-charger-tenders",
+      "https://tender18.com/all-india-tenders/keyword-tenders/electric-bus-charging-tenders",
+      "https://tender18.com/all-india-tenders/keyword-tenders/solar-ev-charging-tenders",
+      "https://tender18.com/all-india-tenders/keyword-tenders/charging-infrastructure-tenders",
+      "https://tender18.com/all-india-tenders/keyword-tenders/battery-energy-storage-system-tenders",
+      "https://tender18.com/all-india-tenders/keyword-tenders/bess-tenders",
+      "https://tender18.com/all-india-tenders/keyword-tenders/inverter-tenders",
+      "https://tender18.com/all-india-tenders/keyword-tenders/battery-charger-tenders",
+      "https://tender18.com/all-india-tenders/keyword-tenders/energy-management-system-tenders",
+      "https://tender18.com/all-india-tenders/keyword-tenders/electrolyser-tenders",
+      "https://tender18.com/all-india-tenders/keyword-tenders/traffic-management-system-tenders",
+      "https://tender18.com/all-india-tenders/keyword-tenders/traffic-signal-tenders"
+    ]
   },
+
+
+
+
+
+  
   {
     "name": "Buying for Victoria (tenders.vic.gov.au)",
     "url": "https://www.tenders.vic.gov.au/tender/search?preset=open",

@@ -25,6 +25,8 @@ from .parsers import (
     parse_gepnic_org_tenders,
     parse_gepnic_table,
     parse_tas_tenders,
+    parse_nationaltenders_list,
+    parse_tender18_list,
     parse_tenderdetail_list,
     parse_vic_tenders,
 )
@@ -224,6 +226,32 @@ def fetch_tas_tenders(source: Source, session: BrowserSession) -> list[Row]:
     return rows
 
 
+def _fetch_keyword_pages(source: Source, session: BrowserSession, parse) -> list[Row]:
+    """The source's url plus its "extraUrls": one page load each, a tender listed on several kept once."""
+    rows: list[Row] = []
+    seen: set[str] = set()
+    for i, url in enumerate([source["url"], *source.get("extraUrls", [])]):
+        if i:
+            time.sleep(ORG_PAGE_PAUSE_SECONDS)
+        html = session.get_html(url)
+        for row in parse(html, source["name"], url) if html else []:
+            key = row.get("stableKey") or row["raw_title"]
+            if key not in seen:
+                seen.add(key)
+                rows.append(row)
+    return rows
+
+
+def fetch_tender18_list(source: Source, session: BrowserSession) -> list[Row]:
+    """Tender18 keyword pages show 10 tenders each, so the source lists several keywords as extraUrls."""
+    return _fetch_keyword_pages(source, session, parse_tender18_list)
+
+
+def fetch_nationaltenders_list(source: Source, session: BrowserSession) -> list[Row]:
+    """NationalTenders keyword pages show 10 tenders each, so the source lists several keywords as extraUrls."""
+    return _fetch_keyword_pages(source, session, parse_nationaltenders_list)
+
+
 def fetch_js_rendered_table(source: Source, session: BrowserSession) -> list[Row]:
     """
     For portals that render their tender listing client-side via JavaScript
@@ -365,6 +393,8 @@ TYPE_FETCHERS: dict[str, Callable[[Source, BrowserSession], list[Row]]] = {
     "js_rendered_table": fetch_js_rendered_table,
     "js_interactive_search": fetch_js_interactive_search,
     "tenderdetail_list": fetch_tenderdetail_list,
+    "tender18_list": fetch_tender18_list,
+    "nationaltenders_list": fetch_nationaltenders_list,
     "vic_tenders_list": fetch_vic_tenders,
     "act_tenders_list": fetch_vic_tenders,  # same platform and page layout as Victoria
     "tas_tenders_list": fetch_tas_tenders,
@@ -379,6 +409,8 @@ NON_SCRAPED_TYPES = {"paid_aggregator", "blocked_by_robots_txt", "unsupported"}
 DIRECT_LINK_TYPES = {
     "eesl_wp_list",
     "tenderdetail_list",
+    "tender18_list",
+    "nationaltenders_list",
     "vic_tenders_list",
     "act_tenders_list",
     "tas_tenders_list",

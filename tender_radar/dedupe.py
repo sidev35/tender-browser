@@ -18,13 +18,14 @@ no) are filled in from the copy that's dropped. Between two copies of the
 same kind, the one saved first is kept.
 """
 
+import difflib
 import re
 from collections.abc import Iterable
 
 from .models import Record, Source
 
 # Source types that re-list other portals' tenders; see fetchers.TYPE_FETCHERS.
-AGGREGATOR_TYPES = {"tenderdetail_list"}
+AGGREGATOR_TYPES = {"tenderdetail_list", "tender18_list", "nationaltenders_list"}
 
 # Filled in on the kept copy from the dropped one, when the kept copy lacks them.
 FILLABLE_FIELDS = ("dueDate", "value", "location", "refNo")
@@ -69,6 +70,68 @@ def _fragment(title: str) -> str | None:
     return "".join(words) if len(words) >= MIN_FRAGMENT_WORDS else None
 
 
+# Two titles at least this alike (difflib ratio of the normalised text) count as
+# the same tender once closing date, state and value agree too.
+SIMILAR_TITLE_RATIO = 0.85
+SAME_SITE_TITLE_RATIO = 0.95
+
+# Opening words a site adds to a title ("Tender for X" is the same tender as "X").
+_BOILERPLATE = re.compile(r"^(tender for|bids are invited for|auction for)\s+")
+
+
+# Roman numerals and number words count as the digits they stand for, so "Unit-I"
+# and "unit 1" match, while "depot one" and "depot two" stay different tenders.
+_NUMBER_WORDS = {
+    "i": "1", "ii": "2", "iii": "3", "iv": "4", "v": "5", "vi": "6", "vii": "7", "viii": "8", "ix": "9", "x": "10",
+    "one": "1", "two": "2", "three": "3", "four": "4", "five": "5", "six": "6", "seven": "7", "eight": "8",
+    "nine": "9", "ten": "10", "first": "1", "second": "2", "third": "3",
+}
+
+
+def _reworded_words(title: str) -> list[str]:
+    words = _BOILERPLATE.sub("", normalised_title(title)).split()
+    return [_NUMBER_WORDS.get(w, w) for w in words]
+
+
+def _differ_only_in_wording(words_a: list[str], words_b: list[str]) -> bool:
+    """False when the titles differ in a number or a lone letter (lot 1 / lot 2, site A / site B)."""
+    ops = difflib.SequenceMatcher(None, words_a, words_b).get_opcodes()
+    for tag, i1, i2, j1, j2 in ops:
+        if tag == "equal":
+            continue
+        for w in words_a[i1:i2] + words_b[j1:j2]:
+            if len(w) == 1 or any(c.isdigit() for c in w):
+                return False
+    return True
+
+
+def _digits(value: str | None) -> str:
+    return re.sub(r"\D", "", (value or "").split(".")[0])
+
+
+def _same_tender_reworded(a: Record, b: Record, is_aggregator) -> bool:
+    if not (is_aggregator(a) or is_aggregator(b)):
+        return False
+    if not a.get("dueDate") or a.get("dueDate") != b.get("dueDate"):
+        return False
+    loc_a, loc_b = (a.get("location") or "").strip().lower(), (b.get("location") or "").strip().lower()
+    if loc_a and loc_b and loc_a != loc_b:
+        return False
+    val_a, val_b = _digits(a.get("value")), _digits(b.get("value"))
+    if val_a and val_b and val_a != val_b:
+        return False
+    words_a, words_b = _reworded_words(a["desc"]), _reworded_words(b["desc"])
+    short, long_ = sorted((words_a, words_b), key=len)
+    # One title is the start of the other (a site that shows only the first part).
+    if len(short) >= MIN_FRAGMENT_WORDS and long_[: len(short)] == short:
+        return True
+    # Two tenders from one site could be sibling lots, so that needs a closer match.
+    needed = SIMILAR_TITLE_RATIO if a.get("source") != b.get("source") else SAME_SITE_TITLE_RATIO
+    if difflib.SequenceMatcher(None, " ".join(words_a), " ".join(words_b)).ratio() < needed:
+        return False
+    return _differ_only_in_wording(words_a, words_b)
+
+
 class DuplicateIndex:
     """Finds, among saved records, one that is the same tender as a new one."""
 
@@ -109,6 +172,14 @@ class DuplicateIndex:
                     continue
                 theirs = _fragment(other["desc"])
                 if (mine and mine in bucket_title) or (theirs and theirs in _key(record["desc"])):
+                    return other
+        # The same tender worded a little differently by two sites ("Unit-I" /
+        # "unit 1", "detail project report" / "dpr", one title cut short): with
+        # the same closing date, and a state and value that don't disagree,
+        # near-identical titles are one tender. Only when an aggregator is involved.
+        for others in self._by_title.values():
+            for other in others:
+                if self._may_merge(record, other) and _same_tender_reworded(record, other, self.is_aggregator):
                     return other
         return None
 

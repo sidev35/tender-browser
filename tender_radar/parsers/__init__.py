@@ -19,6 +19,8 @@ from .australia import parse_tas_tenders, parse_vic_tenders
 from .eesl import parse_eesl_tenders
 from .gepnic_org import is_captcha_page, parse_gepnic_org_list, parse_gepnic_org_tenders
 from .tables import parse_generic_table, parse_gepnic_table
+from .nationaltenders import parse_nationaltenders_list
+from .tender18 import parse_tender18_list
 from .tenderdetail import parse_tenderdetail_list
 
 __all__ = [
@@ -28,7 +30,9 @@ __all__ = [
     "parse_gepnic_org_list",
     "parse_gepnic_org_tenders",
     "parse_gepnic_table",
+    "parse_nationaltenders_list",
     "parse_tas_tenders",
+    "parse_tender18_list",
     "parse_tenderdetail_list",
     "parse_vic_tenders",
 ]

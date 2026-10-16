@@ -40,6 +40,8 @@ const PORTAL_HOME = {
   'Gujarat nProcure': 'https://tender.nprocure.com/',
   'Bihar e-Procurement 2.0': 'https://eproc2.bihar.gov.in/',
   'TenderDetail': 'https://www.tenderdetail.com/',
+  'Tender18': 'https://tender18.com/',
+  'NationalTenders': 'https://www.nationaltenders.com/',
   'Buying for Victoria': 'https://www.tenders.vic.gov.au/',
   'Tasmania Tenders': 'https://www.tenders.tas.gov.au/',
   'Tenders ACT': 'https://www.tenders.act.gov.au/',
