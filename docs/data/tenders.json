@@ -2839,23 +2839,6 @@
     "searchHint": null
   },
   {
-    "id": "AUTO-2305fce926",
-    "desc": "EOI Document For Selection of a PreBid Partner for Supply, Installation and Commissioning of QuantumSecure IT and Network Infrastructure for Indian Army",
-    "refNo": "TCIL/IIT-IV/390/IA/2026",
-    "location": null,
-    "country": "India",
-    "value": null,
-    "dueDate": "2026-10-16",
-    "dueTime": "12:00",
-    "category": "Defence",
-    "source": "CPPP / etenders.gov.in",
-    "url": "https://etenders.gov.in/eprocure/app?page=FrontEndAdvancedSearch&service=page",
-    "linkType": "search",
-    "firstSeen": "2026-10-14",
-    "searchText": null,
-    "searchHint": null
-  },
-  {
     "id": "AUTO-631129af4b",
     "desc": "Construction of Breakwater, Rock Bund, Wharf and capital dredging and reclamation for backup yard and allied onshore facilities including maintenance thereof on Hybrid Annuity Model (HAM) under Development of Outer Harbour at V.O. Chidambaranar Port.",
     "refNo": "CIV-OFCPD-PRJ-DEVEL-D4101",
@@ -3141,6 +3124,23 @@
     "url": "https://etenders.gov.in/eprocure/app?page=FrontEndAdvancedSearch&service=page",
     "linkType": "search",
     "firstSeen": "2026-10-15",
+    "searchText": null,
+    "searchHint": null
+  },
+  {
+    "id": "AUTO-dada63c17d",
+    "desc": "Provision of installation of Inverter",
+    "refNo": "EE/Elect/ONZ/2026-27/TC/26",
+    "location": null,
+    "country": "India",
+    "value": null,
+    "dueDate": "2026-10-23",
+    "dueTime": "09:30",
+    "category": "Battery, BESS & Power Electronics",
+    "source": "CPPP / etenders.gov.in",
+    "url": "https://etenders.gov.in/eprocure/app?page=FrontEndAdvancedSearch&service=page",
+    "linkType": "search",
+    "firstSeen": "2026-10-16",
     "searchText": null,
     "searchHint": null
   }
