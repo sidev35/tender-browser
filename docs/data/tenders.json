@@ -1649,23 +1649,6 @@
     "country": "India"
   },
   {
-    "id": "AUTO-21b3d86b99",
-    "desc": "Request for Selection for Charge Point Operators for Survey, design, supply, including civil works related to site preparation for installation, testing, commissioning, operations and maintenance for 169 no s of Public Charging Stations at 116 nos locations to be set up under PM E-drive scheme for the Contract Period of 10 years",
-    "refNo": "TGREDCO/ EVI/PM E Drive/2026-27, Dt: 02-09-2026",
-    "location": null,
-    "value": "₹3.00 Lakh",
-    "dueDate": "2026-10-17",
-    "dueTime": "16:30",
-    "category": "PPP / Concession / CPO Selection",
-    "source": "Telangana e-Procurement (keyword search)",
-    "url": "https://tender.telangana.gov.in/",
-    "linkType": "search",
-    "firstSeen": "2026-10-12",
-    "searchText": "730456",
-    "searchHint": "On Telangana's homepage, click More... (the search page only opens that way), paste the Tender ID into the search box and click Search.",
-    "country": "India"
-  },
-  {
     "id": "AUTO-f1b0518bb4",
     "desc": "...To Site Preparation For Installation, Testing, Commissioning, Operations And Maintenance For 169 No S Of Public Charging Stations At 116 Nos Locations To Be Set Up Under PM E-Drive Scheme For The Contract Period Of 10 Years , CPO Services For PM...",
     "refNo": null,
@@ -3908,5 +3891,22 @@
     "firstSeen": "2026-10-17",
     "searchText": null,
     "searchHint": null
+  },
+  {
+    "id": "AUTO-fe9d359480",
+    "desc": "DESIGN, SUPPLY, TESTING, INSTALLATION and COMMISSIONING ALONG WITH COMPREHENSIVE ANNUAL MAINTENANCE CONTRACT (CAMC) FOR 10 (TEN) YEARS OF A GRID-CONNECTED 1 MW / 4 MWh (4-HOUR) BATTERY ENERGY STORAGE SYSTEM (BESS) ON 100 percent TURNKEY BASIS AT THE 33/11 kV Waterworks SubStation KARIMNAGAR DISTRICT OF TGNPDCL.",
+    "refNo": "Tender Bid No.: II-46/2026-27/CE/Proj/KRMR",
+    "location": null,
+    "country": "India",
+    "value": null,
+    "dueDate": "2026-10-28",
+    "dueTime": "17:00",
+    "category": "Battery, BESS & Power Electronics",
+    "source": "Telangana e-Procurement (keyword search)",
+    "url": "https://tender.telangana.gov.in/",
+    "linkType": "search",
+    "firstSeen": "2026-10-17",
+    "searchText": "735650",
+    "searchHint": "On Telangana's homepage, click More... (the search page only opens that way), paste the Tender ID into the search box and click Search."
   }
 ]
