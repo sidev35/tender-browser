@@ -3857,5 +3857,22 @@
     "firstSeen": "2026-10-17",
     "searchText": null,
     "searchHint": null
+  },
+  {
+    "id": "AUTO-e70af4db1e",
+    "desc": "Station Pier marine infrastructure maintenance and pile rehabilitation works",
+    "refNo": "T421508",
+    "location": "Victoria, Australia",
+    "country": "Australia",
+    "value": null,
+    "dueDate": "2026-12-11",
+    "dueTime": null,
+    "category": "Marine",
+    "source": "Buying for Victoria (tenders.vic.gov.au)",
+    "url": "https://www.tenders.vic.gov.au/tender/view?id=336978",
+    "linkType": "direct",
+    "firstSeen": "2026-10-18",
+    "searchText": null,
+    "searchHint": null
   }
 ]
