@@ -2992,23 +2992,6 @@
     "searchHint": null
   },
   {
-    "id": "AUTO-cfff7ff7bd",
-    "desc": "Tender for construction of court complex at makrana hq ( lan, ipbx, vc system, and inverter work ), construction of court complex at makrana hq lan, ipbx, vc system, and inverter work",
-    "refNo": null,
-    "location": "Rajasthan",
-    "country": "India",
-    "value": "₹16.74 Lakh",
-    "dueDate": "2026-11-04",
-    "dueTime": null,
-    "category": "Battery, BESS & Power Electronics",
-    "source": "Tender18",
-    "url": "https://tender18.com/tenders-details/17818996",
-    "linkType": "direct",
-    "firstSeen": "2026-10-16",
-    "searchText": null,
-    "searchHint": null
-  },
-  {
     "id": "AUTO-9db5ba1962",
     "desc": "Tender for on grid solar inverter (q3)",
     "refNo": null,
@@ -3872,6 +3855,23 @@
     "url": "https://www.tenders.vic.gov.au/tender/view?id=336978",
     "linkType": "direct",
     "firstSeen": "2026-10-18",
+    "searchText": null,
+    "searchHint": null
+  },
+  {
+    "id": "AUTO-dfb76937ee",
+    "desc": "Construction of Court Complex at Makrana HQ ( LAN, IPBX, VC System, and Inverter Work )",
+    "refNo": "NIT20 2026-27 EE PWD Elec Dn Ajmer",
+    "location": "Rajasthan",
+    "country": "India",
+    "value": "₹16.74 Lakh",
+    "dueDate": "2026-11-04",
+    "dueTime": "17:00",
+    "category": "Battery, BESS & Power Electronics",
+    "source": "Rajasthan e-Tendering",
+    "url": "https://eproc.rajasthan.gov.in/nicgep/app?page=FrontEndAdvancedSearch&service=page",
+    "linkType": "search",
+    "firstSeen": "2026-10-16",
     "searchText": null,
     "searchHint": null
   }
