@@ -155,7 +155,6 @@
 .geo-country em { font-style: normal; font-size: 10.5px; font-weight: 600; letter-spacing: .03em; padding: 3px 8px; border-radius: 10px; }
 .geo-live { color: #15803d; background: rgba(74, 222, 128, .16); }
 :root:not([data-theme="light"]) .geo-live { color: #4ade80; }
-.geo-soon { color: var(--text-dim); background: var(--surface-2); }
 .geo-country.picked { border-color: var(--rc); background: linear-gradient(90deg, color-mix(in srgb, var(--rc) 22%, var(--surface)), var(--surface)); }
 .geo-country.picked::after {
   content: "\2713"; position: absolute; right: -6px; top: -6px; width: 20px; height: 20px; border-radius: 50%;

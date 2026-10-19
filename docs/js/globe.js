@@ -140,7 +140,7 @@ export function initGlobe({ country = 'India', onChange = () => {} } = {}) {
       const b = document.createElement('button');
       b.type = 'button'; b.className = 'geo-country' + (active.country === c ? ' picked' : '');
       b.style.setProperty('--rc', r.color); b.style.setProperty('--i', i);
-      b.innerHTML = `<i class="geo-swatch"></i><span>${label(c)}</span>${LIVE.has(c) ? '<em class="geo-live">Live data</em>' : '<em class="geo-soon">Soon</em>'}`;
+      b.innerHTML = `<i class="geo-swatch"></i><span>${label(c)}</span>${LIVE.has(c) ? '<em class="geo-live">Live data</em>' : ''}`;
       b.addEventListener('pointerenter', () => { view.hoverCountry = c; });
       b.addEventListener('pointerleave', () => { view.hoverCountry = null; });
       b.addEventListener('click', () => choose(c));
