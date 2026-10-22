@@ -5047,5 +5047,39 @@
     "firstSeen": "2026-10-21",
     "searchText": null,
     "searchHint": null
+  },
+  {
+    "id": "AUTO-d977efd742",
+    "desc": "Tender for Plastering, Pop, Coloring, Solar Panel With Inverter And Battery To Bms Odura",
+    "refNo": null,
+    "location": "Jammu and Kashmir",
+    "country": "India",
+    "value": "₹2.91 Lakh",
+    "dueDate": "2026-10-29",
+    "dueTime": null,
+    "category": "Battery, BESS & Power Electronics",
+    "source": "TenderDetail (battery & power electronics listings)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/58114357/b63af4973b3130f34f4e32d81b33ed35",
+    "linkType": "direct",
+    "firstSeen": "2026-10-22",
+    "searchText": null,
+    "searchHint": null
+  },
+  {
+    "id": "AUTO-7c44b8d1cc",
+    "desc": "Tender for SITC of Automatic Number Plate Recognition ( ANPR ) system in the Udhna-Sachin BRTS Corridor (4thAttempt)",
+    "refNo": null,
+    "location": "Gujarat",
+    "country": "India",
+    "value": "₹35.44 Lakh",
+    "dueDate": "2026-10-28",
+    "dueTime": null,
+    "category": "Traffic Management & ITS",
+    "source": "TenderDetail (traffic management listings)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57857096/b4875f326ac83394e347d9e9d88880a2",
+    "linkType": "direct",
+    "firstSeen": "2026-10-22",
+    "searchText": null,
+    "searchHint": null
   }
 ]
