@@ -1,6 +1,8 @@
 """Parser for Tasmania Tenders (tenders.tas.gov.au, "Open for bids")."""
 
 import calendar
+import re
+from datetime import datetime
 from urllib.parse import urljoin
 
 from bs4 import BeautifulSoup

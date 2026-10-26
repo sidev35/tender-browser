@@ -1,5 +1,6 @@
 """Parser for Buying for Victoria (tenders.vic.gov.au). Tenders ACT runs on the same platform and layout, so it uses this too."""
 
+import re
 from urllib.parse import urljoin
 
 from bs4 import BeautifulSoup
