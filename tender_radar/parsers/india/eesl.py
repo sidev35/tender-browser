@@ -4,7 +4,7 @@ from urllib.parse import urljoin
 
 from bs4 import BeautifulSoup
 
-from ..models import Row
+from ...models import Row
 
 
 def parse_eesl_tenders(html: str, source_name: str, base_url: str) -> list[Row]:

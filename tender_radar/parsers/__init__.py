@@ -13,15 +13,29 @@ Row fields (only raw_title and raw_row are always present):
     stableKey    a unique id from the source, when titles aren't unique
     value, location   already-formatted fields, when the page has them
     organisation      the issuing organisation, when the page names it
+
+Layout (one folder per country, one module per portal or site):
+    australia/    victoria.py (also Tenders ACT), tasmania.py
+    india/        gepnic_org.py, tables.py, eesl.py
+        aggregators/   tenderdetail.py, tender18.py, nationaltenders.py
+    common.py     small pieces shared between countries
+
+Adding a country: make a folder with its parsers and an __init__.py that exports
+them, then import the folder's names below.
 """
 
 from .australia import parse_tas_tenders, parse_vic_tenders
-from .eesl import parse_eesl_tenders
-from .gepnic_org import is_captcha_page, parse_gepnic_org_list, parse_gepnic_org_tenders
-from .tables import parse_generic_table, parse_gepnic_table
-from .nationaltenders import parse_nationaltenders_list
-from .tender18 import parse_tender18_list
-from .tenderdetail import parse_tenderdetail_list
+from .india import (
+    is_captcha_page,
+    parse_eesl_tenders,
+    parse_generic_table,
+    parse_gepnic_org_list,
+    parse_gepnic_org_tenders,
+    parse_gepnic_table,
+    parse_nationaltenders_list,
+    parse_tender18_list,
+    parse_tenderdetail_list,
+)
 
 __all__ = [
     "is_captcha_page",

@@ -8,8 +8,8 @@ import re
 
 from bs4 import BeautifulSoup
 
-from ..models import Row
-from ..normalize import format_rupees
+from ...models import Row
+from ...normalize import format_rupees
 
 # Header text -> what the column holds, checked in this order (first match
 # wins). Seen live 2026-09-28:

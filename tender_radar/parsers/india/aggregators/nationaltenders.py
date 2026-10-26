@@ -6,9 +6,9 @@ from urllib.parse import urljoin
 
 from bs4 import BeautifulSoup
 
-from ..models import Row
+from ....models import Row
+from ...common import CORRIGENDUM_PREFIX
 
-CORRIGENDUM_PREFIX = re.compile(r"^\s*corrigendum\b\s*[:\-–]?\s*", re.IGNORECASE)
 
 
 def _cost(text: str) -> str | None:

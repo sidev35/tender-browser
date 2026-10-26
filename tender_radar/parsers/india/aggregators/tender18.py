@@ -6,19 +6,21 @@ from urllib.parse import urljoin
 
 from bs4 import BeautifulSoup
 
-from ..models import Row
+from ....models import Row
+from ...common import CORRIGENDUM_PREFIX
 
-CORRIGENDUM_PREFIX = re.compile(r"^\s*corrigendum\b\s*[:\-–]?\s*", re.IGNORECASE)
 MAX_TITLE = 300
-VALUE_RE = re.compile(r"^\s*([\d,]+(?:\.\d+)?)\s*(cr|crore|l|lac|lakh)?\b", re.IGNORECASE)
+VALUE_RE = re.compile(r"^\s*([\d,]+(?:\.\d+)?)\s*(cr|crore|l|lac|lakh|k|thousand)?\b", re.IGNORECASE)
 
 
 def _value(text: str) -> str | None:
-    """'1.46Cr' -> '₹1.46 Crore', '25L' -> '₹25 Lakh'; 'Refer Document' -> None."""
+    """'1.46Cr' -> '₹1.46 Crore', '25L' -> '₹25 Lakh', '14K' -> '₹14,000'; 'Refer Document' -> None."""
     m = VALUE_RE.match(text or "")
     if not m or not re.search(r"[1-9]", m.group(1)):
         return None
     unit = (m.group(2) or "").lower()
+    if unit in ("k", "thousand"):
+        return f"₹{round(float(m.group(1).replace(',', '')) * 1000):,}"
     if unit in ("cr", "crore"):
         return f"₹{m.group(1)} Crore"
     if unit in ("l", "lac", "lakh"):

@@ -9,7 +9,7 @@ Module map, in the order a run uses them:
     sources.py    load and check sources.json (which portals to check, and how)
     browser.py    the shared headless browser every page is loaded through
     fetchers.py   one fetcher per source "type": load page(s) -> parser
-    parsers/      HTML -> rows (tables.py, eesl.py, tenderdetail.py)
+    parsers/      HTML -> rows, one folder per country (india/, australia/); see parsers/__init__.py
     normalize.py  row text -> clean fields (id, title, due date, value)
     matching.py   is it an EV-charging tender, and which category?
                   (word lists in config/categories.json)

@@ -88,7 +88,7 @@ ORG_PAGE_PAUSE_SECONDS = 2
 def fetch_gepnic_by_organisation(source: Source, session: BrowserSession) -> list[Row]:
     """
     Every active tender of a NIC GePNIC portal, through its public, captcha-free
-    "Tenders by Organisation" pages (see parsers/gepnic_org.py): the homepage
+    "Tenders by Organisation" pages (see parsers/india/gepnic_org.py): the homepage
     widget only ever shows the 10 newest tenders site-wide, and the full
     listings (Active Tenders, Tenders by Closing Date) are behind a captcha.
 

@@ -18,7 +18,7 @@ from urllib.parse import urljoin
 
 from bs4 import BeautifulSoup
 
-from ..models import Row
+from ...models import Row
 
 # "[title] [ref no][2026_AWEIL_291513_1]": the square-bracketed parts of the
 # "Title and Ref.No./Tender ID" cell.

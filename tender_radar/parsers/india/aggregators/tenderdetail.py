@@ -6,10 +6,10 @@ from urllib.parse import urljoin
 
 from bs4 import BeautifulSoup
 
-from ..models import Row
+from ....models import Row
+from ...common import CORRIGENDUM_PREFIX
 
 # "Corrigendum : ...", "Corrigendum - ..." and, seen 2026-09-28, "Corrigendum Tender For ...".
-CORRIGENDUM_PREFIX = re.compile(r"^\s*corrigendum\b\s*[:\-–]?\s*", re.IGNORECASE)
 
 
 def parse_tenderdetail_list(html: str, source_name: str, base_url: str) -> list[Row]:
