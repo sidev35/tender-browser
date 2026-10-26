@@ -18,6 +18,7 @@ from .dedupe import DuplicateIndex, dedupe_records, fill_missing
 from .matching import matches_categories
 from .models import Record, Source, Tender
 from .normalize import (
+    below_min_value,
     clean_title,
     days_until,
     extract_due_date,
@@ -106,6 +107,8 @@ def scrape_source(
                 saved["searchText"] = search_text(source, row)
             duplicates.add(saved)
             continue  # already tracked from a previous run
+        if below_min_value(value):
+            continue
         cats = matches_categories(title, source.get("country"))
         if not cats:
             if not config.SHOW_ALL_TENDERS:
@@ -210,7 +213,7 @@ def run() -> None:
     backfill_due_times(existing_by_id.values())
     apply_search_help(existing_by_id.values(), sources)
     apply_source_region(existing_by_id.values(), sources)
-    merged = drop_expired(existing_by_id.values())
+    merged = [t for t in drop_expired(existing_by_id.values()) if not below_min_value(t.get("value"))]
     save(config.DATA_PATH, merged)
 
     log.info(

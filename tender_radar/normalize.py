@@ -200,3 +200,16 @@ def format_rupees(text: str | None) -> str | None:
     if amount >= 1e5:
         return f"₹{amount / 1e5:.2f} Lakh"
     return f"₹{amount:,.0f}"
+
+
+MIN_VALUE_RUPEES = 50_000
+_UNITS = {"cr": 1e7, "crore": 1e7, "l": 1e5, "lac": 1e5, "lakh": 1e5, "k": 1e3, "thousand": 1e3}
+
+
+def below_min_value(value: str | None) -> bool:
+    """True for a rupee value under MIN_VALUE_RUPEES ("₹14,140", "₹4.5 Lakh"). Undisclosed or non-rupee values stay."""
+    m = re.match(r"\s*₹\s*([\d,]+(?:\.\d+)?)\s*([a-z]*)", value or "", re.IGNORECASE)
+    if not m:
+        return False
+    amount = float(m.group(1).replace(",", "")) * _UNITS.get(m.group(2).lower(), 1)
+    return 0 < amount < MIN_VALUE_RUPEES
