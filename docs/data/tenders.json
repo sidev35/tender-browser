@@ -783,7 +783,7 @@
   },
   {
     "id": "AUTO-f138c559bd",
-    "desc": "...Waiting Hall At Veraval Railway Station.,The Licensee Shall Develop, Install, Operate, And Maintain Electric Vehicle ( Ev) Charging Station At Botad (Btd), Dhandhuka (Dck), Bavla (Vla), Sarkhej (Sej), And Gandhigram (Gg) Railway Stations, Each Over...",
+    "desc": "...Hall At Veraval Railway Station .,The Licensee Shall Develop, Install, Operate, And Maintain Electric Vehicle (Ev) Charging Station At Botad (Btd), Dhandhuka (Dck), Bavla (Vla), Sarkhej (Sej), And Gandhigram (Gg) Railway Stations , Each Over An Area...",
     "refNo": null,
     "location": "Gujarat",
     "value": null,
@@ -1072,7 +1072,7 @@
   },
   {
     "id": "AUTO-01a906789b",
-    "desc": "Auction For Contract To Establish, Operate And Maintain Electric Vehicle ( Ev) Charging Point At Elamanur Railway Station For A Period Of 5 (Five) Years. Area Allotted Is 100 Sq.Mts. As Per Sketch.",
+    "desc": "Auction For Contract To Establish, Operate And Maintain Electric Vehicle (Ev) Charging Point At Elamanur Railway Station For A Period Of 5 (Five) Years. Area Allotted Is 100 Sq.Mts. As Per Sketch.",
     "refNo": null,
     "location": "Tamil Nadu",
     "value": null,
@@ -2024,7 +2024,7 @@
   },
   {
     "id": "AUTO-26116acd53",
-    "desc": "...And Umri Railway Stations Bsx - 1132 Square Feet Dab-780 Square Feet Umri- 584 Square Feet Total Area 2496 Square Feet, Ev Charging / Battery Swapping Facility At Bolarum Railway Station Circulating Area L C 250 Area ( Location B), Ev Charging / Battery ...",
+    "desc": "...Umri Railway Stations Bsx - 1132 Square Feet Dab-780 Square Feet Umri- 584 Square Feet Total Area 2496 Square Feet,Ev Charging /Battery Swapping Facility At Bolarum Railway Station Circulating Area L C 250 Area ( Location B),Ev Charging /Battery...",
     "refNo": null,
     "location": "Telangana",
     "country": "India",
@@ -2568,7 +2568,7 @@
   },
   {
     "id": "AUTO-b139c2f4f1",
-    "desc": "...Workshop In Kanpur. Electrification Repair Work At The Unnao Depot Workshop. Construction Of A Ramp For The Electric Vehicle Charging Platform At The Ballia Depot Workshop. Repair Work Of The Damaged Boundary Wall On The Rear Side Of Bus Station ...",
+    "desc": "...In Kanpur. Electrification Repair Work At The Unnao Depot Workshop. Construction Of A Ramp For The Electric Vehicle Charging Platform At The Ballia Depot Workshop. Repair Work Of The Damaged Boundary Wall On The Rear Side Of Bus Station Rasra....",
     "refNo": null,
     "location": "Uttar Pradesh",
     "country": "India",
@@ -2908,7 +2908,7 @@
   },
   {
     "id": "AUTO-0b49c80cd1",
-    "desc": "...Cp Plus 16 Channel Dvr Box , Repair Of Locking System - Repair Of Lock Of Steel Almirah , Wpc Box - Custom Made Box For Ev Charging Station , Flower Pot Stand - Custom Made Stainless Steel Flower Pot Stand , Name Plate - Stainless Steel Name Plate ,...",
+    "desc": "...16 Channel Dvr Box , Repair Of Locking System - Repair Of Lock Of Steel Almirah , Wpc Box - Custom Made Box For Ev Charging Station , Flower Pot Stand - Custom Made Stainless Steel Flower Pot Stand , Name Plate - Stainless Steel Name Plate , Paint...",
     "refNo": null,
     "location": "Madhya Pradesh",
     "country": "India",
@@ -4756,6 +4756,23 @@
     "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/55983894/d6bf347b5558bfc8308db0180de9c17d",
     "linkType": "direct",
     "firstSeen": "2026-10-26",
+    "searchText": null,
+    "searchHint": null
+  },
+  {
+    "id": "AUTO-a2af77443f",
+    "desc": "Bids Are invited for Battery Pack Tester 600 A, 1000V, 2 Channels",
+    "refNo": null,
+    "location": "Madhya Pradesh",
+    "country": "India",
+    "value": null,
+    "dueDate": "2026-11-04",
+    "dueTime": null,
+    "category": "Battery, BESS & Power Electronics",
+    "source": "TenderDetail (battery & power electronics listings)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57408615/bd229a994cd49f6fa7a33357741d1d11",
+    "linkType": "direct",
+    "firstSeen": "2026-10-27",
     "searchText": null,
     "searchHint": null
   }
