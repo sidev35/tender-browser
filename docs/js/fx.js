@@ -234,18 +234,9 @@ function setupMagnetic() {
   });
 }
 
-// Theme switch as a circle growing out of the toggle button (the View
-// Transitions API; browsers without it just switch). `change` flips the theme.
+// Theme switch as a quick crossfade (the View Transitions API, timed in
+// css/app.css; browsers without it just switch). `change` flips the theme.
 export function switchThemeWithReveal(button, change) {
   if (calm || !document.startViewTransition) { change(); return; }
-  const r = button.getBoundingClientRect();
-  const x = r.left + r.width / 2, y = r.top + r.height / 2;
-  const radius = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y));
-  const t = document.startViewTransition(change);
-  t.ready.then(() => {
-    document.documentElement.animate(
-      { clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${radius}px at ${x}px ${y}px)`] },
-      { duration: 650, easing: 'cubic-bezier(.2,.8,.2,1)', pseudoElement: '::view-transition-new(root)' },
-    );
-  }).catch(() => {});
+  document.startViewTransition(change);
 }

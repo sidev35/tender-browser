@@ -1,3 +1,7 @@
+/* Theme switch: a short crossfade between the old and new theme (js/fx.js starts it) */
+::view-transition-group(root) { animation-duration: .28s; animation-timing-function: cubic-bezier(.4, 0, .2, 1); }
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: .28s; animation-timing-function: cubic-bezier(.4, 0, .2, 1); mix-blend-mode: normal; }
+
 /* Tender Radar dashboard styles.
    Colours are CSS variables. The page is light by default because
    index.html starts with <html data-theme="light">; the theme toggle
