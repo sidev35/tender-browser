@@ -4877,5 +4877,22 @@
     "firstSeen": "2026-10-28",
     "searchText": null,
     "searchHint": null
+  },
+  {
+    "id": "AUTO-749492d410",
+    "desc": "Construction of Echarging Point Evm Transformer lagwaye jane ka karya nagar parishad garoth",
+    "refNo": "Etender/3047/2026",
+    "location": null,
+    "country": "India",
+    "value": null,
+    "dueDate": "2026-11-11",
+    "dueTime": "17:30",
+    "category": "Charger Supply & Installation",
+    "source": "Madhya Pradesh e-Tendering",
+    "url": "https://mptenders.gov.in/nicgep/app?page=FrontEndAdvancedSearch&service=page",
+    "linkType": "search",
+    "firstSeen": "2026-10-28",
+    "searchText": null,
+    "searchHint": null
   }
 ]
