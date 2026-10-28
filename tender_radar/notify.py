@@ -317,11 +317,13 @@ def send_digest(
     msg = EmailMessage()
     msg["Subject"] = subject
     msg["From"] = from_email
-    msg["To"] = ", ".join(recipients)
     msg.set_content(body)
     if html_body:
         msg.add_alternative(html_body, subtype="html")
 
+    # One message per recipient, so nobody sees the other addresses and one
+    # bad address (rejected, mailbox not found) doesn't stop the rest.
+    sent = 0
     try:
         if enable_ssl and port == 465:
             server = smtplib.SMTP_SSL(host, port, timeout=30)
@@ -331,13 +333,21 @@ def send_digest(
             if enable_ssl and port != 465:
                 server.starttls()
             server.login(username, password)
-            server.send_message(msg)
+            for recipient in recipients:
+                del msg["To"]
+                msg["To"] = recipient
+                try:
+                    server.send_message(msg, to_addrs=[recipient])
+                    sent += 1
+                except smtplib.SMTPRecipientsRefused as e:
+                    log.warning(f"  [!] Recipient rejected, skipped: {recipient} ({e.recipients.get(recipient)})")
     except (smtplib.SMTPException, OSError) as e:
         log.warning(f"  [!] SMTP send failed: {e!r}")
+    if not sent:
         return
 
     _record_sent(now)
     log.info(
-        f"Email digest sent to {len(recipients)} recipient(s): "
+        f"Email digest sent to {sent} of {len(recipients)} recipient(s): "
         f"{len(new_records)} new, {len(due_soon_records)} closing soon."
     )
