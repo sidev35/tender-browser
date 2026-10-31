@@ -579,7 +579,7 @@
   },
   {
     "id": "AUTO-6042d187ca",
-    "desc": "...Station-, Battery Internal-Resistance / Voltage Tester-,Lipo Safety Storage Bags-,Lithium Battery Safety Cabinet-, Battery Charging Station (Fleet Wall)-,Field Testing Laptops (Gcs-Class)-,Environmental Meter Set-,Three Degree-Of-Freedom (3-Dof) Uav...",
+    "desc": "...Internal-Resistance / Voltage Tester-,Lipo Safety Storage Bags-,Lithium Battery Safety Cabinet-,Battery Charging Station (Fleet Wall)-,Field Testing Laptops (Gcs-Class)-,Environmental Meter Set-,Three Degree-Of-Freedom (3-Dof) Uav...",
     "refNo": null,
     "location": "Karnataka",
     "value": null,
@@ -3129,7 +3129,7 @@
   },
   {
     "id": "AUTO-0470df3db8",
-    "desc": "...Colony Of Ahmedabad Division For Five Years.,The Licensee Shall Install, Operate, And Maintain Electric Vehicle ( Ev) Charging Infrastructure At Samakhiyali Station, Circulating Area With An Area Of 22 Ft X 25 Ft For The Period Of 05 (Five)...",
+    "desc": "...Colony Of Ahmedabad Division For Five Years.,The Licensee Shall Install, Operate, And Maintain Electric Vehicle (Ev) Charging Infrastructure At Samakhiyali Station , Circulating Area With An Area Of 22 Ft X 25 Ft For The Period Of 05 (Five) Years....",
     "refNo": null,
     "location": "Gujarat",
     "country": "India",
@@ -3741,7 +3741,7 @@
   },
   {
     "id": "AUTO-3ae383ef85",
-    "desc": "...Automatic Fire Alarm System, DG Set, Sub-Station, Passenger Lifts, UPS System, HVAC System, Roof Top Solar Power Generation System, STP, Building Management System (BMS), Mechanical Ventilation System, EV Charging System And Horticulture Woks Etc.",
+    "desc": "...Automatic Fire Alarm System, DG Set, Sub- Station , Passenger Lifts, UPS System, HVAC System, Roof Top Solar Power Generation System, STP, Building Management System (BMS), Mechanical Ventilation System, EV Charging System And Horticulture Woks Etc.",
     "refNo": null,
     "location": "Andhra Pradesh",
     "country": "India",
@@ -4386,23 +4386,6 @@
     "searchHint": null
   },
   {
-    "id": "AUTO-9aaec58fd4",
-    "desc": "...Selection Of Consortium Partner For Request For Proposal For Selection Of Master System Integrator (Msi) To Design, Implement, Integrate, Operate And Maintain Intelligent Traffic And Management And Enforcement System (Itmes) In Ahmedabad For 10 Years",
-    "refNo": null,
-    "location": "Gujarat",
-    "country": "India",
-    "value": null,
-    "dueDate": "2026-11-05",
-    "dueTime": null,
-    "category": "Traffic Management & ITS",
-    "source": "TenderDetail (traffic management listings)",
-    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57346024/3a84308970c2a61ba580971011a2486f",
-    "linkType": "direct",
-    "firstSeen": "2026-10-29",
-    "searchText": null,
-    "searchHint": null
-  },
-  {
     "id": "AUTO-4c92bbc8c9",
     "desc": "...7 Corrosion-Resistant Suitable For Fixing Pvc Conduit Cables On Walls And Ceilings , Inverter 1 Kva With 200 Ah Tubular Battery - 1 Kva Pure Sine Wave Inverter Complete With 12V Battery Inbuilt Charger Overload 1 Kva Pure Sine Wave Inverter...",
     "refNo": null,
@@ -4756,6 +4739,40 @@
     "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/58290906/d8c1adc087c3260fd8a3399d7fad9b87",
     "linkType": "direct",
     "firstSeen": "2026-10-30",
+    "searchText": null,
+    "searchHint": null
+  },
+  {
+    "id": "AUTO-ed27f2e645",
+    "desc": "Selection of Consortium partner for Request for Proposal for Selection of Master System Integrator (MSI) to Design, Implement, Integrate, Operate and Maintain Intelligent Traffic and Management and Enforcement System (ITMES) in Ahmedabad for 10 years",
+    "refNo": "TCIL/ITCS/ITMES/0903",
+    "location": "Gujarat",
+    "country": "India",
+    "value": null,
+    "dueDate": "2026-11-05",
+    "dueTime": "11:00",
+    "category": "Traffic Management & ITS",
+    "source": "CPPP / etenders.gov.in",
+    "url": "https://etenders.gov.in/eprocure/app?page=FrontEndAdvancedSearch&service=page",
+    "linkType": "search",
+    "firstSeen": "2026-10-29",
+    "searchText": null,
+    "searchHint": null
+  },
+  {
+    "id": "AUTO-631129af4b",
+    "desc": "Construction of Breakwater, Rock Bund, Wharf and capital dredging and reclamation for backup yard and allied onshore facilities including maintenance thereof on Hybrid Annuity Model (HAM) under Development of Outer Harbour at V.O. Chidambaranar Port.",
+    "refNo": "CIV-OFCPD-PRJ-DEVEL-D4101",
+    "location": null,
+    "country": "India",
+    "value": null,
+    "dueDate": "2026-11-06",
+    "dueTime": "15:00",
+    "category": "Marine",
+    "source": "CPPP / etenders.gov.in",
+    "url": "https://etenders.gov.in/eprocure/app?page=FrontEndAdvancedSearch&service=page",
+    "linkType": "search",
+    "firstSeen": "2026-10-31",
     "searchText": null,
     "searchHint": null
   }
