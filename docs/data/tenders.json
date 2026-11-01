@@ -4758,5 +4758,39 @@
     "firstSeen": "2026-10-31",
     "searchText": null,
     "searchHint": null
+  },
+  {
+    "id": "AUTO-8b041ade8e",
+    "desc": "Installation of an inverter and battery in the courtroom at the District Collectorate office.",
+    "refNo": "NIT-22/2026-27 UIT BHILWARA",
+    "location": null,
+    "country": "India",
+    "value": null,
+    "dueDate": "2026-11-12",
+    "dueTime": "18:00",
+    "category": "Battery, BESS & Power Electronics",
+    "source": "Rajasthan e-Tendering",
+    "url": "https://eproc.rajasthan.gov.in/nicgep/app?page=FrontEndAdvancedSearch&service=page",
+    "linkType": "search",
+    "firstSeen": "2026-10-31",
+    "searchText": null,
+    "searchHint": null
+  },
+  {
+    "id": "AUTO-3d20f57e84",
+    "desc": "Bids Are invited for Tool Kit With Battery Charging Station - Professional Drone Maint Tool Kit , Large Display Panel 4K - Uhd Dispaly , Online Interactive Ups 20 Kva With Battery - Online Double Conversion , Multi Purpose Printer - Laserjet , Thrust...",
+    "refNo": null,
+    "location": "Ladakh",
+    "country": "India",
+    "value": null,
+    "dueDate": "2026-12-07",
+    "dueTime": null,
+    "category": "Other EV Charging",
+    "source": "TenderDetail (charging station listing)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57658126/f0667b256362f237b8b22097b9fbefde",
+    "linkType": "direct",
+    "firstSeen": "2026-11-01",
+    "searchText": null,
+    "searchHint": null
   }
 ]
