@@ -4452,5 +4452,39 @@
     "firstSeen": "2026-11-04",
     "searchText": null,
     "searchHint": null
+  },
+  {
+    "id": "AUTO-a2af77443f",
+    "desc": "Bids Are invited for Battery Pack Tester 600 A, 1000V, 2 Channels",
+    "refNo": null,
+    "location": "Madhya Pradesh",
+    "country": "India",
+    "value": null,
+    "dueDate": "2026-11-18",
+    "dueTime": null,
+    "category": "Battery, BESS & Power Electronics",
+    "source": "TenderDetail (battery & power electronics listings)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57408615/bd229a994cd49f6fa7a33357741d1d11",
+    "linkType": "direct",
+    "firstSeen": "2026-11-05",
+    "searchText": null,
+    "searchHint": null
+  },
+  {
+    "id": "AUTO-c8c2cae853",
+    "desc": "...For Body Seat Repair/Body Seat Replacement For Hp/Ip Turbine Stop And Control Valve At Ntpc Sipat(2X500mw). , Supply Of Anpr Solution , Anpr Camera , Processing Unit With Anpr License , 8 Port Managed Poe Network Switch , Outdoor Rack , Cat 6 Utp...",
+    "refNo": null,
+    "location": "Bihar",
+    "country": "India",
+    "value": null,
+    "dueDate": "2026-11-11",
+    "dueTime": null,
+    "category": "Traffic Management & ITS",
+    "source": "TenderDetail (traffic management listings)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/58109699/4a56a9ff40e91fb1cef412be1542b622",
+    "linkType": "direct",
+    "firstSeen": "2026-11-05",
+    "searchText": null,
+    "searchHint": null
   }
 ]
