@@ -4401,5 +4401,39 @@
     "firstSeen": "2026-11-02",
     "searchText": null,
     "searchHint": null
+  },
+  {
+    "id": "AUTO-737f80a5d8",
+    "desc": "Tender for Design, Supply, Installation, Testing and Commissioning of EOT Cranes for the project of Provision of Administrative and Logistic Infrastructure under WP-07 and WP-5b At Naval Station Rambilli, Visakhapatnam.",
+    "refNo": "SRO/CON/ETS/307",
+    "location": null,
+    "country": "India",
+    "value": null,
+    "dueDate": "2026-11-30",
+    "dueTime": "15:00",
+    "category": "Defence",
+    "source": "CPPP / etenders.gov.in",
+    "url": "https://etenders.gov.in/eprocure/app?page=FrontEndAdvancedSearch&service=page",
+    "linkType": "search",
+    "firstSeen": "2026-11-08",
+    "searchText": null,
+    "searchHint": null
+  },
+  {
+    "id": "AUTO-430ea3516b",
+    "desc": "...As Per The Atc; As Per The Atc - Camera Stream Ingestion, Vehicle Detection, Tracking And Event De-Duplication Module , Anpr Recognition Engine Supporting All Indian Plate Formats (Hsrp, Legacy, Single And Two-Line, Two-Wheeler Rear, Commercial,...",
+    "refNo": null,
+    "location": "Uttar Pradesh",
+    "country": "India",
+    "value": "₹53.00 Crore",
+    "dueDate": "2026-11-16",
+    "dueTime": null,
+    "category": "Traffic Management & ITS",
+    "source": "TenderDetail (traffic management listings)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/58197352/a1221247727f90c11094ba70a1f19450",
+    "linkType": "direct",
+    "firstSeen": "2026-11-08",
+    "searchText": null,
+    "searchHint": null
   }
 ]
