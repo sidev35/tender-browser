@@ -1242,7 +1242,7 @@
   },
   {
     "id": "AUTO-0470df3db8",
-    "desc": "...Colony Of Ahmedabad Division For Five Years.,The Licensee Shall Install, Operate, And Maintain Electric Vehicle ( Ev) Charging Infrastructure At Samakhiyali Station, Circulating Area With An Area Of 22 Ft X 25 Ft For The Period Of 05 (Five)...",
+    "desc": "...Colony Of Ahmedabad Division For Five Years.,The Licensee Shall Install, Operate, And Maintain Electric Vehicle (Ev) Charging Infrastructure At Samakhiyali Station , Circulating Area With An Area Of 22 Ft X 25 Ft For The Period Of 05 (Five) Years....",
     "refNo": null,
     "location": "Gujarat",
     "country": "India",
@@ -1803,7 +1803,7 @@
   },
   {
     "id": "AUTO-340c461815",
-    "desc": "...Along With A List Of Items To Be Sold At The Kiosk, Before The Commencement Of The Contract For Approval.,Provision Of Ev Charging Cum Parking Facility At Designated Area On As Is Where Is Basis. Total Area Available For Ev Charging Cum Parking Is...",
+    "desc": "...With A List Of Items To Be Sold At The Kiosk, Before The Commencement Of The Contract For Approval.,Provision Of Ev Charging Cum Parking Facility At Designated Area On As Is Where Is Basis. Total Area Available For Ev Charging Cum Parking Is...",
     "refNo": null,
     "location": "Uttar Pradesh",
     "country": "India",
@@ -2602,7 +2602,7 @@
   },
   {
     "id": "AUTO-acdde2a35a",
-    "desc": "...And Umri Railway Stations Bsx - 1132 Square Feet Dab-780 Square Feet Umri- 584 Square Feet Total Area 2496 Square Feet, Ev Charging / Battery Swapping Facility At Bolarum Railway Station Circulating Area L C 250 Area ( Location B), Ev Charging / Battery ...",
+    "desc": "...Umri Railway Stations Bsx - 1132 Square Feet Dab-780 Square Feet Umri- 584 Square Feet Total Area 2496 Square Feet,Ev Charging /Battery Swapping Facility At Bolarum Railway Station Circulating Area L C 250 Area ( Location B),Ev Charging /Battery...",
     "refNo": null,
     "location": "Telangana",
     "country": "India",
@@ -4076,6 +4076,40 @@
     "url": "https://eproc.rajasthan.gov.in/nicgep/app?page=FrontEndAdvancedSearch&service=page",
     "linkType": "search",
     "firstSeen": "2026-11-12",
+    "searchText": null,
+    "searchHint": null
+  },
+  {
+    "id": "AUTO-b295a176f6",
+    "desc": "Tender for Provn Of Infra Of Installation Of 240 Kw Electric Fast Charging Station Alongwith Connected Fittings For Electric Vehs At Selection Centre East Under Ge (West) Prayagraj.",
+    "refNo": null,
+    "location": "Uttar Pradesh",
+    "country": "India",
+    "value": "₹41.04 Lakh",
+    "dueDate": "2026-11-14",
+    "dueTime": null,
+    "category": "Charger Supply & Installation",
+    "source": "TenderDetail (charging station listing)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57540138/a30e64f2f65100c00f15424d0b4c17f0",
+    "linkType": "direct",
+    "firstSeen": "2026-11-13",
+    "searchText": null,
+    "searchHint": null
+  },
+  {
+    "id": "AUTO-b153fbf8db",
+    "desc": "Tender for Epc Package For Bess (400Mwh) Implementation At Ntpc Mouda",
+    "refNo": null,
+    "location": "Uttar Pradesh",
+    "country": "India",
+    "value": null,
+    "dueDate": "2026-12-11",
+    "dueTime": null,
+    "category": "Battery, BESS & Power Electronics",
+    "source": "TenderDetail (battery & power electronics listings)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57740735/da4e38043305bcb3e9f812afbac9b7be",
+    "linkType": "direct",
+    "firstSeen": "2026-11-13",
     "searchText": null,
     "searchHint": null
   }
