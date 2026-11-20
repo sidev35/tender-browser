@@ -1922,7 +1922,7 @@
   },
   {
     "id": "AUTO-494d06e943",
-    "desc": "...Station For A Period Of 05 (Five) Year.,Contract For Development, Operation And Maintenance Of Electric Vehicle ( Ev) Charging Station At Somnath (Smnh) Railway Station For A Period Of 05 Years.,The Licensee Shall Develop, Install, Operate, And...",
+    "desc": "... Station For A Period Of 05 (Five) Year.,Contract For Development, Operation And Maintenance Of Electric Vehicle (Ev) Charging Station At Somnath (Smnh) Railway Station For A Period Of 05 Years.,The Licensee Shall Develop, Install, Operate, And...",
     "refNo": null,
     "location": "Gujarat",
     "country": "India",
@@ -3248,7 +3248,7 @@
   },
   {
     "id": "AUTO-9076fbbd69",
-    "desc": "Tender for Providing 11 Kv Sub-Station For Charging Infrastructure Of E-Buses At Bus Depot Cum Workshop, Raipur Kalan, Chandigarh.",
+    "desc": "Tender for Providing 11 Kv Sub- Station For Charging Infrastructure Of E-Buses At Bus Depot Cum Workshop, Raipur Kalan, Chandigarh.",
     "refNo": null,
     "location": "Chandigarh",
     "country": "India",
@@ -4348,6 +4348,40 @@
     "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/57931611/f10eb2aa6e8a7a1b96c7fe2925d60b91",
     "linkType": "direct",
     "firstSeen": "2026-11-19",
+    "searchText": null,
+    "searchHint": null
+  },
+  {
+    "id": "AUTO-72b2b94603",
+    "desc": "Vertical Expansion of CISF barrack for additional manpower of CISF at M.P. Airport, Udaipur",
+    "refNo": "AAI/UDR/AGM(E-C)/W-170/26-27",
+    "location": null,
+    "country": "India",
+    "value": null,
+    "dueDate": "2026-12-12",
+    "dueTime": "18:00",
+    "category": "Defence",
+    "source": "CPPP / etenders.gov.in",
+    "url": "https://etenders.gov.in/eprocure/app?page=FrontEndAdvancedSearch&service=page",
+    "linkType": "search",
+    "firstSeen": "2026-11-20",
+    "searchText": null,
+    "searchHint": null
+  },
+  {
+    "id": "AUTO-bb43b3b212",
+    "desc": "Solar carpark with EV Charging",
+    "refNo": "PICE0014839",
+    "location": "Australian Capital Territory, Australia",
+    "country": "Australia",
+    "value": null,
+    "dueDate": "2026-11-26",
+    "dueTime": null,
+    "category": "Other EV Charging",
+    "source": "Tenders ACT (tenders.act.gov.au)",
+    "url": "https://www.tenders.act.gov.au/tender/view?id=334976",
+    "linkType": "direct",
+    "firstSeen": "2026-11-20",
     "searchText": null,
     "searchHint": null
   }
