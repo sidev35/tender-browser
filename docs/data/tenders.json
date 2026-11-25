@@ -2177,7 +2177,7 @@
   },
   {
     "id": "AUTO-9076fbbd69",
-    "desc": "Tender for Providing 11 Kv Sub-Station For Charging Infrastructure Of E-Buses At Bus Depot Cum Workshop, Raipur Kalan, Chandigarh.",
+    "desc": "Tender for Providing 11 Kv Sub- Station For Charging Infrastructure Of E-Buses At Bus Depot Cum Workshop, Raipur Kalan, Chandigarh.",
     "refNo": null,
     "location": "Chandigarh",
     "country": "India",
@@ -3418,7 +3418,7 @@
   },
   {
     "id": "AUTO-6daa1de741",
-    "desc": "Auction For The Contract Is For Installation, Operation And Maintenance Of An Electric Vehicle ( Ev) Charging At Ltt Railway Station Of Mumbai Division Area = 10 Sq Mtr=(107.6 Sq Ft.) , Location-Near Pf 01, Circulating Area At Ltt,The Contract Is For...",
+    "desc": "...01, Circulating Area At Ltt,The Contract Is For Installation, Operation And Maintenance Of An Electric Vehicle (Ev) Charging Station At Kyn Railway Station Of Mumbai Division, Area -9.5 Sq Mtr. (102.2 Sq Ft.), Igp End, Pf01 West Side, Circulating...",
     "refNo": null,
     "location": "Maharashtra",
     "country": "India",
@@ -4858,6 +4858,40 @@
     "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/58371349/6e0433a827bea7f914dc540988c590f0",
     "linkType": "direct",
     "firstSeen": "2026-11-24",
+    "searchText": null,
+    "searchHint": null
+  },
+  {
+    "id": "AUTO-ad211c8423",
+    "desc": "Generator and inverter repair work for smooth functioning of the university electricity system",
+    "refNo": "NIT 13 MSBU Kumher Bharatpur",
+    "location": null,
+    "country": "India",
+    "value": null,
+    "dueDate": "2026-11-30",
+    "dueTime": "18:00",
+    "category": "Battery, BESS & Power Electronics",
+    "source": "Rajasthan e-Tendering",
+    "url": "https://eproc.rajasthan.gov.in/nicgep/app?page=FrontEndAdvancedSearch&service=page",
+    "linkType": "search",
+    "firstSeen": "2026-11-25",
+    "searchText": null,
+    "searchHint": null
+  },
+  {
+    "id": "AUTO-8570b69ce7",
+    "desc": "Tender For New Camera Installation , Camera , 4Mp Ip Anpr Camera Imagesensor:1/1.8Progressivecmosor Higher, Focallength:10Mmto32Mmorhigher; Videoframerate:25Fps; Main Stream(2688 × 1520@25Fps), Sub Stream (1600 × 1200@25Fps) ; Videocompression:H.265;...",
+    "refNo": null,
+    "location": "Kerala",
+    "country": "India",
+    "value": "₹5.98 Lakh",
+    "dueDate": "2026-11-26",
+    "dueTime": null,
+    "category": "Traffic Management & ITS",
+    "source": "TenderDetail (traffic management listings)",
+    "url": "https://www.tenderdetail.com/Indian-Tenders/TenderNotice/58562920/ff9f6bfd10b01b1561b099c269ccd005",
+    "linkType": "direct",
+    "firstSeen": "2026-11-25",
     "searchText": null,
     "searchHint": null
   }
